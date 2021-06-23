@@ -1,7 +1,7 @@
 ---
 name: Error Handling Card
 about: 에러 핸들링
-title: "[:bug:Error]"
+title: "[Error\U0001F41B]"
 labels: ''
 assignees: ''
 
