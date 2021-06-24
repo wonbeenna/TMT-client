@@ -1,46 +1,55 @@
-# Getting Started with Create React App
+# 프로젝트 소개&#9996;
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+## LOGO
+### Tailor Made Trip
+작업중 ...
 
-In the project directory, you can run:
+---
+## About ✈️
 
-### `yarn start`
+### 테마가 있는 여행, 나만 몰랐던 여행지
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+주말여행, 당일치기, 휴가에 적합한 여행지를 추천해드립니다
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+생각지도 못한 장소에서 시작되는 당신의 이야기 
 
-### `yarn test`
+여행은 목적지로 향하는 과정이지만,
+ 그 자체로 보상이다
+-스티브 잡스 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+```#비대면 안심 여행지```
+```#야경명소```
+```#당일치기```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## SKILLS &#128295;
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### FRONT
 
-### `yarn eject`
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
+<img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"/>
+<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/>
+<img src="https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white"/>
+<img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white"/>
+<img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"/>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### BACK
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white"/>
+<img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white"/>
+<img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white"/>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+---
 
-## Learn More
+## Wiki &#128214;
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+[UI Design](https://github.com/codestates/TMT-client/wiki/Wireframe)\
+[Flow Chart](https://github.com/codestates/TMT-client/wiki/Flow-Chart)\
+[API 문서](https://yoolee741.gitbook.io/tmt-api/)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
