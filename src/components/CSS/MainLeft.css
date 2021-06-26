@@ -1,5 +1,60 @@
 .mainpage_leftside {
-    background-color: #f8f6f8;
-    color: black;
-    flex-basis: 30%;
+  background-color: #f8f6f8;
+  color: black;
+  flex-basis: 30%;
+  height: 100vh;
+}
+
+/* .mainleft_buttoncontainer {
+  justify-content: space-between;
+} */
+
+.button {
+  background-color: #6698cb;
+  height: 30px;
+  width: 50px;
+  margin: 4px;
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+
+.themeButton {
+  width: 50px;
+  height: 30px;
+  margin: 4px;
+  border-radius: 10px;
+  border: 2px solid #6698cb;
+  float: left;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.themeButton a {
+  color: #34495e;
+  position: relative;
+  line-height: 50px;
+  text-decoration: none;
+  transition: all 0.5s ease;
+  z-index: 2;
+}
+.themeEff {
+  width: 140px;
+  height: 50px;
+  bottom: -50px;
+  position: absolute;
+  margin-left: -10px;
+  background-color: #6698cb;
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+.themeButton:hover .themeEff {
+  bottom: 0;
+}
+.themeButton:hover a {
+  color: #fff;
 }
