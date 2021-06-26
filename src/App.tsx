@@ -11,8 +11,8 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p> */}
-        <Mainpage />
-        {/* <a
+      <Mainpage />
+      {/* <a
           className="App-link"
           href="https://reactjs.org"
           target="_blank"
@@ -25,4 +25,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

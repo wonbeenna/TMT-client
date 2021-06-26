@@ -1,5 +1,6 @@
 .mainpage_rightside {
-    background-color: #92cafa;
-    color: black;
-    flex-basis: 70%;
+  background-color: #92cafa;
+  color: black;
+  flex-basis: 70%;
+  height: 100vh;
 }
