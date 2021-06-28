@@ -5,8 +5,11 @@ import {
 } from "../components/ValidationCheck";
 import "./CSS/SignIn.css";
 import GoogleLogin from "react-google-login";
+import KakaoLogin from "react-kakao-login";
 import { useDispatch } from "react-redux";
 import { LoginStatus, UserInfo, AccessToken } from "../actions";
+import { isNonNullExpression } from "typescript";
+require("dotenv").config();
 
 function SignIn() {
   const dispatch = useDispatch();
@@ -49,6 +52,8 @@ function SignIn() {
     }
   };
 
+  // 구글
+  const clientId: any = process.env.REACT_APP_GOOGLE_API;
   const responseGoogle = (response: any) => {
     console.log(response);
     dispatch(UserInfo(response.profileObj.name, response.profileObj.email));
@@ -56,9 +61,18 @@ function SignIn() {
     dispatch(LoginStatus(true));
   };
 
-  //-------------- 배포 전에 .env에 넣기 ------------------//
-  const clientId =
-    "1042773632188-kg96tbbtspt09ros7tpo67h8phguuvkv.apps.googleusercontent.com";
+  // 카카오
+  const CLIENT_ID: any = process.env.REACT_APP_KAKAO_KEY;
+  // const REDIRECT_URL: any = `http://localhost:3000/oauth/kakao`;
+  // const KAKAO_AUTH_URL: any = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&response_type=code`;
+  // const responseKakao = () => {
+  //   window.location.assign(KAKAO_AUTH_URL);
+  // };
+  // let KAKAO_CODE = new URL(window.location.href).searchParams.get("code");
+  // console.log(KAKAO_CODE);
+  // 리다이렉트 URL로 인증코드를 발급받는다,
+  // 발급 받은 코드를 서버로 전송해 서버에서 토큰을 발급받고,
+  // 유저를 확인한 후 클라이언트로 보내줌
 
   return (
     <div className="signIn">
@@ -67,9 +81,10 @@ function SignIn() {
           <div className="signIn__close">
             <div className="signIn__closeBtn">&times;</div>
           </div>
-          <div className="signIn__title">TMT</div>
+          <div className="signIn__title">
+            <img className="signIn__title__img" src="/img/Logo005.png" alt="" />
+          </div>
 
-          <div className="signIn__email">이메일</div>
           <input
             className={
               emailValid ? "signIn__inputEmail" : "signIn__inputEmail__inValid"
@@ -82,7 +97,7 @@ function SignIn() {
             }}
           />
           <span className="signIn__errEmail">{errEmail}</span>
-          <div className="signIn__password">비밀번호</div>
+
           <input
             className={
               passwordValid
@@ -99,6 +114,12 @@ function SignIn() {
           <span className="signIn__errPassword">{errPassword}</span>
           <button className="signIn__loginBtn">로그인</button>
 
+          <div className="signIn__Search">
+            <div className="signIn__emailSearch">이메일 찾기</div>
+            <div>&#124;</div>
+            <div className="signIn__pwSearch">비밀번호 찾기</div>
+          </div>
+
           <div className="signIn__social">
             <GoogleLogin
               clientId={clientId}
@@ -107,20 +128,25 @@ function SignIn() {
                   className="signIn__google"
                   onClick={renderProps.onClick}
                 >
-                  Google
+                  구글계정으로 로그인
                 </button>
               )}
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
             />
             {/* <button className="signIn__google">Google</button> */}
-            <button className="signIn__kakao">Kakao</button>
-            <button className="signIn__nonMember">비회원</button>
-          </div>
-
-          <div className="signIn__Search">
-            <div className="signIn__emailSearch">이메일 찾기</div>
-            <div className="signIn__pwSearch">비밀번호 찾기</div>
+            <KakaoLogin
+              token={CLIENT_ID}
+              onSuccess={(res) => console.log(res)}
+              onFail={console.error}
+              onLogout={console.info}
+              className="signIn__kakao"
+              style={{}}
+            />
+            {/* <button onClick={responseKakao} className="signIn__kakao">
+              카카오계정으로 로그인
+            </button> */}
+            <button className="signIn__nonMember">비회원으로 로그인</button>
           </div>
 
           <div className="signIn__signUp">
