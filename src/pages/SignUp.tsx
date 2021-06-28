@@ -87,9 +87,10 @@ function SignUp() {
           <div className="signUp__close">
             <div className="signUp__closeBtn">&times;</div>
           </div>
-          <div className="signUp__title">TMT</div>
+          <div className="signUp__title">
+            <img className="signUp__title__img" src="/img/Logo005.png" alt="" />
+          </div>
 
-          <div className="signUp__name">이름</div>
           <input
             className={
               nameValid ? "signUp__inputName" : "signUp__inputName__inValid"
@@ -103,7 +104,6 @@ function SignUp() {
           />
           <span className="signUp__errName">{errName}</span>
 
-          <div className="signUp__email">이메일</div>
           <input
             className={
               emailValid ? "signUp__inputEmail" : "signUp__inputEmail__inValid"
@@ -117,7 +117,6 @@ function SignUp() {
           />
           <span className="signUp__errEmail">{errEmail}</span>
 
-          <div className="signUp__password">비밀번호</div>
           <input
             className={
               passwordValid
@@ -133,7 +132,6 @@ function SignUp() {
           />
           <span className="signUp__errPassword">{errPassword}</span>
 
-          <div className="signUp__passwordCheck">비밀번호 확인</div>
           <input
             className={
               passwordCkValid
@@ -151,10 +149,10 @@ function SignUp() {
 
           <button className="signUp__SignUpBtn">회원가입</button>
 
-          <div className="signUp__social">
+          {/* <div className="signUp__social">
             <button className="signUp__google">Google</button>
             <button className="signUp__kakao">Kakao</button>
-          </div>
+          </div> */}
 
           <div className="signUp__signIn">
             <div className="signUp__signInText">이미 회원 이신가요?</div>

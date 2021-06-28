@@ -1,7 +1,7 @@
-import React from 'react';
-import logo from './logo.svg';
+import React from "react";
+import logo from "./logo.svg";
 // import './App.css';
-import Mainpage from './pages/Mainpage';
+import Mainpage from "./pages/Mainpage";
 
 function App() {
   return (
@@ -25,4 +25,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

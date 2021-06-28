@@ -47,46 +47,21 @@
 }
 
 .signUp__title {
-  font-size: 2rem;
-  font-weight: 550;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem;
+  width: 100%;
   text-align: center;
-  background: -webkit-linear-gradient(-70deg, #a2facf, #64acff);
-  background-image: -webkit-linear-gradient(
-    -70deg,
-    rgb(162, 250, 207),
-    rgb(100, 172, 255)
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
-.signUp__name {
-  color: rgb(29, 29, 31);
-  font-size: 1rem;
-}
-
-.signUp__email {
-  color: rgb(29, 29, 31);
-  font-size: 1rem;
-}
-
-.signUp__password {
-  color: rgb(29, 29, 31);
-  font-size: 1rem;
-}
-
-.signUp__passwordCheck {
-  color: rgb(29, 29, 31);
-  font-size: 1rem;
+.signUp__title__img {
+  width: 65%;
+  height: 4rem;
 }
 
 .signUp__inputName {
   margin-top: 0.5rem;
   border-radius: 5px;
   width: 100%;
-  height: 2rem;
+  height: 2.5rem;
   border: 1px solid #e5e5e5;
   margin-bottom: 0.7rem;
   padding: 9px 12px;
@@ -96,14 +71,14 @@
 }
 
 .signUp__inputName:focus {
-  border: 1px solid #55cbcd;
+  border: 1px solid #417cff;
 }
 
 .signUp__inputName__inValid {
   margin-top: 0.5rem;
   border-radius: 5px;
   width: 100%;
-  height: 2rem;
+  height: 2.5rem;
   border: 1px solid #f34242;
   margin-bottom: 0.2rem;
   padding: 9px 12px;
@@ -116,7 +91,7 @@
   margin-top: 0.5rem;
   border-radius: 5px;
   width: 100%;
-  height: 2rem;
+  height: 2.5rem;
   border: 1px solid #e5e5e5;
   margin-bottom: 0.7rem;
   padding: 9px 12px;
@@ -126,14 +101,14 @@
 }
 
 .signUp__inputEmail:focus {
-  border: 1px solid #55cbcd;
+  border: 1px solid #417cff;
 }
 
 .signUp__inputEmail__inValid {
   margin-top: 0.5rem;
   border-radius: 5px;
   width: 100%;
-  height: 2rem;
+  height: 2.5rem;
   border: 1px solid #f34242;
   margin-bottom: 0.2rem;
   padding: 9px 12px;
@@ -150,7 +125,7 @@ input::placeholder {
   margin-top: 0.5rem;
   border-radius: 5px;
   width: 100%;
-  height: 2rem;
+  height: 2.5rem;
   border: 1px solid #e5e5e5;
   margin-bottom: 0.7rem;
   padding: 9px 12px;
@@ -163,7 +138,7 @@ input::placeholder {
   margin-top: 0.5rem;
   border-radius: 5px;
   width: 100%;
-  height: 2rem;
+  height: 2.5rem;
   border: 1px solid #f34242;
   margin-bottom: 0.2rem;
   padding: 9px 12px;
@@ -173,14 +148,14 @@ input::placeholder {
 }
 
 .signUp__inputPassword:focus {
-  border: 1px solid #55cbcd;
+  border: 1px solid #417cff;
 }
 
 .signUp__inputPasswordCheck {
   margin-top: 0.5rem;
   border-radius: 5px;
   width: 100%;
-  height: 2rem;
+  height: 2.5rem;
   border: 1px solid #e5e5e5;
   margin-bottom: 0.2rem;
   padding: 9px 12px;
@@ -193,7 +168,7 @@ input::placeholder {
   margin-top: 0.5rem;
   border-radius: 5px;
   width: 100%;
-  height: 2rem;
+  height: 2.5rem;
   border: 1px solid #f34242;
   margin-bottom: 0.2rem;
   padding: 9px 12px;
@@ -203,7 +178,7 @@ input::placeholder {
 }
 
 .signUp__inputPasswordCheck:focus {
-  border: 1px solid #55cbcd;
+  border: 1px solid #417cff;
 }
 
 .signUp__SignUpBtn {
@@ -213,7 +188,7 @@ input::placeholder {
   font-weight: 550;
   text-align: center;
   color: white;
-  background: #a2e1db;
+  background: #2de1de;
   border: 0;
   margin-bottom: 0.5rem;
   border-radius: 5px;
@@ -222,7 +197,7 @@ input::placeholder {
 
 .signUp__SignUpBtn:hover {
   transition: all 0.3s;
-  background: #55cbcd;
+  background: #417cff;
 }
 
 .signUp__errName {
@@ -246,7 +221,7 @@ input::placeholder {
   margin-bottom: 1rem;
 }
 
-.signUp__social {
+/* .signUp__social {
   display: flex;
   justify-content: space-between;
 }
@@ -286,33 +261,10 @@ input::placeholder {
 .signUp__kakao:hover {
   transition: all 0.3s;
   background: #fff347;
-}
-
-.signUp__nonMember {
-  width: 32%;
-  height: 2.5rem;
-  font-size: 1.2rem;
-  font-weight: 550;
-  text-align: center;
-  color: white;
-  background: #e8e8e8;
-  border: 0;
-  margin-bottom: 0.5rem;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.signUp__emailSearch {
-  margin-right: 0.5rem;
-  cursor: pointer;
-}
-
-.signUp__pwSearch {
-  cursor: pointer;
-}
+} */
 
 .signUp__signIn {
-  margin-top: 2rem;
+  margin-top: 3.5rem;
   display: flex;
   justify-content: center;
   font-size: 0.9rem;
@@ -320,8 +272,9 @@ input::placeholder {
 
 .signUp__signInBtn {
   margin-left: 0.5rem;
-  color: #55cbcd;
+  color: #2de1de;
   cursor: pointer;
+  border-bottom: 1px solid #2de1de;
 }
 
 @media (max-width: 480px) {
