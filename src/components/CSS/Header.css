@@ -1,0 +1,39 @@
+.headerContainer {
+  height: 10vh;
+  min-height: 60px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid rgb(207, 207, 207);
+  z-index: 1;
+  position: relative;
+}
+
+.headerLogo {
+  display: flex;
+  align-items: center;
+}
+
+.headerLogo img {
+  cursor: pointer;
+  width: 250px;
+  height: 70px;
+}
+
+.headerRightside {
+  display: flex;
+  align-items: center;
+}
+
+.headerRightside p {
+  margin-right: 10px;
+  font-weight: 600;
+  flex-wrap: nowrap;
+  color: gray;
+  cursor: pointer;
+}
