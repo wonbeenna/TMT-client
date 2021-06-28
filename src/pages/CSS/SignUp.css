@@ -1,0 +1,287 @@
+.signUp {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  z-index: 500;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.signUp__modal {
+  width: 30rem;
+  height: 40rem;
+  background: white;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.signUp__close {
+  text-align: right;
+  top: -1rem;
+  font-size: 20px;
+  font-weight: 600;
+  color: #888;
+}
+
+.signUp__closeBtn {
+  width: 20px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.signUp__contents {
+  margin: 0 auto;
+  width: 90%;
+  position: relative;
+  padding: 2.5rem 1rem 0 1rem;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.signUp__title {
+  margin-bottom: 1rem;
+  width: 100%;
+  text-align: center;
+}
+
+.signUp__title__img {
+  width: 65%;
+  height: 4rem;
+}
+
+.signUp__inputName {
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  width: 100%;
+  height: 2.5rem;
+  border: 1px solid #e5e5e5;
+  margin-bottom: 0.7rem;
+  padding: 9px 12px;
+  outline: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.signUp__inputName:focus {
+  border: 1px solid #417cff;
+}
+
+.signUp__inputName__inValid {
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  width: 100%;
+  height: 2.5rem;
+  border: 1px solid #f34242;
+  margin-bottom: 0.2rem;
+  padding: 9px 12px;
+  outline: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.signUp__inputEmail {
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  width: 100%;
+  height: 2.5rem;
+  border: 1px solid #e5e5e5;
+  margin-bottom: 0.7rem;
+  padding: 9px 12px;
+  outline: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.signUp__inputEmail:focus {
+  border: 1px solid #417cff;
+}
+
+.signUp__inputEmail__inValid {
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  width: 100%;
+  height: 2.5rem;
+  border: 1px solid #f34242;
+  margin-bottom: 0.2rem;
+  padding: 9px 12px;
+  outline: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+input::placeholder {
+  color: #999999;
+}
+
+.signUp__inputPassword {
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  width: 100%;
+  height: 2.5rem;
+  border: 1px solid #e5e5e5;
+  margin-bottom: 0.7rem;
+  padding: 9px 12px;
+  outline: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.signUp__inputPassword__inValid {
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  width: 100%;
+  height: 2.5rem;
+  border: 1px solid #f34242;
+  margin-bottom: 0.2rem;
+  padding: 9px 12px;
+  outline: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.signUp__inputPassword:focus {
+  border: 1px solid #417cff;
+}
+
+.signUp__inputPasswordCheck {
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  width: 100%;
+  height: 2.5rem;
+  border: 1px solid #e5e5e5;
+  margin-bottom: 0.2rem;
+  padding: 9px 12px;
+  outline: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.signUp__inputPasswordCheck__inValid {
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  width: 100%;
+  height: 2.5rem;
+  border: 1px solid #f34242;
+  margin-bottom: 0.2rem;
+  padding: 9px 12px;
+  outline: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.signUp__inputPasswordCheck:focus {
+  border: 1px solid #417cff;
+}
+
+.signUp__SignUpBtn {
+  width: 100%;
+  height: 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 550;
+  text-align: center;
+  color: white;
+  background: #2de1de;
+  border: 0;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.signUp__SignUpBtn:hover {
+  transition: all 0.3s;
+  background: #417cff;
+}
+
+.signUp__errName {
+  color: #f34242;
+  font-size: 0.7rem;
+}
+
+.signUp__errEmail {
+  color: #f34242;
+  font-size: 0.7rem;
+}
+
+.signUp__errPassword {
+  color: #f34242;
+  font-size: 0.7rem;
+}
+
+.signUp__errPasswordCk {
+  color: #f34242;
+  font-size: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+/* .signUp__social {
+  display: flex;
+  justify-content: space-between;
+}
+.signUp__google {
+  width: 49%;
+  height: 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 550;
+  text-align: center;
+  color: white;
+  background: #e8e8e8;
+  border: 0;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.signUp__google:hover {
+  transition: all 0.3s;
+  background: #2188ff;
+}
+
+.signUp__kakao {
+  width: 49%;
+  height: 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 550;
+  text-align: center;
+  color: white;
+  background: #e8e8e8;
+  border: 0;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.signUp__kakao:hover {
+  transition: all 0.3s;
+  background: #fff347;
+} */
+
+.signUp__signIn {
+  margin-top: 3.5rem;
+  display: flex;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.signUp__signInBtn {
+  margin-left: 0.5rem;
+  color: #2de1de;
+  cursor: pointer;
+  border-bottom: 1px solid #2de1de;
+}
+
+@media (max-width: 480px) {
+  .signUp__modal {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 0 !important;
+    margin-top: 0;
+  }
+}

@@ -1,26 +1,21 @@
 import React from 'react';
 import Mainrightpage from '../components/MainRight';
 import Mainleftpage from '../components/MainLeft';
+import Header from '../components/Header'
 import './CSS/Mainpage.css'
-// function Mainpage() {
-//   return (
-//    <div className='MainContainer'>
-//      <Greetings name="Hello" onClick={onClick} />;
-//     <Mainleftpage message="Hello"/>
-//     <Mainrightpage message="i"/>
-//         </div>
-//   );
-// }
 
-const Mainpage = ()  => {
-    
+const Mainpage = () => {
+
     return (
 
         <div className='mainpage_container'>
-        <Mainleftpage message="TMT"/>
-        <Mainrightpage message="i"/>
+            <Header />
+            <div className="mainpage_body">
+                <Mainleftpage />
+                <Mainrightpage />
+            </div>
         </div>
     )
 };
-  
+
 export default Mainpage;

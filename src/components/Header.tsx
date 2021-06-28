@@ -1,27 +1,25 @@
 import React from 'react';
+import styled from 'styled-components';
+import './CSS/Header.css'
 
-// type HeaderProps = {
-//   name: string;
-//   mark: string;
-//   optional?: string;
-//   onClick: (name: string) => void; // 아무것도 리턴하지 않는다는 함수를 의미합니다.
-// };
+const Header = () => {
+    return (
+        <div className="headerContainer">
+            <div className="headerLogo"><img src="../img/headerLogo.png" alt="" /></div>
+            <div className="headerRightside">
+                <p>로그인</p>
+                <p>회원가입</p>
+            </div>
+        </div>
+    )
+}
 
-// function Header({ name, mark, optional, onClick }: HeaderProps) {
-//   const handleClick = () => onClick(name);
-//   return (
-//     <div>
-//       Hello, {name} {mark}
-//       {optional && <p>{optional}</p>}
-//       <div>
-//         <button onClick={handleClick}>Click Me</button>
-//       </div>
-//     </div>
-//   );
-// }
-
-// Greetings.defaultProps = {
-//   mark: '!'
-// };
-
-// export default Header;
+// const HeaderContainer = styled.div`
+// display: flex;
+//     flex-direction: column;
+//     position: fixed;
+//     top: 0px;
+//     width: 100%;
+//     height: 30px
+// `
+export default Header;
