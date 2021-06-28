@@ -1,7 +1,7 @@
 import React from 'react';
 import Mainrightpage from '../components/MainRight';
 import Mainleftpage from '../components/MainLeft';
-import Footer from '../components/Footer';
+import Header from '../components/Header'
 import './CSS/Mainpage.css'
 
 const Mainpage = () => {
@@ -9,9 +9,11 @@ const Mainpage = () => {
     return (
 
         <div className='mainpage_container'>
-            <Mainleftpage />
-            <Mainrightpage message="i" />
-            <Footer />
+            <Header />
+            <div className="mainpage_body">
+                <Mainleftpage />
+                <Mainrightpage />
+            </div>
         </div>
     )
 };
