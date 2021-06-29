@@ -65,14 +65,16 @@ const Mainleftpage = () =>
     <div className='mainleft_list'>
       <li className='mainleft_destination'>
         <div className='list_img'>
-          <img src="../img/headerLogo.png" alt="tes1" />
+          <img src="../img/Logo004.png" alt="tes1" />
         </div>
-        <div className='list_content'>제주도<img src="img/icon-heart.png" alt="heart" /></div>
+        <div className='list_content'>제주도
+          {/* <img src="img/Logo004.png" alt="heart" /> */}
+        </div>
       </li>
 
       <li className='mainleft_destination'>
         <div className='list_img'>
-          <img src='/img/headerLogo.png' alt="tes2"></img>
+          <img src='/img/Logo004.png' alt="tes2"></img>
         </div>
         <div className='list_content'>서울 </div>
       </li>
