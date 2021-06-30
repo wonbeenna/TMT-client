@@ -8,7 +8,6 @@ import GoogleLogin from "react-google-login";
 import KakaoLogin from "react-kakao-login";
 import { useDispatch } from "react-redux";
 import { LoginStatus, UserInfo, AccessToken } from "../actions";
-import { isNonNullExpression } from "typescript";
 require("dotenv").config();
 
 function SignIn() {
@@ -128,7 +127,7 @@ function SignIn() {
                   className="signIn__google"
                   onClick={renderProps.onClick}
                 >
-                  구글계정으로 로그인
+                  구글로 로그인하기
                 </button>
               )}
               onSuccess={responseGoogle}
@@ -146,7 +145,7 @@ function SignIn() {
             {/* <button onClick={responseKakao} className="signIn__kakao">
               카카오계정으로 로그인
             </button> */}
-            <button className="signIn__nonMember">비회원으로 로그인</button>
+            <button className="signIn__nonMember">비회원으로 로그인하기</button>
           </div>
 
           <div className="signIn__signUp">
