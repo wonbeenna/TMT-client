@@ -7,7 +7,7 @@ const Mainrightpage = () => {
 
     <div className="mainpage_rightside">
       <div id="map">
-        <Map />
+        <Map /*setCenter={setCenter}*/ />
       </div>
     </div>
 
