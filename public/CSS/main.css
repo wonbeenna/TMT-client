@@ -46,7 +46,7 @@ body.before-load {
   animation-duration: 2s;
   animation-iteration-count: infinite;
   font-weight: 600;
-  color: rgb(29, 29, 31);
+  color: white;
 }
 
 @keyframes scrollVar {
@@ -141,7 +141,7 @@ body.before-load {
 }
 #scroll-section-2 .main-message2 {
   font-size: 2.5vw;
-  left: -20%;
+  left: -25%;
 }
 .description {
   max-width: 1000px;
@@ -258,7 +258,7 @@ body.before-load {
   left: 50%;
 }
 .sticky-elem-canvas #video-canvas-1 {
-  left: 74%;
+  left: 70%;
 }
 #scroll-section-3 {
   display: flex;

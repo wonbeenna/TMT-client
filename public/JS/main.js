@@ -105,7 +105,7 @@
         canvasCaption: document.querySelector(".canvas-caption"),
         canvas: document.querySelector(".image-blend-canvas"),
         context: document.querySelector(".image-blend-canvas").getContext("2d"),
-        imagesPath: ["./img/blend-image-1.png", "./img/blend-image-2.png"],
+        imagesPath: ["./img/blend-image-4.png", "./img/blend-image-7.png"],
         images: [],
       },
       values: {
@@ -337,7 +337,7 @@
         // let sequence2 = Math.round(calcValues(values.imageSequence, currentYOffset));
         // objs.context.drawImage(objs.videoImages[sequence2], 0, 0);
 
-        if (scrollRatio <= 0.8) {
+        if (scrollRatio <= 0.9) {
           // in
           objs.canvas.style.opacity = calcValues(
             values.canvas_opacity_in,
