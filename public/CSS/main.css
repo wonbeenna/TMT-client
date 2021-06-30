@@ -360,3 +360,9 @@ body.before-load {
     font-size: 2rem;
   }
 }
+
+.section-img {
+  position: relative;
+  width: 20%;
+  height: 20%;
+}
