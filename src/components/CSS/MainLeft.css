@@ -1,7 +1,7 @@
 .mainpage_leftside {
   background-color: #f8f6f8;
   color: black;
-  flex-basis: 30%;
+  flex-basis: 25%;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -10,26 +10,43 @@
 
 .location {
   display: flex;
-  height: 30px;
+  height: 100px;
   margin: 5px;
+  flex-direction: row;
 }
 
-.location input {
-  flex-basis: 70%;
+.location Autocomplete {
+  width: 500px;
 }
-/* .mainleft_buttoncontainer {
-  justify-content: space-between;
-} */
 
 .location button {
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.place {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+}
+
+.place input {
+  flex-basis: 70%;
+}
+
+.place button {
   flex-basis: 30%;
   background-color: #88b5e2;
   border: none;
 }
 
-.location button:hover {
+.place button:hover {
   background-color: #6698cb;
   border: none;
+}
+
+.mainleft_buttoncontainer {
+  width: 500px;
 }
 
 .themeButton {
@@ -38,7 +55,6 @@
   margin: 4px;
   border-radius: 10px;
   border: 2px solid #6698cb;
-  float: left;
   cursor: pointer;
   position: relative;
   text-align: center;
@@ -73,6 +89,7 @@
 }
 
 .mainleft_destination {
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   /* height: 100px; */

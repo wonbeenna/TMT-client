@@ -5,9 +5,8 @@ import Header from '../components/Header'
 import './CSS/Mainpage.css'
 
 const Mainpage = () => {
-
+    // state
     return (
-
         <div className='mainpage_container'>
             <Header />
             <div className="mainpage_body">
