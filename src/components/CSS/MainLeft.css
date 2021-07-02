@@ -1,52 +1,36 @@
-.mainpage_leftside {
-  background-color: #f8f6f8;
-  color: black;
-  flex-basis: 25%;
-  height: 100vh;
+.leftsidewrap {
   display: flex;
   flex-direction: column;
+}
+
+.mainpage_leftside {
+  background-color: #ffffff;
+  color: black;
+  /* flex-basis: 25%; */
+  /* height: 80px; */
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
   padding-left: 7px;
+  border-bottom: 0.2px solid silver;
 }
 
 .location {
   display: flex;
-  height: 100px;
+  height: 90px;
   margin: 5px;
   flex-direction: row;
+  flex: 1;
 }
 
 .location Autocomplete {
   width: 500px;
 }
 
-.location button {
-  display: inline-flex;
-  flex-direction: row;
-}
-
-.place {
-  height: 50px;
-  display: flex;
-  flex-direction: row;
-}
-
-.place input {
-  flex-basis: 70%;
-}
-
-.place button {
-  flex-basis: 30%;
-  background-color: #88b5e2;
-  border: none;
-}
-
-.place button:hover {
-  background-color: #6698cb;
-  border: none;
-}
-
 .mainleft_buttoncontainer {
   width: 500px;
+  margin: 30px 5px 10px 0;
+  flex: 1;
 }
 
 .themeButton {
@@ -88,6 +72,52 @@
   color: #fff;
 }
 
+.searchBtn {
+  margin: 33px 10px 30px 0;
+  flex: 0.5;
+}
+.searchBtn button {
+  width: 100px;
+  height: 50px;
+}
+
+.place {
+  height: 50px;
+  width: 350px;
+  display: flex;
+  flex-direction: row;
+  margin: 33px 30px 0 0;
+  flex: 1;
+  /* padding-right: 10px;
+  margin-right: 10px; */
+}
+
+.place input {
+  flex-basis: 70%;
+}
+
+.place button {
+  flex-basis: 30%;
+  background-color: #88b5e2;
+  border: none;
+}
+
+.place button:hover {
+  background-color: #6698cb;
+  border: none;
+}
+
+.mainpage_body {
+  display: flex;
+  flex-direction: row;
+}
+
+.mainleft_list {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 30%;
+}
+
 .mainleft_destination {
   cursor: pointer;
   display: flex;
@@ -119,4 +149,9 @@
 .list_content img {
   width: 10px;
   height: 10px;
+}
+
+#map {
+  flex-basis: 70%;
+  height: 100vh;
 }
