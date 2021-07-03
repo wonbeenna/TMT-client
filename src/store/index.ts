@@ -17,3 +17,4 @@ const devTools = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
 const store = createStore(enhanceReducer, devTools(applyMiddleware(thunk)));
 
 export default store;
+export type RootState = ReturnType<typeof rootReducer>;

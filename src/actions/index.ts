@@ -2,6 +2,7 @@ export const ACTIONS = {
   LOGIN_STATUS: "LOGIN_STATUS",
   USER_INFO: "USER_INFO",
   ACCESS_TOKEN: "ACCESS_TOKEN",
+  RANGE_CONTROLLER: "RANGE_CONTROLLER",
 };
 
 export const LoginStatus = (isLogin: boolean) => {
@@ -22,5 +23,12 @@ export const AccessToken = (accessToken: string, refreshToken: string) => {
   return {
     type: ACTIONS.ACCESS_TOKEN,
     payload: { accessToken, refreshToken },
+  };
+};
+
+export const RangeController = (startDate: any, endDate: any) => {
+  return {
+    type: ACTIONS.RANGE_CONTROLLER,
+    payload: { startDate, endDate },
   };
 };
