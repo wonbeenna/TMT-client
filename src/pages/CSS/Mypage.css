@@ -1,0 +1,26 @@
+.mypage {
+  display: flex;
+}
+
+.mypageMap {
+  position: relative;
+  flex-basis: 70%;
+}
+
+.route {
+  width: 700px;
+  height: 500px;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 16px 0px;
+  justify-content: center;
+}
+
+.calendar {
+  width: 300px;
+  height: 500px;
+  flex-basis: 30%;
+}
+
+.like {
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 16px 0px;
+  height: 500px;
+}

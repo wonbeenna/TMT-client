@@ -76,11 +76,13 @@ const Map = (/*{setCenter}*/) => {
 
     }, [])
 
-    return (
+    return (  
         <div className="Map">
-            <div id="map" style={{ width: "700px", height: "500px" }} />
+            <div id="map"
+            // style={{ width: "100vw", height: "500px" }} 
+            />
         </div>
-    );
+    )
 }
 
 export default Map;

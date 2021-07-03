@@ -1,20 +1,28 @@
-import React from "react";
-import logo from "./logo.svg";
-// import './App.css';
 import Mainpage from "./pages/Mainpage";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
-import UserInfo from "./pages/UserInfo";
+
+import Mypage from "./pages/Mypage";
+import { Route, Switch } from "react-router";
+import { BrowserRouter } from "react-router-dom"
 
 function App() {
   return (
-    <div className="App">
-      {/* <Mypage /> */}
-      {/* <Mainpage /> */}
-      {/* <SignIn /> */}
-      {/* <SignUp /> */}
-      <UserInfo />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Switch>
+          <Route exact path="/">
+            <Mainpage />
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/mypage">
+            <Mypage />
+          </Route>
+        </Switch>
+        {/* <SignIn /> */}
+        {/* <SignUp /> */}
+      </div>
+    </BrowserRouter>
+
   );
 }
 
