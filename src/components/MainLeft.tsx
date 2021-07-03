@@ -143,7 +143,7 @@ const Mainleftpage = () => {
         </div>
       </div>
       <div className="mainpage_body">
-        <div className="tab-header">
+        {/* <div className="tab-header">
           <div className="inactive">
             <Router>
               <Link
@@ -159,18 +159,69 @@ const Mainleftpage = () => {
           </div>
 
           <div className="active">내 여행경로</div>
-        </div>
+        </div> */}
         <div className='mainleft_list'>
           {/* map으로 사진, 장소 받아 */}
           <li className='mainleft_destination'>
             <div className='list_img'>
-              <img src="../img/Logo004.png" alt="tes1" />
+              <img src="../img/pic1.jpeg" alt="tes1" />
             </div>
             <div className='list_content'>경복궁</div>
           </li>
           <li className='mainleft_destination'>
             <div className='list_img'>
-              <img src="../img/Logo004.png" alt="tes1" />
+              <img src="../img/pic2.jpeg" alt="tes1" />
+            </div>
+            <div className='list_content'>한라산</div>
+          </li>
+          <li className='mainleft_destination'>
+            <div className='list_img'>
+              <img src="../img/pic2.jpeg" alt="tes1" />
+            </div>
+            <div className='list_content'>한라산</div>
+          </li><li className='mainleft_destination'>
+            <div className='list_img'>
+              <img src="../img/pic2.jpeg" alt="tes1" />
+            </div>
+            <div className='list_content'>한라산</div>
+          </li><li className='mainleft_destination'>
+            <div className='list_img'>
+              <img src="../img/pic2.jpeg" alt="tes1" />
+            </div>
+            <div className='list_content'>한라산</div>
+          </li><li className='mainleft_destination'>
+            <div className='list_img'>
+              <img src="../img/pic2.jpeg" alt="tes1" />
+            </div>
+            <div className='list_content'>한라산</div>
+          </li><li className='mainleft_destination'>
+            <div className='list_img'>
+              <img src="../img/pic2.jpeg" alt="tes1" />
+            </div>
+            <div className='list_content'>한라산</div>
+          </li><li className='mainleft_destination'>
+            <div className='list_img'>
+              <img src="../img/pic2.jpeg" alt="tes1" />
+            </div>
+            <div className='list_content'>한라산</div>
+          </li><li className='mainleft_destination'>
+            <div className='list_img'>
+              <img src="../img/pic2.jpeg" alt="tes1" />
+            </div>
+            <div className='list_content'>한라산</div>
+          </li><li className='mainleft_destination'>
+            <div className='list_img'>
+              <img src="../img/pic2.jpeg" alt="tes1" />
+            </div>
+            <div className='list_content'>한라산</div>
+          </li><li className='mainleft_destination'>
+            <div className='list_img'>
+              <img src="../img/pic2.jpeg" alt="tes1" />
+            </div>
+            <div className='list_content'>한라산</div>
+          </li><li className='mainleft_destination'>
+            <div className='list_img'>
+              <img src="../img/pic2.jpeg" alt="tes1" />
             </div>
             <div className='list_content'>한라산</div>
           </li>
