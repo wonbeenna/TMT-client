@@ -1,6 +1,6 @@
 export const initialState = {
   isLogin: false,
-  accessToken: "",
+  AccessToken: { accessToken: "", refreshToken: "" },
   userInfo: {
     userName: "",
     email: "",

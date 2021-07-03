@@ -11,7 +11,7 @@ video/
 
 # production
 /build
-
+video/
 # misc
 .DS_Store
 .env
@@ -23,5 +23,6 @@ video/
 
 npm-debug.log*
 yarn-debug.log*
+
 yarn-error.log*
 

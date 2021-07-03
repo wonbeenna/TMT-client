@@ -33,7 +33,7 @@
       values: {
         videoImagesCount: 392, // 이미지 개수
         imageSequence: [0, 391], // 이미지 순서
-        canvas_opacity: [1, 0, { start: 0.9, end: 1 }],
+        canvas_opacity: [1, 0, { start: 0.86, end: 0.94 }],
         messageA_opacity_in: [0, 1, { start: 0.1, end: 0.2 }],
         messageB_opacity_in: [0, 1, { start: 0.3, end: 0.4 }],
         messageC_opacity_in: [0, 1, { start: 0.5, end: 0.6 }],
@@ -65,7 +65,7 @@
     {
       // 2
       type: "sticky",
-      heightNum: 5, // 브라우저 높이의 5배로 scrollHeight 세팅
+      heightNum: 15, // 브라우저 높이의 5배로 scrollHeight 세팅
       scrollHeight: 0,
       objs: {
         container: document.querySelector("#scroll-section-2"),
@@ -74,6 +74,39 @@
         messageC: document.querySelector("#scroll-section-2 .c"),
         canvas: document.querySelector("#video-canvas-1"), // 캔버스
         context: document.querySelector("#video-canvas-1").getContext("2d"),
+        videoImages: [], // 이미지를 담을 빈 객체
+      },
+      values: {
+        videoImagesCount: 492, // 이미지 개수
+        imageSequence: [0, 491], // 이미지 순서
+        canvas_opacity_in: [0, 1, { start: 0, end: 0.3 }],
+        canvas_opacity_out: [1, 0, { start: 0.99, end: 1 }],
+        messageA_translateY_in: [20, 0, { start: 0.15, end: 0.2 }],
+        messageB_translateY_in: [30, 0, { start: 0.5, end: 0.55 }],
+        messageC_translateY_in: [30, 0, { start: 0.72, end: 0.77 }],
+        messageA_opacity_in: [0, 1, { start: 0.15, end: 0.2 }],
+        messageB_opacity_in: [0, 1, { start: 0.5, end: 0.55 }],
+        messageC_opacity_in: [0, 1, { start: 0.72, end: 0.77 }],
+        messageA_translateY_out: [0, -20, { start: 0.3, end: 0.35 }],
+        messageB_translateY_out: [0, -20, { start: 0.58, end: 0.63 }],
+        messageC_translateY_out: [0, -20, { start: 0.85, end: 0.9 }],
+        messageA_opacity_out: [1, 0, { start: 0.3, end: 0.35 }],
+        messageB_opacity_out: [1, 0, { start: 0.58, end: 0.63 }],
+        messageC_opacity_out: [1, 0, { start: 0.85, end: 0.9 }],
+      },
+    },
+    {
+      // 3
+      type: "sticky",
+      heightNum: 5, // 브라우저 높이의 5배로 scrollHeight 세팅
+      scrollHeight: 0,
+      objs: {
+        container: document.querySelector("#scroll-section-3"),
+        messageA: document.querySelector("#scroll-section-3 .a"),
+        messageB: document.querySelector("#scroll-section-3 .b"),
+        messageC: document.querySelector("#scroll-section-3 .c"),
+        canvas: document.querySelector("#video-canvas-2"), // 캔버스
+        context: document.querySelector("#video-canvas-2").getContext("2d"),
         videoImages: [], // 이미지를 담을 빈 객체
       },
       values: {
@@ -96,12 +129,12 @@
       },
     },
     {
-      // 3
+      // 4
       type: "sticky",
       heightNum: 5, // 브라우저 높이의 5배로 scrollHeight 세팅
       scrollHeight: 0,
       objs: {
-        container: document.querySelector("#scroll-section-3"),
+        container: document.querySelector("#scroll-section-4"),
         canvasCaption: document.querySelector(".canvas-caption"),
         canvas: document.querySelector(".image-blend-canvas"),
         context: document.querySelector(".image-blend-canvas").getContext("2d"),
@@ -130,14 +163,20 @@
     let imgElem2;
     for (let i = 0; i < sceneInfo[2].values.videoImagesCount; i++) {
       imgElem2 = new Image();
-      imgElem2.src = `./video/004/테스트${0 + i}.JPG`;
+      imgElem2.src = `./video/005/img${0 + i}.JPG`;
       sceneInfo[2].objs.videoImages.push(imgElem2);
     }
     let imgElem3;
-    for (let i = 0; i < sceneInfo[3].objs.imagesPath.length; i++) {
+    for (let i = 0; i < sceneInfo[3].values.videoImagesCount; i++) {
       imgElem3 = new Image();
-      imgElem3.src = sceneInfo[3].objs.imagesPath[i];
-      sceneInfo[3].objs.images.push(imgElem3);
+      imgElem3.src = `./video/004/테스트${0 + i}.JPG`;
+      sceneInfo[3].objs.videoImages.push(imgElem3);
+    }
+    let imgElem4;
+    for (let i = 0; i < sceneInfo[4].objs.imagesPath.length; i++) {
+      imgElem4 = new Image();
+      imgElem4.src = sceneInfo[4].objs.imagesPath[i];
+      sceneInfo[4].objs.images.push(imgElem4);
     }
   }
 
@@ -150,7 +189,12 @@
   }
 
   function checkLocal() {
-    if (currentScene === 1 || currentScene === 2 || currentScene === 3) {
+    if (
+      currentScene === 1 ||
+      currentScene === 2 ||
+      currentScene === 3 ||
+      currentScene === 4
+    ) {
       localTitle.style.color = "rgb(29, 29, 31)";
       localTitle2.style.color = "rgb(29, 29, 31)";
       scrollVar.style.display = "none";
@@ -191,6 +235,7 @@
     const heightRatio = window.innerHeight / 1080;
     sceneInfo[0].objs.canvas.style.transform = `translate3d(-50%, -50%, 0) scale(${heightRatio})`;
     sceneInfo[2].objs.canvas.style.transform = `translate3d(-50%, -50%, 0) scale(${heightRatio})`;
+    sceneInfo[3].objs.canvas.style.transform = `translate3d(-50%, -50%, 0) scale(${heightRatio})`;
   }
 
   function calcValues(values, currentYOffset) {
@@ -331,8 +376,91 @@
         }
 
         break;
-
       case 2:
+        // let sequence2 = Math.round(
+        //   calcValues(values.imageSequence, currentYOffset)
+        // );
+        // objs.context.drawImage(objs.videoImages[sequence2], 0, 0);
+
+        if (scrollRatio <= 0.1) {
+          objs.canvas.style.opacity = calcValues(
+            values.canvas_opacity_in,
+            currentYOffset
+          );
+        } else {
+          objs.canvas.style.opacity = calcValues(
+            values.canvas_opacity_out,
+            currentYOffset
+          );
+        }
+        // console.log('2 play');
+        if (scrollRatio <= 0.32) {
+          // in
+          objs.messageA.style.opacity = calcValues(
+            values.messageA_opacity_in,
+            currentYOffset
+          );
+          objs.messageA.style.transform = `translate3d(0, ${calcValues(
+            values.messageA_translateY_in,
+            currentYOffset
+          )}%, 0)`;
+        } else {
+          // out
+          objs.messageA.style.opacity = calcValues(
+            values.messageA_opacity_out,
+            currentYOffset
+          );
+          objs.messageA.style.transform = `translate3d(0, ${calcValues(
+            values.messageA_translateY_out,
+            currentYOffset
+          )}%, 0)`;
+        }
+
+        if (scrollRatio <= 0.67) {
+          // in
+          objs.messageB.style.transform = `translate3d(0, ${calcValues(
+            values.messageB_translateY_in,
+            currentYOffset
+          )}%, 0)`;
+          objs.messageB.style.opacity = calcValues(
+            values.messageB_opacity_in,
+            currentYOffset
+          );
+        } else {
+          // out
+          objs.messageB.style.transform = `translate3d(0, ${calcValues(
+            values.messageB_translateY_out,
+            currentYOffset
+          )}%, 0)`;
+          objs.messageB.style.opacity = calcValues(
+            values.messageB_opacity_out,
+            currentYOffset
+          );
+        }
+
+        if (scrollRatio <= 0.99) {
+          // in
+          objs.messageC.style.transform = `translate3d(0, ${calcValues(
+            values.messageC_translateY_in,
+            currentYOffset
+          )}%, 0)`;
+          objs.messageC.style.opacity = calcValues(
+            values.messageC_opacity_in,
+            currentYOffset
+          );
+        } else {
+          // out
+          objs.messageC.style.transform = `translate3d(0, ${calcValues(
+            values.messageC_translateY_out,
+            currentYOffset
+          )}%, 0)`;
+          objs.messageC.style.opacity = calcValues(
+            values.messageC_opacity_out,
+            currentYOffset
+          );
+        }
+        break;
+      case 3:
         // console.log('2 play');
         // let sequence2 = Math.round(calcValues(values.imageSequence, currentYOffset));
         // objs.context.drawImage(objs.videoImages[sequence2], 0, 0);
@@ -419,8 +547,8 @@
 
         // currentScene 3에서 쓰는 캔버스를 미리 그려주기 시작
         if (scrollRatio > 0.9) {
-          const objs = sceneInfo[3].objs;
-          const values = sceneInfo[3].values;
+          const objs = sceneInfo[4].objs;
+          const values = sceneInfo[4].values;
           const widthRatio = window.innerWidth / objs.canvas.width;
           const heightRatio = window.innerHeight / objs.canvas.height;
           let canvasScaleRatio;
@@ -466,7 +594,7 @@
 
         break;
 
-      case 3:
+      case 4:
         // console.log('3 play');
         let step = 0;
         // 가로/세로 모두 꽉 차게 하기 위해 여기서 세팅(계산 필요)
@@ -645,7 +773,7 @@
     delayedYOffset = delayedYOffset + (yOffset - delayedYOffset) * acc;
 
     if (!enterNewScene) {
-      if (currentScene === 0 || currentScene === 2) {
+      if (currentScene === 0 || currentScene === 2 || currentScene === 3) {
         const currentYOffset = delayedYOffset - prevScrollHeight;
         const objs = sceneInfo[currentScene].objs;
         const values = sceneInfo[currentScene].values;
@@ -736,4 +864,64 @@
       });
   });
   setCanvasImages();
+})();
+
+(() => {
+  var words = document.getElementsByClassName("section-word");
+  var wordArray = [];
+  var currentWord = 0;
+
+  words[currentWord].style.opacity = 1;
+  for (var i = 0; i < words.length; i++) {
+    splitLetters(words[i]);
+  }
+
+  function changeWord() {
+    var cw = wordArray[currentWord];
+    var nw =
+      currentWord == words.length - 1
+        ? wordArray[0]
+        : wordArray[currentWord + 1];
+    for (var i = 0; i < cw.length; i++) {
+      animateLetterOut(cw, i);
+    }
+
+    for (var i = 0; i < nw.length; i++) {
+      nw[i].className = "letter behind";
+      nw[0].parentElement.style.opacity = 1;
+      animateLetterIn(nw, i);
+    }
+
+    currentWord = currentWord == wordArray.length - 1 ? 0 : currentWord + 1;
+  }
+
+  function animateLetterOut(cw, i) {
+    setTimeout(function () {
+      cw[i].className = "letter out";
+    }, i * 80);
+  }
+
+  function animateLetterIn(nw, i) {
+    setTimeout(function () {
+      nw[i].className = "letter in";
+    }, 340 + i * 80);
+  }
+
+  function splitLetters(word) {
+    var content = word.innerHTML;
+    word.innerHTML = "";
+    var letters = [];
+    for (var i = 0; i < content.length; i++) {
+      var letter = document.createElement("span");
+      letter.className = "letter";
+      letter.innerHTML = content.charAt(i);
+      word.appendChild(letter);
+      letters.push(letter);
+    }
+
+    wordArray.push(letters);
+  }
+
+  changeWord();
+  setInterval(changeWord, 700);
 })();
