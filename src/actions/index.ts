@@ -7,20 +7,20 @@ export const ACTIONS = {
 export const LoginStatus = (isLogin: boolean) => {
   return {
     type: ACTIONS.LOGIN_STATUS,
-    payload: { isLogin },
+    payload: isLogin,
   };
 };
 
-export const UserInfo = (userName: string, email: string) => {
+export const UserInfo = (name: string, email: string) => {
   return {
     type: ACTIONS.USER_INFO,
-    payload: { userName, email },
+    payload: { name, email },
   };
 };
 
-export const AccessToken = (accessToken: string) => {
+export const AccessToken = (accessToken: string, refreshToken: string) => {
   return {
     type: ACTIONS.ACCESS_TOKEN,
-    payload: { accessToken },
+    payload: { accessToken, refreshToken },
   };
 };

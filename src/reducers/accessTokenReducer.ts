@@ -5,7 +5,7 @@ const accessTokenReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case ACTIONS.ACCESS_TOKEN: {
       return {
-        accessToken: action.payload,
+        AccessToken: action.payload,
       };
     }
     default:

@@ -7,7 +7,8 @@ import "./CSS/SignIn.css";
 import GoogleLogin from "react-google-login";
 import KakaoLogin from "react-kakao-login";
 import { useDispatch } from "react-redux";
-import { LoginStatus, UserInfo, AccessToken } from "../actions";
+import { LoginStatus, AccessToken } from "../actions";
+import axios from "axios";
 require("dotenv").config();
 
 function SignIn() {
@@ -18,6 +19,7 @@ function SignIn() {
   const [passwordValid, setPasswordValid] = useState<boolean>(true);
   const [errEmail, setErrEmail] = useState<string>("");
   const [errPassword, setErrPassword] = useState<string>("");
+  const [errLogin, setErrLogin] = useState<string>("");
 
   // 이메일, 비밀번호 유효성 검사
   const onChangeHandler = (event: any, type: string): void => {
@@ -51,12 +53,49 @@ function SignIn() {
     }
   };
 
+  const loginHandler = (): void => {
+    const loginURL = "http://localhost:4000/user/signIn";
+    if (!email) {
+      setEmailValid(false);
+      setErrEmail("이메일을 입력해 주세요");
+    }
+    if (!password) {
+      setPasswordValid(false);
+      setErrPassword("비밀번호를 입력해 주세요");
+    }
+    axios
+      .post(
+        loginURL,
+        {
+          email,
+          password,
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        const accessToken = res.data.accessToken;
+        const refreshToken = res.data.refreshToken;
+        console.log(res);
+        dispatch(AccessToken(accessToken, refreshToken));
+        dispatch(LoginStatus(true));
+        setErrLogin("");
+      })
+      .catch((err) => {
+        const status = err.response.status;
+        if (status === 409) {
+          setErrLogin("이메일과 비밀번호를 확인해 주세요");
+        }
+      });
+  };
+
   // 구글
   const clientId: any = process.env.REACT_APP_GOOGLE_API;
   const responseGoogle = (response: any) => {
     console.log(response);
-    dispatch(UserInfo(response.profileObj.name, response.profileObj.email));
-    dispatch(AccessToken(response.accessToken));
+    // dispatch(UserInfo(response.profileObj.name, response.profileObj.email));
+    dispatch(AccessToken(response.accessToken, response.refreshToken));
     dispatch(LoginStatus(true));
   };
 
@@ -111,7 +150,10 @@ function SignIn() {
             }}
           />
           <span className="signIn__errPassword">{errPassword}</span>
-          <button className="signIn__loginBtn">로그인</button>
+          <span className="signIn__errLogin">{errLogin}</span>
+          <button className="signIn__loginBtn" onClick={loginHandler}>
+            로그인
+          </button>
 
           <div className="signIn__Search">
             <div className="signIn__emailSearch">이메일 찾기</div>
@@ -130,8 +172,8 @@ function SignIn() {
                   구글로 로그인하기
                 </button>
               )}
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
+              // onSuccess={responseGoogle}
+              // onFailure={responseGoogle}
             />
             {/* <button className="signIn__google">Google</button> */}
             <KakaoLogin
