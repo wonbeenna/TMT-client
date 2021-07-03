@@ -5,4 +5,8 @@ export const initialState = {
     userName: "",
     email: "",
   },
+  Range: {
+    startDate: "",
+    endDate: "",
+  },
 };
