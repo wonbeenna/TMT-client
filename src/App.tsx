@@ -1,4 +1,5 @@
 import Mainpage from "./pages/Mainpage";
+
 import Mypage from "./pages/Mypage";
 import { Route, Switch } from "react-router";
 import { BrowserRouter } from "react-router-dom"
@@ -21,6 +22,7 @@ function App() {
         {/* <SignUp /> */}
       </div>
     </BrowserRouter>
+
   );
 }
 

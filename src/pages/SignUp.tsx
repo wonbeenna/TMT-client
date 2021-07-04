@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import {
   ValidationName,
@@ -80,6 +81,43 @@ function SignUp() {
     }
   };
 
+  const handleSignUp = (): void => {
+    if (!name) {
+      setNameValid(false);
+      setErrName("이름을 입력해 주세요");
+    }
+    if (!email) {
+      setEmailValid(false);
+      setErrEmail("이메일을 입력해 주세요");
+    }
+    if (!password) {
+      setPasswordValid(false);
+      setErrPassword("비밀번호를 입력해 주세요");
+    }
+    if (!passwordCk) {
+      setPasswordCKValid(false);
+      setErrPasswordCk("비밀번호를 확인해 주세요");
+    }
+    if (password !== passwordCk) {
+      return;
+    }
+
+    const signUpURL = "http://localhost:4000/user/signUp";
+    axios
+      .post(signUpURL, {
+        name,
+        email,
+        ...(password ? { password: password } : {}),
+      })
+      .then((res) => console.log(res))
+      .catch((err) => {
+        const status = err.response.status;
+        if (status === 409) {
+          setErrEmail("이미 사용중인 이메일 입니다");
+        }
+      });
+  };
+
   return (
     <div className="signUp">
       <div className="signUp__modal">
@@ -147,7 +185,9 @@ function SignUp() {
           />
           <span className="signUp__errPasswordCk">{errPasswordCk}</span>
 
-          <button className="signUp__SignUpBtn">회원가입</button>
+          <button className="signUp__SignUpBtn" onClick={handleSignUp}>
+            회원가입
+          </button>
 
           {/* <div className="signUp__social">
             <button className="signUp__google">Google</button>
