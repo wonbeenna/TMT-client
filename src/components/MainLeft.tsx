@@ -5,8 +5,13 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Link, Router } from "react-router-dom";
 import Map from "./Map";
 import "./CSS/MainLeft.css";
-import { DateRangePicker, FocusedInputShape } from "react-dates";
+import {
+  DateRangePicker,
+  FocusedInputShape,
+  toLocalizedDateString,
+} from "react-dates";
 import moment, { Moment } from "moment";
+import "moment/locale/ko";
 import "react-dates/initialize";
 import "./CSS/_datepicker.css";
 import { useDispatch } from "react-redux";
@@ -186,6 +191,24 @@ const Mainleftpage = () => {
             marginRight: 10,
           }}
         /> */}
+
+        <DateRangePicker
+          startDate={startDate}
+          startDateId="startDate"
+          endDate={endDate}
+          endDateId="endDate"
+          onDatesChange={handlendDatesChange}
+          focusedInput={focusedInput}
+          onFocusChange={handleFocusChange}
+          startDatePlaceholderText={"여행 시작"}
+          endDatePlaceholderText={"여행 끝"}
+          isOutsideRange={(day) => moment().diff(day) >= 0}
+          monthFormat={"YYYY년 MM월"}
+          minimumNights={0}
+          block
+          noBorder
+          showClearDates
+        />
         <div className="place">
           <input type="text" list="spotlist" placeholder="Place"></input>
           <button>TMT</button>
@@ -288,23 +311,6 @@ const Mainleftpage = () => {
         <div id="map">
           <Map /*setCenter={setCenter}*/ />
         </div>
-        <DateRangePicker
-          startDate={startDate}
-          startDateId="startDate"
-          endDate={endDate}
-          endDateId="endDate"
-          onDatesChange={handlendDatesChange}
-          focusedInput={focusedInput}
-          onFocusChange={handleFocusChange}
-          startDatePlaceholderText={"여행 시작"}
-          endDatePlaceholderText={"여행 끝"}
-          isOutsideRange={(day) => moment().diff(day) >= -1}
-          monthFormat={"YYYY년 MM월"}
-          minimumNights={0}
-          block
-          noBorder
-          showClearDates
-        />
       </div>
     </div>
   );
