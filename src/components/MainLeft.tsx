@@ -2,7 +2,6 @@ import React from 'react'
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { Link, Router } from "react-router-dom";
 import Map from './Map'
 import './CSS/MainLeft.css'
 
@@ -107,59 +106,17 @@ const Mainleftpage = () => {
               />
             )}
           /> */}
-          {/* <button className="themeButton"><div className="themeEff"></div><a>레저</a></button>
-          <button className="themeButton"><div className="themeEff"></div><a>바다</a></button>
-          <button className="themeButton"><div className="themeEff"></div><a>산</a></button>
-          <button className="themeButton"><div className="themeEff"></div><a>드라이브</a></button>
-          <button className="themeButton"><div className="themeEff"></div><a href="#">휴식&힐링</a></button>
-          <button className="themeButton"><div className="themeEff"></div><a href="#"> 사진 </a></button>
-          <button className="themeButton"><div className="themeEff"></div><a href="#"> 역사&문화 </a></button>
-          <button className="themeButton"><div className="themeEff"></div><a href="#"> 야경 </a></button>
-          <button className="themeButton"><div className="themeEff"></div><a href="#"> 캠핑 </a></button>
-          <button className="themeButton"><div className="themeEff"></div><a href="#"> 맛집 </a></button>
-          <button className="themeButton"><div className="themeEff"></div><a href="#"> 노을 </a></button>
-          <button className="themeButton"><div className="themeEff"></div><a href="#"> 일출 </a></button>
-          <button className="themeButton"><div className="themeEff"></div><a href="#"> 데이트 </a></button>
-          <button className="themeButton"><div className="themeEff"></div><a href="#"> 가족 </a></button>
-          <button className="themeButton"><div className="themeEff"></div><a href="#"> 강 </a></button>
-          <button className="themeButton"><div className="themeEff"></div><a href="#"> 계곡 </a></button>
-          <button className="themeButton"><div className="themeEff"></div><a href="#"> 섬 </a></button>
-          <button className="themeButton"><div className="themeEff"></div><a href="#"> 랜드마크 </a></button> */}
         </div>
         <div className="searchBtn">
           <button onClick={handleSearch}>search</button>
         </div>
-        {/* <hr
-          style={{
-            backgroundColor: "#F2F2F2",
-            width: 500,
-            marginBottom: 40,
-            marginRight: 10,
-          }}
-        /> */}
         <div className="place">
           <input type="text" list="spotlist" placeholder="Place"></input>
           <button>TMT</button>
         </div>
       </div>
-      <div className="mainpage_body">
-        {/* <div className="tab-header">
-          <div className="inactive">
-            <Router>
-              <Link
-                to="/recommend"
-                style={{
-                  textDecoration: "none",
-                  color: "black",
-                }}
-              >
-                추천 여행지
-              </Link>
-            </Router>
-          </div>
 
-          <div className="active">내 여행경로</div>
-        </div> */}
+      <div className="mainpage_body">
         <div className='mainleft_list'>
           {/* map으로 사진, 장소 받아 */}
           <li className='mainleft_destination'>
