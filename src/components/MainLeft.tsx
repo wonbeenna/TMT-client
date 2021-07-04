@@ -3,7 +3,6 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import { Link, Router } from "react-router-dom";
 import Map from "./Map";
 import "./CSS/MainLeft.css";
 import { DateRangePicker, FocusedInputShape } from "react-dates";
@@ -103,33 +102,28 @@ const Mainleftpage = () => {
 
   return (
     <div className="leftsidewrap">
-      <div className="mainpage_leftside">
+      <div className="mainpage_top">
         <div className="location">
-          <div>
-            <br />
-            <Autocomplete
-              value={value}
-              onChange={(event: any, newValue: string | null) => {
-                setValue(newValue);
-              }}
-              inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
-              id="controllable-states-demo"
-              options={options}
-              style={{ width: 400 }}
-              renderInput={(params) => (
-                <TextField {...params} label="Location" variant="outlined" />
-              )}
-            />
-          </div>
+          <Autocomplete
+            value={value}
+            onChange={(event: any, newValue: string | null) => {
+              setValue(newValue);
+            }}
+            inputValue={inputValue}
+            onInputChange={(event, newInputValue) => {
+              setInputValue(newInputValue);
+            }}
+            id="controllable-states-demo"
+            options={options}
+            renderInput={(params) => (
+              <TextField {...params} label="Location" variant="standard" />
+            )}
+          />
         </div>
-
         <div className="mainleft_buttoncontainer">
           <Autocomplete
             multiple
-            id="tags-outlined"
+            id="tags"
             options={theme18}
             getOptionLabel={(option) => option.title}
             defaultValue={[theme18[0]]}
@@ -137,114 +131,70 @@ const Mainleftpage = () => {
             renderInput={(params) => (
               <TextField
                 {...params}
-                variant="outlined"
+                variant="standard"
                 label="Theme"
-                placeholder="Favorites"
+              // placeholder="Favorites"
               />
             )}
           />
-          {/* <Autocomplete
-            multiple
-            id="tags-standard"
-            options={theme18}
-            getOptionLabel={(option) => option.title}
-            defaultValue={[theme18[13]]}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                variant="standard"
-                label="Theme"
-                placeholder="Favorites"
-              />
-            )}
-          /> */}
-        </div>
-        <div className="searchBtn">
-          <button onClick={handleSearch}>search</button>
+          <div className="searchBtn">
+            <button className="themeButton" onClick={handleSearch} title="지역&테마로 검색">
+              <div className="themeEff"></div><a>search</a></button>
+          </div>
         </div>
         <div className="place">
           <input type="text" list="spotlist" placeholder="Place"></input>
-          <button>TMT</button>
+          <button title="장소로 검색">TMT</button>
         </div>
       </div>
 
       <div className="mainpage_body">
-        <div className='mainleft_list'>
+        <ul className='mainleft_list'>
+
           {/* map으로 사진, 장소 받아 */}
           <li className="mainleft_destination">
-            <div className="list_img">
+            <div className="destination_list">
               <img src="../img/pic1.jpeg" alt="tes1" />
             </div>
             <div className="list_content">경복궁</div>
           </li>
-          <li className="mainleft_destination">
-            <div className="list_img">
-              <img src="../img/pic2.jpeg" alt="tes1" />
-            </div>
-            <div className="list_content">한라산</div>
-          </li>
-          <li className="mainleft_destination">
-            <div className="list_img">
-              <img src="../img/pic2.jpeg" alt="tes1" />
-            </div>
-            <div className="list_content">한라산</div>
-          </li>
-          <li className="mainleft_destination">
-            <div className="list_img">
-              <img src="../img/pic2.jpeg" alt="tes1" />
-            </div>
-            <div className="list_content">한라산</div>
-          </li>
-          <li className="mainleft_destination">
-            <div className="list_img">
-              <img src="../img/pic2.jpeg" alt="tes1" />
-            </div>
-            <div className="list_content">한라산</div>
-          </li>
-          <li className="mainleft_destination">
-            <div className="list_img">
-              <img src="../img/pic2.jpeg" alt="tes1" />
-            </div>
-            <div className="list_content">한라산</div>
-          </li>
-          <li className="mainleft_destination">
-            <div className="list_img">
-              <img src="../img/pic2.jpeg" alt="tes1" />
-            </div>
-            <div className="list_content">한라산</div>
-          </li>
-          <li className="mainleft_destination">
-            <div className="list_img">
-              <img src="../img/pic2.jpeg" alt="tes1" />
-            </div>
-            <div className="list_content">한라산</div>
-          </li>
-          <li className="mainleft_destination">
-            <div className="list_img">
-              <img src="../img/pic2.jpeg" alt="tes1" />
-            </div>
-            <div className="list_content">한라산</div>
-          </li>
-          <li className="mainleft_destination">
-            <div className="list_img">
-              <img src="../img/pic2.jpeg" alt="tes1" />
-            </div>
-            <div className="list_content">한라산</div>
-          </li>
-          <li className="mainleft_destination">
-            <div className="list_img">
-              <img src="../img/pic2.jpeg" alt="tes1" />
-            </div>
-            <div className="list_content">한라산</div>
-          </li>
-          <li className="mainleft_destination">
-            <div className="list_img">
-              <img src="../img/pic2.jpeg" alt="tes1" />
-            </div>
-            <div className="list_content">한라산</div>
-          </li>
-        </div>
 
+          <li className="mainleft_destination">
+            <div className="destination_list">
+              <img src="../img/pic1.jpeg" alt="tes1" />
+            </div>
+            <div className="list_content">경복궁</div>
+          </li>
+
+          <li className="mainleft_destination">
+            <div className="destination_list">
+              <img src="../img/pic1.jpeg" alt="tes1" />
+            </div>
+            <div className="list_content">경복궁</div>
+          </li>
+
+          <li className="mainleft_destination">
+            <div className="destination_list">
+              <img src="../img/pic2.jpeg" alt="tes1" />
+            </div>
+            <div className="list_content">한라산</div>
+          </li>
+
+          <li className="mainleft_destination">
+            <div className="destination_list">
+              <img src="../img/pic2.jpeg" alt="tes1" />
+            </div>
+            <div className="list_content">한라산</div>
+          </li>
+
+          <li className="mainleft_destination">
+            <div className="destination_list">
+              <img src="../img/pic2.jpeg" alt="tes1" />
+            </div>
+            <div className="list_content">한라산</div>
+          </li>
+
+        </ul>
         <div id="map">
           <Map /*setCenter={setCenter}*/ />
         </div>

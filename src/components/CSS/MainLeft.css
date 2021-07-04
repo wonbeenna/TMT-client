@@ -3,37 +3,43 @@
   flex-direction: column;
 }
 
-.mainpage_leftside {
+.mainpage_top {
   background-color: #ffffff;
-  color: black;
-  width: 100vw;
   display: flex;
-  flex-direction: row;
-  padding-left: 7px;
+  padding: 1rem 2rem 0.5rem 2rem;
   border-bottom: 0.2px solid silver;
 }
 
 .location {
   display: flex;
-  height: 90px;
-  margin: 5px;
-  flex-direction: row;
   flex: 1;
+  margin: 0 2rem 0 0;
 }
 
-.location Autocomplete {
-  width: 500px;
+#controllable-states-demo {
+  width: 10rem;
 }
 
 .mainleft_buttoncontainer {
-  width: 500px;
-  margin: 30px 5px 10px 0;
+  margin: 0 2rem 0 0;
   flex: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+#tags {
+  width: 5rem;
+}
+
+.searchBtn {
+  margin: 0 0 0 1rem;
+  flex: 0.5;
+  display: flex;
 }
 
 .themeButton {
-  height: 30px;
-  margin: 4px;
+  width: 5rem;
+  height: 50px;
   border-radius: 10px;
   border: 2px solid #6698cb;
   cursor: pointer;
@@ -41,20 +47,20 @@
   text-align: center;
   box-sizing: border-box;
   overflow: hidden;
+  background-color: #fff;
 }
-
 .themeButton a {
   color: #34495e;
   position: relative;
   text-decoration: none;
   transition: all 0.5s ease;
   z-index: 2;
+  font-size: 1rem;
 }
-
 .themeEff {
   width: 140px;
   height: 50px;
-  bottom: -50px;
+  bottom: -65px;
   position: absolute;
   margin-left: -10px;
   background-color: #6698cb;
@@ -68,37 +74,90 @@
   color: #fff;
 }
 
-.searchBtn {
-  margin: 33px 10px 30px 0;
-  flex: 0.5;
+.tooltip {
+  visibility: hidden;
+  width: 220px;
+  background-color: orange;
+  padding: 0;
+  color: white;
+  text-align: center;
+  position: absolute;
+  z-index: 1;
+  bottom: 180%;
+  left: 50%;
+  margin-left: -110px;
 }
-.searchBtn button {
-  width: 100px;
-  height: 50px;
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: orange transparent transparent transparent;
 }
 
 .place {
-  height: 50px;
-  width: 350px;
+  height: 3.2rem;
+  width: 10rem;
   display: flex;
   flex-direction: row;
-  margin: 33px 30px 0 0;
   flex: 1;
 }
 
 .place input {
   flex-basis: 70%;
+  padding-left: 10px;
+  border: none;
+  border-bottom: 1px solid gray;
+  outline: none;
+  font-size: 1rem;
 }
 
 .place button {
   flex-basis: 30%;
   background-color: #88b5e2;
   border: none;
+  opacity: 0.8;
+  font-weight: 900;
+  font-size: 1rem;
+  border-radius: 1rem;
+  cursor: pointer;
 }
 
 .place button:hover {
   background-color: #6698cb;
   border: none;
+  letter-spacing: 1px;
+  box-shadow: 5px 40px -10px rgba(0, 0, 0, 0.57);
+  transition: all 0.4s ease 0s;
+}
+
+@media screen and (max-width: 50rem) {
+  .mainpage_top {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .location {
+    margin-bottom: 10px;
+  }
+  #controllable-states-demo {
+    width: 16rem;
+  }
+  .mainleft_buttoncontainer {
+    margin-bottom: 10px;
+  }
+  .place {
+    width: 20rem;
+    padding-right: 2rem;
+    margin-bottom: 10px;
+  }
+  .place input {
+    height: 2.5rem;
+  }
 }
 
 .mainpage_body {
@@ -110,54 +169,60 @@
   display: flex;
   flex-direction: column;
   flex-basis: 30%;
-  /* position: fixed; */
+  min-width: 20rem;
   overflow-y: scroll;
-  overflow-x: hidden;
+  height: 100vh;
 }
 
 .mainleft_destination {
   cursor: pointer;
   display: flex;
   flex-direction: row;
-  /* height: 100px; */
   margin: 10px 0;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 16px 0px;
 }
 
-.list_img {
-  flex-basis: 30%;
-  border-radius: 10px;
+.destination_list {
+  display: flex;
 }
 
-.list_img img {
-  width: 150px;
-  height: 100px;
-  margin-left: 10px;
+.destination_list img {
+  width: 10rem;
+  height: 7rem;
+  margin: 0 10px;
+  border-radius: 50rem;
+}
+
+.destination_list img:hover {
+  transform: scale(1.1);
+  transition: transform 0.5s;
 }
 
 .list_content {
-  width: 50px;
-  height: 50px;
-  flex-basis: 70%;
+  font-size: 1.3rem;
   margin: 10px 0 0 5px;
   font-weight: bold;
-}
-
-.list_content img {
-  width: 10px;
-  height: 10px;
+  display: flex;
+  min-width: 7rem;
+  height: 50px;
 }
 
 #map {
   flex-basis: 70%;
   height: 100vh;
+  min-width: 40rem;
 }
 
 #map::-webkit-scrollbar {
   display: none;
 }
 
+@media screen and (max-width: 50rem) {
+  .mainpage_body {
+    flex-direction: column-reverse;
+  }
+}
 .overlaybox {
   position: relative;
   width: 360px;
