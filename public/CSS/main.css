@@ -134,6 +134,74 @@ body.before-load {
   line-height: 1.2;
   color: white;
 }
+
+.main-message2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 20vh;
+  margin: 5px 0;
+  margin-left: 7vw;
+  height: 3em;
+  font-size: 2.5rem;
+  opacity: 0;
+}
+
+.main-message2 p {
+  font-weight: bold;
+  line-height: 1.2;
+  text-align: center;
+}
+.main-message2 span {
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+  background: -webkit-linear-gradient(-70deg, rgb(29, 29, 31), rgb(29, 29, 31));
+  background-image: -webkit-linear-gradient(-70deg, #555555, #555555);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.main-message2.a {
+  background: -webkit-linear-gradient(-70deg, #417cff, #2de1de);
+  background-image: -webkit-linear-gradient(
+    -70deg,
+    rgb(65, 124, 255),
+    rgb(45, 225, 222)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.main-message2.b {
+  background: -webkit-linear-gradient(-70deg, #041f3d, #125388);
+  background-image: -webkit-linear-gradient(-70deg, #041f3d, #125388);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.main-message2.c {
+  background: -webkit-linear-gradient(-70deg, #613b09, #a3651f);
+  background-image: -webkit-linear-gradient(-70deg, #613b09, #a3651f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.message2-busan {
+  background: -webkit-linear-gradient(-70deg, #322375, #895fe9);
+  background-image: -webkit-linear-gradient(-70deg, #322375, #895fe9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.message2-jeju {
+  background: -webkit-linear-gradient(-70deg, #20863f, #62ce54);
+  background-image: -webkit-linear-gradient(-70deg, #20863f, #62ce54);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 #scroll-section-3 .main-message3 {
   font-size: 2.5vw;
   left: -25%;
@@ -343,13 +411,13 @@ body.before-load {
   left: 50%;
   margin-left: -45vw;
 }
-.section-img-title-header.c {
+/* .section-img-title-header.c {
   position: absolute;
   width: 80vw;
   left: 10%;
-  bottom: -75%;
+  bottom: -85%;
   font-size: 4vw;
-}
+} */
 .section-word {
   position: absolute;
   width: 10vw;
