@@ -15,14 +15,9 @@ const Mypage = () => {
   const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(
     null
   );
-  const { startDate } = useSelector(
-    (state: RootState) => state.RangeControllerReducer
-  );
+  const startDate = moment("2021-07-07");
+  const endDate = moment("2021-07-10");
   console.log(startDate);
-
-  const { endDate } = useSelector(
-    (state: RootState) => state.RangeControllerReducer
-  );
   console.log(endDate);
 
   const handlendDatesChange = (arg: {
@@ -51,6 +46,7 @@ const Mypage = () => {
               onFocusChange={setFocusedInput}
               initialVisibleMonth={null}
               numberOfMonths={2}
+              monthFormat={"YYYY년 MM월"}
             />
           </div>
           <div className="like">여행지like</div>
