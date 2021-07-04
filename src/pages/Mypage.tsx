@@ -11,14 +11,6 @@ import "../components/CSS/_datepicker.css";
 import moment from "moment";
 
 const Mypage = () => {
-  // const [startDate, setStartDate] = useState(new Date())
-  // const [state, setState] = useState([
-  //   {
-  //     startDate: new Date(),
-  //     endDate: null,
-  //     key: "selection",
-  //   },
-  // ]);
 
   const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(
     null
@@ -56,9 +48,6 @@ const Mypage = () => {
               numberOfMonths={2}
               monthFormat={"YYYY년 MM월"}
             />
-            {/* <Calendar onChange={(date: Date) => setDate(date)} /> */}
-            {/* <DatePicker selected={startDate} onChange={(date: Date) => setStartDate(date)}
-                        /> */}
           </div>
           <div className="like">여행지like</div>
         </div>
@@ -67,5 +56,6 @@ const Mypage = () => {
     </>
   );
 };
+
 
 export default Mypage;
