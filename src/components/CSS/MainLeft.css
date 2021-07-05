@@ -1,30 +1,40 @@
-.leftsidewrap {
+.mainpage_wrap {
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
 .mainpage_top {
+  align-items: center;
+  /* position: relative; */
+  width: 90vw;
+  height: 7vh;
   background-color: #ffffff;
   display: flex;
-  padding: 1rem 2rem 0.5rem 2rem;
-  border-bottom: 0.2px solid silver;
+  padding: 0.5em 2em 0.5em 2em;
+  border: 0.2px solid silver;
+  flex-direction: row;
+  border-radius: 10em;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .location {
   display: flex;
   flex: 1;
-  margin: 0 2rem 0 0;
+  margin: 0 2em 0 2em;
 }
 
 #controllable-states-demo {
   width: 10rem;
 }
 
-.mainleft_buttoncontainer {
+.mainpage_plancontainer {
   margin: 0 2rem 0 0;
   flex: 1;
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
 }
 
 #tags {
@@ -58,7 +68,7 @@
   font-size: 1rem;
 }
 .themeEff {
-  width: 140px;
+  width: 160px;
   height: 50px;
   bottom: -65px;
   position: absolute;
@@ -88,11 +98,6 @@
   margin-left: -110px;
 } */
 
-.searchBtn {
-  margin: 33px 0 30px 0;
-  flex: 0.3;
-}
-
 .tooltip::after {
   content: "";
   position: absolute;
@@ -102,14 +107,15 @@
   border-width: 10px;
   border-style: solid;
   border-color: orange transparent transparent transparent;
-}
+} */
 
 .place {
   height: 3.2rem;
-  width: 10rem;
+  /* width: 10rem; */
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   flex: 1;
+  margin-left: 5px;
 }
 
 .place input {
@@ -122,8 +128,9 @@
 }
 
 .place button {
+  width: 10em;
   flex-basis: 30%;
-  background-color: #88b5e2;
+  background-color: #3cb8ed;
   border: none;
   opacity: 0.8;
   font-weight: 900;
@@ -133,17 +140,19 @@
 }
 
 .place button:hover {
-  background-color: #6698cb;
+  background-color: #88b5e2;
   border: none;
   letter-spacing: 1px;
   box-shadow: 5px 40px -10px rgba(0, 0, 0, 0.57);
   transition: all 0.4s ease 0s;
 }
 
-@media screen and (max-width: 50rem) {
+@media only screen and (max-width: 1224px) {
   .mainpage_top {
     flex-direction: column-reverse;
     align-items: center;
+    width: 90vw;
+    height: 30vh;
   }
 
   .location {
@@ -152,8 +161,9 @@
   #controllable-states-demo {
     width: 16rem;
   }
-  .mainleft_buttoncontainer {
+  .mainpage_plancontainer {
     margin-bottom: 10px;
+    margin-top: 10px;
   }
   .place {
     width: 20rem;
@@ -204,13 +214,21 @@
   transition: transform 0.5s;
 }
 
+.list_container {
+  flex-direction: column;
+  margin-left: 20px;
+}
 .list_content {
   font-size: 1.3rem;
-  margin: 10px 0 0 5px;
+  margin: 10px 0 -10px 0;
   font-weight: bold;
   display: flex;
   min-width: 7rem;
   height: 50px;
+}
+
+.list_detail {
+  display: flex;
 }
 
 #map {

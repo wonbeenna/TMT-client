@@ -107,7 +107,7 @@ const Mainleftpage = () => {
   };
 
   return (
-    <div className="leftsidewrap">
+    <div className="mainpage_wrap">
       <div className="mainpage_top">
         <div className="location">
           <Autocomplete
@@ -126,13 +126,13 @@ const Mainleftpage = () => {
             )}
           />
         </div>
-        <div className="mainleft_buttoncontainer">
+        <div className="mainpage_plancontainer">
           <Autocomplete
             multiple
             id="tags"
             options={theme18}
             getOptionLabel={(option) => option.title}
-            defaultValue={[theme18[0]]}
+            // defaultValue={[theme18[0]]}
             filterSelectedOptions
             renderInput={(params) => (
               <TextField
@@ -154,14 +154,6 @@ const Mainleftpage = () => {
             </button>
           </div>
         </div>
-        {/* <hr
-          style={{
-            backgroundColor: "#F2F2F2",
-            width: 500,
-            marginBottom: 40,
-            marginRight: 10,
-          }}
-        /> */}
         <DateRangePicker
           startDate={startDate}
           startDateId="startDate"
@@ -191,43 +183,68 @@ const Mainleftpage = () => {
           <li className="mainleft_destination">
             <div className="destination_list">
               <img src="../img/pic1.jpeg" alt="tes1" />
+              {/* <img src="../img/pic2.jpeg" alt="tes1" /> */}
             </div>
-            <div className="list_content">경복궁</div>
+            <div className="list_container">
+              <div className="list_content">경복궁</div>
+              {/* <div className="list_detail">사진 야경 데이트</div> */}
+              <div className="list_address">서울 세종로</div>
+            </div>
           </li>
 
           <li className="mainleft_destination">
             <div className="destination_list">
               <img src="../img/pic1.jpeg" alt="tes1" />
             </div>
-            <div className="list_content">경복궁</div>
+            <div className="list_container">
+              <div className="list_content">경복궁</div>
+              {/* <div className="list_detail">사진 야경 데이트</div> */}
+              <div className="list_address">서울 세종로</div>
+            </div>
           </li>
 
           <li className="mainleft_destination">
             <div className="destination_list">
               <img src="../img/pic1.jpeg" alt="tes1" />
             </div>
-            <div className="list_content">경복궁</div>
+            <div className="list_container">
+              <div className="list_content">경복궁</div>
+              {/* <div className="list_detail">사진 야경 데이트</div> */}
+              <div className="list_address">서울 세종로</div>
+            </div>
           </li>
 
           <li className="mainleft_destination">
             <div className="destination_list">
               <img src="../img/pic2.jpeg" alt="tes1" />
             </div>
-            <div className="list_content">한라산</div>
+            <div className="list_container">
+              <div className="list_content">한라산</div>
+              {/* <div className="list_detail">산</div> */}
+              <div className="list_address">제주도</div>
+            </div>
           </li>
 
           <li className="mainleft_destination">
             <div className="destination_list">
               <img src="../img/pic2.jpeg" alt="tes1" />
             </div>
-            <div className="list_content">한라산</div>
+            <div className="list_container">
+              <div className="list_content">한라산</div>
+              {/* <div className="list_detail">산</div> */}
+              <div className="list_address">제주도</div>
+            </div>
           </li>
 
           <li className="mainleft_destination">
             <div className="destination_list">
               <img src="../img/pic2.jpeg" alt="tes1" />
             </div>
-            <div className="list_content">한라산</div>
+            <div className="list_container">
+              <div className="list_content">한라산</div>
+              {/* <div className="list_detail">산</div> */}
+              <div className="list_address">제주도</div>
+            </div>
           </li>
         </ul>
         <div id="map">
@@ -235,7 +252,7 @@ const Mainleftpage = () => {
           <InputList />
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
