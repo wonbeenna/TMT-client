@@ -15,8 +15,9 @@ import "moment/locale/ko";
 import "react-dates/initialize";
 import "./CSS/_datepicker.css";
 import { useDispatch } from "react-redux";
-import { RangeController } from "../actions";
-
+import RangeController from "../reducers/RangeController";
+import { Actions } from "../actions";
+import InputList from "./InputList";
 
 const options = [
   "서울",
@@ -94,10 +95,10 @@ const Mainleftpage = () => {
     console.log(arg.startDate);
     console.log(arg.endDate);
   };
-  dispatch(RangeController(startDate, endDate));
-
   const _startDate = moment(startDate).format("YYYY-MM-DD");
   const _endDate = moment(endDate).format("YYYY-MM-DD");
+  dispatch(Actions.RangeController(_startDate, _endDate));
+
   console.log(_startDate);
   console.log(_endDate);
 
@@ -138,13 +139,19 @@ const Mainleftpage = () => {
                 {...params}
                 variant="standard"
                 label="Theme"
-              // placeholder="Favorites"
+                // placeholder="Favorites"
               />
             )}
           />
           <div className="searchBtn">
-            <button className="themeButton" onClick={handleSearch} title="지역&테마로 검색">
-              <div className="themeEff"></div><a>search</a></button>
+            <button
+              className="themeButton"
+              onClick={handleSearch}
+              title="지역&테마로 검색"
+            >
+              <div className="themeEff"></div>
+              <a>search</a>
+            </button>
           </div>
         </div>
         {/* <hr
@@ -179,8 +186,7 @@ const Mainleftpage = () => {
       </div>
 
       <div className="mainpage_body">
-        <ul className='mainleft_list'>
-
+        <ul className="mainleft_list">
           {/* map으로 사진, 장소 받아 */}
           <li className="mainleft_destination">
             <div className="destination_list">
@@ -223,10 +229,10 @@ const Mainleftpage = () => {
             </div>
             <div className="list_content">한라산</div>
           </li>
-
         </ul>
         <div id="map">
           <Map /*setCenter={setCenter}*/ />
+          <InputList />
         </div>
       </div>
     </div>

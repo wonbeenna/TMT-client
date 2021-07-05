@@ -74,8 +74,7 @@
   color: #fff;
 }
 
-
-.tooltip {
+/* .tooltip {
   visibility: hidden;
   width: 220px;
   background-color: orange;
@@ -87,6 +86,7 @@
   bottom: 180%;
   left: 50%;
   margin-left: -110px;
+} */
 
 .searchBtn {
   margin: 33px 0 30px 0;
