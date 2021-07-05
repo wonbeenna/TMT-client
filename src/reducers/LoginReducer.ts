@@ -1,7 +1,7 @@
-import { ACTIONS } from "../actions/index";
-import { initialState } from "./initialState";
+import { ACTIONS, ActionsType } from "../actions/index";
+import { initialState, stateType } from "./initialState";
 
-const LoginReducer = (state = initialState, action: any) => {
+const LoginReducer = (state: stateType = initialState, action: ActionsType) => {
   switch (action.type) {
     case ACTIONS.LOGIN_STATUS: {
       return {

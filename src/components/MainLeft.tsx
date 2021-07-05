@@ -15,8 +15,9 @@ import "moment/locale/ko";
 import "react-dates/initialize";
 import "./CSS/_datepicker.css";
 import { useDispatch } from "react-redux";
-import { RangeController } from "../actions";
-
+import RangeController from "../reducers/RangeController";
+import { Actions } from "../actions";
+import InputList from "./InputList";
 
 const options = [
   "서울",
@@ -94,10 +95,10 @@ const Mainleftpage = () => {
     console.log(arg.startDate);
     console.log(arg.endDate);
   };
-  dispatch(RangeController(startDate, endDate));
-
   const _startDate = moment(startDate).format("YYYY-MM-DD");
   const _endDate = moment(endDate).format("YYYY-MM-DD");
+  dispatch(Actions.RangeController(_startDate, _endDate));
+
   console.log(_startDate);
   console.log(_endDate);
 
@@ -106,7 +107,7 @@ const Mainleftpage = () => {
   };
 
   return (
-    <div className="leftsidewrap">
+    <div className="mainpage_wrap">
       <div className="mainpage_top">
         <div className="location">
           <Autocomplete
@@ -125,36 +126,34 @@ const Mainleftpage = () => {
             )}
           />
         </div>
-        <div className="mainleft_buttoncontainer">
+        <div className="mainpage_plancontainer">
           <Autocomplete
             multiple
             id="tags"
             options={theme18}
             getOptionLabel={(option) => option.title}
-            defaultValue={[theme18[0]]}
+            // defaultValue={[theme18[0]]}
             filterSelectedOptions
             renderInput={(params) => (
               <TextField
                 {...params}
                 variant="standard"
                 label="Theme"
-              // placeholder="Favorites"
+                // placeholder="Favorites"
               />
             )}
           />
           <div className="searchBtn">
-            <button className="themeButton" onClick={handleSearch} title="지역&테마로 검색">
-              <div className="themeEff"></div><a>search</a></button>
+            <button
+              className="themeButton"
+              onClick={handleSearch}
+              title="지역&테마로 검색"
+            >
+              <div className="themeEff"></div>
+              <a>search</a>
+            </button>
           </div>
         </div>
-        {/* <hr
-          style={{
-            backgroundColor: "#F2F2F2",
-            width: 500,
-            marginBottom: 40,
-            marginRight: 10,
-          }}
-        /> */}
         <DateRangePicker
           startDate={startDate}
           startDateId="startDate"
@@ -179,57 +178,81 @@ const Mainleftpage = () => {
       </div>
 
       <div className="mainpage_body">
-        <ul className='mainleft_list'>
-
+        <ul className="mainleft_list">
           {/* map으로 사진, 장소 받아 */}
           <li className="mainleft_destination">
             <div className="destination_list">
               <img src="../img/pic1.jpeg" alt="tes1" />
+              {/* <img src="../img/pic2.jpeg" alt="tes1" /> */}
             </div>
-            <div className="list_content">경복궁</div>
+            <div className="list_container">
+              <div className="list_content">경복궁</div>
+              {/* <div className="list_detail">사진 야경 데이트</div> */}
+              <div className="list_address">서울 세종로</div>
+            </div>
           </li>
 
           <li className="mainleft_destination">
             <div className="destination_list">
               <img src="../img/pic1.jpeg" alt="tes1" />
             </div>
-            <div className="list_content">경복궁</div>
+            <div className="list_container">
+              <div className="list_content">경복궁</div>
+              {/* <div className="list_detail">사진 야경 데이트</div> */}
+              <div className="list_address">서울 세종로</div>
+            </div>
           </li>
 
           <li className="mainleft_destination">
             <div className="destination_list">
               <img src="../img/pic1.jpeg" alt="tes1" />
             </div>
-            <div className="list_content">경복궁</div>
+            <div className="list_container">
+              <div className="list_content">경복궁</div>
+              {/* <div className="list_detail">사진 야경 데이트</div> */}
+              <div className="list_address">서울 세종로</div>
+            </div>
           </li>
 
           <li className="mainleft_destination">
             <div className="destination_list">
               <img src="../img/pic2.jpeg" alt="tes1" />
             </div>
-            <div className="list_content">한라산</div>
+            <div className="list_container">
+              <div className="list_content">한라산</div>
+              {/* <div className="list_detail">산</div> */}
+              <div className="list_address">제주도</div>
+            </div>
           </li>
 
           <li className="mainleft_destination">
             <div className="destination_list">
               <img src="../img/pic2.jpeg" alt="tes1" />
             </div>
-            <div className="list_content">한라산</div>
+            <div className="list_container">
+              <div className="list_content">한라산</div>
+              {/* <div className="list_detail">산</div> */}
+              <div className="list_address">제주도</div>
+            </div>
           </li>
 
           <li className="mainleft_destination">
             <div className="destination_list">
               <img src="../img/pic2.jpeg" alt="tes1" />
             </div>
-            <div className="list_content">한라산</div>
+            <div className="list_container">
+              <div className="list_content">한라산</div>
+              {/* <div className="list_detail">산</div> */}
+              <div className="list_address">제주도</div>
+            </div>
           </li>
-
         </ul>
         <div id="map">
           <Map /*setCenter={setCenter}*/ />
+          <InputList />
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

@@ -5,30 +5,38 @@ export const ACTIONS = {
   RANGE_CONTROLLER: "RANGE_CONTROLLER",
 };
 
-export const LoginStatus = (isLogin: boolean) => {
-  return {
-    type: ACTIONS.LOGIN_STATUS,
-    payload: isLogin,
-  };
+export const Actions = {
+  LoginStatus: (isLogin: boolean) => {
+    return {
+      type: ACTIONS.LOGIN_STATUS,
+      payload: isLogin,
+    };
+  },
+
+  UserInfo: (name: string, email: string) => {
+    return {
+      type: ACTIONS.USER_INFO,
+      payload: { name, email },
+    };
+  },
+
+  AccessToken: (accessToken: string, refreshToken: string) => {
+    return {
+      type: ACTIONS.ACCESS_TOKEN,
+      payload: { accessToken, refreshToken },
+    };
+  },
+
+  RangeController: (startDate: string, endDate: string) => {
+    return {
+      type: ACTIONS.RANGE_CONTROLLER,
+      payload: { startDate, endDate },
+    };
+  },
 };
 
-export const UserInfo = (name: string, email: string) => {
-  return {
-    type: ACTIONS.USER_INFO,
-    payload: { name, email },
-  };
-};
-
-export const AccessToken = (accessToken: string, refreshToken: string) => {
-  return {
-    type: ACTIONS.ACCESS_TOKEN,
-    payload: { accessToken, refreshToken },
-  };
-};
-
-export const RangeController = (startDate: any, endDate: any) => {
-  return {
-    type: ACTIONS.RANGE_CONTROLLER,
-    payload: { startDate, endDate },
-  };
-};
+export type ActionsType =
+  | ReturnType<typeof Actions.LoginStatus>
+  | ReturnType<typeof Actions.UserInfo>
+  | ReturnType<typeof Actions.AccessToken>
+  | ReturnType<typeof Actions.RangeController>;
