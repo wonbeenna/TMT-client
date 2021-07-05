@@ -7,8 +7,8 @@ import "./CSS/SignIn.css";
 import GoogleLogin from "react-google-login";
 import KakaoLogin from "react-kakao-login";
 import { useDispatch } from "react-redux";
-import { LoginStatus, AccessToken } from "../actions";
 import axios from "axios";
+import { Actions } from "../actions";
 require("dotenv").config();
 
 function SignIn() {
@@ -78,8 +78,8 @@ function SignIn() {
         const accessToken = res.data.accessToken;
         const refreshToken = res.data.refreshToken;
         console.log(res);
-        dispatch(AccessToken(accessToken, refreshToken));
-        dispatch(LoginStatus(true));
+        dispatch(Actions.AccessToken(accessToken, refreshToken));
+        dispatch(Actions.LoginStatus(true));
         setErrLogin("");
       })
       .catch((err) => {
@@ -95,8 +95,8 @@ function SignIn() {
   const responseGoogle = (response: any) => {
     console.log(response);
     // dispatch(UserInfo(response.profileObj.name, response.profileObj.email));
-    dispatch(AccessToken(response.accessToken, response.refreshToken));
-    dispatch(LoginStatus(true));
+    dispatch(Actions.AccessToken(response.accessToken, response.refreshToken));
+    dispatch(Actions.LoginStatus(true));
   };
 
   // 카카오

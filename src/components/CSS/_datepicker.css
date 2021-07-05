@@ -113,7 +113,7 @@
   bottom: 0;
   right: 0;
   left: 0;
-  z-index: 2;
+  z-index: 3;
   padding: 22px;
   margin: 33px;
   text-align: left;
@@ -132,7 +132,7 @@
   position: absolute;
   right: 22px;
   top: 22px;
-  z-index: 2;
+  z-index: 3;
 }
 .DayPickerKeyboardShortcuts_close:active {
   outline: 0;
@@ -283,10 +283,10 @@
 .CalendarMonthGrid {
   background: #fff;
   text-align: left;
-  z-index: 0;
+  z-index: 3;
 }
 .CalendarMonthGrid__animating {
-  z-index: 1;
+  z-index: 3;
 }
 .CalendarMonthGrid__horizontal {
   position: absolute;
@@ -312,7 +312,7 @@
 }
 .DayPickerNavigation {
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 .DayPickerNavigation__horizontal {
   height: 0;
@@ -466,7 +466,7 @@
   color: #757575;
   position: absolute;
   top: 62px;
-  z-index: 2;
+  z-index: 3;
   text-align: left;
 }
 .DayPicker_weekHeader__vertical {
@@ -586,7 +586,7 @@
   width: 20px;
   height: 10px;
   left: 22px;
-  z-index: 2;
+  z-index: 3;
 }
 .DateInput_fangShape {
   display: none;
@@ -692,7 +692,7 @@
   position: relative;
 }
 .DateRangePicker_picker {
-  z-index: 2;
+  z-index: 3;
   position: absolute;
   margin-top: 1.5rem;
   background-color: #fff;
@@ -731,7 +731,7 @@
   top: 0;
   right: 0;
   padding: 15px;
-  z-index: 2;
+  z-index: 3;
 }
 .DateRangePicker_closeButton:focus,
 .DateRangePicker_closeButton:hover {

@@ -11,11 +11,10 @@ import "../components/CSS/_datepicker.css";
 import moment from "moment";
 
 const Mypage = () => {
-
   const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(
     null
   );
-  const startDate = moment("2021-07-07");
+  const startDate = moment("2021-07-01");
   const endDate = moment("2021-07-10");
   console.log(startDate);
   console.log(endDate);
@@ -56,6 +55,5 @@ const Mypage = () => {
     </>
   );
 };
-
 
 export default Mypage;

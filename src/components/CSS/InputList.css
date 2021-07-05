@@ -1,0 +1,128 @@
+.inputList {
+  position: absolute;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  width: 22rem;
+  height: 100%;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  animation: open 0.5s;
+}
+.inputList__close {
+  position: absolute;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  height: 100%;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+}
+.inputList__container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: white;
+  flex: 1;
+  border-radius: 20px 0 0 20px;
+}
+.inputList__container__close {
+  display: none;
+}
+.inputList__warp {
+  padding: 20px;
+  overflow: scroll;
+}
+.inputList__warp::-webkit-scrollbar {
+  display: none;
+}
+@keyframes open {
+  from {
+    margin-right: -15rem;
+  }
+  to {
+    margin-right: 0rem;
+  }
+}
+.inputList__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding: 15px 15px 0 15px;
+}
+.inputList__date {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.inputList__card {
+  padding: 15px;
+}
+.inputList__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+.inputList__list__title {
+  height: 5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgb(224, 224, 224);
+}
+.inputList__list__delete {
+  right: 0;
+  position: absolute;
+}
+.inputList__list__delete img {
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+}
+.inputList__saveBtn {
+  width: 100%;
+  height: 2.7rem;
+  font-size: 1.2rem;
+  font-weight: 550;
+  text-align: center;
+  color: white;
+  background: #2de1de;
+  border: 0;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.inputList__saveBtn:hover {
+  transition: all 0.3s;
+  background: #417cff;
+}
+.inputList__slideBtn,
+.inputList__slideBtn__close {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 10px 0 0 10px;
+  width: 30px;
+  height: 50px;
+  cursor: pointer;
+}
+.inputList__slideBtn img {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  width: 30px;
+  height: 35px;
+}
+.inputList__slideBtn__close img {
+  width: 30px;
+  height: 35px;
+}
