@@ -18,6 +18,7 @@ import { useDispatch } from "react-redux";
 import RangeController from "../reducers/RangeController";
 import { Actions } from "../actions";
 import InputList from "./InputList";
+import axios from "axios";
 
 const options = [
   "서울",
@@ -72,9 +73,32 @@ const Mainleftpage = () => {
     { title: "섬" },
     { title: "랜드마크" },
   ];
+  const [province, setProvince] = useState<string | null>(null);
+  const [theme, setTheme] = useState<string | null>(null);
+
+  const changeHandler = (event: any, type: string): void => {
+    if (type === "location") {
+      setProvince(event.target.value)
+    }
+  }
 
   const handleSearch = () => {
-    // post => res
+    const searchURL = "http://localhost:4000/trip/list";
+    // if (!province) {
+    //   setValue(null)
+    // }
+    axios.post(searchURL, {
+      province,
+      theme: '야경'
+    },
+      {
+        withCredentials: true,
+
+      })
+      .then((res) => {
+        console.log('res', res.data)
+      }
+      )
   };
 
   const classes = useStyles();
@@ -113,7 +137,7 @@ const Mainleftpage = () => {
           <Autocomplete
             value={value}
             onChange={(event: any, newValue: string | null) => {
-              setValue(newValue);
+              setValue(newValue); changeHandler(event, "location")
             }}
             inputValue={inputValue}
             onInputChange={(event, newInputValue) => {
@@ -139,7 +163,7 @@ const Mainleftpage = () => {
                 {...params}
                 variant="standard"
                 label="Theme"
-                // placeholder="Favorites"
+              // placeholder="Favorites"
               />
             )}
           />
