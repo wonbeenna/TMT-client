@@ -5,8 +5,13 @@ body {
   font-family: "Noto Sans KR", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-y: hidden;
 }
-
+@media only screen and (max-width: 1224px) {
+  .body {
+    overflow-y: scroll;
+  }
+}d
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
