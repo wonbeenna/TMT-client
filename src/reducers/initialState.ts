@@ -9,6 +9,8 @@ export type stateType = {
     startDate: string;
     endDate: string;
   };
+  modalStatus: boolean;
+  modalName: string;
 };
 
 export const initialState = {
@@ -22,4 +24,6 @@ export const initialState = {
     startDate: "",
     endDate: "",
   },
+  modalStatus: false,
+  modalName: "",
 };

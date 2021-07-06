@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import InputList from "../components/InputList";
 import Mainleftpage from "../components/MainLeft";
 import Mainrightpage from "../components/MainRight";
+import Modal from "../components/Modal";
 import "./CSS/Mainpage.css";
 
 const Mainpage = () => {
@@ -10,6 +11,7 @@ const Mainpage = () => {
 
   return (
     <div className="mainpage_container">
+      <Modal />
       <Header />
       <Mainleftpage />
       {/* <Mainrightpage /> */}

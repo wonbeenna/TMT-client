@@ -3,6 +3,8 @@ export const ACTIONS = {
   USER_INFO: "USER_INFO",
   ACCESS_TOKEN: "ACCESS_TOKEN",
   RANGE_CONTROLLER: "RANGE_CONTROLLER",
+  MODAL_STATUS: "MODAL_STATUS",
+  MODAL_NAME: "MODAL_NAME",
 };
 
 export const Actions = {
@@ -33,10 +35,26 @@ export const Actions = {
       payload: { startDate, endDate },
     };
   },
+
+  modalStatus: (modalStatus: boolean) => {
+    return {
+      type: ACTIONS.MODAL_STATUS,
+      payload: modalStatus,
+    };
+  },
+
+  modalName: (modalName: string) => {
+    return {
+      type: ACTIONS.MODAL_NAME,
+      payload: modalName,
+    };
+  },
 };
 
 export type ActionsType =
   | ReturnType<typeof Actions.LoginStatus>
   | ReturnType<typeof Actions.UserInfo>
   | ReturnType<typeof Actions.AccessToken>
-  | ReturnType<typeof Actions.RangeController>;
+  | ReturnType<typeof Actions.RangeController>
+  | ReturnType<typeof Actions.modalStatus>
+  | ReturnType<typeof Actions.modalName>;

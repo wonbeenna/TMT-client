@@ -21,6 +21,14 @@ function SignIn() {
   const [errPassword, setErrPassword] = useState<string>("");
   const [errLogin, setErrLogin] = useState<string>("");
 
+  const ModalHandler = (name: string) => {
+    dispatch(Actions.modalStatus(true));
+    dispatch(Actions.modalName(name));
+  };
+  const modalCloseHandler = () => {
+    dispatch(Actions.modalStatus(false));
+    dispatch(Actions.modalName(""));
+  };
   // 이메일, 비밀번호 유효성 검사
   const onChangeHandler = (event: any, type: string): void => {
     if (type === "Email") {
@@ -77,9 +85,9 @@ function SignIn() {
       .then((res) => {
         const accessToken = res.data.accessToken;
         const refreshToken = res.data.refreshToken;
-        console.log(res);
         dispatch(Actions.AccessToken(accessToken, refreshToken));
         dispatch(Actions.LoginStatus(true));
+        modalCloseHandler();
         setErrLogin("");
       })
       .catch((err) => {
@@ -117,7 +125,9 @@ function SignIn() {
       <div className="signIn__modal">
         <div className="signIn__contents">
           <div className="signIn__close">
-            <div className="signIn__closeBtn">&times;</div>
+            <div className="signIn__closeBtn" onClick={modalCloseHandler}>
+              &times;
+            </div>
           </div>
           <div className="signIn__title">
             <img className="signIn__title__img" src="/img/Logo005.png" alt="" />
@@ -192,7 +202,14 @@ function SignIn() {
 
           <div className="signIn__signUp">
             <div className="signIn__signUpText">아직 회원이 아니신가요?</div>
-            <div className="signIn__signUpBtn">회원가입</div>
+            <div
+              className="signIn__signUpBtn"
+              onClick={() => {
+                ModalHandler("SignUp");
+              }}
+            >
+              회원가입
+            </div>
           </div>
         </div>
       </div>
