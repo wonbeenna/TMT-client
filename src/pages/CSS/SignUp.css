@@ -19,6 +19,15 @@
   flex-direction: column;
   border-radius: 5px;
   overflow: hidden;
+  animation: modal-bg-show 0.7s;
+}
+@keyframes modal-bg-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 2;
+  }
 }
 
 .signUp__close {

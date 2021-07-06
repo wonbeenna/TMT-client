@@ -92,15 +92,10 @@ const Mainleftpage = () => {
   }) => {
     setStartDate(arg.startDate);
     setEndDate(arg.endDate);
-    console.log(arg.startDate);
-    console.log(arg.endDate);
   };
   const _startDate = moment(startDate).format("YYYY-MM-DD");
   const _endDate = moment(endDate).format("YYYY-MM-DD");
   dispatch(Actions.RangeController(_startDate, _endDate));
-
-  console.log(_startDate);
-  console.log(_endDate);
 
   const handleFocusChange = (arg: FocusedInputShape | null) => {
     setFocusedInput(arg);
@@ -252,7 +247,7 @@ const Mainleftpage = () => {
           <InputList />
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 

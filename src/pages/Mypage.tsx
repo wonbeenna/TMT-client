@@ -9,6 +9,7 @@ import { RootState } from "../store/index";
 import "react-dates/initialize";
 import "../components/CSS/_datepicker.css";
 import moment from "moment";
+import Modal from "../components/Modal";
 
 const Mypage = () => {
   const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(
@@ -16,8 +17,6 @@ const Mypage = () => {
   );
   const startDate = moment("2021-07-01");
   const endDate = moment("2021-07-10");
-  console.log(startDate);
-  console.log(endDate);
 
   const handlendDatesChange = (arg: {
     startDate: moment.Moment | null;
@@ -29,6 +28,7 @@ const Mypage = () => {
 
   return (
     <>
+      <Modal />
       <Header />
       <div className="mypage">
         <div className="mypageMap">

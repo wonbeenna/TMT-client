@@ -11,9 +11,11 @@ const persistConfig = {
 };
 
 const enhanceReducer = persistReducer(persistConfig, rootReducer);
+
 const devTools = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
   ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
   : compose;
+
 const store: any = createStore(
   enhanceReducer,
   devTools(applyMiddleware(thunk))

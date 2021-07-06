@@ -1,3 +1,8 @@
+const mainLinkBtn = document.querySelector(".local-nav-links-b");
+const MainLinkHandler = () => {
+  window.location.href = "/Mainpage";
+};
+mainLinkBtn.addEventListener("click", MainLinkHandler);
 (() => {
   let yOffset = 0; // window.pageYOffst 대신 쓸 변수
   let prevScrollHeight = 0; // 현재 스크롤 위치 보다 이전에 위치한 스크롤 섹션의 높이값의 합

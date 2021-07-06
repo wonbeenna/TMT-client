@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Actions } from "../actions";
 import {
   ValidationName,
   ValidationEmail,
@@ -20,7 +22,16 @@ function SignUp() {
   const [errEmail, setErrEmail] = useState<string>("");
   const [errPassword, setErrPassword] = useState<string>("");
   const [errPasswordCk, setErrPasswordCk] = useState<string>("");
+  const dispatch = useDispatch();
 
+  const ModalHandler = (name: string) => {
+    dispatch(Actions.modalStatus(true));
+    dispatch(Actions.modalName(name));
+  };
+  const modalCloseHandler = () => {
+    dispatch(Actions.modalStatus(false));
+    dispatch(Actions.modalName(""));
+  };
   // 이름, 이메일, 비밀번호, 비밀번호체크 유효성 검사
   const onChangeHandler = (event: any, type: string): void => {
     if (type === "Name") {
@@ -85,18 +96,22 @@ function SignUp() {
     if (!name) {
       setNameValid(false);
       setErrName("이름을 입력해 주세요");
+      return;
     }
     if (!email) {
       setEmailValid(false);
       setErrEmail("이메일을 입력해 주세요");
+      return;
     }
     if (!password) {
       setPasswordValid(false);
       setErrPassword("비밀번호를 입력해 주세요");
+      return;
     }
     if (!passwordCk) {
       setPasswordCKValid(false);
       setErrPasswordCk("비밀번호를 확인해 주세요");
+      return;
     }
     if (password !== passwordCk) {
       return;
@@ -109,7 +124,9 @@ function SignUp() {
         email,
         ...(password ? { password: password } : {}),
       })
-      .then((res) => console.log(res))
+      .then((res) => {
+        modalCloseHandler();
+      })
       .catch((err) => {
         const status = err.response.status;
         if (status === 409) {
@@ -123,7 +140,9 @@ function SignUp() {
       <div className="signUp__modal">
         <div className="signUp__contents">
           <div className="signUp__close">
-            <div className="signUp__closeBtn">&times;</div>
+            <div className="signUp__closeBtn" onClick={modalCloseHandler}>
+              &times;
+            </div>
           </div>
           <div className="signUp__title">
             <img className="signUp__title__img" src="/img/Logo005.png" alt="" />
@@ -196,7 +215,14 @@ function SignUp() {
 
           <div className="signUp__signIn">
             <div className="signUp__signInText">이미 회원 이신가요?</div>
-            <div className="signUp__signInBtn">로그인</div>
+            <div
+              className="signUp__signInBtn"
+              onClick={() => {
+                ModalHandler("SignIn");
+              }}
+            >
+              로그인
+            </div>
           </div>
         </div>
       </div>
