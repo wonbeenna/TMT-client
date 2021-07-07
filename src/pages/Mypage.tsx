@@ -4,12 +4,11 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { DayPickerRangeController, FocusedInputShape } from "react-dates";
 import "./CSS/Mypage.css";
-import { useSelector } from "react-redux";
-import { RootState } from "../store/index";
 import "react-dates/initialize";
 import "../components/CSS/_datepicker.css";
 import moment from "moment";
 import Modal from "../components/Modal";
+import { withRouter } from "react-router-dom";
 
 const Mypage = () => {
   const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(
@@ -56,4 +55,4 @@ const Mypage = () => {
   );
 };
 
-export default Mypage;
+export default withRouter(Mypage);

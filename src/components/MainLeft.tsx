@@ -1,24 +1,19 @@
 import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Map from "./Map";
 import "./CSS/MainLeft.css";
-import {
-  DateRangePicker,
-  FocusedInputShape,
-  toLocalizedDateString,
-} from "react-dates";
+import { DateRangePicker, FocusedInputShape } from "react-dates";
 import moment, { Moment } from "moment";
 import "moment/locale/ko";
 import "react-dates/initialize";
 import "./CSS/_datepicker.css";
 import { useDispatch } from "react-redux";
-import RangeController from "../reducers/RangeController";
 import { Actions } from "../actions";
 import InputList from "./InputList";
 import axios from "axios";
+require("dotenv").config();
 
 const options = [
   "서울",
@@ -78,27 +73,29 @@ const Mainleftpage = () => {
 
   const changeHandler = (event: any, type: string): void => {
     if (type === "location") {
-      setProvince(event.target.value)
+      setProvince(event.target.value);
     }
-  }
+  };
 
   const handleSearch = () => {
-    const searchURL = "http://localhost:4000/trip/list";
+    const searchURL = `${process.env.REACT_APP_API}/trip/list`;
     // if (!province) {
     //   setValue(null)
     // }
-    axios.post(searchURL, {
-      province,
-      theme: '야경'
-    },
-      {
-        withCredentials: true,
-
-      })
-      .then((res) => {
-        console.log('res', res.data)
-      }
+    axios
+      .post(
+        searchURL,
+        {
+          province,
+          theme: "야경",
+        },
+        {
+          withCredentials: true,
+        }
       )
+      .then((res) => {
+        console.log("res", res.data);
+      });
   };
 
   const classes = useStyles();
@@ -132,7 +129,8 @@ const Mainleftpage = () => {
           <Autocomplete
             value={value}
             onChange={(event: any, newValue: string | null) => {
-              setValue(newValue); changeHandler(event, "location")
+              setValue(newValue);
+              changeHandler(event, "location");
             }}
             inputValue={inputValue}
             onInputChange={(event, newInputValue) => {
@@ -158,7 +156,7 @@ const Mainleftpage = () => {
                 {...params}
                 variant="standard"
                 label="Theme"
-              // placeholder="Favorites"
+                // placeholder="Favorites"
               />
             )}
           />

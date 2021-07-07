@@ -8,6 +8,7 @@ import {
   ValidationPassword,
 } from "../components/ValidationCheck";
 import "./CSS/SignUp.css";
+require("dotenv").config();
 
 function SignUp() {
   const [name, setName] = useState("");
@@ -117,7 +118,7 @@ function SignUp() {
       return;
     }
 
-    const signUpURL = "http://localhost:4000/user/signUp";
+    const signUpURL = `${process.env.REACT_APP_API}/user/signUp`;
     axios
       .post(signUpURL, {
         name,
