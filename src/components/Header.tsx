@@ -39,6 +39,7 @@ const Header = () => {
   const mypageRender = () => {
     const curURL = window.location.href;
     const mypageURL = `${process.env.REACT_APP_BUCKET}/Mypage`;
+    console.log('mypageURL', mypageURL)
     if (curURL === mypageURL) {
       return (
         <div className="headerContainer">
@@ -85,6 +86,7 @@ const Header = () => {
   const mainPageRender = () => {
     const curURL = window.location.href;
     const mainPageURL = `${process.env.REACT_APP_BUCKET}/Mainpage`;
+    console.log('mainPageURL', mainPageURL)
     if (curURL === mainPageURL) {
       return (
         <div className="headerContainer">

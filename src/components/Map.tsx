@@ -6,7 +6,29 @@ declare global {
     }
 }
 
-const Map = (/*{setCenter}*/) => {
+const Map = (placedata: any) => {
+    console.log('placedata1', placedata.placedata)
+
+    console.log('placedata2', placedata.placedata[0].lat)
+
+    // console.log('long', long)
+
+    // useEffect(()=>{
+    //     window.kakao.map.load(() => {
+    //         lenderMap()
+    //     })
+    // })
+
+    // const lenderMap = () => {
+    //     let container = document.getElementById('map');
+    //     let options = {
+    //         center: new window.kakao.maps.LatLng(33.50011272482717, 126.52728521151296),
+    //         level: 7
+    //     };
+
+    //     let map = new window.kakao.maps.Map(container, options);
+
+    // }
 
     useEffect(() => {
 
@@ -19,8 +41,10 @@ const Map = (/*{setCenter}*/) => {
 
         let map = new window.kakao.maps.Map(container, options);
 
+
         // 고정 마커 생성
-        let markerPosition = new window.kakao.maps.LatLng(33.507035753055014, 126.49278647606816); //제주공항
+        let markerPosition = new window.kakao.maps.LatLng(placedata.placedata[0].lat, placedata.placedata[0].long); //제주공항
+        // let markerPosition = new window.kakao.maps.LatLng(33.507035753055014, 126.49278647606816); //제주공항
 
         let marking = new window.kakao.maps.Marker({
             position: markerPosition
