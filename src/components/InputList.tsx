@@ -16,6 +16,10 @@ const testPlace: any = [
   { id: "4", title: "남대문" },
   { id: "5", title: "동대문" },
   { id: "6", title: "청와대" },
+  { id: "7", title: "청계천" },
+  { id: "8", title: "남대문" },
+  { id: "9", title: "동대문" },
+  { id: "10", title: "청와대" },
 ];
 
 function InputList() {
@@ -58,7 +62,7 @@ function InputList() {
 
     setPlace(items);
   };
-  console.log(place);
+  // console.log(place);
   return (
     <div className={open ? "inputList" : "inputList__close"}>
       <div
@@ -92,7 +96,7 @@ function InputList() {
                           >
                             {title}
                             <div className="inputList__list__delete">
-                              <img src="../img/delete.png" />
+                              <img src="../img/delete.png" alt="" />
                             </div>
                           </div>
                         )}
@@ -105,14 +109,13 @@ function InputList() {
               )}
             </Droppable>
           </DragDropContext>
-
           <button className="inputList__saveBtn">저장하기</button>
         </div>
       </div>
       <div
         className={open ? "inputList__slideBtn" : "inputList__slideBtn__close"}
       >
-        <img src="../img/left-arrow.png" onClick={openContainer} />
+        <img src="../img/right-arrow.png" alt="" onClick={openContainer} />
       </div>
     </div>
   );

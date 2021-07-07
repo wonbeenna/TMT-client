@@ -1,7 +1,6 @@
 .headerContainer {
   height: 5vh;
-  min-height: 55px;
-  position: absolute;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -10,8 +9,8 @@
   left: 0;
   right: 0;
   border-bottom: 1px solid rgb(207, 207, 207);
-  z-index: 1;
-  position: relative;
+  background: white;
+  z-index: 10;
 }
 
 .headerLogo {
@@ -22,7 +21,7 @@
 .headerLogo img {
   cursor: pointer;
   width: 250px;
-  height: 70px;
+  height: 50px;
 }
 
 .headerRightside {

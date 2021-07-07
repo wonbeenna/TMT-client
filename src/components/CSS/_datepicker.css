@@ -543,8 +543,8 @@
   background-color: #fff;
   width: 100%;
   padding: 11px 11px 9px;
-  border: 1px solid #757575;
-  border-radius: 15px;
+  border: none;
+  border-bottom: 1px solid #b3b3b3;
 }
 .DateInput_input__small {
   font-size: 15px;
@@ -564,8 +564,7 @@
 .DateInput_input__focused {
   outline: 0;
   background: #fff;
-  border: 1px solid #757575;
-  border-radius: 15px;
+  border-bottom: 1px solid #417cff;
 }
 .DateInput_input__disabled {
   background: #f2f2f2;
@@ -617,13 +616,13 @@
 .DateRangePickerInput_arrow {
   display: inline-block;
   vertical-align: middle;
-  color: #484848;
+  fill: #b1b1b1;
 }
 .DateRangePickerInput_arrow_svg {
   vertical-align: middle;
-  fill: #484848;
-  height: 24px;
-  width: 24px;
+  fill: #b1b1b1;
+  height: 4vh;
+  width: 2.5vw;
 }
 .DateRangePickerInput_clearDates {
   background: 0 0;
