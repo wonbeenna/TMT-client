@@ -25,12 +25,7 @@ const Header = () => {
   const mainpage = () => {
     history.push("/Mainpage");
   };
-  const { modalName } = useSelector(
-    (state: RootReducer) => state.modalNameReducer
-  );
-  const { modalStatus } = useSelector(
-    (state: RootReducer) => state.modalStatusReducer
-  );
+
   const ModalHandler = (name: string) => {
     dispatch(Actions.modalStatus(true));
     dispatch(Actions.modalName(name));

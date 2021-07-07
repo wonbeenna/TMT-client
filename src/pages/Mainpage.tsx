@@ -1,9 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import Header from "../components/Header";
-import InputList from "../components/InputList";
 import Mainleftpage from "../components/MainLeft";
-import Mainrightpage from "../components/MainRight";
 import Modal from "../components/Modal";
 import "./CSS/Mainpage.css";
 
