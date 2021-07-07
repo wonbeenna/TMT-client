@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
+
 import Placelist from "./Placelist";
+
 
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Map from "./Map";
@@ -73,7 +75,6 @@ const Mainleftpage = () => {
   ];
 
   const [province, setProvince] = useState<number | null>(null);
-  const [theme, setTheme] = useState<string | null>(null);
   const [placedata, setPlacedata]: any = useState<string | any>([]);
 
   const changeHandler = (event: any, type: string): void => {
@@ -81,21 +82,24 @@ const Mainleftpage = () => {
       //num로 보내려고 index값을 상태값업데이트함 => 숫자가 랜덤으로 바뀜
       // const spot = event.target.innerText
       // setProvince(options.indexOf(spot))
-      setProvince(event.target.innerText);
-      console.log("province", province);
+
+      console.log('event.target', event)
+      setProvince(event.target.innerText)
+      console.log('province', province)
       // console.log('spot', spot)
     }
-    if (type === "theme") {
-      setTheme(event.target.value);
-      console.log(event);
-    }
+
   };
 
-  const handleSearch = (): void => {
+
+  const handleSearch = () => {
+
+  
     const searchURL = `${process.env.REACT_APP_API}/trip/list`;
     // if (!province) {
     //   setValue(null)
     // }
+
     axios
       .post(
         searchURL,
@@ -103,6 +107,7 @@ const Mainleftpage = () => {
           //state값으로
           // province: province,
           // theme: theme
+
 
           //임의값으로
           province: null,
@@ -113,15 +118,15 @@ const Mainleftpage = () => {
         }
       )
       .then((res) => {
-        console.log("res.data", res.data);
-        setPlacedata(res.data);
-        // console.log("res.data[0].place: ", res.data[0].place);
-        // console.log("placedata[0].place: ", placedata[0].place);
-        // console.log("placedata: ", placedata);
-        // console.log("placedata.place: ", placedata.place);
+
+        console.log('res.data', res.data)
+        setPlacedata(res.data)
+        // console.log('res.data[0].place: ', res.data[0].place)
+        // console.log('placedata[0].place: ', placedata[0].place)
+        console.log('placedata: ', placedata)
+        // console.log('placedata.place: ', placedata.place)
 
         //--->새로고침하면 place를 읽지못하더라... 왜그러지
-
         // console.log('num', placedata.indexOf(1))
       })
       .catch((err) => console.log("err", err));
@@ -150,6 +155,7 @@ const Mainleftpage = () => {
   const handleFocusChange = (arg: FocusedInputShape | null) => {
     setFocusedInput(arg);
   };
+
 
   return (
     <div className="mainpage_wrap">
@@ -185,7 +191,7 @@ const Mainleftpage = () => {
                 {...params}
                 variant="standard"
                 label="Theme"
-                // placeholder="Favorites"
+              // placeholder="Favorites"
               />
             )}
           />
@@ -226,6 +232,7 @@ const Mainleftpage = () => {
 
       <div className="mainpage_body">
         <ul className="mainleft_list">
+
           <div className="mainleft_title">검색결과</div>
           {/* map으로 사진, 장소 받아 */}
 
@@ -286,11 +293,15 @@ const Mainleftpage = () => {
                 address={el.address}
               ></Placelist>
             );
+
           })}
         </ul>
 
         <div id="map">
-          <Map /*setCenter={setCenter}*/ />
+          {/* {placedata.map((el: any, idx: number) => {
+            return <Map key={idx} lat={el.place} ></Map>
+          })} */}
+          <Map placedata={placedata} />
           <InputList />
         </div>
       </div>

@@ -1,26 +1,27 @@
 import React, { useState } from "react";
 import "./CSS/MainLeft.css";
 
-const Placelist = (place: string | any) => {
-  //   객체로 들어옴 place: {palce: }, place: {1}, place:{2}
-  console.log(Object.values(place.place));
-  return (
-    <li className="mainleft_destination">
-      <div className="destination_list">
-        <img src="../img/pic1.jpeg" alt="tes1" />
-      </div>
-      <div className="list_container">
-        <div className="list_content">
-          <div className="list_place">{place.place}</div>
-          <div className="list_address">
-            {place.address}
-            <img src="../img/Logo004.png" alt="" />
-          </div>
-        </div>
-      </div>
-    </li>
-  );
-};
+
+const Placelist = (place: string | any, address: string | any) => {
+    console.log('place', place)
+    console.log('address', address)
+
+    return (
+
+        <li className="mainleft_destination">
+            <div className="destination_list">
+                <img src={place.img} alt="tes1" />
+            </div>
+            <div className="list_container">
+                <div className="list_content">
+                    {place.place}
+                </div>
+
+                <div className="list_address">
+                    {Object.values(place.address)}
+                </div>
+            </div>
+        </li>
 
 export default Placelist;
 
@@ -30,6 +31,7 @@ export default Placelist;
 // 3: 37.565972575797396
 // 4: 126.97515152495737
 // 5: "www.dfjkjeeogoo.png"
+
 
 // 0: (5) ["역사&문화", "야경", "랜드마크", "휴식&힐링", "사진"]
 // 1: "경복궁"
