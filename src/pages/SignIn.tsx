@@ -62,7 +62,7 @@ function SignIn() {
   };
 
   const loginHandler = (): void => {
-    const loginURL = "http://localhost:4000/user/signIn";
+    const loginURL = `${process.env.REACT_APP_API}/user/signIn`;
     if (!email) {
       setEmailValid(false);
       setErrEmail("이메일을 입력해 주세요");
@@ -182,8 +182,8 @@ function SignIn() {
                   구글로 로그인하기
                 </button>
               )}
-              // onSuccess={responseGoogle}
-              // onFailure={responseGoogle}
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
             />
             {/* <button className="signIn__google">Google</button> */}
             <KakaoLogin

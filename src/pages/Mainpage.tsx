@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import Header from "../components/Header";
 import InputList from "../components/InputList";
 import Mainleftpage from "../components/MainLeft";
@@ -24,4 +25,4 @@ const Mainpage = () => {
   );
 };
 
-export default Mainpage;
+export default withRouter(Mainpage);

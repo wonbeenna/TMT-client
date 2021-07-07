@@ -1,25 +1,23 @@
 import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+
 import Placelist from "./Placelist"
+
 
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Map from "./Map";
 import "./CSS/MainLeft.css";
-import {
-  DateRangePicker,
-  FocusedInputShape,
-  toLocalizedDateString,
-} from "react-dates";
+import { DateRangePicker, FocusedInputShape } from "react-dates";
 import moment, { Moment } from "moment";
 import "moment/locale/ko";
 import "react-dates/initialize";
 import "./CSS/_datepicker.css";
 import { useDispatch } from "react-redux";
-import RangeController from "../reducers/RangeController";
 import { Actions } from "../actions";
 import InputList from "./InputList";
 import axios from "axios";
+require("dotenv").config();
 
 
 
@@ -83,6 +81,7 @@ const Mainleftpage = () => {
 
   const changeHandler = (event: any, type: string): void => {
     if (type === "location") {
+
       //num로 보내려고 index값을 상태값업데이트함 => 숫자가 랜덤으로 바뀜
       // const spot = event.target.innerText
       // setProvince(options.indexOf(spot))
@@ -93,11 +92,13 @@ const Mainleftpage = () => {
     if (type === "theme") {
       setTheme(event.target.value)
       console.log(event)
+
     }
-  }
+  };
+
 
   const handleSearch = (): void => {
-    const searchURL = "http://localhost:4000/trip/list";
+    const searchURL = `${process.env.REACT_APP_API}/trip/list`;
     // if (!province) {
     //   setValue(null)
     // }
@@ -127,6 +128,7 @@ const Mainleftpage = () => {
         // console.log('num', placedata.indexOf(1))
       })
       .catch((err) => console.log('err', err))
+
   };
 
   const classes = useStyles();
@@ -160,7 +162,8 @@ const Mainleftpage = () => {
           <Autocomplete
             value={value}
             onChange={(event: any, newValue: string | null) => {
-              setValue(newValue); changeHandler(event, "location")
+              setValue(newValue);
+              changeHandler(event, "location");
             }}
             inputValue={inputValue}
             onInputChange={(event, newInputValue) => {
@@ -186,7 +189,7 @@ const Mainleftpage = () => {
                 {...params}
                 variant="standard"
                 label="Theme"
-              // placeholder="Favorites"
+                // placeholder="Favorites"
               />
             )}
           />
