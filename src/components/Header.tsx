@@ -3,6 +3,8 @@ import { Actions } from "../actions";
 import { RootReducer } from "../reducers";
 import "./CSS/Header.css";
 import { useHistory } from "react-router";
+import { withRouter } from "react-router-dom";
+require("dotenv").config();
 
 const Header = () => {
   const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
@@ -18,9 +20,11 @@ const Header = () => {
     window.location.href = "/Landing.html";
   };
   const mypage = () => {
-    history.push("/mypage");
+    history.push("/Mypage");
   };
-
+  const mainpage = () => {
+    history.push("/Mainpage");
+  };
   const { modalName } = useSelector(
     (state: RootReducer) => state.modalNameReducer
   );
@@ -34,7 +38,7 @@ const Header = () => {
 
   const mypageRender = () => {
     const curURL = window.location.href;
-    const mypageURL = "http://localhost:3000/mypage";
+    const mypageURL = `${process.env.REACT_APP_BUCKET}/Mypage`;
     if (curURL === mypageURL) {
       return (
         <div className="headerContainer">
@@ -43,6 +47,7 @@ const Header = () => {
           </div>
           {isLogin ? (
             <div className="headerRightside">
+              <p onClick={mainpage}>돌아가기</p>
               <p
                 onClick={() => {
                   ModalHandler("UserInfo");
@@ -79,7 +84,7 @@ const Header = () => {
 
   const mainPageRender = () => {
     const curURL = window.location.href;
-    const mainPageURL = "http://localhost:3000/mainpage";
+    const mainPageURL = `${process.env.REACT_APP_BUCKET}/Mainpage`;
     if (curURL === mainPageURL) {
       return (
         <div className="headerContainer">
@@ -124,4 +129,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default withRouter(Header);

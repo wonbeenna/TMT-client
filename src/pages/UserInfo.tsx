@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootReducer } from "../reducers";
 import { Actions } from "../actions";
 import { useHistory } from "react-router-dom";
+require("dotenv").config();
 
 function UserInfo() {
   const [curPassword, setCurPassword] = useState("");
@@ -18,8 +19,8 @@ function UserInfo() {
   const [errCurPassword, setErrCurPassword] = useState<string>("");
   const [errPassword, setErrPassword] = useState<string>("");
   const [errPasswordCk, setErrPasswordCk] = useState<string>("");
-  const userInfoURL = "http://localhost:4000/user/userInfo";
-  const tokenURL = "http://localhost:4000/token/refreshToken";
+  const userInfoURL = `${process.env.REACT_APP_API}/user/userInfo`;
+  const tokenURL = `${process.env.REACT_APP_API}/token/refreshToken`;
   const dispatch = useDispatch();
   const history = useHistory();
   const [infors, setInfors]: any = useState<string>("");
@@ -58,7 +59,7 @@ function UserInfo() {
         }
       )
       .then((res) => {
-        history.push("./mypage");
+        history.push("./Mypage");
       })
       .catch((err) => {
         const status = err.response.status;
