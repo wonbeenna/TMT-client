@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import Placelist from "./Placelist"
 
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Map from "./Map";
@@ -20,24 +21,7 @@ import { Actions } from "../actions";
 import InputList from "./InputList";
 import axios from "axios";
 
-const options = [
-  "서울",
-  "인천",
-  "대전",
-  "대구",
-  "울산",
-  "부산",
-  "광주",
-  "경기",
-  "강원도",
-  "충청북도",
-  "충청남도",
-  "경상북도",
-  "경상남도",
-  "전라북도",
-  "전라남도",
-  "제주도",
-];
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -51,6 +35,25 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const Mainleftpage = () => {
+  const options = [
+    "서울",
+    "인천",
+    "대전",
+    "대구",
+    "울산",
+    "부산",
+    "광주",
+    "경기",
+    "강원도",
+    "충청북도",
+    "충청남도",
+    "경상북도",
+    "경상남도",
+    "전라북도",
+    "전라남도",
+    "제주도",
+  ];
+
   const [value, setValue] = React.useState<string | null>(options[0]);
   const [inputValue, setInputValue] = React.useState("");
   const theme18 = [
@@ -73,32 +76,57 @@ const Mainleftpage = () => {
     { title: "섬" },
     { title: "랜드마크" },
   ];
-  const [province, setProvince] = useState<string | null>(null);
+
+  const [province, setProvince] = useState<number | null>(null);
   const [theme, setTheme] = useState<string | null>(null);
+  const [placedata, setPlacedata]: any = useState<string | any>([]);
 
   const changeHandler = (event: any, type: string): void => {
     if (type === "location") {
-      setProvince(event.target.value)
+      //num로 보내려고 index값을 상태값업데이트함 => 숫자가 랜덤으로 바뀜
+      // const spot = event.target.innerText
+      // setProvince(options.indexOf(spot))
+      setProvince(event.target.innerText)
+      console.log('province', province)
+      // console.log('spot', spot)
+    }
+    if (type === "theme") {
+      setTheme(event.target.value)
+      console.log(event)
     }
   }
 
-  const handleSearch = () => {
+  const handleSearch = (): void => {
     const searchURL = "http://localhost:4000/trip/list";
     // if (!province) {
     //   setValue(null)
     // }
     axios.post(searchURL, {
-      province,
-      theme: '야경'
+      //state값으로 
+      // province: province,
+      // theme: theme
+
+      //임의값으로 
+      province: null,
+      theme: ['야경']
     },
       {
         withCredentials: true,
 
       })
       .then((res) => {
-        console.log('res', res.data)
-      }
-      )
+        console.log('res.data', res.data)
+        setPlacedata(res.data)
+        console.log('res.data[0].place: ', res.data[0].place)
+        console.log('placedata[0].place: ', placedata[0].place)
+        console.log('placedata: ', placedata)
+        console.log('placedata.place: ', placedata.place)
+
+        //--->새로고침하면 place를 읽지못하더라... 왜그러지
+
+        // console.log('num', placedata.indexOf(1))
+      })
+      .catch((err) => console.log('err', err))
   };
 
   const classes = useStyles();
@@ -199,72 +227,12 @@ const Mainleftpage = () => {
       <div className="mainpage_body">
         <ul className="mainleft_list">
           {/* map으로 사진, 장소 받아 */}
-          <li className="mainleft_destination">
-            <div className="destination_list">
-              <img src="../img/pic1.jpeg" alt="tes1" />
-              {/* <img src="../img/pic2.jpeg" alt="tes1" /> */}
-            </div>
-            <div className="list_container">
-              <div className="list_content">경복궁</div>
-              {/* <div className="list_detail">사진 야경 데이트</div> */}
-              <div className="list_address">서울 세종로</div>
-            </div>
-          </li>
 
-          <li className="mainleft_destination">
-            <div className="destination_list">
-              <img src="../img/pic1.jpeg" alt="tes1" />
-            </div>
-            <div className="list_container">
-              <div className="list_content">경복궁</div>
-              {/* <div className="list_detail">사진 야경 데이트</div> */}
-              <div className="list_address">서울 세종로</div>
-            </div>
-          </li>
+          {/* {Object.values(placedata).map((el: any, idx: number) => (
+            <Placelist key={idx} place={el.place} />
+          ))} */}
 
-          <li className="mainleft_destination">
-            <div className="destination_list">
-              <img src="../img/pic1.jpeg" alt="tes1" />
-            </div>
-            <div className="list_container">
-              <div className="list_content">경복궁</div>
-              {/* <div className="list_detail">사진 야경 데이트</div> */}
-              <div className="list_address">서울 세종로</div>
-            </div>
-          </li>
-
-          <li className="mainleft_destination">
-            <div className="destination_list">
-              <img src="../img/pic2.jpeg" alt="tes1" />
-            </div>
-            <div className="list_container">
-              <div className="list_content">한라산</div>
-              {/* <div className="list_detail">산</div> */}
-              <div className="list_address">제주도</div>
-            </div>
-          </li>
-
-          <li className="mainleft_destination">
-            <div className="destination_list">
-              <img src="../img/pic2.jpeg" alt="tes1" />
-            </div>
-            <div className="list_container">
-              <div className="list_content">한라산</div>
-              {/* <div className="list_detail">산</div> */}
-              <div className="list_address">제주도</div>
-            </div>
-          </li>
-
-          <li className="mainleft_destination">
-            <div className="destination_list">
-              <img src="../img/pic2.jpeg" alt="tes1" />
-            </div>
-            <div className="list_container">
-              <div className="list_content">한라산</div>
-              {/* <div className="list_detail">산</div> */}
-              <div className="list_address">제주도</div>
-            </div>
-          </li>
+          {/* {placedata.map((el: any, idx: number) => { (<Placelist key={idx} place={el.place}></Placelist>) })} */}
         </ul>
         <div id="map">
           <Map /*setCenter={setCenter}*/ />
