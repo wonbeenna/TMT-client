@@ -2,11 +2,11 @@ import moment from "moment";
 import { useEffect } from "react";
 import { useCallback } from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootReducer } from "../reducers";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import "./CSS/InputList.css";
-import { indexOf } from "lodash";
+import { Actions } from "../actions";
 
 // 프롭으로 받아와서 쓸수있는지 확인해야됨(목록리스트)
 const testPlace: any = [
@@ -24,6 +24,7 @@ function InputList() {
   const [startToday, setStartToday] = useState<string>("");
   const [endToday, setEndToday] = useState<string>("");
   const [place, setPlace] = useState(testPlace);
+  const dispatch = useDispatch();
   const openContainer = useCallback(() => {
     setOpen(!open);
   }, [open]);
@@ -51,14 +52,13 @@ function InputList() {
     if (!result.destination) {
       return;
     }
-    console.log(result);
     const items = [...place];
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
     setPlace(items);
   };
-  // console.log(place);
+
   return (
     <div className={open ? "inputList" : "inputList__close"}>
       <div

@@ -6,10 +6,9 @@ import {
 import "./CSS/SignIn.css";
 import GoogleLogin from "react-google-login";
 import KakaoLogin from "react-kakao-login";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import { Actions } from "../actions";
-import { RootReducer } from "../reducers";
 require("dotenv").config();
 
 function SignIn() {
@@ -109,7 +108,6 @@ function SignIn() {
       })
       .then((res) => {
         const status = res.status;
-        console.log(res.status);
         if (status === 200 || status === 201) {
           const accessToken = res.data.accessToken;
           const refreshToken = res.data.refreshToken;

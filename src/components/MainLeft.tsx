@@ -3,9 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 import Placelist from "./Placelist";
-import Pagination from "./Pagination";
 
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import "./CSS/MainLeft.css";
 import { DateRangePicker, FocusedInputShape } from "react-dates";
 import moment, { Moment } from "moment";
@@ -19,17 +17,6 @@ import InputList from "./InputList";
 import Paging from "./Pagination";
 
 require("dotenv").config();
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: 500,
-      "& > * + *": {
-        marginTop: theme.spacing(3),
-      },
-    },
-  })
-);
 
 const Mainleftpage = () => {
   const options = [
@@ -85,11 +72,7 @@ const Mainleftpage = () => {
       //num로 보내려고 index값을 상태값업데이트함 => 숫자가 랜덤으로 바뀜
       // const spot = event.target.innerText
       // setProvince(options.indexOf(spot))
-
-      console.log("event.target", event);
       setProvince(event.target.innerText);
-      console.log("province", province);
-      // console.log('spot', spot)
     }
   };
 
@@ -125,8 +108,6 @@ const Mainleftpage = () => {
       })
       .catch((err) => console.log("err", err));
   };
-  console.log(placedata);
-  const classes = useStyles();
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
