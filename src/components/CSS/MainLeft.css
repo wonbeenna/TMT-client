@@ -13,7 +13,7 @@
 }
 
 .mainpage_top {
-  height: 7vh;
+  height: 5rem;
   background-color: #ffffff;
   display: flex;
   justify-content: space-around;
@@ -24,7 +24,7 @@
 .Placelist__warp {
   display: flex;
   flex-direction: column;
-  height: 45rem;
+  height: 80vh;
   overflow-y: scroll;
 }
 .Placelist__warp::-webkit-scrollbar {
@@ -32,7 +32,7 @@
 }
 @media screen and (max-height: 770px) {
   .Placelist__warp {
-    height: 37rem;
+    height: 65vh;
   }
 }
 .mainleft_container {
@@ -175,14 +175,13 @@
 }
 
 @media only screen and (max-width: 1224px) {
-  .mainpage_top {
-    flex-direction: column-reverse;
+  /* .mainpage_top {
+    flex-direction: column;
     align-items: center;
-    width: 90vw;
-    height: 30vh;
-  }
-
-  .location {
+    width: 100vw;
+    height: 20vh;
+  } */
+  /* .location {
     margin-bottom: 10px;
     margin-left: 0;
   }
@@ -198,7 +197,7 @@
   }
   .place input {
     position: relative;
-  }
+  } */
 }
 .mainpage_body {
   display: flex;
