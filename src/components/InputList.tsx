@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { RootReducer } from "../reducers";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import "./CSS/InputList.css";
+import { indexOf } from "lodash";
 
 // 프롭으로 받아와서 쓸수있는지 확인해야됨(목록리스트)
 const testPlace: any = [
@@ -16,10 +17,6 @@ const testPlace: any = [
   { id: "4", title: "남대문" },
   { id: "5", title: "동대문" },
   { id: "6", title: "청와대" },
-  { id: "7", title: "청계천" },
-  { id: "8", title: "남대문" },
-  { id: "9", title: "동대문" },
-  { id: "10", title: "청와대" },
 ];
 
 function InputList() {
@@ -27,7 +24,6 @@ function InputList() {
   const [startToday, setStartToday] = useState<string>("");
   const [endToday, setEndToday] = useState<string>("");
   const [place, setPlace] = useState(testPlace);
-
   const openContainer = useCallback(() => {
     setOpen(!open);
   }, [open]);
@@ -71,9 +67,16 @@ function InputList() {
         }
       >
         <div className="inputList__warp">
-          <div className="inputList__title">나의 여행 일정</div>
-          <div className="inputList__date">
-            {startToday} ~ {endToday}
+          <div className="inputList__nav">
+            <div className="inputList__title">나의 여행 일정</div>
+            <img
+              className="inputList__calendar"
+              src="../img/calendar-icon.png"
+              alt=""
+            />
+            <div className="inputList__date">
+              {startToday} ~ {endToday}
+            </div>
           </div>
           {/* 드래그 앤 드롭 부분 */}
           <DragDropContext onDragEnd={handleChange}>
@@ -86,19 +89,24 @@ function InputList() {
                 >
                   {place.map(({ id, title }: any, index: any) => {
                     return (
-                      <Draggable key={id} draggableId={id} index={index}>
+                      <Draggable key={id} draggableId={`${id}`} index={index}>
                         {(provided) => (
-                          <div
-                            className="inputList__list__title"
-                            ref={provided.innerRef}
-                            {...provided.dragHandleProps}
-                            {...provided.draggableProps}
-                          >
-                            {title}
-                            <div className="inputList__list__delete">
-                              <img src="../img/delete.png" alt="" />
+                          <>
+                            <div
+                              className="inputList__list__title"
+                              ref={provided.innerRef}
+                              {...provided.dragHandleProps}
+                              {...provided.draggableProps}
+                            >
+                              <div className="inputList__list__num">
+                                {index}
+                              </div>
+                              {title}
+                              <div className="inputList__list__delete">
+                                <img src="../img/delete.png" alt="" />
+                              </div>
                             </div>
-                          </div>
+                          </>
                         )}
                       </Draggable>
                     );

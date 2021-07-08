@@ -6,9 +6,10 @@ import {
 import "./CSS/SignIn.css";
 import GoogleLogin from "react-google-login";
 import KakaoLogin from "react-kakao-login";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { Actions } from "../actions";
+import { RootReducer } from "../reducers";
 require("dotenv").config();
 
 function SignIn() {
@@ -101,10 +102,29 @@ function SignIn() {
   // 구글
   const clientId: any = process.env.REACT_APP_GOOGLE_API;
   const responseGoogle = (response: any) => {
-    console.log(response);
-    // dispatch(UserInfo(response.profileObj.name, response.profileObj.email));
-    dispatch(Actions.AccessToken(response.accessToken, response.refreshToken));
-    dispatch(Actions.LoginStatus(true));
+    const googleURL = `${process.env.REACT_APP_API}/auth/google`;
+    axios
+      .post(googleURL, {
+        token: response.tokenObj.id_token,
+      })
+      .then((res) => {
+        const status = res.status;
+        console.log(res.status);
+        if (status === 200 || status === 201) {
+          const accessToken = res.data.accessToken;
+          const refreshToken = res.data.refreshToken;
+          dispatch(Actions.AccessToken(accessToken, refreshToken));
+          dispatch(Actions.LoginStatus(true));
+          modalCloseHandler();
+          setErrLogin("");
+        }
+      })
+      .catch((err) => {
+        const status = err.response.status;
+        if (status === 404) {
+          alert("다시 시도해 주세요");
+        }
+      });
   };
 
   // 카카오

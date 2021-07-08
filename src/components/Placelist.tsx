@@ -1,28 +1,29 @@
 import React, { useState } from "react";
 import "./CSS/MainLeft.css";
+import InputList from "./InputList";
 
-
-const Placelist = (place: string | any, address: string | any) => {
-    console.log('place', place)
-    console.log('address', address)
-
-    return (
-
-        <li className="mainleft_destination">
+const Placelist = ({ place }: any) => {
+  return (
+    <div className="Placelist__warp">
+      {place.map((el: any, idx: number) => {
+        return (
+          <div key={idx} className="mainleft_destination">
             <div className="destination_list">
-                <img src={place.img} alt="tes1" />
+              <img src={el.img} alt="tes1" />
             </div>
             <div className="list_container">
-                <div className="list_content">
-                    {place.place}
-                </div>
-
-                <div className="list_address">
-                    {Object.values(place.address)}
-                </div>
+              <div className="list_content">{el.place}</div>
+              <div className="list_address">
+                {el.address}
+                <img src="../img/flag.png" />
+              </div>
             </div>
-        </li>
-
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 export default Placelist;
 
 // 0: ["역사&문화", "야경", "랜드마크", "휴식&힐링", "사진"]
@@ -31,7 +32,6 @@ export default Placelist;
 // 3: 37.565972575797396
 // 4: 126.97515152495737
 // 5: "www.dfjkjeeogoo.png"
-
 
 // 0: (5) ["역사&문화", "야경", "랜드마크", "휴식&힐링", "사진"]
 // 1: "경복궁"
