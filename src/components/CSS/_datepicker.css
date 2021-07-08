@@ -608,7 +608,7 @@
   direction: rtl;
 }
 .DateRangePickerInput__block {
-  display: block;
+  display: flex;
 }
 .DateRangePickerInput__showClearDates {
   padding-right: 30px;

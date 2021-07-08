@@ -242,6 +242,7 @@ const Mainleftpage = () => {
           currentPage={currentPage}
         />
       </div>
+      <InputList />
     </>
   );
 };

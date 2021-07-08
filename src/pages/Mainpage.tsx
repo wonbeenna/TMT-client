@@ -5,7 +5,6 @@ import Mainleftpage from "../components/MainLeft";
 import Modal from "../components/Modal";
 import "./CSS/Mainpage.css";
 import Map from "../components/Map";
-import InputList from "../components/InputList";
 
 const Mainpage = () => {
   return (
@@ -13,7 +12,6 @@ const Mainpage = () => {
       <Modal />
       <Header />
       <Mainleftpage />
-      <InputList />
       <Map className="Map" />
       {/* <Mainrightpage /> */}
       {/* <div className="mainpage_rightside">
