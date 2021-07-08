@@ -1,13 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Actions } from "../actions";
 import "./CSS/MainLeft.css";
-import InputList from "./InputList";
 
 const Placelist = ({ place }: any) => {
+  const dispatch = useDispatch();
+
   return (
     <div className="Placelist__warp">
       {place.map((el: any, idx: number) => {
+        const inputHandler = () => {
+          dispatch(Actions.placeList(el));
+        };
         return (
-          <div key={idx} className="mainleft_destination">
+          <div
+            key={idx}
+            className="mainleft_destination"
+            onClick={inputHandler}
+          >
             <div className="destination_list">
               <img src={el.img} alt="tes1" />
             </div>
@@ -15,7 +26,7 @@ const Placelist = ({ place }: any) => {
               <div className="list_content">{el.place}</div>
               <div className="list_address">
                 {el.address}
-                <img src="../img/flag.png" />
+                <img src="../img/flag.png" alt="" />
               </div>
             </div>
           </div>

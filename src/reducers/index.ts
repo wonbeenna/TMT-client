@@ -5,6 +5,7 @@ import accessTokenReducer from "./accessTokenReducer";
 import RangeControllerReducer from "./RangeController";
 import modalStatusReducer from "./modalStatusReducer";
 import modalNameReducer from "./modalNameReducer";
+import placeListReducer from "./placeListReducer";
 
 export const rootReducer = combineReducers({
   LoginReducer,
@@ -13,6 +14,7 @@ export const rootReducer = combineReducers({
   RangeControllerReducer,
   modalStatusReducer,
   modalNameReducer,
+  placeListReducer,
 });
 
 export default rootReducer;

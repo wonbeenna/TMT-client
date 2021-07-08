@@ -2,7 +2,6 @@ import Pagination from "react-js-pagination";
 import "./CSS/Pagination.css";
 
 function Paging({ postsPerPage, totalPosts, paginate, currentPage }: any) {
-  console.log(currentPage);
   return (
     <Pagination
       totalItemsCount={totalPosts}

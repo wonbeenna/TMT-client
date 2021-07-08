@@ -7,7 +7,7 @@ const Footer = () => {
 
   return (
     <div className="footerContainer">
-      <img src="/img/GitLogo.png"></img>
+      <img src="/img/GitLogo.png" alt=""></img>
       <span onClick={() => handleGit("baymaxxxxx")}>지은</span>
       <span onClick={() => handleGit("wonbeenna")}>원빈</span>
       <span onClick={() => handleGit("Lee-SangRyeol")}>상렬</span>

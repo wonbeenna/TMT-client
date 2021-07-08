@@ -5,6 +5,7 @@ export const ACTIONS = {
   RANGE_CONTROLLER: "RANGE_CONTROLLER",
   MODAL_STATUS: "MODAL_STATUS",
   MODAL_NAME: "MODAL_NAME",
+  PLACE_LIST: "PLACE_LIST",
 };
 
 export const Actions = {
@@ -49,6 +50,13 @@ export const Actions = {
       payload: modalName,
     };
   },
+
+  placeList: (listData: any) => {
+    return {
+      type: ACTIONS.PLACE_LIST,
+      payload: listData,
+    };
+  },
 };
 
 export type ActionsType =
@@ -57,4 +65,5 @@ export type ActionsType =
   | ReturnType<typeof Actions.AccessToken>
   | ReturnType<typeof Actions.RangeController>
   | ReturnType<typeof Actions.modalStatus>
-  | ReturnType<typeof Actions.modalName>;
+  | ReturnType<typeof Actions.modalName>
+  | ReturnType<typeof Actions.placeList>;
