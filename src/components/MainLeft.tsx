@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
-
 import Placelist from "./Placelist";
-
+import Pagination from "./Pagination";
 
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import Map from "./Map";
 import "./CSS/MainLeft.css";
 import { DateRangePicker, FocusedInputShape } from "react-dates";
 import moment, { Moment } from "moment";
@@ -16,8 +14,10 @@ import "react-dates/initialize";
 import "./CSS/_datepicker.css";
 import { useDispatch } from "react-redux";
 import { Actions } from "../actions";
-import InputList from "./InputList";
 import axios from "axios";
+import InputList from "./InputList";
+import Paging from "./Pagination";
+
 require("dotenv").config();
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -75,7 +75,10 @@ const Mainleftpage = () => {
   ];
 
   const [province, setProvince] = useState<number | null>(null);
+
   const [placedata, setPlacedata]: any = useState<string | any>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(5);
 
   const changeHandler = (event: any, type: string): void => {
     if (type === "location") {
@@ -83,18 +86,14 @@ const Mainleftpage = () => {
       // const spot = event.target.innerText
       // setProvince(options.indexOf(spot))
 
-      console.log('event.target', event)
-      setProvince(event.target.innerText)
-      console.log('province', province)
+      console.log("event.target", event);
+      setProvince(event.target.innerText);
+      console.log("province", province);
       // console.log('spot', spot)
     }
-
   };
 
-
   const handleSearch = () => {
-
-  
     const searchURL = `${process.env.REACT_APP_API}/trip/list`;
     // if (!province) {
     //   setValue(null)
@@ -108,7 +107,6 @@ const Mainleftpage = () => {
           // province: province,
           // theme: theme
 
-
           //임의값으로
           province: null,
           theme: ["야경"],
@@ -118,14 +116,10 @@ const Mainleftpage = () => {
         }
       )
       .then((res) => {
-
-        console.log('res.data', res.data)
-        setPlacedata(res.data)
+        setPlacedata(res.data);
         // console.log('res.data[0].place: ', res.data[0].place)
         // console.log('placedata[0].place: ', placedata[0].place)
-        console.log('placedata: ', placedata)
         // console.log('placedata.place: ', placedata.place)
-
         //--->새로고침하면 place를 읽지못하더라... 왜그러지
         // console.log('num', placedata.indexOf(1))
       })
@@ -133,6 +127,14 @@ const Mainleftpage = () => {
   };
   console.log(placedata);
   const classes = useStyles();
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = placedata.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
 
   const [startDate, setStartDate] = useState<Moment | null>(null);
   const [endDate, setEndDate] = useState<Moment | null>(null);
@@ -156,156 +158,91 @@ const Mainleftpage = () => {
     setFocusedInput(arg);
   };
 
-
   return (
-    <div className="mainpage_wrap">
-      <div className="mainpage_top">
-        <div className="location">
-          <Autocomplete
-            value={value}
-            onChange={(event: any, newValue: string | null) => {
-              setValue(newValue);
-              changeHandler(event, "location");
-            }}
-            inputValue={inputValue}
-            onInputChange={(event, newInputValue) => {
-              setInputValue(newInputValue);
-            }}
-            id="controllable-states-demo"
-            options={options}
-            renderInput={(params) => (
-              <TextField {...params} label="Location" variant="standard" />
-            )}
+    <>
+      <div className="mainpage_wrap">
+        <div className="mainpage_top">
+          <div className="location">
+            <Autocomplete
+              value={value}
+              onChange={(event: any, newValue: string | null) => {
+                setValue(newValue);
+                changeHandler(event, "location");
+              }}
+              inputValue={inputValue}
+              onInputChange={(event, newInputValue) => {
+                setInputValue(newInputValue);
+              }}
+              id="controllable-states-demo"
+              options={options}
+              renderInput={(params) => (
+                <TextField {...params} label="Location" variant="standard" />
+              )}
+            />
+          </div>
+          <div className="mainpage_plancontainer">
+            <Autocomplete
+              multiple
+              id="tags"
+              options={theme18}
+              getOptionLabel={(option) => option.title}
+              // defaultValue={[theme18[0]]}
+              filterSelectedOptions
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  variant="standard"
+                  label="Theme"
+                  // placeholder="Favorites"
+                />
+              )}
+            />
+            <div className="searchBtn">
+              <button
+                className="themeButton"
+                onClick={handleSearch}
+                title="지역&테마로 검색"
+              >
+                <div className="themeEff"></div>
+                <a>search</a>
+              </button>
+            </div>
+          </div>
+
+          <DateRangePicker
+            startDate={startDate}
+            startDateId="startDate"
+            endDate={endDate}
+            endDateId="endDate"
+            onDatesChange={handlendDatesChange}
+            focusedInput={focusedInput}
+            onFocusChange={handleFocusChange}
+            startDatePlaceholderText={"여행 시작일"}
+            endDatePlaceholderText={"여행 종료일"}
+            isOutsideRange={(day) => moment().diff(day) >= 0}
+            monthFormat={"YYYY년 MM월"}
+            minimumNights={0}
+            block
+            noBorder
+            showClearDates
           />
-        </div>
-        <div className="mainpage_plancontainer">
-          <Autocomplete
-            multiple
-            id="tags"
-            options={theme18}
-            getOptionLabel={(option) => option.title}
-            // defaultValue={[theme18[0]]}
-            filterSelectedOptions
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                variant="standard"
-                label="Theme"
-              // placeholder="Favorites"
-              />
-            )}
-          />
-          <div className="searchBtn">
-            <button
-              className="themeButton"
-              onClick={handleSearch}
-              title="지역&테마로 검색"
-            >
-              <div className="themeEff"></div>
-              <a>search</a>
-            </button>
+          <div className="place">
+            <input type="text" list="spotlist" placeholder="Place"></input>
+            <button title="장소로 검색">TMT</button>
           </div>
         </div>
+      </div>
 
-        <DateRangePicker
-          startDate={startDate}
-          startDateId="startDate"
-          endDate={endDate}
-          endDateId="endDate"
-          onDatesChange={handlendDatesChange}
-          focusedInput={focusedInput}
-          onFocusChange={handleFocusChange}
-          startDatePlaceholderText={"여행 시작일"}
-          endDatePlaceholderText={"여행 종료일"}
-          isOutsideRange={(day) => moment().diff(day) >= 0}
-          monthFormat={"YYYY년 MM월"}
-          minimumNights={0}
-          block
-          noBorder
-          showClearDates
+      <div className="mainleft_container">
+        <Placelist place={currentPosts} />
+        <Paging
+          postsPerPage={postsPerPage}
+          totalPosts={placedata.length}
+          paginate={paginate}
+          currentPage={currentPage}
         />
-        <div className="place">
-          <input type="text" list="spotlist" placeholder="Place"></input>
-          <button title="장소로 검색">TMT</button>
-        </div>
       </div>
-
-      <div className="mainpage_body">
-        <ul className="mainleft_list">
-
-          <div className="mainleft_title">검색결과</div>
-          {/* map으로 사진, 장소 받아 */}
-
-          {/* {Object.values(placedata).map((el: any, idx: number) => (
-            <Placelist key={idx} place={el.place} />
-          ))} */}
-          {/* placedata = [ {0}, {1}, {2}] */}
-          {placedata.map((el: any, idx: number) => {
-            return (
-              <Placelist
-                key={idx}
-                place={el.place}
-                address={el.address}
-              ></Placelist>
-            );
-          })}
-          {placedata.map((el: any, idx: number) => {
-            return (
-              <Placelist
-                key={idx}
-                place={el.place}
-                address={el.address}
-              ></Placelist>
-            );
-          })}
-          {placedata.map((el: any, idx: number) => {
-            return (
-              <Placelist
-                key={idx}
-                place={el.place}
-                address={el.address}
-              ></Placelist>
-            );
-          })}
-          {placedata.map((el: any, idx: number) => {
-            return (
-              <Placelist
-                key={idx}
-                place={el.place}
-                address={el.address}
-              ></Placelist>
-            );
-          })}
-          {placedata.map((el: any, idx: number) => {
-            return (
-              <Placelist
-                key={idx}
-                place={el.place}
-                address={el.address}
-              ></Placelist>
-            );
-          })}
-          {placedata.map((el: any, idx: number) => {
-            return (
-              <Placelist
-                key={idx}
-                place={el.place}
-                address={el.address}
-              ></Placelist>
-            );
-
-          })}
-        </ul>
-
-        <div id="map">
-          {/* {placedata.map((el: any, idx: number) => {
-            return <Map key={idx} lat={el.place} ></Map>
-          })} */}
-          <Map placedata={placedata} />
-          <InputList />
-        </div>
-      </div>
-    </div>
+    </>
   );
 };
 

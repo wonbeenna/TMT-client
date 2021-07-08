@@ -1,6 +1,4 @@
 .headerContainer {
-  height: 5vh;
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -16,6 +14,7 @@
 .headerLogo {
   display: flex;
   align-items: center;
+  z-index: 10;
 }
 
 .headerLogo img {
