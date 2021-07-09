@@ -10,11 +10,8 @@ declare global {
 }
 
 const Map = (placedata: any) => {
-
-
   const listData = useSelector((state: RootReducer) => state.placeListReducer);
-  console.log('listData', listData.listData);
-
+  // console.log('listData', listData.listData);
 
   useEffect(() => {
     //지도생성
@@ -29,11 +26,11 @@ const Map = (placedata: any) => {
     let map = new window.kakao.maps.Map(container, options);
 
     const linePath: any[] = [];
-    let addEventHandle: any
+    let addEventHandle: any;
     // 마커 이미지의 이미지 주소
     let imageSrc =
       "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-    let bounds = new window.kakao.maps.LatLngBounds()
+    let bounds = new window.kakao.maps.LatLngBounds();
 
     listData.listData.forEach((el: any) => {
       // 마커 이미지의 이미지 크기
@@ -48,17 +45,15 @@ const Map = (placedata: any) => {
         image: markerImage, // 마커 이미지
       });
 
-      bounds.extend(new window.kakao.maps.LatLng(el.lat, el.long))
-      console.log('bounds', bounds)
+      bounds.extend(new window.kakao.maps.LatLng(el.lat, el.long));
+      // console.log('bounds', bounds)
 
       window.kakao.maps.event.addListener(marker, "click", function () {
         marker.setMap(map);
       });
 
       //마커를 선으로 연결
-      linePath.push(
-        new window.kakao.maps.LatLng(el.lat, el.long),
-      );
+      linePath.push(new window.kakao.maps.LatLng(el.lat, el.long));
 
       // 지도에 표시할 선을 생성합니다
       let polyline = new window.kakao.maps.Polyline({
@@ -73,8 +68,8 @@ const Map = (placedata: any) => {
       // 지도에 선을 표시합니다
       polyline.setMap(map);
 
-
-      const content = `<div class="infowindowbox";>${el.place}</div>` +
+      const content =
+        `<div class="infowindowbox";>${el.place}</div>` +
         `<div class="info1"; >${el.address}</div>`;
 
       // 인포윈도우를 생성합니다
@@ -82,11 +77,9 @@ const Map = (placedata: any) => {
         content: content,
       });
 
-
       window.kakao.maps.event.addListener(marker, "mouseover", function () {
         infowindow.open(map, marker);
       });
-
 
       window.kakao.maps.event.addListener(marker, "mouseout", function () {
         infowindow.close();
@@ -94,13 +87,10 @@ const Map = (placedata: any) => {
 
       marker.setMap(map);
 
-
       // markers.push(marker);
-
 
       // 커스텀 오버레이에 표시할 내용입니다
       // var content =
-
 
       // // 커스텀 오버레이가 표시될 위치입니다
       // let position = new window.kakao.maps.LatLng(
@@ -118,20 +108,15 @@ const Map = (placedata: any) => {
       // contentaddEventHandle(content, 'mouseover', onmouseover);
       // addEventHandle(content, 'mouseout', onmouseout);
       // customOverlay.setMap(map);
-
     });
 
     if (!isNaN(bounds.ha)) {
       map.setBounds(bounds);
     }
-
-
   });
   return (
     <div className="Map">
-      <div
-        id="map"
-      />
+      <div id="map" />
     </div>
   );
 };
