@@ -62,7 +62,7 @@ const Mainleftpage = () => {
   ];
 
   const [province, setProvince] = useState<number | null>(null);
-
+  const [theme, setTheme] = useState<string | any>([])
   const [placedata, setPlacedata]: any = useState<string | any>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
@@ -73,6 +73,10 @@ const Mainleftpage = () => {
       // const spot = event.target.innerText
       // setProvince(options.indexOf(spot))
       setProvince(event.target.innerText);
+    }
+    if (type === "theme") {
+      console.log('theme', event.target.innerText)
+      setTheme(event.target.innerText)
     }
   };
 
@@ -88,11 +92,11 @@ const Mainleftpage = () => {
         {
           //state값으로
           province: province,
-          // theme: theme
+          theme: theme
 
           //임의값으로
           // province: null,
-          theme: ["야경"],
+          // theme: ["야경"],
         },
         {
           withCredentials: true,
@@ -201,8 +205,10 @@ const Mainleftpage = () => {
               id="tags"
               options={theme18}
               getOptionLabel={(option) => option.title}
-              // defaultValue={[theme18[0]]}
               filterSelectedOptions
+              onChange={(event: any) => {
+                changeHandler(event, "theme");
+              }}
               renderInput={(params) => (
                 <TextField
                   {...params}
