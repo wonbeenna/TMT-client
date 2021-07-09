@@ -8,31 +8,35 @@ const Placelist = ({ place }: any) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="Placelist__warp">
-      {place.map((el: any, idx: number) => {
-        const inputHandler = () => {
-          dispatch(Actions.placeList(el));
-        };
-        return (
-          <div
-            key={idx}
-            className="mainleft_destination"
-            onClick={inputHandler}
-          >
-            <div className="destination_list">
-              <img src={el.img} alt="tes1" />
-            </div>
-            <div className="list_container">
-              <div className="list_content">{el.place}</div>
-              <div className="list_address">
-                {el.address}
-                <img src="../img/flag.png" alt="" />
+    <>
+      <div className="PlaceList__warp">
+        <div className="placeList__contents">
+          {place.map((el: any, idx: number) => {
+            const inputHandler = () => {
+              dispatch(Actions.placeList(el));
+            };
+            return (
+              <div
+                key={idx}
+                className="mainleft_destination"
+                onClick={inputHandler}
+              >
+                <div className="destination_list">
+                  <img src={el.img} alt="tes1" />
+                </div>
+                <div className="list_container">
+                  <div className="list_content">{el.place}</div>
+                  <div className="list_address">
+                    {el.address}
+                    <img src="../img/flag.png" alt="" />
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        );
-      })}
-    </div>
+            );
+          })}
+        </div>
+      </div>
+    </>
   );
 };
 export default Placelist;

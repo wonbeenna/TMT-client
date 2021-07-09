@@ -6,6 +6,7 @@ export const ACTIONS = {
   MODAL_STATUS: "MODAL_STATUS",
   MODAL_NAME: "MODAL_NAME",
   PLACE_LIST: "PLACE_LIST",
+  SAVE_PLACE_LIST: "SAVE_PLACE_LIST",
 };
 
 export const Actions = {
@@ -57,6 +58,13 @@ export const Actions = {
       payload: listData,
     };
   },
+
+  savePlaceList: (place: any) => {
+    return {
+      type: ACTIONS.SAVE_PLACE_LIST,
+      payload: { place },
+    };
+  },
 };
 
 export type ActionsType =
@@ -66,4 +74,5 @@ export type ActionsType =
   | ReturnType<typeof Actions.RangeController>
   | ReturnType<typeof Actions.modalStatus>
   | ReturnType<typeof Actions.modalName>
-  | ReturnType<typeof Actions.placeList>;
+  | ReturnType<typeof Actions.placeList>
+  | ReturnType<typeof Actions.savePlaceList>;
