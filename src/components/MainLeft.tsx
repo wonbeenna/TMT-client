@@ -87,11 +87,11 @@ const Mainleftpage = () => {
         searchURL,
         {
           //state값으로
-          // province: province,
+          province: province,
           // theme: theme
 
           //임의값으로
-          province: null,
+          // province: null,
           theme: ["야경"],
         },
         {
@@ -100,7 +100,7 @@ const Mainleftpage = () => {
       )
       .then((res) => {
         setPlacedata(res.data);
-        // console.log('res.data[0].place: ', res.data[0].place)
+        console.log('res.data: ', res.data)
         // console.log('placedata[0].place: ', placedata[0].place)
         // console.log('placedata.place: ', placedata.place)
         //--->새로고침하면 place를 읽지못하더라... 왜그러지
@@ -174,7 +174,7 @@ const Mainleftpage = () => {
                   {...params}
                   variant="standard"
                   label="Theme"
-                  // placeholder="Favorites"
+                // placeholder="Favorites"
                 />
               )}
             />
