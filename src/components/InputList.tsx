@@ -22,7 +22,10 @@ function InputList() {
     const items = [...listData];
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
+    listData = items;
+    dispatch(Actions.savePlaceList(listData));
   };
+  // dispatch(Actions.savePlaceList(listData));
 
   const [open, setOpen] = useState<boolean>(false);
   const [startToday, setStartToday] = useState<string>("");

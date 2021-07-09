@@ -104,7 +104,7 @@ const Mainleftpage = () => {
       )
       .then((res) => {
         setPlacedata(res.data);
-        console.log('res.data: ', res.data)
+        // console.log('res.data: ', res.data)
         // console.log('placedata[0].place: ', placedata[0].place)
         // console.log('placedata.place: ', placedata.place)
         //--->새로고침하면 place를 읽지못하더라... 왜그러지
@@ -146,7 +146,23 @@ const Mainleftpage = () => {
   return (
     <div className="mainleft_warp">
       <div className="mainpage_wrap">
-        <div className="mainpage_top">
+        <div className="mainpage_top"></div>
+      </div>
+
+      <div className="mainleft_container">
+        <div className="place">
+          <input
+            className="mainleft_placeInput"
+            type="text"
+            list="spotlist"
+            placeholder="지역, 테마, 장소 검색"
+          ></input>
+          <img
+            className="mainleft_placeInputImg"
+            src="../img/search.png"
+            alt=""
+            title="장소로 검색"
+          />
           <DateRangePicker
             startDate={startDate}
             startDateId="startDate"
@@ -198,7 +214,7 @@ const Mainleftpage = () => {
                   {...params}
                   variant="standard"
                   label="Theme"
-                // placeholder="Favorites"
+                  // placeholder="Favorites"
                 />
               )}
             />
@@ -214,17 +230,6 @@ const Mainleftpage = () => {
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="mainleft_container">
-        <div className="place">
-          <input
-            type="text"
-            list="spotlist"
-            placeholder="지역, 테마, 장소 검색"
-          ></input>
-          <img src="../img/search.png" alt="" title="장소로 검색" />
-        </div>
         <Placelist place={currentPosts} />
         <Paging
           postsPerPage={postsPerPage}
@@ -232,7 +237,6 @@ const Mainleftpage = () => {
           paginate={paginate}
           currentPage={currentPage}
         />
-        <InputList />
       </div>
     </div>
   );

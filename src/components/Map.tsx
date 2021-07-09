@@ -10,9 +10,8 @@ declare global {
 }
 
 const Map = (placedata: any) => {
-
-
   const listData = useSelector((state: RootReducer) => state.placeListReducer);
+
   console.log('listData1', listData.listData);
 
   useEffect(() => {
@@ -23,6 +22,7 @@ const Map = (placedata: any) => {
       ), // 지도생길때 보여주는 범위 좌표
       level: 8,
       // draggable: true,
+
 
     };
     let map = new window.kakao.maps.Map(mapContainer, mapOption);
@@ -41,7 +41,9 @@ const Map = (placedata: any) => {
 
     const linePath: any[] = [];
 
+
     let bounds = new window.kakao.maps.LatLngBounds()
+
 
     listData.listData.forEach((el: any) => {
 
@@ -56,12 +58,15 @@ const Map = (placedata: any) => {
         image: markerImage, // 마커 이미지
       });
 
+
       bounds.extend(new window.kakao.maps.LatLng(el.lat, el.long))
       //   console.log('bounds', bounds)
+
 
       //   window.kakao.maps.event.addListener(marker, "click", function () {
       //     marker.setMap(map);
       //   });
+
 
       //   //마커를 선으로 연결
       linePath.push(
@@ -82,8 +87,8 @@ const Map = (placedata: any) => {
       // 지도에 선을 표시합니다
       polyline.setMap(map);
 
-
-      const content = `<div class="infowindowbox";>${el.place}</div>` +
+      const content =
+        `<div class="infowindowbox";>${el.place}</div>` +
         `<div class="info1"; >${el.address}</div>`;
 
       //   // 인포윈도우를 생성합니다
@@ -91,18 +96,18 @@ const Map = (placedata: any) => {
         content: content,
       });
 
-
       window.kakao.maps.event.addListener(marker, "mouseover", function () {
         infowindow.open(map, marker);
       });
-
 
       window.kakao.maps.event.addListener(marker, "mouseout", function () {
         infowindow.close();
       });
 
+
       //   marker.setMap(map);
       //   markers.push(marker);
+
 
     });
     if (!listData.listData) {
@@ -112,14 +117,10 @@ const Map = (placedata: any) => {
     if (!isNaN(bounds.ha)) {
       map.setBounds(bounds, 90, 30, 10, 400);
     }
-
-
   });
   return (
     <div className="Map">
-      <div
-        id="map"
-      />
+      <div id="map" />
     </div>
   );
 };
