@@ -3,9 +3,12 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Actions } from "../actions";
 import "./CSS/MainLeft.css";
+import InputList from "./InputList";
 
 const Placelist = ({ place }: any) => {
   const dispatch = useDispatch();
+
+  const [savePlace, setSavePlace] = useState<any>([]);
 
   return (
     <>
@@ -13,6 +16,7 @@ const Placelist = ({ place }: any) => {
         <div className="placeList__contents">
           {place.map((el: any, idx: number) => {
             const inputHandler = () => {
+              setSavePlace(el);
               dispatch(Actions.placeList(el));
             };
             return (
@@ -36,6 +40,7 @@ const Placelist = ({ place }: any) => {
           })}
         </div>
       </div>
+      <InputList />
     </>
   );
 };
