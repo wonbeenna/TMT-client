@@ -11,8 +11,10 @@ declare global {
 
 const Map = (placedata: any) => {
 
+
   const listData = useSelector((state: RootReducer) => state.placeListReducer);
   console.log('listData', listData.listData);
+
 
   useEffect(() => {
     //지도생성
@@ -24,20 +26,20 @@ const Map = (placedata: any) => {
       ), // 지도생길때 보여주는 범위 좌표
       level: 7,
     };
-
     let map = new window.kakao.maps.Map(container, options);
+
     const linePath: any[] = [];
     let addEventHandle: any
     // 마커 이미지의 이미지 주소
     let imageSrc =
       "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
     let bounds = new window.kakao.maps.LatLngBounds()
+
     listData.listData.forEach((el: any) => {
       // 마커 이미지의 이미지 크기
       let imageSize = new window.kakao.maps.Size(24, 35);
       // 마커 이미지를 생성
       let markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize);
-
       // 마커를 생성
       let marker = new window.kakao.maps.Marker({
         map: map, // 마커를 표시할 지도
@@ -45,6 +47,7 @@ const Map = (placedata: any) => {
         title: el.place, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
         image: markerImage, // 마커 이미지
       });
+
       bounds.extend(new window.kakao.maps.LatLng(el.lat, el.long))
       console.log('bounds', bounds)
 
@@ -122,8 +125,8 @@ const Map = (placedata: any) => {
       map.setBounds(bounds);
     }
 
-  });
 
+  });
   return (
     <div className="Map">
       <div

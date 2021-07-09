@@ -65,7 +65,7 @@ const Mainleftpage = () => {
 
   const [placedata, setPlacedata]: any = useState<string | any>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(5);
+  const [postsPerPage] = useState(10);
 
   const changeHandler = (event: any, type: string): void => {
     if (type === "location") {
@@ -140,9 +140,27 @@ const Mainleftpage = () => {
   };
 
   return (
-    <>
+    <div className="mainleft_warp">
       <div className="mainpage_wrap">
         <div className="mainpage_top">
+          <DateRangePicker
+            startDate={startDate}
+            startDateId="startDate"
+            endDate={endDate}
+            endDateId="endDate"
+            onDatesChange={handlendDatesChange}
+            focusedInput={focusedInput}
+            onFocusChange={handleFocusChange}
+            startDatePlaceholderText={"여행 시작일"}
+            endDatePlaceholderText={"여행 종료일"}
+            isOutsideRange={(day) => moment().diff(day) >= 0}
+            monthFormat={"YYYY년 MM월"}
+            minimumNights={0}
+            block
+            noBorder
+            showClearDates
+          />
+
           <div className="location">
             <Autocomplete
               value={value}
@@ -189,32 +207,18 @@ const Mainleftpage = () => {
               </button>
             </div>
           </div>
-
-          <DateRangePicker
-            startDate={startDate}
-            startDateId="startDate"
-            endDate={endDate}
-            endDateId="endDate"
-            onDatesChange={handlendDatesChange}
-            focusedInput={focusedInput}
-            onFocusChange={handleFocusChange}
-            startDatePlaceholderText={"여행 시작일"}
-            endDatePlaceholderText={"여행 종료일"}
-            isOutsideRange={(day) => moment().diff(day) >= 0}
-            monthFormat={"YYYY년 MM월"}
-            minimumNights={0}
-            block
-            noBorder
-            showClearDates
-          />
-          <div className="place">
-            <input type="text" list="spotlist" placeholder="Place"></input>
-            <button title="장소로 검색">TMT</button>
-          </div>
         </div>
       </div>
 
       <div className="mainleft_container">
+        <div className="place">
+          <input
+            type="text"
+            list="spotlist"
+            placeholder="지역, 테마, 장소 검색"
+          ></input>
+          <img src="../img/search.png" alt="" title="장소로 검색" />
+        </div>
         <Placelist place={currentPosts} />
         <Paging
           postsPerPage={postsPerPage}
@@ -222,9 +226,9 @@ const Mainleftpage = () => {
           paginate={paginate}
           currentPage={currentPage}
         />
+        <InputList />
       </div>
-      <InputList />
-    </>
+    </div>
   );
 };
 
