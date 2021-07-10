@@ -22,7 +22,9 @@ const Map = (placedata: any) => {
         126.52923096776973
       ), // 지도생길때 보여주는 범위 좌표
       level: 8,
-      // draggable: true,
+
+      draggable: true,
+
     };
     let map = new window.kakao.maps.Map(mapContainer, mapOption);
   });
@@ -31,11 +33,11 @@ const Map = (placedata: any) => {
     let mapContainer = document.getElementById("map");
     let mapOption = {
       center: new window.kakao.maps.LatLng(
-        33.36197069309868,
-        126.52923096776973
-      ), // 지도생길때 보여주는 범위 좌표
+
+        33.36197069309868, 126.52923096776973
+      ),
+
       level: 8,
-      // draggable: true,
     };
     let map = new window.kakao.maps.Map(mapContainer, mapOption);
 
@@ -55,7 +57,11 @@ const Map = (placedata: any) => {
         image: markerImage, // 마커 이미지
       });
 
-      bounds.extend(new window.kakao.maps.LatLng(el.lat, el.long));
+
+      marker.setMap(map);
+
+      bounds.extend(new window.kakao.maps.LatLng(el.lat, el.long))
+
       //   console.log('bounds', bounds)
 
       //   window.kakao.maps.event.addListener(marker, "click", function () {
@@ -96,17 +102,15 @@ const Map = (placedata: any) => {
         infowindow.close();
       });
 
-      //   marker.setMap(map);
+
       //   markers.push(marker);
     });
-    if (!listData.listData) {
-      map.setBounds(bounds);
-    }
 
     if (!isNaN(bounds.ha)) {
       map.setBounds(bounds, 90, 30, 10, 400);
     }
   });
+
   return (
     <div className="Map">
       <div id="map" />
