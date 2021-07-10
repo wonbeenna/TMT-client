@@ -1,29 +1,32 @@
-import React from "react";
-import { useState } from "react";
+import moment, { Moment } from "moment";
+import React, { useState } from "react";
+import { DateRangePicker, FocusedInputShape } from "react-dates";
 import { useDispatch } from "react-redux";
 import { Actions } from "../actions";
 import "./CSS/MainLeft.css";
 import InputList from "./InputList";
+import "./CSS/_datepicker.css";
+import "moment/locale/ko";
 
-const Placelist = ({ place }: any) => {
+const Placelist = ({ place, _startDate, _endDate }: any) => {
   const dispatch = useDispatch();
 
-  const [savePlace, setSavePlace] = useState<any>([]);
+  const [lists, setLists] = useState([]);
 
   return (
     <>
       <div className="PlaceList__warp">
         <div className="placeList__contents">
           {place.map((el: any, idx: number) => {
-            const inputHandler = () => {
-              setSavePlace(el);
+            const inputHandler = (event: any) => {
               dispatch(Actions.placeList(el));
+              setLists([...lists].concat(el));
             };
             return (
               <div
                 key={idx}
                 className="mainleft_destination"
-                onClick={inputHandler}
+                onClick={() => inputHandler(el)}
               >
                 <div className="destination_list">
                   <img src={el.img} alt="tes1" />
@@ -39,8 +42,13 @@ const Placelist = ({ place }: any) => {
             );
           })}
         </div>
+        <InputList
+          _startDate={_startDate}
+          _endDate={_endDate}
+          lists={lists}
+          setLists={setLists}
+        />
       </div>
-      <InputList />
     </>
   );
 };

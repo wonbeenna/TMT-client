@@ -12,38 +12,40 @@ declare global {
 const Map = (placedata: any) => {
   const listData = useSelector((state: RootReducer) => state.placeListReducer);
 
-  console.log('listData1', listData.listData);
+  // console.log('listData1', listData.listData);
 
   useEffect(() => {
     let mapContainer = document.getElementById("map");
     let mapOption = {
       center: new window.kakao.maps.LatLng(
-        33.36197069309868, 126.52923096776973
+        33.36197069309868,
+        126.52923096776973
       ), // 지도생길때 보여주는 범위 좌표
       level: 8,
+
       draggable: true,
+
     };
     let map = new window.kakao.maps.Map(mapContainer, mapOption);
-  })
+  });
   useEffect(() => {
     //지도생성
     let mapContainer = document.getElementById("map");
     let mapOption = {
       center: new window.kakao.maps.LatLng(
+
         33.36197069309868, 126.52923096776973
       ),
+
       level: 8,
     };
     let map = new window.kakao.maps.Map(mapContainer, mapOption);
 
     const linePath: any[] = [];
 
-
-    let bounds = new window.kakao.maps.LatLngBounds()
-
+    let bounds = new window.kakao.maps.LatLngBounds();
 
     listData.listData.forEach((el: any) => {
-
       let imageSrc = "./img/marker_map_icon.png";
       let imageSize = new window.kakao.maps.Size(50, 50);
       let markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize);
@@ -55,21 +57,19 @@ const Map = (placedata: any) => {
         image: markerImage, // 마커 이미지
       });
 
+
       marker.setMap(map);
 
       bounds.extend(new window.kakao.maps.LatLng(el.lat, el.long))
-      //   console.log('bounds', bounds)
 
+      //   console.log('bounds', bounds)
 
       //   window.kakao.maps.event.addListener(marker, "click", function () {
       //     marker.setMap(map);
       //   });
 
-
       //   //마커를 선으로 연결
-      linePath.push(
-        new window.kakao.maps.LatLng(el.lat, el.long),
-      );
+      linePath.push(new window.kakao.maps.LatLng(el.lat, el.long));
 
       //   // 지도에 표시할 선을 생성합니다
       let polyline = new window.kakao.maps.Polyline({
@@ -102,11 +102,9 @@ const Map = (placedata: any) => {
         infowindow.close();
       });
 
+
       //   markers.push(marker);
-
-
     });
-
 
     if (!isNaN(bounds.ha)) {
       map.setBounds(bounds, 90, 30, 10, 400);
