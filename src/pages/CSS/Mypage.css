@@ -24,3 +24,14 @@
   box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 16px 0px;
   height: 500px;
 }
+
+#myMap {
+  position: absolute;
+  width: 10vw;
+  height: 10vh;
+}
+
+.MapWrap {
+  width: 50vw;
+  height: 50vh;
+}

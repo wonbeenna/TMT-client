@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-
 import Placelist from "./Placelist";
-
 import "./CSS/MainLeft.css";
 import { DateRangePicker, FocusedInputShape } from "react-dates";
 import moment, { Moment } from "moment";
@@ -38,8 +36,6 @@ const Mainleftpage = () => {
     "제주도",
   ];
 
-  const [value, setValue] = React.useState<string | null>(options[0]);
-  const [inputValue, setInputValue] = React.useState("");
   const theme18 = [
     { title: "레저" },
     { title: "바다" },
@@ -61,54 +57,70 @@ const Mainleftpage = () => {
     { title: "랜드마크" },
   ];
 
-  const [province, setProvince] = useState<number | null>(null);
-  const [theme, setTheme] = useState<string | any>([])
+  const [inputElement, setInputElement] = useState<string | any>(null)
+  const [value, setValue] = React.useState<string | null>(null);
+  const [inputValue, setInputValue] = React.useState("");
+  const [province, setProvince] = useState<string | null>("");
+  const [theme, setTheme] = useState<string | any>(null)
   const [placedata, setPlacedata]: any = useState<string | any>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
 
-  const changeHandler = (event: any, type: string): void => {
-    if (type === "location") {
-      //num로 보내려고 index값을 상태값업데이트함 => 숫자가 랜덤으로 바뀜
-      // const spot = event.target.innerText
-      // setProvince(options.indexOf(spot))
-      setProvince(event.target.innerText);
-    }
-    if (type === "theme") {
-      console.log('theme', event.target.innerText)
-      setTheme(event.target.innerText)
-    }
-  };
-
-  const handleSearch = () => {
-    const searchURL = `${process.env.REACT_APP_API}/trip/list`;
-    // if (!province) {
-    //   setValue(null)
-    // }
-
+  const handlePlace = () => {
+    // console.log('Click');
+    const searchURL = `${process.env.REACT_APP_API}/trip/search`;
     axios
       .post(
         searchURL,
         {
           //state값으로
-          province: province,
-          theme: theme
-
-          //임의값으로
-          // province: null,
-          // theme: ["야경"],
+          inputElement: inputElement,
         },
         {
           withCredentials: true,
         }
       )
       .then((res) => {
+        console.log('res', res.data)
+      })
+      .catch((err) => console.log("err", err));
+  };
+  const placeHandler = (event: any) => {
+    setInputElement(event.target.value)
+  }
+
+  const locationHandler = (event: any, type: string): void => {
+    if (type === "location") {
+      console.log('location', event.target.innerText)
+      setProvince(event.target.innerText);
+    }
+  };
+  console.log('setProvince', province)
+
+  const themeHandler = (event: any, type: string): void => {
+    if (type === "theme") {
+      console.log('theme', event.target.innerText)
+      setTheme(event.target.innerText)
+    }
+  }
+
+  const handleSearch = () => {
+    const searchURL = `${process.env.REACT_APP_API}/trip/list`;
+    console.log('province', province)
+    axios
+      .post(
+        searchURL,
+        {
+          'province': province,
+          'theme': theme
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        console.log('res1', res.data)
         setPlacedata(res.data);
-        // console.log('res.data: ', res.data)
-        // console.log('placedata[0].place: ', placedata[0].place)
-        // console.log('placedata.place: ', placedata.place)
-        //--->새로고침하면 place를 읽지못하더라... 왜그러지
-        // console.log('num', placedata.indexOf(1))
       })
       .catch((err) => console.log("err", err));
   };
@@ -156,12 +168,15 @@ const Mainleftpage = () => {
             type="text"
             list="spotlist"
             placeholder="지역, 테마, 장소 검색"
+            onChange={placeHandler}
           ></input>
           <img
             className="mainleft_placeInputImg"
             src="../img/search.png"
             alt=""
             title="장소로 검색"
+            onClick={handlePlace}
+
           />
           <DateRangePicker
             startDate={startDate}
@@ -186,11 +201,12 @@ const Mainleftpage = () => {
               value={value}
               onChange={(event: any, newValue: string | null) => {
                 setValue(newValue);
-                changeHandler(event, "location");
+                // locationHandler(event, "location");
               }}
               inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
+              onInputChange={(event: any, newInputValue) => {
+                setInputValue(newInputValue)
+                locationHandler(event, "location");
               }}
               id="controllable-states-demo"
               options={options}
@@ -207,14 +223,14 @@ const Mainleftpage = () => {
               getOptionLabel={(option) => option.title}
               filterSelectedOptions
               onChange={(event: any) => {
-                changeHandler(event, "theme");
+                themeHandler(event, "theme");
               }}
               renderInput={(params) => (
                 <TextField
                   {...params}
                   variant="standard"
                   label="Theme"
-                  // placeholder="Favorites"
+                // placeholder="Favorites"
                 />
               )}
             />

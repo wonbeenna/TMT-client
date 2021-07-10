@@ -31,7 +31,9 @@ const Mypage = () => {
       <Header />
       <div className="mypage">
         <div className="mypageMap">
-          <Map />
+          <div className="MapWrap">
+            <Map />
+          </div>
           <div className="route">여행 경로</div>
         </div>
         <div className="mypageMap">
