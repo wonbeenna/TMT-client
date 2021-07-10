@@ -33,16 +33,23 @@
   padding: 2rem 1rem 5rem 1.2rem;
   border: 2px solid #f7f7f9;
 }
-.inputList__container::-webkit-scrollbar {
-  display: none;
-}
-.inputList__warp::-webkit-scrollbar {
-  display: none;
-}
 
 .inputList__contents {
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 88vh;
   padding: 1rem;
+}
+.inputList__content {
+  display: flex;
+  flex-direction: column;
+  max-height: 77vh;
+  flex: 1;
+  overflow-y: scroll;
+}
+.inputList__content::-webkit-scrollbar {
+  display: none;
 }
 .inputList__nav {
   display: flex;
@@ -72,9 +79,7 @@
 .inputList__list {
   display: flex;
   flex-direction: column;
-  height: 73vh;
   border-radius: 12px;
-  overflow-y: scroll;
 }
 .inputList__list::-webkit-scrollbar {
   display: none;

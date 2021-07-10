@@ -7,10 +7,12 @@ const placeListReducer = (
 ) => {
   switch (action.type) {
     case ACTIONS.PLACE_LIST: {
-      return Object.assign({}, state, {
+      return {
+        ...state,
         listData: [...state.listData, action.payload],
-      });
+      };
     }
+
     default:
       return state;
   }

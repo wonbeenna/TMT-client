@@ -1,20 +1,13 @@
 import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-
 import Placelist from "./Placelist";
-
 import "./CSS/MainLeft.css";
+import "react-dates/initialize";
+import axios from "axios";
+import Paging from "./Pagination";
 import { DateRangePicker, FocusedInputShape } from "react-dates";
 import moment, { Moment } from "moment";
-import "moment/locale/ko";
-import "react-dates/initialize";
-import "./CSS/_datepicker.css";
-import { useDispatch } from "react-redux";
-import { Actions } from "../actions";
-import axios from "axios";
-import InputList from "./InputList";
-import Paging from "./Pagination";
 
 require("dotenv").config();
 
@@ -62,7 +55,7 @@ const Mainleftpage = () => {
   ];
 
   const [province, setProvince] = useState<number | null>(null);
-  const [theme, setTheme] = useState<string | any>([])
+  const [theme, setTheme] = useState<string | any>([]);
   const [placedata, setPlacedata]: any = useState<string | any>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
@@ -75,8 +68,8 @@ const Mainleftpage = () => {
       setProvince(event.target.innerText);
     }
     if (type === "theme") {
-      console.log('theme', event.target.innerText)
-      setTheme(event.target.innerText)
+      console.log("theme", event.target.innerText);
+      setTheme(event.target.innerText);
     }
   };
 
@@ -92,7 +85,7 @@ const Mainleftpage = () => {
         {
           //state값으로
           province: province,
-          theme: theme
+          theme: theme,
 
           //임의값으로
           // province: null,
@@ -120,14 +113,12 @@ const Mainleftpage = () => {
   const paginate = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
-
   const [startDate, setStartDate] = useState<Moment | null>(null);
   const [endDate, setEndDate] = useState<Moment | null>(null);
   const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(
     null
   );
 
-  const dispatch = useDispatch();
   const handlendDatesChange = (arg: {
     startDate: moment.Moment | null;
     endDate: moment.Moment | null;
@@ -137,108 +128,114 @@ const Mainleftpage = () => {
   };
   const _startDate = moment(startDate).format("YYYY-MM-DD");
   const _endDate = moment(endDate).format("YYYY-MM-DD");
-  dispatch(Actions.RangeController(_startDate, _endDate));
 
   const handleFocusChange = (arg: FocusedInputShape | null) => {
     setFocusedInput(arg);
   };
-
   return (
-    <div className="mainleft_warp">
-      <div className="mainpage_wrap">
-        <div className="mainpage_top"></div>
-      </div>
-
-      <div className="mainleft_container">
-        <div className="place">
-          <input
-            className="mainleft_placeInput"
-            type="text"
-            list="spotlist"
-            placeholder="지역, 테마, 장소 검색"
-          ></input>
-          <img
-            className="mainleft_placeInputImg"
-            src="../img/search.png"
-            alt=""
-            title="장소로 검색"
-          />
-          <DateRangePicker
-            startDate={startDate}
-            startDateId="startDate"
-            endDate={endDate}
-            endDateId="endDate"
-            onDatesChange={handlendDatesChange}
-            focusedInput={focusedInput}
-            onFocusChange={handleFocusChange}
-            startDatePlaceholderText={"여행 시작일"}
-            endDatePlaceholderText={"여행 종료일"}
-            isOutsideRange={(day) => moment().diff(day) >= 0}
-            monthFormat={"YYYY년 MM월"}
-            minimumNights={0}
-            block
-            noBorder
-            showClearDates
-          />
-
-          <div className="location">
-            <Autocomplete
-              value={value}
-              onChange={(event: any, newValue: string | null) => {
-                setValue(newValue);
-                changeHandler(event, "location");
-              }}
-              inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
-              id="controllable-states-demo"
-              options={options}
-              renderInput={(params) => (
-                <TextField {...params} label="Location" variant="standard" />
-              )}
-            />
-          </div>
-          <div className="mainpage_plancontainer">
-            <Autocomplete
-              multiple
-              id="tags"
-              options={theme18}
-              getOptionLabel={(option) => option.title}
-              filterSelectedOptions
-              onChange={(event: any) => {
-                changeHandler(event, "theme");
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  variant="standard"
-                  label="Theme"
-                  // placeholder="Favorites"
-                />
-              )}
-            />
-            <div className="searchBtn">
-              <button
-                className="themeButton"
-                onClick={handleSearch}
-                title="지역&테마로 검색"
-              >
-                <div className="themeEff"></div>
-                <a>search</a>
-              </button>
-            </div>
-          </div>
+    <>
+      <div className="mainleft_warp">
+        <div className="mainpage_wrap">
+          <div className="mainpage_top"></div>
         </div>
-        <Placelist place={currentPosts} />
-        <Paging
-          postsPerPage={postsPerPage}
-          totalPosts={placedata.length}
-          paginate={paginate}
-          currentPage={currentPage}
-        />
+
+        <div className="mainleft_container">
+          <div className="place">
+            <input
+              className="mainleft_placeInput"
+              type="text"
+              list="spotlist"
+              placeholder="지역, 테마, 장소 검색"
+            ></input>
+            <img
+              className="mainleft_placeInputImg"
+              src="../img/search.png"
+              alt=""
+              title="장소로 검색"
+            />
+
+            <div className="location">
+              <Autocomplete
+                value={value}
+                onChange={(event: any, newValue: string | null) => {
+                  setValue(newValue);
+                  changeHandler(event, "location");
+                }}
+                inputValue={inputValue}
+                onInputChange={(event, newInputValue) => {
+                  setInputValue(newInputValue);
+                }}
+                id="controllable-states-demo"
+                options={options}
+                renderInput={(params) => (
+                  <TextField {...params} label="Location" variant="standard" />
+                )}
+              />
+            </div>
+            <div className="mainpage_plancontainer">
+              <Autocomplete
+                multiple
+                id="tags"
+                options={theme18}
+                getOptionLabel={(option) => option.title}
+                filterSelectedOptions
+                onChange={(event: any) => {
+                  changeHandler(event, "theme");
+                }}
+                classes={{ root: "Mui-root" }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    variant="standard"
+                    label="Theme"
+                    // placeholder="Favorites"
+                  />
+                )}
+              />
+              <div className="searchBtn">
+                <button
+                  className="themeButton"
+                  onClick={handleSearch}
+                  title="지역&테마로 검색"
+                >
+                  <div className="themeEff"></div>
+                  <a>search</a>
+                </button>
+              </div>
+            </div>
+
+            <DateRangePicker
+              startDate={startDate}
+              startDateId="startDate"
+              endDate={endDate}
+              endDateId="endDate"
+              onDatesChange={handlendDatesChange}
+              focusedInput={focusedInput}
+              onFocusChange={handleFocusChange}
+              startDatePlaceholderText={"여행 시작일"}
+              endDatePlaceholderText={"여행 종료일"}
+              isOutsideRange={(day) => moment().diff(day) >= 0}
+              monthFormat={"YYYY년 MM월"}
+              minimumNights={0}
+              block
+              noBorder
+              showClearDates
+            />
+          </div>
+          <Placelist
+            place={currentPosts}
+            _startDate={_startDate}
+            _endDate={_endDate}
+          />
+          <Paging
+            postsPerPage={postsPerPage}
+            totalPosts={placedata.length}
+            paginate={paginate}
+            currentPage={currentPage}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

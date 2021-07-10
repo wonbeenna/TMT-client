@@ -449,7 +449,7 @@
 }
 .DayPicker_focusRegion {
   outline: 0;
-  margin-top: 30px;
+  margin-top: 140px;
 }
 .DayPicker_calendarInfo__horizontal,
 .DayPicker_wrapper__horizontal {
@@ -600,6 +600,7 @@
 }
 .DateRangePickerInput__block {
   display: flex;
+  justify-content: space-between;
 }
 /* .DateRangePickerInput__showClearDates {
 } */
@@ -650,18 +651,16 @@
 }
 .DateRangePicker {
   align-items: center;
-  justify-content: center;
   border-radius: 15px;
 }
 .DateRangePicker__block {
-  display: flex;
-  position: relative;
+  width: 220px;
 }
 .DateRangePicker_picker {
-  z-index: 3;
-  margin-top: -20px;
+  width: 0;
+  height: 0;
+  z-index: 11;
   position: absolute;
-  border-radius: 15px;
 }
 .DateRangePicker_picker__rtl {
   direction: rtl;
