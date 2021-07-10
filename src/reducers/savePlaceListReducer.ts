@@ -7,9 +7,10 @@ const savePlaceListReducer = (
 ) => {
   switch (action.type) {
     case ACTIONS.SAVE_PLACE_LIST: {
-      return Object.assign({}, state, {
-        place: [...state.place, action.payload].slice(-1),
-      });
+      return {
+        ...state,
+        place: [...state.place, action.payload].slice(-1)[0],
+      };
     }
     default:
       return state;

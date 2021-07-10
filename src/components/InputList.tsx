@@ -2,58 +2,64 @@ import moment from "moment";
 import { useEffect } from "react";
 import { useCallback } from "react";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootReducer } from "../reducers";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { useDispatch } from "react-redux";
 import "./CSS/InputList.css";
-import { Actions } from "../actions";
+import InputListBtn from "./InputListBtn";
 
-function InputList() {
+function InputList({ _startDate, _endDate, lists, setLists }: any) {
   const dispatch = useDispatch();
-
-  let listData = useSelector(
-    (state: RootReducer) => state.placeListReducer.listData
-  );
-
-  const handleChange = (result: any) => {
-    if (!result.destination) {
-      return;
-    }
-    const items = [...listData];
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-    listData = items;
-    dispatch(Actions.savePlaceList(listData));
-  };
-  // dispatch(Actions.savePlaceList(listData));
-
-  const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(true);
   const [startToday, setStartToday] = useState<string>("");
   const [endToday, setEndToday] = useState<string>("");
 
   const openContainer = useCallback(() => {
     setOpen(!open);
   }, [open]);
-  const Range: any = useSelector(
-    (state: RootReducer) => state.RangeControllerReducer
-  );
+
   useEffect(() => {
-    if (
-      Range.Range.startDate === "Invalid date" &&
-      Range.Range.endDate === "Invalid date"
-    ) {
+    if (_startDate === "Invalid date" && _endDate === "Invalid date") {
       setStartToday(moment(new Date()).format("YYYY-MM-DD"));
       setEndToday(moment(new Date()).format("YYYY-MM-DD"));
     }
-    if (
-      Range.Range.startDate !== "Invalid date" &&
-      Range.Range.endDate !== "Invalid date"
-    ) {
-      setStartToday(Range.Range.startDate);
-      setEndToday(Range.Range.endDate);
+    if (_startDate !== "Invalid date" && _endDate !== "Invalid date") {
+      setStartToday(_startDate);
+      setEndToday(_endDate);
     }
   });
 
+  // const handleChange = (result: any) => {
+  //   if (!result.destination) {
+  //     return;
+  //   }
+  //   const items = [...listData];
+  //   const [reorderedItem] = items.splice(result.source.index, 1);
+  //   items.splice(result.destination.index, 0, reorderedItem);
+  //   listData = items;
+
+  //   dispatch(Actions.savePlaceList(listData));
+  // };
+  // dispatch(Actions.savePlaceList(listData));
+
+  // // 일단 제거된 값까진 받는데 다시 어떻게 랜더할지 모르겠음
+  // // 리덕스 자체에서 필터를 해야되는건가?
+  // const deleteHandler = (event: any) => {
+  //   let listData2 = listData.filter((el: any) => {
+  //     return el?.place !== event;
+  //   });
+
+  //   dispatch(Actions.savePlaceList(listData2.slice(-1)));
+  //   listData = listData2;
+  //   console.log(listData2);
+  //   console.log(listData);
+  // };
+
+  const deleteHandler = useCallback(
+    (event: any) => {
+      setLists(lists.filter((el: any) => el.place !== event.place));
+    },
+    [lists]
+  );
+  console.log(lists);
   return (
     <div className={open ? "inputList" : "inputList__close"}>
       <div
@@ -74,52 +80,30 @@ function InputList() {
                 {startToday} ~ {endToday}
               </div>
             </div>
-            {/* 드래그 앤 드롭 부분 */}
-            <DragDropContext onDragEnd={handleChange}>
-              <Droppable droppableId="testPlace">
-                {(provided) => (
-                  <div
-                    className="inputList__list"
-                    {...provided.droppableProps}
-                    ref={provided.innerRef}
-                  >
-                    {listData?.map(({ place }: any, index: any) => {
-                      return (
-                        <Draggable
-                          key={index}
-                          draggableId={`${index}`}
-                          index={index}
-                        >
-                          {(provided) => (
-                            <>
-                              <div
-                                className="inputList__list__title"
-                                ref={provided.innerRef}
-                                {...provided.dragHandleProps}
-                                {...provided.draggableProps}
-                              >
-                                <div className="inputList__list__num">
-                                  {index}
-                                </div>
-                                <p>{place}</p>
-                                <div className="inputList__list__delete">
-                                  <img src="../img/delete.png" alt="" />
-                                </div>
-                              </div>
-                            </>
-                          )}
-                        </Draggable>
-                      );
-                    })}
-
-                    {provided.placeholder}
+            <div className="inputList__content">
+              {lists?.map((el: any, idx: number) => {
+                return (
+                  <div className="inputList__list">
+                    <div className="inputList__list__title">
+                      <div className="inputList__list__num">{`${idx + 1}`}</div>
+                      <p>{el.place}</p>
+                      <div
+                        key={idx}
+                        className="inputList__list__delete"
+                        onClick={() => deleteHandler(el)}
+                      >
+                        <img src="../img/delete.png" alt="" />
+                      </div>
+                    </div>
                   </div>
-                )}
-              </Droppable>
-            </DragDropContext>
-            <div className="inputList__save">
-              <button className="inputList__saveBtn">저장하기</button>
+                );
+              })}
             </div>
+            <InputListBtn
+              startToday={startToday}
+              endToday={endToday}
+              lists={lists}
+            />
           </div>
         </div>
       </div>

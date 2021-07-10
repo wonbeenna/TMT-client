@@ -2,7 +2,6 @@ export const ACTIONS = {
   LOGIN_STATUS: "LOGIN_STATUS",
   USER_INFO: "USER_INFO",
   ACCESS_TOKEN: "ACCESS_TOKEN",
-  RANGE_CONTROLLER: "RANGE_CONTROLLER",
   MODAL_STATUS: "MODAL_STATUS",
   MODAL_NAME: "MODAL_NAME",
   PLACE_LIST: "PLACE_LIST",
@@ -31,13 +30,6 @@ export const Actions = {
     };
   },
 
-  RangeController: (startDate: string, endDate: string) => {
-    return {
-      type: ACTIONS.RANGE_CONTROLLER,
-      payload: { startDate, endDate },
-    };
-  },
-
   modalStatus: (modalStatus: boolean) => {
     return {
       type: ACTIONS.MODAL_STATUS,
@@ -58,11 +50,10 @@ export const Actions = {
       payload: listData,
     };
   },
-
   savePlaceList: (place: any) => {
     return {
       type: ACTIONS.SAVE_PLACE_LIST,
-      payload: { place },
+      payload: place,
     };
   },
 };
@@ -71,7 +62,6 @@ export type ActionsType =
   | ReturnType<typeof Actions.LoginStatus>
   | ReturnType<typeof Actions.UserInfo>
   | ReturnType<typeof Actions.AccessToken>
-  | ReturnType<typeof Actions.RangeController>
   | ReturnType<typeof Actions.modalStatus>
   | ReturnType<typeof Actions.modalName>
   | ReturnType<typeof Actions.placeList>

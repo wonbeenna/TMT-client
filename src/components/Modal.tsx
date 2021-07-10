@@ -8,15 +8,6 @@ import { RootReducer } from "../reducers";
 
 function Modal() {
   const dispatch = useDispatch();
-  // 테스트
-  let listData2 = useSelector(
-    (state: RootReducer) => state.savePlaceListReducer.place
-  );
-  console.log(listData2);
-  const Range: any = useSelector(
-    (state: RootReducer) => state.RangeControllerReducer
-  );
-  console.log(Range);
 
   const { modalName } = useSelector(
     (state: RootReducer) => state.modalNameReducer
