@@ -14,6 +14,7 @@ function InputListBtn({ startToday, endToday, lists }: any) {
   };
   // console.log(lists);
   // console.log(startToday, endToday);
+
   return (
     <div className="inputList__save">
       <button className="inputList__saveBtn" onClick={sendHandler}>

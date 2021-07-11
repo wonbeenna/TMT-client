@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./CSS/MainLeft.css";
+import "./CSS/PlaceList.css";
 import InputList from "./InputList";
 import Paging from "./Pagination";
 
@@ -13,10 +14,23 @@ const Placelist = ({
   currentPage,
 }: any) => {
   const [lists, setLists] = useState<Array<object>>([]);
+  // const [like, setLike] = useState(false);
+  const [likePlace, setLikePlace] = useState<Array<object>>([]);
 
+  // post 토큰, "경복궁" // get["경복궁", "덕수궁"]
+  // delete 토큰, "경복궁"
+  const likeHandler = (el: object) => {
+    if (likePlace.includes(el)) {
+      setLikePlace(likePlace.filter((els: any) => els !== el));
+    } else {
+      setLikePlace([...likePlace].concat(el));
+    }
+    console.log(el);
+  };
+  console.log(likePlace);
   return (
     <>
-      <div className="PlaceList__warp">
+      <div className="placeList__warp">
         <div className="placeList__contents">
           <div className="placeList__nav">검색결과</div>
           <div className="placeList__content">
@@ -25,20 +39,33 @@ const Placelist = ({
                 setLists([...lists].concat(el));
               };
               return (
-                <div
-                  key={idx}
-                  className="mainleft_destination"
-                  onClick={() => inputHandler()}
-                >
-                  <div className="destination_list">
+                <div key={idx} className="placeList__destination">
+                  <div
+                    className="placeList__destination__list"
+                    onClick={() => inputHandler()}
+                  >
                     <img src={el.img} alt="tes1" />
                   </div>
-                  <div className="list_container">
-                    <div className="list_content">{el.place}</div>
-                    <div className="list_address">
-                      {el.address}
+                  <div
+                    className="placeList__list__container"
+                    onClick={() => inputHandler()}
+                  >
+                    <div className="placeList__list__content">
+                      {el.place}
                       <img src="../img/flag.png" alt="" />
                     </div>
+
+                    <div className="placeList__list__address">{el.address}</div>
+                  </div>
+                  <div className="placeList__list__like">
+                    <img
+                      src={
+                        likePlace.includes(el)
+                          ? "../img/heart.png"
+                          : "../img/noheart.png"
+                      }
+                      onClick={() => likeHandler(el)}
+                    />
                   </div>
                 </div>
               );
