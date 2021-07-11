@@ -57,14 +57,12 @@ const Mainleftpage = () => {
   const [value, setValue] = React.useState<string | null>(null);
   const [inputValue, setInputValue] = React.useState("");
   const [province, setProvince] = useState<string | null>("");
-  // const [theme, setTheme] = useState<any>([]);
 
   const [placedata, setPlacedata]: any = useState<string | any>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [postsPerPage] = useState<number>(10);
 
   const handlePlace = () => {
-    // console.log('Click');
     const searchURL = `${process.env.REACT_APP_API}/trip/search`;
     axios
       .post(
@@ -95,15 +93,6 @@ const Mainleftpage = () => {
     }
   };
   console.log("setProvince", province);
-
-  // const themeHandler = (event: any, type: any): void => {
-  //   if (type === "theme") {
-  //     console.log("theme", event.target.innerText);
-  //     setTheme([...theme].concat(event.target.innerText));
-  //   }
-  //   console.log(event.target.innerText);
-  // };
-  // console.log(theme);
 
   const handleSearch = () => {
     const searchURL = `${process.env.REACT_APP_API}/trip/list`;
@@ -269,6 +258,7 @@ const Mainleftpage = () => {
               {theme18.map((el, idx: number) => (
                 <>
                   <input
+                    key={idx}
                     type={"checkbox"}
                     onChange={(e) => {
                       handleSingleCheck(e.target.checked, el.title);
@@ -278,26 +268,6 @@ const Mainleftpage = () => {
                   <span className="theme">{el.title}</span>
                 </>
               ))}
-
-              {/* <Autocomplete
-                multiple
-                id="tags"
-                options={theme18}
-                getOptionLabel={(option) => option.title}
-                filterSelectedOptions
-                onChange={(event: any) => {
-                  themeHandler(event, "theme");
-                }}
-                classes={{ root: "Mui-root" }}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    variant="standard"
-                    label="Theme"
-                    // placeholder="Favorites"
-                  />
-                )}
-              /> */}
               <div className="searchBtn">
                 <button
                   className="themeButton"
