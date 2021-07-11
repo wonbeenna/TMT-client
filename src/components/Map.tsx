@@ -7,11 +7,31 @@ declare global {
     kakao: any;
   }
 }
-
 const Map = (placedata: any) => {
   const listData = useSelector((state: RootReducer) => state.placeListReducer);
   // console.log(listData.listData[0]); // <<-- [0] 번째 배열 쓰세용
   // console.log('listData1', listData.listData);
+
+  //초기맵화면 코드스테이츠
+  useEffect(() => {
+    let mapContainer = document.getElementById("map");
+    let mapOption = {
+      center: new window.kakao.maps.LatLng(
+        37.49675169537155, 127.02476872729723
+      ),
+      level: 4,
+    };
+    let map1 = new window.kakao.maps.Map(mapContainer, mapOption);
+    let imageSrc = "./img/star_yellow_icon.png";
+    let imageSize = new window.kakao.maps.Size(30, 30);
+    let markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize);
+    let marker = new window.kakao.maps.Marker({
+      map1: map1,
+      position: mapOption.center,
+      image: markerImage,
+    })
+    marker.setMap(map1);
+  })
 
   useEffect(() => {
     //지도생성
@@ -21,12 +41,9 @@ const Map = (placedata: any) => {
         33.36197069309868,
         126.52923096776973
       ),
-
       level: 8,
     };
     let map = new window.kakao.maps.Map(mapContainer, mapOption);
-
-    const linePath: any[] = [];
 
     let bounds = new window.kakao.maps.LatLngBounds();
 
@@ -36,11 +53,12 @@ const Map = (placedata: any) => {
       let markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize);
 
       let marker = new window.kakao.maps.Marker({
-        map: map, // 마커를 표시할 지도
+        map: map,
         position: new window.kakao.maps.LatLng(el.lat, el.long),
         // title: el.place, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-        image: markerImage, // 마커 이미지
+        image: markerImage,
       });
+
 
       let imageSrc2 = "./img/Logo004.png";
       let imageSize2 = new window.kakao.maps.Size(50, 50);
@@ -61,7 +79,7 @@ const Map = (placedata: any) => {
       });
       marker2.setMap(map);
       marker.setMap(map);
-
+      const linePath: any[] = [];
       bounds.extend(new window.kakao.maps.LatLng(el.lat, el.long));
 
       //   console.log('bounds', bounds)
