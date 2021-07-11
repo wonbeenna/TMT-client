@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootReducer } from "../reducers";
 
@@ -11,7 +10,7 @@ declare global {
 
 const Map = (placedata: any) => {
   const listData = useSelector((state: RootReducer) => state.placeListReducer);
-  console.log(listData.listData[0]); // <<-- [0] 번째 배열 쓰세용
+  // console.log(listData.listData[0]); // <<-- [0] 번째 배열 쓰세용
   // console.log('listData1', listData.listData);
 
   useEffect(() => {
@@ -43,6 +42,24 @@ const Map = (placedata: any) => {
         image: markerImage, // 마커 이미지
       });
 
+      let imageSrc2 = "./img/Logo004.png";
+      let imageSize2 = new window.kakao.maps.Size(50, 50);
+      let markerImage2 = new window.kakao.maps.MarkerImage(
+        imageSrc2,
+        imageSize2
+      );
+
+      // 일단 찍는건 된다. 리스트에 넣는건 해봐야됨.
+      let marker2 = new window.kakao.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: new window.kakao.maps.LatLng(
+          33.36197069309868,
+          126.52923096776973
+        ),
+        // title: el.place, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        image: markerImage2, // 마커 이미지
+      });
+      marker2.setMap(map);
       marker.setMap(map);
 
       bounds.extend(new window.kakao.maps.LatLng(el.lat, el.long));

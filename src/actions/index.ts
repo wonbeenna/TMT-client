@@ -1,6 +1,5 @@
 export const ACTIONS = {
   LOGIN_STATUS: "LOGIN_STATUS",
-  USER_INFO: "USER_INFO",
   ACCESS_TOKEN: "ACCESS_TOKEN",
   MODAL_STATUS: "MODAL_STATUS",
   MODAL_NAME: "MODAL_NAME",
@@ -12,13 +11,6 @@ export const Actions = {
     return {
       type: ACTIONS.LOGIN_STATUS,
       payload: isLogin,
-    };
-  },
-
-  UserInfo: (name: string, email: string) => {
-    return {
-      type: ACTIONS.USER_INFO,
-      payload: { name, email },
     };
   },
 
@@ -53,7 +45,6 @@ export const Actions = {
 
 export type ActionsType =
   | ReturnType<typeof Actions.LoginStatus>
-  | ReturnType<typeof Actions.UserInfo>
   | ReturnType<typeof Actions.AccessToken>
   | ReturnType<typeof Actions.modalStatus>
   | ReturnType<typeof Actions.modalName>
