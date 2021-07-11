@@ -93,7 +93,7 @@ function SignUp() {
     }
   };
 
-  const handleSignUp = (): void => {
+  const handleSignUp = async () => {
     if (!name) {
       setNameValid(false);
       setErrName("이름을 입력해 주세요");
@@ -119,14 +119,14 @@ function SignUp() {
     }
 
     const signUpURL = `${process.env.REACT_APP_API}/user/signUp`;
-    axios
+    await axios
       .post(signUpURL, {
         name,
         email,
         ...(password ? { password: password } : {}),
       })
       .then((res) => {
-        modalCloseHandler();
+        ModalHandler("SignIn");
       })
       .catch((err) => {
         const status = err.response.status;
