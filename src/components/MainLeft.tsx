@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Placelist from "./Placelist";
@@ -34,21 +34,23 @@ const Mainleftpage = () => {
     { title: "레저" },
     { title: "바다" },
     { title: "산" },
-    { title: "드라이브" },
-    { title: "사진" },
     { title: "야경" },
     { title: "캠핑" },
-    { title: "맛집" },
-    { title: "노을" },
-    { title: "휴식&힐링" },
     { title: "역사&문화" },
+    { title: "휴식&힐링" },
     { title: "데이트" },
-    { title: "일출" },
-    { title: "강" },
     { title: "가족" },
     { title: "계곡" },
-    { title: "섬" },
-    { title: "랜드마크" },
+
+
+    // { title: "사진" },
+    // { title: "드라이브" },
+    // { title: "노을" },
+    // { title: "맛집" },
+    // { title: "일출" },
+    // { title: "강" },
+    // { title: "섬" },
+    // { title: "랜드마크" },
   ];
 
   const [inputElement, setInputElement] = useState<string | any>(null);
@@ -77,9 +79,11 @@ const Mainleftpage = () => {
       )
       .then((res) => {
         console.log("res", res.data);
+        // setPlacedata(res.data); => 에러 해결하기
       })
       .catch((err) => console.log("err", err));
   };
+
   const placeHandler = (event: any) => {
     setInputElement(event.target.value);
   };
@@ -159,6 +163,41 @@ const Mainleftpage = () => {
     console.log(checked, theme);
   };
   console.log(checkItems);
+
+  const [spot, setSpot] = useState<string | any>([]);
+  const [spotMatch, setSpotMatch] = useState<string | any>([]);
+  const [search, setSearch] = useState<string | any>("");
+
+  useEffect(() => {
+    const place = async (): Promise<any> => {
+      const response = await axios.get("http://localhost:4000/trip/search");
+      setSpot(response.data);
+    };
+    place();
+  }, []);
+
+  console.log("겟해옴: ", spot);
+
+  const searchPlace = (text: string) => {
+    if (!text) {
+      setSpotMatch([]);
+    } else {
+      let matchedPlace = spot.placeOnly.filter((el: any) => {
+        let regex = new RegExp(`${text}`, "gi");
+        return el.place.match(regex);
+      });
+      setSpotMatch(matchedPlace);
+    }
+  };
+
+  console.log("일치?: ", spotMatch);
+
+  let changeInput = (test: any) => {
+    setSearch(test);
+  };
+
+  console.log("서치: ", search);
+
   return (
     <>
       <div className="mainleft_warp">
@@ -176,6 +215,29 @@ const Mainleftpage = () => {
                 placeholder="지역, 테마, 장소 검색"
                 onChange={placeHandler}
               ></input>
+              {/* <input
+                className="mainleft_placeInput"
+                type="text"
+                list="spotlist"
+                placeholder="지역, 테마, 장소 검색"
+                onChange={(e) => searchPlace(e.target.value)}
+                defaultValue={search}
+              ></input>
+              {spotMatch && (
+                <div className="placeContainer">
+                  {spotMatch.map((el: any, index: number) => {
+                    return (
+                      <div
+                        onClick={() => changeInput(el.place)}
+                        className="option"
+                        key={index}
+                      >
+                        <div>{el.place}</div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )} */}
               <img
                 className="mainleft_placeInputImg"
                 src="../img/search.png"
