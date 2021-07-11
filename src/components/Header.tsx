@@ -25,6 +25,7 @@ const Header = () => {
     history.push("/Mypage");
   };
   const mainpage = () => {
+
     window.location.href = "/Mainpage";
   };
 
