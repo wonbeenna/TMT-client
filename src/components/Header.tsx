@@ -25,7 +25,8 @@ const Header = () => {
     history.push("/Mypage");
   };
   const mainpage = () => {
-    history.push("/Mainpage");
+    // window.location.href=“/Mainpage”;
+    window.location.href = "/Mainpage";
   };
 
   const ModalHandler = (name: string) => {

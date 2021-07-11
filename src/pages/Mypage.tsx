@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Map from "../components/Map";
+import MyMap from "../components/MyMap";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { DayPickerRangeController, FocusedInputShape } from "react-dates";
@@ -32,7 +32,7 @@ const Mypage = () => {
       <div className="mypage">
         <div className="mypageMap">
           <div className="MapWrap">
-            <Map />
+            <MyMap />
           </div>
           <div className="route">여행 경로</div>
         </div>

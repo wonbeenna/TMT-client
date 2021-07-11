@@ -93,7 +93,26 @@ const Placelist = ({
             {place.map((el: any, idx: number) => {
               const inputHandler = () => {
                 setLists([...lists].concat(el));
+
+                //상렬님 API구현 다 되면 확인하기
+                const searchURL = `${process.env.REACT_APP_API}/trip/recommend`;
+                axios
+                  .post(
+                    searchURL,
+                    {
+                      place: el.place
+                    },
+                    {
+                      withCredentials: true,
+                    }
+                  )
+                  .then((res) => {
+                    console.log("res", res.data);
+                    // setPlacedata(res.data); => 에러 해결하기
+                  })
+                  .catch((err) => console.log("err", err));
               };
+
               return (
                 <div key={idx} className="placeList__destination">
                   <div
