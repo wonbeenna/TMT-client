@@ -9,9 +9,11 @@ import KakaoLogin from "react-kakao-login";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { Actions } from "../actions";
+import { useHistory } from "react-router-dom";
 require("dotenv").config();
 
 function SignIn() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -61,7 +63,7 @@ function SignIn() {
     }
   };
 
-  const loginHandler = (): void => {
+  const loginHandler = async () => {
     const loginURL = `${process.env.REACT_APP_API}/user/signIn`;
     if (!email) {
       setEmailValid(false);
@@ -71,7 +73,7 @@ function SignIn() {
       setPasswordValid(false);
       setErrPassword("비밀번호를 입력해 주세요");
     }
-    axios
+    await axios
       .post(
         loginURL,
         {
@@ -89,6 +91,7 @@ function SignIn() {
         dispatch(Actions.LoginStatus(true));
         modalCloseHandler();
         setErrLogin("");
+        window.location.href = "/Mainpage";
       })
       .catch((err) => {
         const status = err.response.status;
@@ -100,9 +103,9 @@ function SignIn() {
 
   // 구글
   const clientId: any = process.env.REACT_APP_GOOGLE_API;
-  const responseGoogle = (response: any) => {
+  const responseGoogle = async (response: any) => {
     const googleURL = `${process.env.REACT_APP_API}/auth/google`;
-    axios
+    await axios
       .post(googleURL, {
         token: response.tokenObj.id_token,
       })
@@ -115,6 +118,7 @@ function SignIn() {
           dispatch(Actions.LoginStatus(true));
           modalCloseHandler();
           setErrLogin("");
+          window.location.href = "/Mainpage";
         }
       })
       .catch((err) => {

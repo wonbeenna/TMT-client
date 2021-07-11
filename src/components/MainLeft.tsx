@@ -59,6 +59,7 @@ const Mainleftpage = () => {
     { title: "데이트" },
     { title: "가족" },
     { title: "계곡" },
+
     // { title: "사진" },
     // { title: "드라이브" },
     // { title: "노을" },
@@ -165,9 +166,7 @@ const Mainleftpage = () => {
     } else {
       setCheckItems(checkItems.filter((el: string) => el !== theme));
     }
-    console.log(checked, theme);
   };
-  console.log(checkItems);
 
   const [spot, setSpot] = useState<string | any>([]);
   const [spotMatch, setSpotMatch] = useState<string | any>([]);
@@ -175,7 +174,9 @@ const Mainleftpage = () => {
 
   useEffect(() => {
     const place = async (): Promise<any> => {
-      const response = await axios.get("http://localhost:4000/trip/search");
+      const response = await axios.get(
+        `${process.env.REACT_APP_API}/trip/search`
+      );
       setSpot(response.data);
     };
     place();
@@ -222,14 +223,14 @@ const Mainleftpage = () => {
         <div className="mainleft_container">
           <div className="place">
             <div className="mainleft_place">
-              <input
+              {/* <input
                 className="mainleft_placeInput"
                 type="text"
                 list="spotlist"
                 placeholder="지역, 테마, 장소 검색"
                 onChange={placeHandler}
-              ></input>
-              {/* <input
+              ></input> */}
+              <input
                 className="mainleft_placeInput"
                 type="text"
                 list="spotlist"
@@ -251,7 +252,7 @@ const Mainleftpage = () => {
                     );
                   })}
                 </div>
-              )} */}
+              )}
               <img
                 className="mainleft_placeInputImg"
                 src="../img/search.png"

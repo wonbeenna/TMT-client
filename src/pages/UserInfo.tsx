@@ -29,7 +29,7 @@ function UserInfo() {
   );
   const setAccessToken = accessToken.AccessToken.accessToken;
   const setRefreshToken = accessToken.AccessToken.refreshToken;
-  const userInfoHandler = (): void => {
+  const userInfoHandler = async () => {
     if (!curPassword) {
       setCurPasswordValid(false);
       setErrCurPassword("현재 비밀번호를 입력해 주세요.");
@@ -45,7 +45,7 @@ function UserInfo() {
       setErrPasswordCk("변경하실 비밀번호를 다시한번 입력해 주세요");
       return;
     }
-    axios
+    await axios
       .post(
         userInfoURL,
         {
@@ -70,8 +70,8 @@ function UserInfo() {
         }
         if (status === 409) {
           dispatch(Actions.LoginStatus(false));
-          const callbackAxios = (): void => {
-            axios
+          const callbackAxios = async () => {
+            await axios
               .post(
                 tokenURL,
                 {},
@@ -108,8 +108,8 @@ function UserInfo() {
           const status = err.response.status;
           if (status === 409) {
             dispatch(Actions.LoginStatus(false));
-            const callbackAxios = (): void => {
-              axios
+            const callbackAxios = async () => {
+              await axios
                 .post(
                   tokenURL,
                   {},

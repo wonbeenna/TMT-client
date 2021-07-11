@@ -12,9 +12,11 @@ const Header = () => {
   const history = useHistory();
 
   const signOutHandler = () => {
-    dispatch(Actions.LoginStatus(false));
     dispatch(Actions.AccessToken("", ""));
-    window.location.href = "/Landing.html";
+    dispatch(Actions.LoginStatus(false));
+    history.push("/Mainpage");
+    // window.location.href = "/Mainpage";
+    // window.location.href = "/Landing.html";
   };
   const landingPage = () => {
     window.location.href = "/Landing.html";
