@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Actions } from "../actions";
 import { RootReducer } from "../reducers";
-import { RootState } from "../store";
 import "./CSS/MainLeft.css";
 import "./CSS/PlaceList.css";
 import InputList from "./InputList";
