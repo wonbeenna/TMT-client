@@ -7,8 +7,26 @@ import "react-dates/initialize";
 import axios from "axios";
 import { DateRangePicker, FocusedInputShape } from "react-dates";
 import moment, { Moment } from "moment";
-
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import Popper from '@material-ui/core/Popper';
+import Button from '@material-ui/core/Button';
 require("dotenv").config();
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    paper: {
+      border: '0.1px solid',
+      padding: theme.spacing(2),
+      backgroundColor: theme.palette.background.paper,
+      display: 'grid',
+      gridTemplateColumns: '1.5fr 5fr',
+      justifyContent: "center",
+    },
+    paperInput: {
+      margintop: "3px",
+    }
+  }),
+);
 
 const Mainleftpage = () => {
   const options = [
@@ -41,8 +59,6 @@ const Mainleftpage = () => {
     { title: "데이트" },
     { title: "가족" },
     { title: "계곡" },
-
-
     // { title: "사진" },
     // { title: "드라이브" },
     // { title: "노을" },
@@ -187,6 +203,15 @@ const Mainleftpage = () => {
 
   console.log("서치: ", search);
 
+  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popper' : undefined;
+
   return (
     <>
       <div className="mainleft_warp">
@@ -254,20 +279,30 @@ const Mainleftpage = () => {
                 )}
               />
             </div>
+
             <div className="mainpage_plancontainer">
-              {theme18.map((el, idx: number) => (
-                <>
-                  <input
-                    key={idx}
-                    type={"checkbox"}
-                    onChange={(e) => {
-                      handleSingleCheck(e.target.checked, el.title);
-                    }}
-                    checked={checkItems.includes(el.title) ? true : false}
-                  ></input>
-                  <span className="theme">{el.title}</span>
-                </>
-              ))}
+              <Button aria-describedby={id} type="button" onClick={handleClick}>
+                Theme List
+              </Button>
+              <Popper id={id} open={open} anchorEl={anchorEl}>
+                <div className={classes.paper}>
+                  {theme18.map((el, idx: number) => (
+                    <>
+                      <input
+                        className="paperInput"
+                        key={idx}
+                        type={"checkbox"}
+                        onChange={(e) => {
+                          handleSingleCheck(e.target.checked, el.title);
+                        }}
+                        checked={checkItems.includes(el.title) ? true : false}
+                      ></input>
+                      <span className="theme">{el.title}</span>
+                    </>
+                  ))}
+                </div>
+              </Popper>
+
               <div className="searchBtn">
                 <button
                   className="themeButton"
