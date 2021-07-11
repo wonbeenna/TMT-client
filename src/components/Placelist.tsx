@@ -1,4 +1,9 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Actions } from "../actions";
+import { RootReducer } from "../reducers";
+import { RootState } from "../store";
 import "./CSS/MainLeft.css";
 import "./CSS/PlaceList.css";
 import InputList from "./InputList";
@@ -13,19 +18,70 @@ const Placelist = ({
   paginate,
   currentPage,
 }: any) => {
+  const dispatch = useDispatch();
   const [lists, setLists] = useState<Array<object>>([]);
-  // const [like, setLike] = useState(false);
-  const [likePlace, setLikePlace] = useState<Array<object>>([]);
+  const [likePlace, setLikePlace] = useState<any>([]);
+  const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
+  const accessToken: any = useSelector(
+    (state: RootReducer) => state.accessTokenReducer
+  );
+  const setAccessToken = accessToken.AccessToken.accessToken;
+  const likeURL = `${process.env.REACT_APP_API}/user/like`;
 
-  // post 토큰, "경복궁" // get["경복궁", "덕수궁"]
-  // delete 토큰, "경복궁"
-  const likeHandler = (el: object) => {
-    if (likePlace.includes(el)) {
-      setLikePlace(likePlace.filter((els: any) => els !== el));
+  useEffect(() => {
+    const fetchData = async () => {
+      if (isLogin) {
+        await axios
+          .get(likeURL, {
+            headers: {
+              authorization: `Bearer ${setAccessToken}`,
+            },
+          })
+          .then((res) => setLikePlace(res.data.place));
+      } else {
+        setLikePlace([]);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const likeHandler = async (el: any) => {
+    if (isLogin) {
+      if (likePlace?.includes(el.place)) {
+        // await axios
+        //   .delete(likeURL, {
+        //     headers: {
+        //       authorization: `Bearer ${setAccessToken}`,
+        //     },
+        //     data: {
+        //       place: el.place,
+        //     },
+        //   })
+        //   .then((res) => console.log(res.data.place));
+        setLikePlace(likePlace?.filter((els: any) => els !== el.place));
+      } else {
+        await axios
+          .post(
+            likeURL,
+            {
+              place: el.place,
+            },
+            {
+              headers: {
+                authorization: `Bearer ${setAccessToken}`,
+              },
+            }
+          )
+          .then((res) => console.log(res.data.place));
+        setLikePlace([...likePlace]?.concat(el.place));
+      }
     } else {
-      setLikePlace([...likePlace].concat(el));
+      const ModalHandler = (name: string) => {
+        dispatch(Actions.modalStatus(true));
+        dispatch(Actions.modalName(name));
+      };
+      ModalHandler("LikeCheckModal");
     }
-    console.log(el);
   };
   console.log(likePlace);
   return (
@@ -60,7 +116,7 @@ const Placelist = ({
                   <div className="placeList__list__like">
                     <img
                       src={
-                        likePlace.includes(el)
+                        likePlace?.includes(el.place)
                           ? "../img/heart.png"
                           : "../img/noheart.png"
                       }
