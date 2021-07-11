@@ -2,7 +2,9 @@ import moment from "moment";
 import { useEffect } from "react";
 import { useCallback } from "react";
 import { useState } from "react";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
+import { Actions } from "../actions";
 import "./CSS/InputList.css";
 import InputListBtn from "./InputListBtn";
 
@@ -27,39 +29,21 @@ function InputList({ _startDate, _endDate, lists, setLists }: any) {
     }
   });
 
-  // const handleChange = (result: any) => {
-  //   if (!result.destination) {
-  //     return;
-  //   }
-  //   const items = [...listData];
-  //   const [reorderedItem] = items.splice(result.source.index, 1);
-  //   items.splice(result.destination.index, 0, reorderedItem);
-  //   listData = items;
+  const deleteHandler = (index: any) => {
+    setLists(lists.filter((el: any, idx: any) => idx !== index));
+  };
+  dispatch(Actions.placeList(lists));
 
-  //   dispatch(Actions.savePlaceList(listData));
-  // };
-  // dispatch(Actions.savePlaceList(listData));
+  const handleChange = (result: any) => {
+    if (!result.destination) {
+      return;
+    }
+    const items = [...lists];
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+    setLists(items);
+  };
 
-  // // 일단 제거된 값까진 받는데 다시 어떻게 랜더할지 모르겠음
-  // // 리덕스 자체에서 필터를 해야되는건가?
-  // const deleteHandler = (event: any) => {
-  //   let listData2 = listData.filter((el: any) => {
-  //     return el?.place !== event;
-  //   });
-
-  //   dispatch(Actions.savePlaceList(listData2.slice(-1)));
-  //   listData = listData2;
-  //   console.log(listData2);
-  //   console.log(listData);
-  // };
-
-  const deleteHandler = useCallback(
-    (event: any) => {
-      setLists(lists.filter((el: any) => el.place !== event.place));
-    },
-    [lists]
-  );
-  console.log(lists);
   return (
     <div className={open ? "inputList" : "inputList__close"}>
       <div
@@ -80,25 +64,52 @@ function InputList({ _startDate, _endDate, lists, setLists }: any) {
                 {startToday} ~ {endToday}
               </div>
             </div>
-            <div className="inputList__content">
-              {lists?.map((el: any, idx: number) => {
-                return (
-                  <div className="inputList__list">
-                    <div className="inputList__list__title">
-                      <div className="inputList__list__num">{`${idx + 1}`}</div>
-                      <p>{el.place}</p>
-                      <div
-                        key={idx}
-                        className="inputList__list__delete"
-                        onClick={() => deleteHandler(el)}
-                      >
-                        <img src="../img/delete.png" alt="" />
-                      </div>
-                    </div>
+
+            <DragDropContext onDragEnd={handleChange}>
+              <Droppable droppableId="lists">
+                {(provided) => (
+                  <div
+                    className="inputList__content"
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                  >
+                    {lists?.map((el: any, index: number) => {
+                      return (
+                        <Draggable
+                          key={index}
+                          draggableId={`${index}`}
+                          index={index}
+                        >
+                          {(provided) => (
+                            <div className="inputList__list">
+                              <div
+                                className="inputList__list__title"
+                                ref={provided.innerRef}
+                                {...provided.dragHandleProps}
+                                {...provided.draggableProps}
+                              >
+                                <div className="inputList__list__num">{`${
+                                  index + 1
+                                }`}</div>
+                                <p>{el.place}</p>
+                                <div
+                                  key={index}
+                                  className="inputList__list__delete"
+                                  onClick={() => deleteHandler(index)}
+                                >
+                                  <img src="../img/delete.png" alt="" />
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </Draggable>
+                      );
+                    })}
                   </div>
-                );
-              })}
-            </div>
+                )}
+              </Droppable>
+            </DragDropContext>
+
             <InputListBtn
               startToday={startToday}
               endToday={endToday}

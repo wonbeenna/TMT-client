@@ -8,12 +8,12 @@ function InputListBtn({ startToday, endToday, lists }: any) {
   //   (state: RootReducer) => state.savePlaceListReducer.place
   // );
 
-  // console.log(startToday, endToday);
-
   const sendHandler = () => {
-    console.log(lists);
+    // console.log(lists);
+    // console.log(startToday, endToday);
   };
-
+  // console.log(lists);
+  // console.log(startToday, endToday);
   return (
     <div className="inputList__save">
       <button className="inputList__saveBtn" onClick={sendHandler}>
