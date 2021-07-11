@@ -22,6 +22,7 @@ function Modal() {
     dispatch(Actions.modalStatus(status));
     dispatch(Actions.modalName(name));
   };
+
   const ModalName = [
     <SignIn {...ModalHandler} />,
     <SignUp {...ModalHandler} />,

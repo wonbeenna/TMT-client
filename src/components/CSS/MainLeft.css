@@ -15,20 +15,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
   z-index: 10;
   border-right: 1px solid #bbbbbb;
 }
 .PlaceList__warp {
-  display: flex;
-  flex-direction: column;
-  height: 66vh;
-  overflow-y: scroll;
   padding: 10px;
+  height: 85%;
 }
-.PlaceList__warp::-webkit-scrollbar {
-  display: none;
-}
+
 .placeList__title {
   color: #8b8b8b;
   font-size: 15px;
@@ -41,7 +35,25 @@
 .placeList__contents {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  justify-content: space-between;
+  height: 68vh;
+}
+.placeList__content {
+  display: flex;
+  flex-direction: column;
+  max-height: 77vh;
+  flex: 1 1;
+  overflow-y: scroll;
+}
+.placeList__content::-webkit-scrollbar {
+  display: none;
+}
+.placeList__nav {
+  margin: 0 10px 10px;
+  padding-bottom: 10px;
+  font-size: 15px;
+  color: #5f5f5f;
+  border-bottom: 1px solid #c7c7c7;
 }
 .mainleft_container {
   display: flex;
@@ -62,12 +74,16 @@
 .mainpage_plancontainer {
   font-size: 10px;
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
-
+.theme {
+  margin-right: 2px;
+}
 #controllable-states-demo {
   max-width: 80px;
-}
-#tags {
 }
 .Mui-root {
   background: none;
@@ -107,7 +123,6 @@
   height: 25px;
   border-radius: 10px;
   border: 2px solid #6698cb;
-  margin: 20px 0 0 10px;
   cursor: pointer;
   position: relative;
   text-align: center;
@@ -147,6 +162,9 @@
   align-items: center;
   justify-content: center;
 }
+.mainleft_place {
+  margin-top: 10px;
+}
 .mainleft_placeInput {
   width: 15rem;
   border: 1px solid rgb(202, 202, 202);
@@ -155,7 +173,6 @@
   outline: none;
   font-size: 1rem;
 }
-
 .mainleft_placeInputImg {
   overflow: hidden;
   display: inline-block;
@@ -163,7 +180,7 @@
   height: 24px;
   vertical-align: top;
   position: absolute;
-  top: 13px;
+  top: 16px;
   right: 110px;
   cursor: pointer;
 }
@@ -175,31 +192,17 @@
   box-shadow: 5px 40px -10px rgba(0, 0, 0, 0.57);
   transition: all 0.4s ease 0s;
 }
+.mainleft_placeCalendar {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
 
-@media only screen and (max-width: 1224px) {
-  /* .mainpage_top {
-    flex-direction: column;
-    align-items: center;
-    width: 100vw;
-    height: 20vh;
-  } */
-  /* .location {
-    margin-bottom: 10px;
-    margin-left: 0;
-  }
-  #controllable-states-demo {
-    width: 16rem;
-  }
-  .mainpage_plancontainer {
-    margin-bottom: 10px;
-    margin-top: 10px;
-  }
-  .place {
-    border-left: none;
-  }
-  .place input {
-    position: relative;
-  } */
+.mainleft_placeCalendar img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 }
 .mainpage_body {
   display: flex;

@@ -1,46 +1,55 @@
-import moment, { Moment } from "moment";
 import React, { useState } from "react";
-import { DateRangePicker, FocusedInputShape } from "react-dates";
-import { useDispatch } from "react-redux";
-import { Actions } from "../actions";
 import "./CSS/MainLeft.css";
 import InputList from "./InputList";
-import "./CSS/_datepicker.css";
-import "moment/locale/ko";
+import Paging from "./Pagination";
 
-const Placelist = ({ place, _startDate, _endDate }: any) => {
-  const dispatch = useDispatch();
-
-  const [lists, setLists] = useState([]);
+const Placelist = ({
+  place,
+  _startDate,
+  _endDate,
+  postsPerPage,
+  totalPosts,
+  paginate,
+  currentPage,
+}: any) => {
+  const [lists, setLists] = useState<Array<object>>([]);
 
   return (
     <>
       <div className="PlaceList__warp">
         <div className="placeList__contents">
-          {place.map((el: any, idx: number) => {
-            const inputHandler = (event: any) => {
-              dispatch(Actions.placeList(el));
-              setLists([...lists].concat(el));
-            };
-            return (
-              <div
-                key={idx}
-                className="mainleft_destination"
-                onClick={() => inputHandler(el)}
-              >
-                <div className="destination_list">
-                  <img src={el.img} alt="tes1" />
-                </div>
-                <div className="list_container">
-                  <div className="list_content">{el.place}</div>
-                  <div className="list_address">
-                    {el.address}
-                    <img src="../img/flag.png" alt="" />
+          <div className="placeList__nav">검색결과</div>
+          <div className="placeList__content">
+            {place.map((el: any, idx: number) => {
+              const inputHandler = () => {
+                setLists([...lists].concat(el));
+              };
+              return (
+                <div
+                  key={idx}
+                  className="mainleft_destination"
+                  onClick={() => inputHandler()}
+                >
+                  <div className="destination_list">
+                    <img src={el.img} alt="tes1" />
+                  </div>
+                  <div className="list_container">
+                    <div className="list_content">{el.place}</div>
+                    <div className="list_address">
+                      {el.address}
+                      <img src="../img/flag.png" alt="" />
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+          <Paging
+            postsPerPage={postsPerPage}
+            totalPosts={totalPosts}
+            paginate={paginate}
+            currentPage={currentPage}
+          />
         </div>
         <InputList
           _startDate={_startDate}

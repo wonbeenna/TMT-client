@@ -5,7 +5,6 @@ import Placelist from "./Placelist";
 import "./CSS/MainLeft.css";
 import "react-dates/initialize";
 import axios from "axios";
-import Paging from "./Pagination";
 import { DateRangePicker, FocusedInputShape } from "react-dates";
 import moment, { Moment } from "moment";
 
@@ -52,16 +51,15 @@ const Mainleftpage = () => {
     { title: "랜드마크" },
   ];
 
-
-  const [inputElement, setInputElement] = useState<string | any>(null)
+  const [inputElement, setInputElement] = useState<string | any>(null);
   const [value, setValue] = React.useState<string | null>(null);
   const [inputValue, setInputValue] = React.useState("");
   const [province, setProvince] = useState<string | null>("");
-  const [theme, setTheme] = useState<string | any>(null)
+  // const [theme, setTheme] = useState<any>([]);
 
   const [placedata, setPlacedata]: any = useState<string | any>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [postsPerPage] = useState<number>(10);
 
   const handlePlace = () => {
     // console.log('Click');
@@ -78,47 +76,47 @@ const Mainleftpage = () => {
         }
       )
       .then((res) => {
-        console.log('res', res.data)
+        console.log("res", res.data);
       })
       .catch((err) => console.log("err", err));
   };
   const placeHandler = (event: any) => {
-    setInputElement(event.target.value)
-  }
+    setInputElement(event.target.value);
+  };
 
   const locationHandler = (event: any, type: string): void => {
     if (type === "location") {
-      console.log('location', event.target.innerText)
+      console.log("location", event.target.innerText);
       setProvince(event.target.innerText);
     }
   };
-  console.log('setProvince', province)
+  console.log("setProvince", province);
 
-  const themeHandler = (event: any, type: string): void => {
-    if (type === "theme") {
-      console.log("theme", event.target.innerText);
-      setTheme(event.target.innerText);
-    }
-  }
+  // const themeHandler = (event: any, type: any): void => {
+  //   if (type === "theme") {
+  //     console.log("theme", event.target.innerText);
+  //     setTheme([...theme].concat(event.target.innerText));
+  //   }
+  //   console.log(event.target.innerText);
+  // };
+  // console.log(theme);
 
   const handleSearch = () => {
     const searchURL = `${process.env.REACT_APP_API}/trip/list`;
-    console.log('province', province)
+    console.log("province", province);
     axios
       .post(
         searchURL,
         {
-
-          'province': province,
-          'theme': theme
-
+          province: province,
+          theme: checkItems,
         },
         {
           withCredentials: true,
         }
       )
       .then((res) => {
-        console.log('res1', res.data)
+        console.log("res1", res.data);
         setPlacedata(res.data);
       })
       .catch((err) => console.log("err", err));
@@ -150,96 +148,18 @@ const Mainleftpage = () => {
   const handleFocusChange = (arg: FocusedInputShape | null) => {
     setFocusedInput(arg);
   };
+
+  const [checkItems, setCheckItems] = useState<Array<string>>([]);
+  const handleSingleCheck = (checked: boolean, theme: string) => {
+    if (checked) {
+      setCheckItems([...checkItems, theme]);
+    } else {
+      setCheckItems(checkItems.filter((el: string) => el !== theme));
+    }
+    console.log(checked, theme);
+  };
+  console.log(checkItems);
   return (
-
-<!--     <div className="mainleft_warp">
-      <div className="mainpage_wrap">
-        <div className="mainpage_top"></div>
-      </div>
-
-      <div className="mainleft_container">
-        <div className="place">
-          <input
-            className="mainleft_placeInput"
-            type="text"
-            list="spotlist"
-            placeholder="지역, 테마, 장소 검색"
-            onChange={placeHandler}
-          ></input>
-          <img
-            className="mainleft_placeInputImg"
-            src="../img/search.png"
-            alt=""
-            title="장소로 검색"
-            onClick={handlePlace}
-
-          />
-          <DateRangePicker
-            startDate={startDate}
-            startDateId="startDate"
-            endDate={endDate}
-            endDateId="endDate"
-            onDatesChange={handlendDatesChange}
-            focusedInput={focusedInput}
-            onFocusChange={handleFocusChange}
-            startDatePlaceholderText={"여행 시작일"}
-            endDatePlaceholderText={"여행 종료일"}
-            isOutsideRange={(day) => moment().diff(day) >= 0}
-            monthFormat={"YYYY년 MM월"}
-            minimumNights={0}
-            block
-            noBorder
-            showClearDates
-          />
-
-          <div className="location">
-            <Autocomplete
-              value={value}
-              onChange={(event: any, newValue: string | null) => {
-                setValue(newValue);
-                // locationHandler(event, "location");
-              }}
-              inputValue={inputValue}
-              onInputChange={(event: any, newInputValue) => {
-                setInputValue(newInputValue)
-                locationHandler(event, "location");
-              }}
-              id="controllable-states-demo"
-              options={options}
-              renderInput={(params) => (
-                <TextField {...params} label="Location" variant="standard" />
-              )}
-            />
-          </div>
-          <div className="mainpage_plancontainer">
-            <Autocomplete
-              multiple
-              id="tags"
-              options={theme18}
-              getOptionLabel={(option) => option.title}
-              filterSelectedOptions
-              onChange={(event: any) => {
-                themeHandler(event, "theme");
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  variant="standard"
-                  label="Theme"
-                // placeholder="Favorites"
-                />
-              )}
-            />
-            <div className="searchBtn">
-              <button
-                className="themeButton"
-                onClick={handleSearch}
-                title="지역&테마로 검색"
-              >
-                <div className="themeEff"></div>
-                <a>search</a>
-              </button> -->
-
     <>
       <div className="mainleft_warp">
         <div className="mainpage_wrap">
@@ -248,29 +168,33 @@ const Mainleftpage = () => {
 
         <div className="mainleft_container">
           <div className="place">
-            <input
-              className="mainleft_placeInput"
-              type="text"
-              list="spotlist"
-              placeholder="지역, 테마, 장소 검색"
-            ></input>
-            <img
-              className="mainleft_placeInputImg"
-              src="../img/search.png"
-              alt=""
-              title="장소로 검색"
-            />
-
+            <div className="mainleft_place">
+              <input
+                className="mainleft_placeInput"
+                type="text"
+                list="spotlist"
+                placeholder="지역, 테마, 장소 검색"
+                onChange={placeHandler}
+              ></input>
+              <img
+                className="mainleft_placeInputImg"
+                src="../img/search.png"
+                alt=""
+                title="장소로 검색"
+                onClick={handlePlace}
+              />
+            </div>
             <div className="location">
               <Autocomplete
                 value={value}
                 onChange={(event: any, newValue: string | null) => {
                   setValue(newValue);
-                  changeHandler(event, "location");
+                  // changeHandler(event, "location");
                 }}
                 inputValue={inputValue}
                 onInputChange={(event, newInputValue) => {
                   setInputValue(newInputValue);
+                  locationHandler(event, "location");
                 }}
                 id="controllable-states-demo"
                 options={options}
@@ -278,17 +202,29 @@ const Mainleftpage = () => {
                   <TextField {...params} label="Location" variant="standard" />
                 )}
               />
-
             </div>
             <div className="mainpage_plancontainer">
-              <Autocomplete
+              {theme18.map((el, idx: number) => (
+                <>
+                  <input
+                    type={"checkbox"}
+                    onChange={(e) => {
+                      handleSingleCheck(e.target.checked, el.title);
+                    }}
+                    checked={checkItems.includes(el.title) ? true : false}
+                  ></input>
+                  <span className="theme">{el.title}</span>
+                </>
+              ))}
+
+              {/* <Autocomplete
                 multiple
                 id="tags"
                 options={theme18}
                 getOptionLabel={(option) => option.title}
                 filterSelectedOptions
                 onChange={(event: any) => {
-                  changeHandler(event, "theme");
+                  themeHandler(event, "theme");
                 }}
                 classes={{ root: "Mui-root" }}
                 renderInput={(params) => (
@@ -299,7 +235,7 @@ const Mainleftpage = () => {
                     // placeholder="Favorites"
                   />
                 )}
-              />
+              /> */}
               <div className="searchBtn">
                 <button
                   className="themeButton"
@@ -311,31 +247,31 @@ const Mainleftpage = () => {
                 </button>
               </div>
             </div>
-
-            <DateRangePicker
-              startDate={startDate}
-              startDateId="startDate"
-              endDate={endDate}
-              endDateId="endDate"
-              onDatesChange={handlendDatesChange}
-              focusedInput={focusedInput}
-              onFocusChange={handleFocusChange}
-              startDatePlaceholderText={"여행 시작일"}
-              endDatePlaceholderText={"여행 종료일"}
-              isOutsideRange={(day) => moment().diff(day) >= 0}
-              monthFormat={"YYYY년 MM월"}
-              minimumNights={0}
-              block
-              noBorder
-              showClearDates
-            />
+            <div className="mainleft_placeCalendar">
+              <img src="../img/calendar-icon.png" alt="" />
+              <DateRangePicker
+                startDate={startDate}
+                startDateId="startDate"
+                endDate={endDate}
+                endDateId="endDate"
+                onDatesChange={handlendDatesChange}
+                focusedInput={focusedInput}
+                onFocusChange={handleFocusChange}
+                startDatePlaceholderText={"여행 시작일"}
+                endDatePlaceholderText={"여행 종료일"}
+                isOutsideRange={(day) => moment().diff(day) >= 0}
+                monthFormat={"YYYY년 MM월"}
+                minimumNights={0}
+                block
+                noBorder
+                showClearDates
+              />
+            </div>
           </div>
           <Placelist
             place={currentPosts}
             _startDate={_startDate}
             _endDate={_endDate}
-          />
-          <Paging
             postsPerPage={postsPerPage}
             totalPosts={placedata.length}
             paginate={paginate}

@@ -9,7 +9,7 @@ const placeListReducer = (
     case ACTIONS.PLACE_LIST: {
       return {
         ...state,
-        listData: [...state.listData, action.payload],
+        listData: [...state.listData, action.payload].slice(-1),
       };
     }
 

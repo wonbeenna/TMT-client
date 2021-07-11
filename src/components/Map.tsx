@@ -11,30 +11,16 @@ declare global {
 
 const Map = (placedata: any) => {
   const listData = useSelector((state: RootReducer) => state.placeListReducer);
-
+  console.log(listData.listData[0]); // <<-- [0] 번째 배열 쓰세용
   // console.log('listData1', listData.listData);
 
-  useEffect(() => {
-    let mapContainer = document.getElementById("map");
-    let mapOption = {
-      center: new window.kakao.maps.LatLng(
-        33.36197069309868,
-        126.52923096776973
-      ), // 지도생길때 보여주는 범위 좌표
-      level: 8,
-
-      draggable: true,
-
-    };
-    let map = new window.kakao.maps.Map(mapContainer, mapOption);
-  });
   useEffect(() => {
     //지도생성
     let mapContainer = document.getElementById("map");
     let mapOption = {
       center: new window.kakao.maps.LatLng(
-
-        33.36197069309868, 126.52923096776973
+        33.36197069309868,
+        126.52923096776973
       ),
 
       level: 8,
@@ -45,7 +31,7 @@ const Map = (placedata: any) => {
 
     let bounds = new window.kakao.maps.LatLngBounds();
 
-    listData.listData.forEach((el: any) => {
+    listData?.listData[0]?.forEach((el: any) => {
       let imageSrc = "./img/marker_map_icon.png";
       let imageSize = new window.kakao.maps.Size(50, 50);
       let markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize);
@@ -57,10 +43,9 @@ const Map = (placedata: any) => {
         image: markerImage, // 마커 이미지
       });
 
-
       marker.setMap(map);
 
-      bounds.extend(new window.kakao.maps.LatLng(el.lat, el.long))
+      bounds.extend(new window.kakao.maps.LatLng(el.lat, el.long));
 
       //   console.log('bounds', bounds)
 
@@ -101,7 +86,6 @@ const Map = (placedata: any) => {
       window.kakao.maps.event.addListener(marker, "mouseout", function () {
         infowindow.close();
       });
-
 
       //   markers.push(marker);
     });

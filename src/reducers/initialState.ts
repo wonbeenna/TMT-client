@@ -8,7 +8,6 @@ export type stateType = {
   modalStatus: boolean;
   modalName: string;
   listData: any;
-  place: any;
 };
 
 export const initialState = {
@@ -21,5 +20,4 @@ export const initialState = {
   modalStatus: false,
   modalName: "",
   listData: [],
-  place: [],
 };
