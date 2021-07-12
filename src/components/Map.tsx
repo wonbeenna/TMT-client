@@ -17,7 +17,8 @@ const Map = (placedata: any) => {
     let mapContainer = document.getElementById("map");
     let mapOption = {
       center: new window.kakao.maps.LatLng(
-        37.49675169537155, 127.02476872729723
+        37.49675169537155,
+        127.02476872729723
       ),
       level: 4,
     };
@@ -29,9 +30,9 @@ const Map = (placedata: any) => {
       map1: map1,
       position: mapOption.center,
       image: markerImage,
-    })
+    });
     marker.setMap(map1);
-  })
+  });
 
   useEffect(() => {
     //지도생성
@@ -58,7 +59,6 @@ const Map = (placedata: any) => {
         // title: el.place, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
         image: markerImage,
       });
-
 
       let imageSrc2 = "./img/Logo004.png";
       let imageSize2 = new window.kakao.maps.Size(50, 50);

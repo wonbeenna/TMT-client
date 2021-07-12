@@ -12,7 +12,7 @@ function InputListBtn({ startToday, endToday, lists }: any) {
     // console.log(lists);
     // console.log(startToday, endToday);
   };
-  // console.log(lists);
+  console.log(lists);
   // console.log(startToday, endToday);
 
   return (

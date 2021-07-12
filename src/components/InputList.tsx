@@ -32,7 +32,6 @@ function InputList({ _startDate, _endDate, lists, setLists }: any) {
   const deleteHandler = (index: any) => {
     setLists(lists.filter((el: any, idx: any) => idx !== index));
   };
-  dispatch(Actions.placeList(lists));
 
   const handleChange = (result: any) => {
     if (!result.destination) {
@@ -43,7 +42,7 @@ function InputList({ _startDate, _endDate, lists, setLists }: any) {
     items.splice(result.destination.index, 0, reorderedItem);
     setLists(items);
   };
-
+  dispatch(Actions.placeList(lists));
   return (
     <div className={open ? "inputList" : "inputList__close"}>
       <div

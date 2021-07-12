@@ -99,7 +99,7 @@ const Placelist = ({
                   .post(
                     searchURL,
                     {
-                      place: el.place
+                      place: el.place,
                     },
                     {
                       withCredentials: true,
