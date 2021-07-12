@@ -59,18 +59,10 @@ const Mainleftpage = () => {
     { title: "데이트" },
     { title: "가족" },
     { title: "계곡" },
-
-    // { title: "사진" },
-    // { title: "드라이브" },
-    // { title: "노을" },
-    // { title: "맛집" },
-    // { title: "일출" },
-    // { title: "강" },
-    // { title: "섬" },
-    // { title: "랜드마크" },
   ];
 
   const [inputElement, setInputElement] = useState<string | any>(null);
+  const [result, serResult] = useState<string | any>([])
   const [value, setValue] = React.useState<string | null>(null);
   const [inputValue, setInputValue] = React.useState("");
   const [province, setProvince] = useState<string | null>("");

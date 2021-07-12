@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootReducer } from "../reducers";
+import axios from "axios";
+
 
 declare global {
     interface Window {
@@ -10,6 +12,27 @@ declare global {
 }
 
 const MyMap = (placedata: any) => {
+
+    const accessToken: any = useSelector(
+        (state: RootReducer) => state.accessTokenReducer
+    );
+    const setAccessToken = accessToken.AccessToken.accessToken;
+
+    const [myplace, setMyplace] = useState([]);
+    const searchUrl = `${process.env.REACT_APP_API}/user/myPage`;
+    useEffect(() => {
+        async function fetchData() {
+            const response = await axios.get(searchUrl, {
+                headers: {
+                    authorization: `Bearer ${setAccessToken}`,
+                },
+            });
+            setMyplace(response.data);
+            console.log('myres', response.data)
+        }
+        fetchData();
+    }, []);
+
     const listData = useSelector((state: RootReducer) => state.placeListReducer);
 
     console.log('MyMap_listData1', listData.listData[0]);

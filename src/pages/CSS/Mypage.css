@@ -12,8 +12,14 @@
   height: 500px;
   box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 16px 0px;
   justify-content: center;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid pink;
 }
-
+/* .mypageroutewrap {
+  display: flex;
+  flex-direction: column;
+} */
 .calendar {
   width: 300px;
   height: 500px;
