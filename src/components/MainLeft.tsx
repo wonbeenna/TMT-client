@@ -61,8 +61,6 @@ const Mainleftpage = () => {
     { title: "계곡" },
   ];
 
-  const [inputElement, setInputElement] = useState<string | any>(null);
-  const [result, serResult] = useState<string | any>([])
   const [value, setValue] = React.useState<string | null>(null);
   const [inputValue, setInputValue] = React.useState("");
   const [province, setProvince] = useState<string | null>("");
@@ -71,37 +69,19 @@ const Mainleftpage = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [postsPerPage] = useState<number>(10);
 
-  const handlePlace = () => {
-    const searchURL = `${process.env.REACT_APP_API}/trip/search`;
-    axios
-      .post(
-        searchURL,
-        {
-          //state값으로
-          inputElement: inputElement,
-        },
-        {
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        console.log("res", res.data);
-        // setPlacedata(res.data); => 에러 해결하기
-      })
-      .catch((err) => console.log("err", err));
-  };
-
-  const placeHandler = (event: any) => {
-    setInputElement(event.target.value);
-  };
-
+  useEffect(() => {
+    const listURL = `${process.env.REACT_APP_API}/trip/list`;
+    const fetchData = async () => {
+      await axios.get(listURL, {}).then((res) => setPlacedata(res.data));
+    };
+    fetchData();
+  }, []);
   const locationHandler = (event: any, type: string): void => {
     if (type === "location") {
       console.log("location", event.target.innerText);
       setProvince(event.target.innerText);
     }
   };
-  console.log("setProvince", province);
 
   const handleSearch = () => {
     const searchURL = `${process.env.REACT_APP_API}/trip/list`;
