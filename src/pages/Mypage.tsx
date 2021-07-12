@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MyMap from "../components/MyMap";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -9,6 +9,9 @@ import "../components/CSS/_datepicker.css";
 import moment from "moment";
 import Modal from "../components/Modal";
 import { withRouter } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootReducer } from "../reducers";
+import axios from "axios";
 
 const Mypage = () => {
   const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(
@@ -25,6 +28,26 @@ const Mypage = () => {
     console.log(arg.endDate);
   };
 
+  const accessToken: any = useSelector(
+    (state: RootReducer) => state.accessTokenReducer
+  );
+  const setAccessToken = accessToken.AccessToken.accessToken;
+
+  const [myplace, setMyplace] = useState([]);
+  const searchUrl = `${process.env.REACT_APP_API}/user/myPage`;
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios.get(searchUrl, {
+        headers: {
+          authorization: `Bearer ${setAccessToken}`,
+        },
+      });
+      setMyplace(response.data);
+      console.log('myres1', response.data)
+    }
+    fetchData();
+  }, []);
+
   return (
     <>
       <Modal />
@@ -34,7 +57,16 @@ const Mypage = () => {
           <div className="MapWrap">
             <MyMap />
           </div>
-          <div className="route">여행 경로</div>
+          <div className="route">여행 경로
+
+            <img
+              src={"../img/Logo009.png"
+              }
+            />
+            <span>장소</span>
+
+
+          </div>
         </div>
         <div className="mypageMap">
           <div className="calendar">
