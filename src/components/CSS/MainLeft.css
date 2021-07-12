@@ -168,7 +168,18 @@
   justify-content: center;
 }
 .mainleft_place {
+  display: flex;
   margin-top: 10px;
+}
+.placeContainer {
+  font-size: 13px;
+  position: absolute;
+  background: white;
+  width: 220px;
+  right: 0;
+  left: 105px;
+  top: 50px;
+  z-index: 15;
 }
 .mainleft_placeInput {
   width: 15rem;

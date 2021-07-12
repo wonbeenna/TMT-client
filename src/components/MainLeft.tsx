@@ -7,25 +7,25 @@ import "react-dates/initialize";
 import axios from "axios";
 import { DateRangePicker, FocusedInputShape } from "react-dates";
 import moment, { Moment } from "moment";
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import Popper from '@material-ui/core/Popper';
-import Button from '@material-ui/core/Button';
+import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import Popper from "@material-ui/core/Popper";
+import Button from "@material-ui/core/Button";
 require("dotenv").config();
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
-      border: '0.1px solid',
+      border: "0.1px solid",
       padding: theme.spacing(2),
       backgroundColor: theme.palette.background.paper,
-      display: 'grid',
-      gridTemplateColumns: '1.5fr 5fr',
+      display: "grid",
+      gridTemplateColumns: "1.5fr 5fr",
       justifyContent: "center",
     },
     paperInput: {
       margintop: "3px",
-    }
-  }),
+    },
+  })
 );
 
 const Mainleftpage = () => {
@@ -168,21 +168,28 @@ const Mainleftpage = () => {
     }
   };
 
+  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popper" : undefined;
+  console.log(currentPosts);
+
   const [spot, setSpot] = useState<string | any>([]);
   const [spotMatch, setSpotMatch] = useState<string | any>([]);
   const [search, setSearch] = useState<string | any>("");
+  //const [result, setResult] = useState<string | any>([]);
 
   useEffect(() => {
     const place = async (): Promise<any> => {
-      const response = await axios.get(
-        `${process.env.REACT_APP_API}/trip/search`
-      );
+      const response = await axios.get("http://localhost:4000/trip/search");
       setSpot(response.data);
     };
     place();
   }, []);
-
-  console.log("겟해옴: ", spot);
 
   const searchPlace = (text: string) => {
     if (!text) {
@@ -192,26 +199,30 @@ const Mainleftpage = () => {
         let regex = new RegExp(`${text}`, "gi");
         return el.place.match(regex);
       });
+
       setSpotMatch(matchedPlace);
+      setSearch(text);
     }
   };
 
-  console.log("일치?: ", spotMatch);
-
-  let changeInput = (test: any) => {
-    setSearch(test);
+  let changeInput = (el: any) => {
+    setSearch(el);
+    setSpotMatch([]);
   };
 
   console.log("서치: ", search);
 
-  const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(anchorEl ? null : event.currentTarget);
+  const sendSearchReq = async (): Promise<any> => {
+    await axios
+      .post("http://localhost:4000/trip/search", {
+        inputElement: search,
+      })
+      .then((res) => {
+        console.log("레스: ", res.data);
+        setPlacedata([res.data]);
+        setSearch("");
+      });
   };
-
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popper' : undefined;
 
   return (
     <>
@@ -258,7 +269,7 @@ const Mainleftpage = () => {
                 src="../img/search.png"
                 alt=""
                 title="장소로 검색"
-                onClick={handlePlace}
+                onClick={sendSearchReq}
               />
             </div>
             <div className="location">
