@@ -47,31 +47,28 @@ const Placelist = ({
   const likeHandler = async (el: any) => {
     if (isLogin) {
       if (likePlace?.includes(el.place)) {
-        // await axios
-        //   .delete(likeURL, {
-        //     headers: {
-        //       authorization: `Bearer ${setAccessToken}`,
-        //     },
-        //     data: {
-        //       place: el.place,
-        //     },
-        //   })
-        //   .then((res) => console.log(res.data.place));
+        await axios.delete(likeURL, {
+          headers: {
+            authorization: `Bearer ${setAccessToken}`,
+          },
+          data: {
+            place: el.place,
+          },
+        });
+
         setLikePlace(likePlace?.filter((els: any) => els !== el.place));
       } else {
-        await axios
-          .post(
-            likeURL,
-            {
-              place: el.place,
+        await axios.post(
+          likeURL,
+          {
+            place: el.place,
+          },
+          {
+            headers: {
+              authorization: `Bearer ${setAccessToken}`,
             },
-            {
-              headers: {
-                authorization: `Bearer ${setAccessToken}`,
-              },
-            }
-          )
-          .then((res) => console.log(res.data.place));
+          }
+        );
         setLikePlace([...likePlace]?.concat(el.place));
       }
     } else {
@@ -82,7 +79,7 @@ const Placelist = ({
       ModalHandler("LikeCheckModal");
     }
   };
-  console.log(likePlace);
+
   return (
     <>
       <div className="placeList__warp">
@@ -106,7 +103,7 @@ const Placelist = ({
                     }
                   )
                   .then((res) => {
-                    console.log("res", res.data);
+                    // console.log("res", res.data);
                     // setPlacedata(res.data); => 에러 해결하기
                   })
                   .catch((err) => console.log("err", err));

@@ -78,14 +78,13 @@ const Mainleftpage = () => {
   }, []);
   const locationHandler = (event: any, type: string): void => {
     if (type === "location") {
-      console.log("location", event.target.innerText);
       setProvince(event.target.innerText);
     }
   };
 
   const handleSearch = () => {
     const searchURL = `${process.env.REACT_APP_API}/trip/list`;
-    console.log("province", province);
+
     axios
       .post(
         searchURL,
@@ -98,7 +97,6 @@ const Mainleftpage = () => {
         }
       )
       .then((res) => {
-        console.log("res1", res.data);
         setPlacedata(res.data);
       })
       .catch((err) => console.log("err", err));
@@ -148,7 +146,6 @@ const Mainleftpage = () => {
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popper" : undefined;
-  console.log(currentPosts);
 
   const [spot, setSpot] = useState<string | any>([]);
   const [spotMatch, setSpotMatch] = useState<string | any>([]);
@@ -182,15 +179,12 @@ const Mainleftpage = () => {
     setSpotMatch([]);
   };
 
-  console.log("서치: ", search);
-
   const sendSearchReq = async (): Promise<any> => {
     await axios
       .post("http://localhost:4000/trip/search", {
         inputElement: search,
       })
       .then((res) => {
-        console.log("레스: ", res.data);
         setPlacedata([res.data]);
         setSearch("");
       });
