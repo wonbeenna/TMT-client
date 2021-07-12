@@ -106,8 +106,8 @@ const Placelist = ({
                     }
                   )
                   .then((res) => {
-                    console.log("res", res.data);
-                    // setPlacedata(res.data); => 에러 해결하기
+                    console.log("recommendPOST_res.data", res.data);
+                    // => 받은 데이터값의 lat,long으로 mainpage 지도에 마커를 찍어줘야한다.
                   })
                   .catch((err) => console.log("err", err));
               };

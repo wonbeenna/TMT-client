@@ -52,7 +52,7 @@ const Map = (placedata: any) => {
       let imageSrc = "./img/marker_map_icon.png";
       let imageSize = new window.kakao.maps.Size(50, 50);
       let markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize);
-
+      //선택한 여행지 마커
       let marker = new window.kakao.maps.Marker({
         map: map,
         position: new window.kakao.maps.LatLng(el.lat, el.long),
@@ -75,7 +75,7 @@ const Map = (placedata: any) => {
           126.52923096776973
         ),
         // title: el.place, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-        image: markerImage2, // 마커 이미지
+        image: markerImage2,
       });
       marker2.setMap(map);
       marker.setMap(map);
