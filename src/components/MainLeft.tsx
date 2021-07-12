@@ -69,18 +69,26 @@ const Mainleftpage = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [postsPerPage] = useState<number>(10);
 
-  //지역 onchange
+
+ 
+
+  useEffect(() => {
+    const listURL = `${process.env.REACT_APP_API}/trip/list`;
+    const fetchData = async () => {
+      await axios.get(listURL, {}).then((res) => setPlacedata(res.data));
+    };
+    fetchData();
+  }, []);
+ //지역 onchange
   const locationHandler = (event: any, type: string): void => {
     if (type === "location") {
-      console.log("location", event.target.innerText);
       setProvince(event.target.innerText);
     }
   };
-  console.log("setProvince", province);
 
   const handleSearch = () => {
     const searchURL = `${process.env.REACT_APP_API}/trip/list`;
-    console.log("province", province);
+
     axios
       .post(
         searchURL,
@@ -93,7 +101,6 @@ const Mainleftpage = () => {
         }
       )
       .then((res) => {
-        console.log("res1", res.data);
         setPlacedata(res.data);
       })
       .catch((err) => console.log("err", err));
@@ -143,7 +150,6 @@ const Mainleftpage = () => {
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popper" : undefined;
-  console.log(currentPosts);
 
   const [spot, setSpot] = useState<string | any>([]);
   const [spotMatch, setSpotMatch] = useState<string | any>([]);
@@ -176,15 +182,12 @@ const Mainleftpage = () => {
     setSpotMatch([]);
   };
 
-  console.log("서치: ", search);
-
   const sendSearchReq = async (): Promise<any> => {
     await axios
       .post(`${process.env.REACT_APP_API}/trip/search`, {
         inputElement: search,
       })
       .then((res) => {
-        console.log("레스: ", res.data);
         setPlacedata([res.data]);
         setSearch("");
       });
