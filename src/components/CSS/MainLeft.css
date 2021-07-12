@@ -79,6 +79,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  margin-top: 3px;
 }
 .paperInput {
   margin-top: 5px;
@@ -90,6 +91,10 @@
 #controllable-states-demo {
   max-width: 80px;
 }
+#controllable-states-demo .loaction_label {
+  margin-left: 10px;
+}
+
 .Mui-root {
   background: none;
   min-width: 180px;
@@ -123,6 +128,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 3px;
 }
 .themeButton {
   height: 25px;
@@ -199,6 +205,7 @@
   top: 16px;
   right: 110px;
   cursor: pointer;
+  margin-top: 6px;
 }
 
 .place button:hover {

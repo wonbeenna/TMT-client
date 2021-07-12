@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import Placelist from "./Placelist";
-import "./CSS/MainLeft.css";
-import "react-dates/initialize";
-import axios from "axios";
-import { DateRangePicker, FocusedInputShape } from "react-dates";
-import moment, { Moment } from "moment";
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import Popper from "@material-ui/core/Popper";
 import Button from "@material-ui/core/Button";
+import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import Placelist from "./Placelist";
+import axios from "axios";
+import "./CSS/MainLeft.css";
+import "react-dates/initialize";
+import moment, { Moment } from "moment";
+import { DateRangePicker, FocusedInputShape } from "react-dates";
 require("dotenv").config();
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -69,6 +69,9 @@ const Mainleftpage = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [postsPerPage] = useState<number>(10);
 
+
+ 
+
   useEffect(() => {
     const listURL = `${process.env.REACT_APP_API}/trip/list`;
     const fetchData = async () => {
@@ -76,6 +79,7 @@ const Mainleftpage = () => {
     };
     fetchData();
   }, []);
+ //지역 onchange
   const locationHandler = (event: any, type: string): void => {
     if (type === "location") {
       setProvince(event.target.innerText);
@@ -150,11 +154,10 @@ const Mainleftpage = () => {
   const [spot, setSpot] = useState<string | any>([]);
   const [spotMatch, setSpotMatch] = useState<string | any>([]);
   const [search, setSearch] = useState<string | any>("");
-  //const [result, setResult] = useState<string | any>([]);
 
   useEffect(() => {
     const place = async (): Promise<any> => {
-      const response = await axios.get("http://localhost:4000/trip/search");
+      const response = await axios.get(`${process.env.REACT_APP_API}/trip/search`);
       setSpot(response.data);
     };
     place();
@@ -181,7 +184,7 @@ const Mainleftpage = () => {
 
   const sendSearchReq = async (): Promise<any> => {
     await axios
-      .post("http://localhost:4000/trip/search", {
+      .post(`${process.env.REACT_APP_API}/trip/search`, {
         inputElement: search,
       })
       .then((res) => {
@@ -196,22 +199,15 @@ const Mainleftpage = () => {
         <div className="mainpage_wrap">
           <div className="mainpage_top"></div>
         </div>
-
         <div className="mainleft_container">
           <div className="place">
             <div className="mainleft_place">
-              {/* <input
-                className="mainleft_placeInput"
-                type="text"
-                list="spotlist"
-                placeholder="지역, 테마, 장소 검색"
-                onChange={placeHandler}
-              ></input> */}
+              {/*장소입력*/}
               <input
                 className="mainleft_placeInput"
                 type="text"
                 list="spotlist"
-                placeholder="지역, 테마, 장소 검색"
+                placeholder="장소 검색"
                 onChange={(e) => searchPlace(e.target.value)}
                 defaultValue={search}
               ></input>
@@ -230,6 +226,7 @@ const Mainleftpage = () => {
                   })}
                 </div>
               )}
+              {/*장소검색*/}
               <img
                 className="mainleft_placeInputImg"
                 src="../img/search.png"
@@ -238,6 +235,7 @@ const Mainleftpage = () => {
                 onClick={sendSearchReq}
               />
             </div>
+            {/*지역입력*/}
             <div className="location">
               <Autocomplete
                 value={value}
@@ -253,11 +251,11 @@ const Mainleftpage = () => {
                 id="controllable-states-demo"
                 options={options}
                 renderInput={(params) => (
-                  <TextField {...params} label="Location" variant="standard" />
+                  <TextField {...params} label="지역 선택" variant="standard" className="loaction_label" />
                 )}
               />
             </div>
-
+            {/*테마입력*/}
             <div className="mainpage_plancontainer">
               <Button aria-describedby={id} type="button" onClick={handleClick}>
                 Theme List
@@ -280,13 +278,12 @@ const Mainleftpage = () => {
                   ))}
                 </div>
               </Popper>
-
+              {/*지역,테마검색*/}
               <div className="searchBtn">
                 <button
                   className="themeButton"
                   onClick={handleSearch}
-                  title="지역&테마로 검색"
-                >
+                  title="지역&테마로 검색">
                   <div className="themeEff"></div>
                   <a>search</a>
                 </button>

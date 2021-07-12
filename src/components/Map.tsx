@@ -51,8 +51,10 @@ const Map = (placedata: any) => {
 
     let bounds = new window.kakao.maps.LatLngBounds();
 
+
     let list = listData;
     console.log(list);
+
 
     let imageSrc = "./img/marker_map_icon.png";
     let imageSize = new window.kakao.maps.Size(50, 50);
