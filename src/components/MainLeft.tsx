@@ -182,7 +182,7 @@ const Mainleftpage = () => {
   };
 
   const sendSearchReq = async (): Promise<any> => {
-    await axios
+    let placeInfo = await axios
       .post(`${process.env.REACT_APP_API}/trip/search`, {
         inputElement: search,
       })
@@ -190,7 +190,17 @@ const Mainleftpage = () => {
         setPlacedata([res.data]);
         setSearch("");
       });
+    return placeInfo;
   };
+  //   await axios
+  //     .post(`${process.env.REACT_APP_API}/trip/search`, {
+  //       inputElement: search,
+  //     })
+  //     .then((res) => {
+  //       setPlacedata([res.data]);
+  //       setSearch("");
+  //     });
+  // };
 
   return (
     <>

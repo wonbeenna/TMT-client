@@ -28,14 +28,14 @@ const MyMap = (placedata: any) => {
                 },
             });
             setMyplace(response.data);
-            console.log('myres', response.data)
+            // console.log('myres', response.data)
         }
         fetchData();
     }, []);
 
     const listData = useSelector((state: RootReducer) => state.placeListReducer);
 
-    console.log('MyMap_listData1', listData.listData[0]);
+    // console.log('MyMap_listData1', listData.listData[0]);
 
     // useEffect(() => {
     //     let mapContainer = document.getElementById("staticMap");
@@ -73,7 +73,7 @@ const MyMap = (placedata: any) => {
         let bounds = new window.kakao.maps.LatLngBounds()
 
 
-        listData.listData[0].forEach((el: any) => {
+        listData.listData[0]?.forEach((el: any) => {
 
             let imageSrc = "./img/marker_map_icon.png";
             let imageSize = new window.kakao.maps.Size(50, 50);

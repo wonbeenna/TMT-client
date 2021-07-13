@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import MyMap from "../components/MyMap";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import MyTriproute from "../components/MyTriproute"
 import { DayPickerRangeController, FocusedInputShape } from "react-dates";
 import "./CSS/Mypage.css";
 import "react-dates/initialize";
@@ -33,21 +34,32 @@ const Mypage = () => {
   );
   const setAccessToken = accessToken.AccessToken.accessToken;
 
-  const [myplace, setMyplace] = useState([]);
-  const searchUrl = `${process.env.REACT_APP_API}/user/myPage`;
+  const [myplace, setMyplace] = useState<Array<object>>([]);
+  const searchURL = `${process.env.REACT_APP_API}/user/myPage`;
+
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get(searchUrl, {
+      const response = await axios.get(searchURL, {
         headers: {
           authorization: `Bearer ${setAccessToken}`,
         },
       });
-      setMyplace(response.data);
-      console.log('myres1', response.data)
+      setMyplace(response.data.spot);
+
+      console.log('myres1', response.data.spot)
     }
     fetchData();
-  }, []);
+  }, [setMyplace]);
 
+
+
+
+  // response.data
+  // {spot: Array(2), startDate: "2021-07-13", endDate: "2021-07-13"}
+  // response.data.spot
+  // [Array(1), Array(1)]
+  // -> place: response.data.spot.map(el.place, el.address, )
+  // 여기서 lat, long받을수있는데 이걸 mymap에 뿌려줄까?
   return (
     <>
       <Modal />
@@ -58,14 +70,8 @@ const Mypage = () => {
             <MyMap />
           </div>
           <div className="route">여행 경로
-
-            <img
-              src={"../img/Logo009.png"
-              }
-            />
-            <span>장소</span>
-
-
+            <MyTriproute
+              myplace={myplace} />
           </div>
         </div>
         <div className="mypageMap">
