@@ -40,7 +40,7 @@ const Header = () => {
       return (
         <div className="headerContainer">
           <div className="headerLogo" onClick={landingPage}>
-            <img src="../img/Logo006.png" alt="" />
+            <img src="../img/Logo005.png" alt="" />
           </div>
           {isLogin ? (
             <div className="headerRightside">
@@ -86,7 +86,7 @@ const Header = () => {
       return (
         <div className="headerContainer">
           <div className="headerLogo" onClick={landingPage}>
-            <img src="../img/Logo006.png" alt="" />
+            <img src="../img/Logo005.png" alt="" />
           </div>
           {isLogin ? (
             <div className="headerRightside">

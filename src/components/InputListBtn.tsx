@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Actions } from "../actions";
 import { RootReducer } from "../reducers";
 
 function InputListBtn({ startToday, endToday, lists }: any) {
-  // let listData2 = useSelector(
-  //   (state: RootReducer) => state.savePlaceListReducer.place
-  // );
+  const [insertPlace, setInsertPlace] = useState<any>([]);
 
   const sendHandler = () => {
-    // console.log(lists);
+    console.log(lists);
     // console.log(startToday, endToday);
+    // post >  insertPlace
+    console.log(insertPlace);
   };
   // console.log(lists);
   // console.log(startToday, endToday);
