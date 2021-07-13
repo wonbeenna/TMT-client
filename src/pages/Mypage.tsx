@@ -3,6 +3,7 @@ import MyMap from "../components/MyMap";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import MyTriproute from "../components/MyTriproute"
+import UserLike from "../components/UserLike"
 import { DayPickerRangeController, FocusedInputShape } from "react-dates";
 import "./CSS/Mypage.css";
 import "react-dates/initialize";
@@ -17,8 +18,10 @@ const Mypage = () => {
   const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(
     null
   );
-  const startDate = moment("2021-07-01");
-  const endDate = moment("2021-07-10");
+  const [startdate, setStartdate] = useState<string | null>(null);
+  const [enddate, setEnddate] = useState<string | null>(null);
+  const startDate = moment(startdate);
+  const endDate = moment(enddate);
 
   const handlendDatesChange = (arg: {
     startDate: moment.Moment | null;
@@ -34,6 +37,7 @@ const Mypage = () => {
   const setAccessToken = accessToken.AccessToken.accessToken;
 
   const [myplace, setMyplace] = useState<Array<object>>([]);
+
   const searchURL = `${process.env.REACT_APP_API}/user/myPage`;
 
   useEffect(() => {
@@ -45,21 +49,41 @@ const Mypage = () => {
       });
 
       setMyplace(response.data.spot);
-
-      console.log('myres1', response.data.spot)
+      setStartdate(response.data.startDate)
+      setEnddate(response.data.endDate)
+      console.log('myres1', response.data.startDate, response.data.endDate)
+      console.log(typeof (response.data.endDate))
     }
     fetchData();
   }, [setMyplace]);
 
+  console.log('startDate,endDate', startDate, endDate)
+  // const _startDate = moment(startDate).format("YYYY-MM-DD");
+  // const _endDate = moment(endDate).format("YYYY-MM-DD");
 
+  const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
+  const [likePlace, setLikePlace] = useState<any>([]);
+  const likeURL = `${process.env.REACT_APP_API}/user/like`;
 
+  useEffect(() => {
+    const fetchData = async () => {
+      if (isLogin) {
+        await axios
+          .get(likeURL, {
+            headers: {
+              authorization: `Bearer ${setAccessToken}`,
+            },
+          })
+          .then((res) => setLikePlace(res.data.place));
+      } else {
+        setLikePlace([]);
+      }
+    };
+    fetchData();
+  }, []);
 
-  // response.data
-  // {spot: Array(2), startDate: "2021-07-13", endDate: "2021-07-13"}
-  // response.data.spot
-  // [Array(1), Array(1)]
-  // -> place: response.data.spot.map(el.place, el.address, )
-  // 여기서 lat, long받을수있는데 이걸 mymap에 뿌려줄까?
+  console.log('likePlace', likePlace)
+
   return (
     <>
       <Modal />
@@ -91,9 +115,10 @@ const Mypage = () => {
               monthFormat={"YYYY년 MM월"}
             />
           </div>
-          {/* <div className="like"> */}
-          여행지like
-          {/* </div> */}
+          <div className="like">
+            여행지like
+            <UserLike likePlace={likePlace} />
+          </div>
         </div>
       </div>
       <Footer />

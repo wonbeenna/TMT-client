@@ -8,15 +8,6 @@ const MyTriproute = ({ myplace }: any) => {
     //     console.log('el', el[0].place)
     //     // setMyroute([...myroute].concat(el[0].place))
     // })
-    console.log('myroute', myroute)
-    myplace.map((el: any) => {
-        el.map((e: any) => {
-            // setMyroute([...myroute].concat(e.place))
-            console.log('myroute', myroute)
-            console.log('e', e)
-            console.log('e.place', e.place)
-        })
-    })
 
     return (
         <>
