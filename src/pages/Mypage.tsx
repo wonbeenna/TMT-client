@@ -5,7 +5,6 @@ import Footer from "../components/Footer";
 import { DayPickerRangeController, FocusedInputShape } from "react-dates";
 import "./CSS/Mypage.css";
 import "react-dates/initialize";
-import "../components/CSS/_datepicker.css";
 import moment from "moment";
 import Modal from "../components/Modal";
 import { withRouter } from "react-router-dom";
@@ -43,7 +42,7 @@ const Mypage = () => {
         },
       });
       setMyplace(response.data);
-      console.log('myres1', response.data)
+      console.log("myres1", response.data);
     }
     fetchData();
   }, []);
@@ -52,20 +51,14 @@ const Mypage = () => {
     <>
       <Modal />
       <Header />
+      <MyMap />
       <div className="mypage">
         <div className="mypageMap">
-          <div className="MapWrap">
-            <MyMap />
-          </div>
-          <div className="route">여행 경로
-
-            <img
-              src={"../img/Logo009.png"
-              }
-            />
+          <div className="MapWrap"></div>
+          <div className="route">
+            여행 경로
+            <img src={"../img/Logo009.png"} />
             <span>장소</span>
-
-
           </div>
         </div>
         <div className="mypageMap">

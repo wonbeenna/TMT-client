@@ -120,14 +120,13 @@ const Placelist = ({
                 //   })
                 //   .catch((err) => console.log("err", err));
               };
-
               return (
                 <div key={idx} className="placeList__destination">
                   <div
                     className="placeList__destination__list"
                     onClick={() => inputHandler()}
                   >
-                    <img src={el.img} alt="tes1" />
+                    <img src={el.photo} alt="tes1" />
                   </div>
                   <div
                     className="placeList__list__container"

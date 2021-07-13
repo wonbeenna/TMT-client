@@ -6,7 +6,6 @@ import { RootReducer } from "../reducers";
 import axios from "axios";
 
 function InputListBtn({ startToday, endToday, lists }: any) {
-
   // let listData2 = useSelector(
   //   (state: RootReducer) => state.savePlaceListReducer.place
   // );
@@ -35,39 +34,37 @@ function InputListBtn({ startToday, endToday, lists }: any) {
   //   })
   // };
   const sendHandler = () => {
-
     // const sendURL = `${process.env.REACT_APP_API}/trip/insertSpot`;
     // axios.post(sendURL, {
     //   place: insertPlace,
     //   startDate: startToday,
     //   endDate: endToday
     // })
-    console.log('Btninsidelists', lists);
+    console.log("Btninsidelists", lists);
     // console.log(startToday, endToday);
     // post >  insertPlace
     // console.log('BtninsideinsertPlace', insertPlace);
 
-    // => drag-drop으로 순서를 바꾸면 insertPlace이 이상하게 바뀐다. 
-    // 덕수궁 경복궁 청계천 누르고 경복궁을 삭제하고 덕수궁 청계천 순서바꾸면 
+    // => drag-drop으로 순서를 바꾸면 insertPlace이 이상하게 바뀐다.
+    // 덕수궁 경복궁 청계천 누르고 경복궁을 삭제하고 덕수궁 청계천 순서바꾸면
     // BtninsertPlace (5) ["덕수궁", "경복궁", "청계천", "청계천", "덕수궁"]
-    // => 삭제를 하면 insertPlace이 이상하게 바뀐다. 
-    // 덕수궁 경복궁 청계천 누르고 청계천을 삭제하면 
+    // => 삭제를 하면 insertPlace이 이상하게 바뀐다.
+    // 덕수궁 경복궁 청계천 누르고 청계천을 삭제하면
     // BtninsideinsertPlace (4) ["덕수궁", "경복궁", "청계천", "경복궁"]
     // 덕수궁 경복궁 청계천 누르고 경복궁을 삭제하면
     // BtninsertPlace (4) ["덕수궁", "경복궁", "청계천", "청계천"]
     // => 마지막장소가 한번더 저장이되네
     // 삭제 기능을 추가해야할것같다(쓰레기통눌렀을 때, 저장하기 눌렀을때는 페이지전환 )
-    // 마지막을 추가하는코드를 useEffect로해서 그런것같은데 
+    // 마지막을 추가하는코드를 useEffect로해서 그런것같은데
 
     // => list는 순서를 바꾼대로 적용이 잘되니깐 POST할때 lists로 보내줘야겠음 (아니,안된다. 정보를 다보내는게아니라 place만 뽑아서 보내야함)
     // => 내일 생각하자
     // console.log('BtnstartToday', startToday)
     // console.log('BtnendToday', endToday)
-
   };
   // console.log('BtninsertPlace', insertPlace);
   // console.log('Btnlists', lists)
-  //place만 뽑아서보내야한다. 
+  //place만 뽑아서보내야한다.
   // let arr: any[]
   // const Arr: any = arr.concat(lists.map((el: object | any) => {
   //   console.log('el', el.place)
@@ -109,7 +106,6 @@ function InputListBtn({ startToday, endToday, lists }: any) {
   //     })}
   //   </div>
   // );
-
 }
 
 export default InputListBtn;
