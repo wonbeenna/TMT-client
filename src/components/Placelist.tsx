@@ -91,24 +91,22 @@ const Placelist = ({
                 setLists([...lists].concat(el));
 
                 //상렬님 API구현 다 되면 확인하기
-                const searchURL = `${process.env.REACT_APP_API}/trip/recommend`;
-                axios
-                  .post(
-                    searchURL,
-                    {
-                      place: el.place,
-                    },
-                    {
-                      withCredentials: true,
-                    }
-                  )
-                  .then((res) => {
-
-                    console.log("recommendPOST_res.data", res.data);
-                    // => 받은 데이터값의 lat,long으로 mainpage 지도에 마커를 찍어줘야한다.
-        
-                  })
-                  .catch((err) => console.log("err", err));
+                // const searchURL = `${process.env.REACT_APP_API}/trip/recommend`;
+                // axios
+                //   .post(
+                //     searchURL,
+                //     {
+                //       place: el.place,
+                //     },
+                //     {
+                //       withCredentials: true,
+                //     }
+                //   )
+                //   .then((res) => {
+                //     console.log("recommendPOST_res.data", res.data);
+                //     // => 받은 데이터값의 lat,long으로 mainpage 지도에 마커를 찍어줘야한다.
+                //   })
+                //   .catch((err) => console.log("err", err));
               };
 
               return (
