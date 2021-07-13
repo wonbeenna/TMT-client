@@ -13,6 +13,7 @@ function InputListBtn({ startToday, endToday, lists }: any) {
   const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
 
   const sendHandler = () => {
+
     if (isLogin) {
       const sendURL = `${process.env.REACT_APP_API}/trip/insertSpot`;
       axios.post(sendURL, {
@@ -43,6 +44,7 @@ function InputListBtn({ startToday, endToday, lists }: any) {
       </button>
     </div>
   );
+
 }
 
 export default InputListBtn;

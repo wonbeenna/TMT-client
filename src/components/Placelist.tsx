@@ -120,7 +120,6 @@ const Placelist = ({
                 //   })
                 //   .catch((err) => console.log("err", err));
               };
-
               return (
                 <div key={idx} className="placeList__destination">
                   <div
