@@ -30,8 +30,8 @@ const Map = (placedata: any) => {
     kakao.maps.load(() => {
       let container = document.getElementById("map");
       let options = {
-        center: new kakao.maps.LatLng(36.579698652999916, 125.37699720184801),
-        level: 12,
+        center: new kakao.maps.LatLng(37.579698652999916, 126.97699720184801),
+        level: 8,
       };
       let map = new kakao.maps.Map(container, options);
       setMap(map);
@@ -58,10 +58,12 @@ const Map = (placedata: any) => {
           image: markerImage,
         })
       );
-      let bounds = new kakao.maps.LatLngBounds();
+      let sw = new kakao.maps.LatLng(38, 127.5);
+      let ne = new kakao.maps.LatLng(37, 127);
+      let bounds = new kakao.maps.LatLngBounds(sw, ne);
       bounds.extend(new kakao.maps.LatLng(el.lat, el.long));
       linePath.push(new kakao.maps.LatLng(el.lat, el.long));
-      map.setBounds(bounds, 90, 30, 10, 400);
+      map.setBounds(bounds);
     });
     let polyline = new kakao.maps.Polyline({
       path: linePath,
