@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Actions } from "../actions";
 import { RootReducer } from "../reducers";
 import axios from "axios";
 
 function InputListBtn({ startToday, endToday, lists }: any) {
+
   // let listData2 = useSelector(
   //   (state: RootReducer) => state.savePlaceListReducer.place
   // );
@@ -33,6 +35,7 @@ function InputListBtn({ startToday, endToday, lists }: any) {
   //   })
   // };
   const sendHandler = () => {
+
     // const sendURL = `${process.env.REACT_APP_API}/trip/insertSpot`;
     // axios.post(sendURL, {
     //   place: insertPlace,
@@ -60,6 +63,7 @@ function InputListBtn({ startToday, endToday, lists }: any) {
     // => 내일 생각하자
     // console.log('BtnstartToday', startToday)
     // console.log('BtnendToday', endToday)
+
   };
   // console.log('BtninsertPlace', insertPlace);
   // console.log('Btnlists', lists)

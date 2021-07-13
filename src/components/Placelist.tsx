@@ -105,6 +105,7 @@ const Placelist = ({
                 //   )
                 //   .then((res) => {
                 //     console.log("recommendPOST_res.data", res.data);
+
                 //     setRecommend(res.data)
                 //     // => 받은 데이터값의 lat,long으로 mainpage 지도에 마커를 찍어줘야한다.
                 //     // => 리덕스로 상태 관리
@@ -115,6 +116,7 @@ const Placelist = ({
                 //     // __proto__: Object
                 //     // message: "Create success"
                 //     // __proto__: Object
+
                 //   })
                 //   .catch((err) => console.log("err", err));
               };
