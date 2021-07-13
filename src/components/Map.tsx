@@ -66,6 +66,7 @@ const Map = (placedata: any) => {
         strokeColor: "#75B8FA",
         strokeOpacity: 0.7,
         strokeStyle: "solid",
+
       });
       polyline.setMap(map);
 
@@ -84,6 +85,7 @@ const Map = (placedata: any) => {
 
   console.log(ListData[0]);
   console.log(pathArr);
+
 
   return (
     <div className="Map">

@@ -16,6 +16,11 @@
   flex-direction: column;
   border: 1px solid pink;
 }
+.route img {
+  width: 100px;
+  height: 100px;
+}
+
 /* .mypageroutewrap {
   display: flex;
   flex-direction: column;
