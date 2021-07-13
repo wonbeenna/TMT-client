@@ -67,11 +67,15 @@ const Mypage = () => {
       <MyMap />
       <div className="mypage">
         <div className="mypageMap">
-          <div className="MapWrap"></div>
+
+          <div className="MapWrap">
+            <MyMap />
+          </div>
           <div className="route">
-            여행 경로
-            <img src={"../img/Logo009.png"} />
-            <span>장소</span>
+            <div className="route_title">여행 경로</div>
+            <MyTriproute
+              myplace={myplace} />
+
           </div>
         </div>
         <div className="mypageMap">
@@ -87,7 +91,9 @@ const Mypage = () => {
               monthFormat={"YYYY년 MM월"}
             />
           </div>
-          <div className="like">여행지like</div>
+          {/* <div className="like"> */}
+          여행지like
+          {/* </div> */}
         </div>
       </div>
       <Footer />
