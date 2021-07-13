@@ -125,84 +125,83 @@ const MyMap = (placedata: any) => {
   );
 };
 
+//   // 이미지 지도를 표시할 div와 옵션으로 이미지 지도를 생성합니다
+//   var staticMap = new window.kakao.maps.Map(
+//     staticMapContainer,
+//     staticMapOption
+//   );
 
-  //   // 이미지 지도를 표시할 div와 옵션으로 이미지 지도를 생성합니다
-  //   var staticMap = new window.kakao.maps.Map(
-  //     staticMapContainer,
-  //     staticMapOption
-  //   );
+//   const setAccessToken = accessToken.AccessToken.accessToken;
 
-  //   const setAccessToken = accessToken.AccessToken.accessToken;
+//   const [myplace, setMyplace] = useState([]);
+//   const searchUrl = `${process.env.REACT_APP_API}/user/myPage`;
+//   useEffect(() => {
+//     async function fetchData() {
+//       const response = await axios.get(searchUrl, {
+//         headers: {
+//           authorization: `Bearer ${setAccessToken}`,
+//         },
+//       });
+//       setMyplace(response.data);
+//       // console.log('myres', response.data)
+//     }
+//     fetchData();
+//   }, []);
 
-  //   const [myplace, setMyplace] = useState([]);
-  //   const searchUrl = `${process.env.REACT_APP_API}/user/myPage`;
-  //   useEffect(() => {
-  //     async function fetchData() {
-  //       const response = await axios.get(searchUrl, {
-  //         headers: {
-  //           authorization: `Bearer ${setAccessToken}`,
-  //         },
-  //       });
-  //       setMyplace(response.data);
-  //       // console.log('myres', response.data)
-  //     }
-  //     fetchData();
-  //   }, []);
+//   const listData = useSelector((state: RootReducer) => state.placeListReducer);
 
-  //   const listData = useSelector((state: RootReducer) => state.placeListReducer);
+//   // console.log('MyMap_listData1', listData.listData[0]);
 
-  //   // console.log('MyMap_listData1', listData.listData[0]);
+//   // useEffect(() => {
+//   //     let mapContainer = document.getElementById("staticMap");
+//   //     let mapOption = {
+//   //         center: new window.kakao.maps.LatLng(
+//   //             33.36197069309868, 126.52923096776973
+//   //         ), // 지도생길때 보여주는 범위 좌표
+//   //         level: 8,
+//   //         draggable: true,
+//   //     };
+//   //     let map = new window.kakao.maps.Map(mapContainer, mapOption);
+//   // })
+//   useEffect(() => {
 
-  //   // useEffect(() => {
-  //   //     let mapContainer = document.getElementById("staticMap");
-  //   //     let mapOption = {
-  //   //         center: new window.kakao.maps.LatLng(
-  //   //             33.36197069309868, 126.52923096776973
-  //   //         ), // 지도생길때 보여주는 범위 좌표
-  //   //         level: 8,
-  //   //         draggable: true,
-  //   //     };
-  //   //     let map = new window.kakao.maps.Map(mapContainer, mapOption);
-  //   // })
-  //   useEffect(() => {
+//     var markerPosition = new window.kakao.maps.LatLng(33.450701, 126.570667);
 
-  //     var markerPosition = new window.kakao.maps.LatLng(33.450701, 126.570667);
+//     const linePath: any[] = [];
 
-  //     const linePath: any[] = [];
+//     let bounds = new window.kakao.maps.LatLngBounds();
 
-  //     let bounds = new window.kakao.maps.LatLngBounds();
+//     // listData.listData[0].forEach((el: any) => {
 
-  //     // listData.listData[0].forEach((el: any) => {
+//     //     let imageSrc = "./img/marker_map_icon.png";
+//     //     let imageSize = new window.kakao.maps.Size(50, 50);
+//     //     let markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize);
 
-  //     //     let imageSrc = "./img/marker_map_icon.png";
-  //     //     let imageSize = new window.kakao.maps.Size(50, 50);
-  //     //     let markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize);
+//     //     let marker = new window.kakao.maps.Marker({
+//     //         map: staticMap, // 마커를 표시할 지도
+//     //         position: new window.kakao.maps.LatLng(el.lat, el.long),
+//     //         // title: el.place, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+//     //         image: markerImage, // 마커 이미지
+//     //     });
 
-  //     //     let marker = new window.kakao.maps.Marker({
-  //     //         map: staticMap, // 마커를 표시할 지도
-  //     //         position: new window.kakao.maps.LatLng(el.lat, el.long),
-  //     //         // title: el.place, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-  //     //         image: markerImage, // 마커 이미지
-  //     //     });
+//     //     marker.setMap(staticMap);
 
-  //     //     marker.setMap(staticMap);
+//     listData.listData[0]?.forEach((el: any) => {
 
-  //     listData.listData[0]?.forEach((el: any) => {
+//       //     //   markers.push(marker);
 
-  //       //     //   markers.push(marker);
+//       // });
 
-  //       // });
+//       if (!isNaN(bounds.ha)) {
+//         staticMap.setBounds(bounds, 90, 30, 10, 400);
+//       }
+//     });
+//   })
+//   return (
+//     <div>
+//       <div id="staticMaps" />
+//     </div>
+//   );
+// });
 
-  //       if (!isNaN(bounds.ha)) {
-  //         staticMap.setBounds(bounds, 90, 30, 10, 400);
-  //       }
-  //     });
-  //   })
-  //   return (
-  //     <div>
-  //       <div id="staticMaps" />
-  //     </div>
-  //   );
-  // });
-}
 export default MyMap;

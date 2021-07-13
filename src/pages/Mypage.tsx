@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import MyMap from "../components/MyMap";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import MyTriproute from "../components/MyTriproute"
-import UserLike from "../components/UserLike"
+
+import MyTriproute from "../components/MyTriproute";
+
 import { DayPickerRangeController, FocusedInputShape } from "react-dates";
 import "./CSS/Mypage.css";
 import "react-dates/initialize";
-import moment from "moment";
+import moment, { Moment } from "moment";
 import Modal from "../components/Modal";
 import { withRouter } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -15,13 +16,15 @@ import { RootReducer } from "../reducers";
 import axios from "axios";
 
 const Mypage = () => {
+  const [myplace, setMyPlace] = useState<Array<object>>([]);
+  const [startDate, setStartDate] = useState<Moment | null>(null);
+  const [endDate, setEndDate] = useState<Moment | null>(null);
   const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(
     null
   );
-  const [startdate, setStartdate] = useState<string | null>(null);
-  const [enddate, setEnddate] = useState<string | null>(null);
-  const startDate = moment(startdate);
-  const endDate = moment(enddate);
+
+  const _startDate = moment(startDate);
+  const _endDate = moment(endDate);
 
   const handlendDatesChange = (arg: {
     startDate: moment.Moment | null;
@@ -30,16 +33,6 @@ const Mypage = () => {
     console.log(arg.startDate);
     console.log(arg.endDate);
   };
-
-  const accessToken: any = useSelector(
-    (state: RootReducer) => state.accessTokenReducer
-  );
-  const setAccessToken = accessToken.AccessToken.accessToken;
-
-  const [myplace, setMyplace] = useState<Array<object>>([]);
-
-  const searchURL = `${process.env.REACT_APP_API}/user/myPage`;
-
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get(searchURL, {
@@ -48,41 +41,22 @@ const Mypage = () => {
         },
       });
 
-      setMyplace(response.data.spot);
-      setStartdate(response.data.startDate)
-      setEnddate(response.data.endDate)
-      console.log('myres1', response.data.startDate, response.data.endDate)
-      console.log(typeof (response.data.endDate))
+      setMyPlace(response.data.spot);
+      setStartDate(moment(response.data.startDate));
+      setEndDate(moment(response.data.endDate));
     }
-    fetchData();
-  }, [setMyplace]);
-
-  console.log('startDate,endDate', startDate, endDate)
-  // const _startDate = moment(startDate).format("YYYY-MM-DD");
-  // const _endDate = moment(endDate).format("YYYY-MM-DD");
-
-  const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
-  const [likePlace, setLikePlace] = useState<any>([]);
-  const likeURL = `${process.env.REACT_APP_API}/user/like`;
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (isLogin) {
-        await axios
-          .get(likeURL, {
-            headers: {
-              authorization: `Bearer ${setAccessToken}`,
-            },
-          })
-          .then((res) => setLikePlace(res.data.place));
-      } else {
-        setLikePlace([]);
-      }
-    };
     fetchData();
   }, []);
 
-  console.log('likePlace', likePlace)
+  const accessToken: any = useSelector(
+    (state: RootReducer) => state.accessTokenReducer
+  );
+  const setAccessToken = accessToken.AccessToken.accessToken;
+
+  const searchURL = `${process.env.REACT_APP_API}/user/myPage`;
+  console.log(_startDate);
+  console.log(_endDate);
+
 
   return (
     <>
@@ -91,15 +65,10 @@ const Mypage = () => {
       {/* <MyMap /> */}
       <div className="mypage">
         <div className="mypageMap">
-
-          <div className="MapWrap">
-            {/* <MyMap /> */}
-          </div>
+          <div className="MapWrap">{/* <MyMap /> */}</div>
           <div className="route">
             <div className="route_title">여행 경로</div>
-            <MyTriproute
-              myplace={myplace} />
-
+            <MyTriproute myplace={myplace} />
           </div>
         </div>
         <div className="mypageMap">
