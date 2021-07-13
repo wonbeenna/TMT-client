@@ -90,7 +90,7 @@ const Placelist = ({
             {place.map((el: any, idx: number) => {
               const inputHandler = () => {
                 setLists([...lists].concat(el));
-
+                console.log('Placelist_lists', lists)
                 //상렬님 API구현 다 되면 확인하기
                 // const searchURL = `${process.env.REACT_APP_API}/trip/recommend`;
                 // axios
@@ -127,7 +127,7 @@ const Placelist = ({
                     className="placeList__destination__list"
                     onClick={() => inputHandler()}
                   >
-                    <img src={el.img} alt="tes1" />
+                    <img src={el.photo} alt="tes1" />
                   </div>
                   <div
                     className="placeList__list__container"
