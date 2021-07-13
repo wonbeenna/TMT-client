@@ -4,6 +4,7 @@ const MyTriproute = ({ myplace }: any) => {
   // console.log('myplace11', myplace)
   const [myroute, setMyroute] = useState<Array<string>>([]);
 
+
   // myplace.map((el: any) => {
   //     console.log('el', el[0].place)
   //     // setMyroute([...myroute].concat(el[0].place))
@@ -17,6 +18,7 @@ const MyTriproute = ({ myplace }: any) => {
       // console.log('e.place', e.place)
     });
   });
+
 
   return (
     <>

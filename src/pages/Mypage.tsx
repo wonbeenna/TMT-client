@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import MyMap from "../components/MyMap";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+
 import MyTriproute from "../components/MyTriproute";
+
 import { DayPickerRangeController, FocusedInputShape } from "react-dates";
 import "./CSS/Mypage.css";
 import "react-dates/initialize";
@@ -20,8 +22,10 @@ const Mypage = () => {
   const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(
     null
   );
+
   const _startDate = moment(startDate);
   const _endDate = moment(endDate);
+
   const handlendDatesChange = (arg: {
     startDate: moment.Moment | null;
     endDate: moment.Moment | null;
@@ -36,6 +40,7 @@ const Mypage = () => {
           authorization: `Bearer ${setAccessToken}`,
         },
       });
+
       setMyPlace(response.data.spot);
       setStartDate(moment(response.data.startDate));
       setEndDate(moment(response.data.endDate));
@@ -51,6 +56,7 @@ const Mypage = () => {
   const searchURL = `${process.env.REACT_APP_API}/user/myPage`;
   console.log(_startDate);
   console.log(_endDate);
+
 
   return (
     <>
@@ -78,9 +84,10 @@ const Mypage = () => {
               monthFormat={"YYYY년 MM월"}
             />
           </div>
-          {/* <div className="like"> */}
-          여행지like
-          {/* </div> */}
+          <div className="like">
+            여행지like
+            <UserLike likePlace={likePlace} />
+          </div>
         </div>
       </div>
       <Footer />
