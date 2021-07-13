@@ -69,7 +69,8 @@ const Mypage = () => {
           <div className="MapWrap">
             <MyMap />
           </div>
-          <div className="route">여행 경로
+          <div className="route">
+            <div className="route_title">여행 경로</div>
             <MyTriproute
               myplace={myplace} />
           </div>
@@ -87,7 +88,9 @@ const Mypage = () => {
               monthFormat={"YYYY년 MM월"}
             />
           </div>
-          <div className="like">여행지like</div>
+          {/* <div className="like"> */}
+          여행지like
+          {/* </div> */}
         </div>
       </div>
       <Footer />

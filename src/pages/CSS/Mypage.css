@@ -11,10 +11,37 @@
   width: 700px;
   height: 500px;
   box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 16px 0px;
-  justify-content: center;
+  /* justify-content: center; */
   display: flex;
   flex-direction: column;
   border: 1px solid pink;
+}
+/* .route_title {
+  position: relative;
+  top: -190px;
+} */
+.route_body {
+  align-items: center;
+  justify-content: center;
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: row;
+}
+.route_oneofroute {
+  display: flex;
+  flex-direction: column;
+  margin: 3px 5px;
+}
+.testimgg {
+  /* transition-property: background-color; */
+  /*변형 완료 1초*/
+  transition-duration: 1s;
+  /*빠른 시작 서서히 감속*/
+  transition-timing-function: ease-out;
+}
+.testimgg:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transition: rgba(255, 255, 255, 0.3) 1s ease-out;
 }
 .route img {
   width: 100px;
