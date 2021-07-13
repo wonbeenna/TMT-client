@@ -6,7 +6,6 @@ import MyTriproute from "../components/MyTriproute"
 import { DayPickerRangeController, FocusedInputShape } from "react-dates";
 import "./CSS/Mypage.css";
 import "react-dates/initialize";
-import "../components/CSS/_datepicker.css";
 import moment from "moment";
 import Modal from "../components/Modal";
 import { withRouter } from "react-router-dom";
@@ -44,6 +43,7 @@ const Mypage = () => {
           authorization: `Bearer ${setAccessToken}`,
         },
       });
+
       setMyplace(response.data.spot);
 
       console.log('myres1', response.data.spot)
@@ -64,8 +64,10 @@ const Mypage = () => {
     <>
       <Modal />
       <Header />
+      <MyMap />
       <div className="mypage">
         <div className="mypageMap">
+
           <div className="MapWrap">
             <MyMap />
           </div>
@@ -73,6 +75,7 @@ const Mypage = () => {
             <div className="route_title">여행 경로</div>
             <MyTriproute
               myplace={myplace} />
+
           </div>
         </div>
         <div className="mypageMap">

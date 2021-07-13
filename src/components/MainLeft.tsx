@@ -8,6 +8,7 @@ import Placelist from "./Placelist";
 import axios from "axios";
 import "./CSS/MainLeft.css";
 import "react-dates/initialize";
+import "./CSS/_datepicker.css";
 import moment, { Moment } from "moment";
 import { DateRangePicker, FocusedInputShape } from "react-dates";
 require("dotenv").config();
@@ -68,7 +69,6 @@ const Mainleftpage = () => {
   const [placedata, setPlacedata]: any = useState<string | any>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [postsPerPage] = useState<number>(10);
-
 
   //지금 db가 없는데 나중에 넣어주시겠지?
   useEffect(() => {
@@ -156,7 +156,9 @@ const Mainleftpage = () => {
 
   useEffect(() => {
     const place = async (): Promise<any> => {
-      const response = await axios.get(`${process.env.REACT_APP_API}/trip/search`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_API}/trip/search`
+      );
       setSpot(response.data);
     };
     place();
@@ -260,7 +262,12 @@ const Mainleftpage = () => {
                 id="controllable-states-demo"
                 options={options}
                 renderInput={(params) => (
-                  <TextField {...params} label="지역 선택" variant="standard" className="loaction_label" />
+                  <TextField
+                    {...params}
+                    label="지역 선택"
+                    variant="standard"
+                    className="loaction_label"
+                  />
                 )}
               />
             </div>
@@ -292,7 +299,8 @@ const Mainleftpage = () => {
                 <button
                   className="themeButton"
                   onClick={handleSearch}
-                  title="지역&테마로 검색">
+                  title="지역&테마로 검색"
+                >
                   <div className="themeEff"></div>
                   <a>search</a>
                 </button>
