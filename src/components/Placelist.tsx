@@ -79,6 +79,7 @@ const Placelist = ({
       ModalHandler("LikeCheckModal");
     }
   };
+  const [recommend, setRecommend]: any = useState<string | any>([]);
 
   return (
     <>
@@ -91,24 +92,31 @@ const Placelist = ({
                 setLists([...lists].concat(el));
 
                 //상렬님 API구현 다 되면 확인하기
-                const searchURL = `${process.env.REACT_APP_API}/trip/recommend`;
-                axios
-                  .post(
-                    searchURL,
-                    {
-                      place: el.place,
-                    },
-                    {
-                      withCredentials: true,
-                    }
-                  )
-                  .then((res) => {
-
-                    console.log("recommendPOST_res.data", res.data);
-                    // => 받은 데이터값의 lat,long으로 mainpage 지도에 마커를 찍어줘야한다.
-        
-                  })
-                  .catch((err) => console.log("err", err));
+                // const searchURL = `${process.env.REACT_APP_API}/trip/recommend`;
+                // axios
+                //   .post(
+                //     searchURL,
+                //     {
+                //       place: el.place,
+                //     },
+                //     {
+                //       withCredentials: true,
+                //     }
+                //   )
+                //   .then((res) => {
+                //     console.log("recommendPOST_res.data", res.data);
+                //     setRecommend(res.data)
+                //     // => 받은 데이터값의 lat,long으로 mainpage 지도에 마커를 찍어줘야한다.
+                //     // => 리덕스로 상태 관리
+                //     // recommendPOST_res.data 콘솔결과
+                //     // {message: "Create success", data: {…}}
+                //     // data:
+                //     // post: {_id: "60ec429d9c5eed887741f6f2", __v: 0}
+                //     // __proto__: Object
+                //     // message: "Create success"
+                //     // __proto__: Object
+                //   })
+                //   .catch((err) => console.log("err", err));
               };
 
               return (

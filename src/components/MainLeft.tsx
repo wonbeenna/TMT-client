@@ -70,8 +70,7 @@ const Mainleftpage = () => {
   const [postsPerPage] = useState<number>(10);
 
 
- 
-
+  //지금 db가 없는데 나중에 넣어주시겠지?
   useEffect(() => {
     const listURL = `${process.env.REACT_APP_API}/trip/list`;
     const fetchData = async () => {
@@ -79,7 +78,8 @@ const Mainleftpage = () => {
     };
     fetchData();
   }, []);
- //지역 onchange
+
+  //지역 onchange
   const locationHandler = (event: any, type: string): void => {
     if (type === "location") {
       setProvince(event.target.innerText);
@@ -88,7 +88,6 @@ const Mainleftpage = () => {
 
   const handleSearch = () => {
     const searchURL = `${process.env.REACT_APP_API}/trip/list`;
-
     axios
       .post(
         searchURL,
@@ -258,7 +257,7 @@ const Mainleftpage = () => {
             {/*테마입력*/}
             <div className="mainpage_plancontainer">
               <Button aria-describedby={id} type="button" onClick={handleClick}>
-                Theme List
+                테마 선택
               </Button>
               <Popper id={id} open={open} anchorEl={anchorEl}>
                 <div className={classes.paper}>
