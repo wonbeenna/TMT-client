@@ -19,33 +19,22 @@ const MyTriproute = ({ myplace }: any) => {
     })
 
     return (
-        <div className="route_body">
-            <div className="route_oneofroute">
-                <img className="testimgg" src={"../img/pic1.jpeg"} />
-                <span>d</span>
-            </div>
-            <div className="route_oneofroute">
-                <img src={"../img/pic1.jpeg"} />
-                <span>d</span>
-            </div>
-            <div className="route_oneofroute">
-                <img src={"../img/pic1.jpeg"} />
-                <span>d</span>
-            </div>
-            <div>
+        <>
+            {/* <img src={"../img/pic1.jpeg"} /> */}
+            <div className="route_body">
                 {myplace.map((el: any) => {
-                    el.map((e: any) => {
+                    return el.map((e: any) => {
                         return (
-                            <div>
+                            <div className="route_oneofroute">
                                 <img src={e.photo} />
-                                <input type='text' value={e.place} />
-                                <p>{e.place}whereru</p>
+                                <p>{e.place}</p>
                             </div>
-                        )
-                    })
+                        );
+                    });
                 })}
             </div>
-        </div>
-    )
+        </>
+    );
+
 }
 export default MyTriproute

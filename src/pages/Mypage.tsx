@@ -64,12 +64,12 @@ const Mypage = () => {
     <>
       <Modal />
       <Header />
-      <MyMap />
+      {/* <MyMap /> */}
       <div className="mypage">
         <div className="mypageMap">
 
           <div className="MapWrap">
-            <MyMap />
+            {/* <MyMap /> */}
           </div>
           <div className="route">
             <div className="route_title">여행 경로</div>
