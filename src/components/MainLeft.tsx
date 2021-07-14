@@ -220,7 +220,7 @@ const Mainleftpage = () => {
                 list="spotlist"
                 placeholder="장소 검색"
                 onChange={(e) => searchPlace(e.target.value)}
-                defaultValue={search}
+                value={search}
               ></input>
               {spotMatch && (
                 <div className="placeContainer">

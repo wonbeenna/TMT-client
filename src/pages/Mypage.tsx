@@ -57,7 +57,6 @@ const Mypage = () => {
   console.log(_startDate);
   console.log(_endDate);
 
-
   return (
     <>
       <Modal />
@@ -86,7 +85,7 @@ const Mypage = () => {
           </div>
           <div className="like">
             여행지like
-            <UserLike likePlace={likePlace} />
+            {/* <UserLike likePlace={likePlace} /> */}
           </div>
         </div>
       </div>

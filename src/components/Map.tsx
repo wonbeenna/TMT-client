@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootReducer } from "../reducers";
+import "./CSS/Map.css";
 
 declare global {
   interface Window {
@@ -50,20 +51,48 @@ const Map = (placedata: any) => {
     const tempArr: any = [];
     const linePath: any = [];
 
-    ListData[0]?.forEach((el: any) => {
-      tempArr.push(
-        new kakao.maps.Marker({
-          map: map,
-          position: new kakao.maps.LatLng(el.lat, el.long),
-          image: markerImage,
-        })
-      );
+    ListData[0]?.forEach((el: any, idx: number) => {
+      let marker = new kakao.maps.Marker({
+        map: map,
+        position: new kakao.maps.LatLng(el.lat, el.long),
+        image: markerImage,
+      });
+      tempArr.push(marker);
       let sw = new kakao.maps.LatLng(38, 127.5);
       let ne = new kakao.maps.LatLng(37, 127);
       let bounds = new kakao.maps.LatLngBounds(sw, ne);
       bounds.extend(new kakao.maps.LatLng(el.lat, el.long));
       linePath.push(new kakao.maps.LatLng(el.lat, el.long));
       map.setBounds(bounds);
+
+      var iwContent =
+        '<div class="wrap">' +
+        '    <div class="info">' +
+        '        <div class="num">' +
+        `            ${idx + 1}` +
+        "        </div>" +
+        '        <div class="title">' +
+        `            ${el.place}` +
+        "        </div>" +
+        '        <div class="body">' +
+        '            <div class="desc">' +
+        `                <div class="ellipsis">${el.address}</div>` +
+        "            </div>" +
+        "        </div>" +
+        "    </div>" +
+        "</div>";
+
+      var infowindow = new kakao.maps.InfoWindow({
+        content: iwContent,
+      });
+
+      kakao.maps.event.addListener(marker, "mouseover", function () {
+        infowindow.open(map, marker);
+      });
+
+      kakao.maps.event.addListener(marker, "mouseout", function () {
+        infowindow.close();
+      });
     });
     let polyline = new kakao.maps.Polyline({
       path: linePath,
