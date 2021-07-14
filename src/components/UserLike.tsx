@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
 const UserLike = ({ likePlace }: any) => {
-    console.log('likePlace_Userlike', likePlace)
+  console.log("likePlace_Userlike", likePlace);
 
-    // likePlace.map((el: any) => {
-    //     console.log('el', el)
-    // })
+  // likePlace.map((el: any) => {
+  //     console.log('el', el)
+  // })
+
 
     //에러 수정하기 TypeError: Cannot read property 'map' of undefined
     return (
@@ -25,3 +26,4 @@ const UserLike = ({ likePlace }: any) => {
 
 }
 export default UserLike
+
