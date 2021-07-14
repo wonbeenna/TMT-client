@@ -2,40 +2,52 @@
   display: flex;
 }
 
-.mypageMap {
+.mypageLeft {
   position: relative;
-  flex-basis: 70%;
+  flex-basis: 50%;
 }
-
+.MyMap1 {
+  display: block;
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  right: 0;
+}
 .route {
   width: 700px;
-  height: 500px;
-  box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 16px 0px;
+  /* height: 500px; */
+  /* box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 16px 0px; */
   /* justify-content: center; */
   display: flex;
   flex-direction: column;
-  border: 1px solid pink;
+  /* border: 1px solid hsl(350, 100%, 88%); */
+  margin-left: 1rem;
 }
 /* .route_title {
   position: relative;
   top: -190px;
 } */
 .route_body {
-  align-items: center;
-  justify-content: center;
-  border: 1px solid blue;
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* border: 1px solid rgb(11, 11, 240); */
   display: flex;
-  flex-direction: row;
-}
-.route_oneofroute {
-  width: 110px;
-  display: flex;
-  align-items: center;
   flex-direction: column;
-  justify-content: flex-end;
+  margin-left: 1rem;
+  overflow: hidden;
+  position: inherit;
+}
+
+.route_oneofroute {
+  width: 500px;
+  display: flex;
+  /* align-items: center; */
+  flex-direction: row;
+  /* justify-content: flex-end; */
   margin: 3px 5px;
   box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 16px 0px;
   border-radius: 10px;
+  background-color: #fef4ec;
   /* border: 1px solid green; */
 }
 
@@ -44,9 +56,16 @@
   height: 100px;
   border-radius: 10px;
   display: flex;
-  align-items: center;
+  align-items: left;
 }
-
+.descplace {
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.desplacename {
+  font-size: 130%;
+}
 /* .mypageroutewrap {
   display: flex;
   flex-direction: column;
