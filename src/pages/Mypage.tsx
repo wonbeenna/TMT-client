@@ -57,6 +57,7 @@ const Mypage = () => {
   console.log(_startDate);
   console.log(_endDate);
 
+
   const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
   const [likePlace, setLikePlace] = useState<any>([]);
   const likeURL = `${process.env.REACT_APP_API}/user/like`;
@@ -111,7 +112,7 @@ const Mypage = () => {
           </div>
           <div className="like">
             여행지like
-            <UserLike likePlace={likePlace} />
+            {/* <UserLike likePlace={likePlace} /> */}
           </div>
         </div>
       </div>
