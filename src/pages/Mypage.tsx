@@ -88,16 +88,16 @@ const Mypage = () => {
       <Header />
       {/* <MyMap /> */}
       <div className="mypage">
-        <div className="mypageMap">
-          <div className="MapWrap">
-            <MyMap />
-          </div>
+        <div className="mypageside">
+
           <div className="route">
-            <div className="route_title">여행 경로</div>
+            <div className="route_title"> 경로</div>
             <MyTriproute myplace={myplace} />
           </div>
+
         </div>
-        <div className="mypageMap">
+        <div className="mypageLeft">
+
           <div className="calendar">
             <DayPickerRangeController
               startDate={startDate}
@@ -110,10 +110,21 @@ const Mypage = () => {
               monthFormat={"YYYY년 MM월"}
             />
           </div>
+
           <div className="like">
             여행지like
-            {/* <UserLike likePlace={likePlace} /> */}
+            <UserLike likePlace={likePlace} />
           </div>
+
+        </div>
+        <div className="mypageLeft">
+
+          <div className="MapWrap">
+            <MyMap className="MyMap1" />
+          </div>
+
+
+
         </div>
       </div>
       <Footer />
