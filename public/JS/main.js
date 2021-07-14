@@ -168,25 +168,19 @@ mainLinkBtn.addEventListener("click", MainLinkHandler);
     let imgElem;
     for (let i = 0; i < sceneInfo[0].values.videoImagesCount; i++) {
       imgElem = new Image();
-      imgElem.src = `http://tmt-client.s3-website.ap-northeast-2.amazonaws.com/video/003/img${
-        0 + i
-      }.jpg`;
+      imgElem.src = `./video/003/img${0 + i}.jpg`;
       sceneInfo[0].objs.videoImages.push(imgElem);
     }
     let imgElem2;
     for (let i = 0; i < sceneInfo[2].values.videoImagesCount; i++) {
       imgElem2 = new Image();
-      imgElem2.src = `http://tmt-client.s3-website.ap-northeast-2.amazonaws.com/video/005/img${
-        0 + i
-      }.jpg`;
+      imgElem2.src = `./video/005/img${0 + i}.jpg`;
       sceneInfo[2].objs.videoImages.push(imgElem2);
     }
     let imgElem3;
     for (let i = 0; i < sceneInfo[3].values.videoImagesCount; i++) {
       imgElem3 = new Image();
-      imgElem3.src = `http://tmt-client.s3-website.ap-northeast-2.amazonaws.com/video/004/테스트${
-        0 + i
-      }.jpg`;
+      imgElem3.src = `./video/004/테스트${0 + i}.jpg`;
       sceneInfo[3].objs.videoImages.push(imgElem3);
     }
     let imgElem4;
