@@ -14,8 +14,8 @@ const Header = () => {
   const signOutHandler = () => {
     dispatch(Actions.AccessToken("", ""));
     dispatch(Actions.LoginStatus(false));
-    history.push("/Mainpage");
-    // window.location.href = "/Mainpage";
+    // history.push("/Mainpage");
+    window.location.href = "/Mainpage";
     // window.location.href = "/Landing.html";
   };
   const landingPage = () => {

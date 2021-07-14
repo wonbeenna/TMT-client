@@ -11,41 +11,44 @@ declare global {
 }
 
 const MyMap = (placedata: any) => {
-  // const accessToken: any = useSelector(
-  //   (state: RootReducer) => state.accessTokenReducer
-  // );
-  // const setAccessToken = accessToken.AccessToken.accessToken;
+  const accessToken: any = useSelector(
+    (state: RootReducer) => state.accessTokenReducer
+  );
+  const setAccessToken = accessToken.AccessToken.accessToken;
 
-  // const [myplace, setMyplace] = useState([]);
-  // const searchUrl = `${process.env.REACT_APP_API}/user/myPage`;
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const response = await axios.get(searchUrl, {
-  //       headers: {
-  //         authorization: `Bearer ${setAccessToken}`,
-  //       },
-  //     });
-  //     setMyplace(response.data);
-  //     console.log("myres", response.data);
-  //   }
-  //   fetchData();
-  // }, []);
+  const [myplace, setMyplace] = useState([]);
+  const searchUrl = `${process.env.REACT_APP_API}/user/myPage`;
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios.get(searchUrl, {
+        headers: {
+          authorization: `Bearer ${setAccessToken}`,
+        },
+      });
+      setMyplace(response.data.spot);
+      console.log("myres", response.data.spot);
+    }
+    fetchData();
+  }, []);
 
-  // const listData = useSelector((state: RootReducer) => state.placeListReducer);
+  const listData = useSelector((state: RootReducer) => state.placeListReducer);
+  console.log("MyMap_listData1", listData);
 
-  // console.log("MyMap_listData1", listData.listData[0]);
+  // myplace.map((e: any) => {
+  //   console.log('e', e.[0])
+  // })
 
-  // // useEffect(() => {
-  // //     let mapContainer = document.getElementById("staticMap");
-  // //     let mapOption = {
-  // //         center: new window.kakao.maps.LatLng(
-  // //             33.36197069309868, 126.52923096776973
-  // //         ), // 지도생길때 보여주는 범위 좌표
-  // //         level: 8,
-  // //         draggable: true,
-  // //     };
-  // //     let map = new window.kakao.maps.Map(mapContainer, mapOption);
-  // // })
+  useEffect(() => {
+    let mapContainer = document.getElementById("staticMap");
+    let mapOption = {
+      center: new window.kakao.maps.LatLng(
+        33.36197069309868, 126.52923096776973
+      ), // 지도생길때 보여주는 범위 좌표
+      level: 8,
+      draggable: true,
+    };
+    let map = new window.kakao.maps.Map(mapContainer, mapOption);
+  })
   // useEffect(() => {
   //   var markerPosition = new window.kakao.maps.LatLng(33.450701, 126.570667);
 
@@ -62,7 +65,6 @@ const MyMap = (placedata: any) => {
   //       level: 7, // 이미지 지도의 확대 레벨
   //       marker: marker,
   //     };
-
   //     let map = new window.kakao.maps.Map(mapContainer, mapOption);
   // })
   useEffect(() => {
