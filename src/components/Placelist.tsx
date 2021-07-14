@@ -18,8 +18,9 @@ const Placelist = ({
   currentPage,
 }: any) => {
   const dispatch = useDispatch();
-  const [lists, setLists] = useState<Array<object>>([]);
   const [likePlace, setLikePlace] = useState<any>([]);
+  const [lists, setLists] = useState<Array<object>>([]);
+  const [recommend, setRecommend]: any = useState<string | any>([]);
   const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
   const accessToken: any = useSelector(
     (state: RootReducer) => state.accessTokenReducer
@@ -79,7 +80,6 @@ const Placelist = ({
       ModalHandler("LikeCheckModal");
     }
   };
-  const [recommend, setRecommend]: any = useState<string | any>([]);
 
   return (
     <>
@@ -91,34 +91,33 @@ const Placelist = ({
               const inputHandler = () => {
                 setLists([...lists].concat(el));
                 console.log('Placelist_lists', lists)
-                //상렬님 API구현 다 되면 확인하기
-                // const searchURL = `${process.env.REACT_APP_API}/trip/recommend`;
-                // axios
-                //   .post(
-                //     searchURL,
-                //     {
-                //       place: el.place,
-                //     },
-                //     {
-                //       withCredentials: true,
-                //     }
-                //   )
-                //   .then((res) => {
-                //     console.log("recommendPOST_res.data", res.data);
-
-                //     setRecommend(res.data)
-                //     // => 받은 데이터값의 lat,long으로 mainpage 지도에 마커를 찍어줘야한다.
-                //     // => 리덕스로 상태 관리
-                //     // recommendPOST_res.data 콘솔결과
-                //     // {message: "Create success", data: {…}}
-                //     // data:
-                //     // post: {_id: "60ec429d9c5eed887741f6f2", __v: 0}
-                //     // __proto__: Object
-                //     // message: "Create success"
-                //     // __proto__: Object
-
-                //   })
-                //   .catch((err) => console.log("err", err));
+                const searchURL = `${process.env.REACT_APP_API}/trip/recommend`;
+                axios
+                  .post(
+                    searchURL,
+                    {
+                      place: el.place,
+                    },
+                    {
+                      withCredentials: true,
+                    }
+                  )
+                  .then((res) => {
+                    console.log("recommendPOST_res.data", res.data);
+                    setRecommend(res.data)
+                    // => 받은 데이터값의 lat,long으로 mainpage 지도에 마커를 찍어줘야한다.
+                    // => 리덕스로 상태 관리
+                    // recommendPOST_res.data 콘솔결과(지금 청계천만가능)
+                    // [{…}, {…}, {…}]
+                    // 0:
+                    // address: "서울특별시 종로구 세종로 사직로 161"
+                    // lat: 37.579698652999916
+                    // long: 126.97699720184801
+                    // photo: "http://tong.visitkorea.or.kr/cms/resource/23/2678623_image2_1.jpg"
+                    // place: "경복궁"
+                    // theme: (4) ["역사&문화", "야경", "휴식&힐링", "가족"]
+                  })
+                  .catch((err) => console.log("err", err));
               };
               return (
                 <div key={idx} className="placeList__destination">

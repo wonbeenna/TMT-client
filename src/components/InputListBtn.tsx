@@ -6,14 +6,11 @@ import { Actions } from "../actions";
 import axios from "axios";
 
 function InputListBtn({ startToday, endToday, lists }: any) {
-  // let listData2 = useSelector(
-  //   (state: RootReducer) => state.savePlaceListReducer.place
-  // );
+  const dispatch = useDispatch();
   const accessToken: any = useSelector(
     (state: RootReducer) => state.accessTokenReducer
   );
   const setAccessToken = accessToken.AccessToken.accessToken;
-  const dispatch = useDispatch();
   const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
 
   const sendHandler = () => {
@@ -42,13 +39,7 @@ function InputListBtn({ startToday, endToday, lists }: any) {
       };
       ModalHandler("LikeCheckModal");
     }
-
-    // console.log('lists', lists);
-    // console.log('startToday, endToday', startToday, endToday);
   };
-
-  // console.log(lists);
-  // console.log(startToday, endToday);
 
   return (
     <div className="inputList__save">

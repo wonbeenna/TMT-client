@@ -69,8 +69,14 @@ const Mainleftpage = () => {
   const [placedata, setPlacedata]: any = useState<string | any>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [postsPerPage] = useState<number>(10);
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = placedata.slice(indexOfFirstPost, indexOfLastPost);
 
-  //지금 db가 없는데 나중에 넣어주시겠지?
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
+
   useEffect(() => {
     const listURL = `${process.env.REACT_APP_API}/trip/list`;
     const fetchData = async () => {
@@ -105,13 +111,6 @@ const Mainleftpage = () => {
       .catch((err) => console.log("err", err));
   };
 
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = placedata.slice(indexOfFirstPost, indexOfLastPost);
-
-  const paginate = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
-  };
   const [startDate, setStartDate] = useState<Moment | null>(null);
   const [endDate, setEndDate] = useState<Moment | null>(null);
   const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(
@@ -194,15 +193,6 @@ const Mainleftpage = () => {
       });
     return placeInfo;
   };
-  //   await axios
-  //     .post(`${process.env.REACT_APP_API}/trip/search`, {
-  //       inputElement: search,
-  //     })
-  //     .then((res) => {
-  //       setPlacedata([res.data]);
-  //       setSearch("");
-  //     });
-  // };
 
   return (
     <>
