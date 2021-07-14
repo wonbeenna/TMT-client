@@ -36,7 +36,9 @@ const Header = () => {
   const mypageRender = () => {
     const curURL = window.location.href;
     const mypageURL = `${process.env.REACT_APP_BUCKET}/Mypage`;
-    if (curURL === mypageURL) {
+    const domainURL = `${process.env.REACT_APP_DOMAIN}/Mypage`;
+    const domainURL2 = `${process.env.REACT_APP_DOMAIN2}/Mypage`;
+    if (curURL === mypageURL || curURL === domainURL || curURL === domainURL2) {
       return (
         <div className="headerContainer">
           <div className="headerLogo" onClick={landingPage}>
@@ -82,7 +84,14 @@ const Header = () => {
   const mainPageRender = () => {
     const curURL = window.location.href;
     const mainPageURL = `${process.env.REACT_APP_BUCKET}/Mainpage`;
-    if (curURL === mainPageURL) {
+    const domainURL = `${process.env.REACT_APP_DOMAIN}/Mainpage`;
+    const domainURL2 = `${process.env.REACT_APP_DOMAIN2}/Mainpage`;
+    console.log(domainURL2);
+    if (
+      curURL === mainPageURL ||
+      curURL === domainURL ||
+      curURL === domainURL2
+    ) {
       return (
         <div className="headerContainer">
           <div className="headerLogo" onClick={landingPage}>
