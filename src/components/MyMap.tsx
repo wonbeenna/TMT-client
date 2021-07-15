@@ -23,11 +23,13 @@ const MyMap = (placedata: any) => {
           authorization: `Bearer ${setAccessToken}`,
         },
       });
+
       setMyplace(response.data);
       // console.log("myres123", .data.spot);
     }
     fetchData();
   }, []);
+
 
   useEffect(() => {
     let mapContainer = document.getElementById("staticMap");

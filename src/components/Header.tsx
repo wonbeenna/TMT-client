@@ -22,7 +22,7 @@ const Header = () => {
     window.location.href = "/Landing.html";
   };
   const mypage = () => {
-    history.push("/Mypage");
+    window.location.href = "/Mypage";
   };
   const mainpage = () => {
     window.location.href = "/Mainpage";
