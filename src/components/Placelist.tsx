@@ -21,6 +21,7 @@ const Placelist = ({
 }: any) => {
   const dispatch = useDispatch();
   const [likePlace, setLikePlace] = useState<any>([]);
+  console.log(likePlace);
   // const [lists, setLists] = useState<Array<object>>([]);
   const [recommend, setRecommend] = useState<any>([]);
   const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
@@ -39,7 +40,13 @@ const Placelist = ({
               authorization: `Bearer ${setAccessToken}`,
             },
           })
-          .then((res) => setLikePlace(res.data.place));
+          .then((res) => {
+            if (res.data.place === undefined) {
+              return;
+            } else {
+              setLikePlace(res.data.place);
+            }
+          });
       } else {
         setLikePlace([]);
       }

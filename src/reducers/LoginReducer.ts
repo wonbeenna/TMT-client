@@ -5,6 +5,7 @@ const LoginReducer = (state: stateType = initialState, action: ActionsType) => {
   switch (action.type) {
     case ACTIONS.LOGIN_STATUS: {
       return {
+        ...state,
         isLogin: action.payload,
       };
     }

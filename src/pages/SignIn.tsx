@@ -101,6 +101,34 @@ function SignIn() {
       });
   };
 
+  const nonUserLoginHandler = async () => {
+    const nonUserLoginURL = `${process.env.REACT_APP_API}/user/nonUser`;
+    await axios
+      .get(nonUserLoginURL, {})
+      .then((res) => {
+        const accessToken = res.data.accessToken;
+        const refreshToken = res.data.refreshToken;
+        dispatch(Actions.AccessToken(accessToken, refreshToken));
+        dispatch(Actions.LoginStatus(true));
+        modalCloseHandler();
+        window.location.href = "/Mainpage";
+        console.log(accessToken, refreshToken);
+        console.log(res);
+      })
+      .catch((err) => {
+        const status = err.response.status;
+        if (status === 500) {
+          setErrLogin("서버와 연결이 불안정 합니다!");
+        }
+      });
+  };
+  const searchHandler = () => {
+    setErrPassword("");
+    setErrEmail("");
+    setEmailValid(true);
+    setPasswordValid(true);
+    setErrLogin("개발 중인 기능입니다 :)");
+  };
   // 구글
   const clientId: any = process.env.REACT_APP_GOOGLE_API;
   const responseGoogle = async (response: any) => {
@@ -188,9 +216,13 @@ function SignIn() {
           </button>
 
           <div className="signIn__Search">
-            <div className="signIn__emailSearch">이메일 찾기</div>
+            <button className="signIn__emailSearch" onClick={searchHandler}>
+              이메일 찾기
+            </button>
             <div>&#124;</div>
-            <div className="signIn__pwSearch">비밀번호 찾기</div>
+            <button className="signIn__pwSearch" onClick={searchHandler}>
+              비밀번호 찾기
+            </button>
           </div>
 
           <div className="signIn__social">
@@ -219,7 +251,9 @@ function SignIn() {
             {/* <button onClick={responseKakao} className="signIn__kakao">
               카카오계정으로 로그인
             </button> */}
-            <button className="signIn__nonMember">비회원으로 로그인하기</button>
+            <button className="signIn__nonMember" onClick={nonUserLoginHandler}>
+              비회원으로 로그인하기
+            </button>
           </div>
 
           <div className="signIn__signUp">
