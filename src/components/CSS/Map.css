@@ -4,6 +4,12 @@
   background: #e6f0ff;
 }
 
+.map__wrap2 {
+  padding: 10px;
+  width: 330px;
+  background: #e6f0ff;
+}
+
 .map__info {
   display: flex;
   flex-direction: column;
@@ -16,7 +22,7 @@
 }
 .map__img img {
   width: 70px;
-  height: 60px;
+  height: 65px;
   margin-right: 10px;
 }
 
@@ -35,6 +41,10 @@
 .map__title {
   font-weight: bold;
   color: rgb(0, 0, 0, 0.75);
+}
+.map__title img {
+  width: 25px;
+  height: 25px;
 }
 .map__ellipsis {
   color: rgb(107, 107, 107);

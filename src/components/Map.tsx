@@ -131,13 +131,14 @@ const Map = ({ lists, setLists }: any) => {
       NextTempArr.push(marker);
       var randomNum = Math.floor(Math.random() * 1000) + 1;
       var iwContent =
-        '<div class="map__wrap">' +
+        '<div class="map__wrap2">' +
         '    <div class="map__info">' +
         '        <div class="map__img">' +
         `            <img src=${el.photo} />` +
         '    <div class="map__info">' +
         '        <div class="map__title">' +
         `            ${el.place}` +
+        '          <img src="./img/quality.png" />' +
         "        </div>" +
         '        <div class="map__body">' +
         '            <div class="map__desc">' +
@@ -184,6 +185,7 @@ const Map = ({ lists, setLists }: any) => {
         );
       }
     });
+
     setNextMarkerArr(NextTempArr);
     function removeMarker() {
       markerArr?.forEach((e: any) => e?.setMap(null));

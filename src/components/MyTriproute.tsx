@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import Timeline from '@material-ui/lab/Timeline';
-import TimelineItem from '@material-ui/lab/TimelineItem';
-import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
-import TimelineConnector from '@material-ui/lab/TimelineConnector';
-import TimelineContent from '@material-ui/lab/TimelineContent';
-import TimelineDot from '@material-ui/lab/TimelineDot';
-import Paper from '@material-ui/core/Paper';
+import Timeline from "@material-ui/lab/Timeline";
+import TimelineItem from "@material-ui/lab/TimelineItem";
+import TimelineSeparator from "@material-ui/lab/TimelineSeparator";
+import TimelineConnector from "@material-ui/lab/TimelineConnector";
+import TimelineContent from "@material-ui/lab/TimelineContent";
+import TimelineDot from "@material-ui/lab/TimelineDot";
+import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 
 //타임라인가로 css
@@ -35,14 +35,13 @@ const MyTriproute = ({ myplace }: any) => {
   // console.log('myplace11', myplace)
   const [myroute, setMyroute] = useState<Array<string>>([]);
 
-
   // myplace.map((el: any) => {
   //     console.log('el', el[0].place)
   //     // setMyroute([...myroute].concat(el[0].place))
   // })
   // console.log('myroute', myroute)
-  myplace.map((el: any) => {
-    el.map((e: any) => {
+  myplace?.spot?.map((el: any) => {
+    el?.map((e: any) => {
       // setMyroute([...myroute].concat(e.place))
       // console.log('myroute', myroute)
       // console.log('e', e)
@@ -55,16 +54,14 @@ const MyTriproute = ({ myplace }: any) => {
     <>
       {/* <img src={"../img/pic1.jpeg"} /> */}
       <div className="route_body">
-        <Timeline
-          className={classes.timeline}
-        >
-          {myplace.map((el: any) => {
-            return el.map((e: any) => {
+        <Timeline className={classes.timeline}>
+          {myplace?.spot?.map((el: any) => {
+            return el?.map((e: any) => {
               return (
                 <TimelineItem>
                   <TimelineSeparator>
                     <TimelineDot
-                    // className={classes.timelineIcon} 
+                    // className={classes.timelineIcon}
                     />
                     <TimelineConnector />
                   </TimelineSeparator>

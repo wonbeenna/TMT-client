@@ -21,6 +21,7 @@ const Placelist = ({
 }: any) => {
   const dispatch = useDispatch();
   const [likePlace, setLikePlace] = useState<any>([]);
+  console.log(likePlace);
   // const [lists, setLists] = useState<Array<object>>([]);
   const [recommend, setRecommend] = useState<any>([]);
   const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
