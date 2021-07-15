@@ -16,9 +16,6 @@ import { RootReducer } from "../reducers";
 import axios from "axios";
 
 const Mypage = () => {
-  const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
-  const [likePlace, setLikePlace] = useState<any>([]);
-  const likeURL = `${process.env.REACT_APP_API}/user/like`;
   const [myplace, setMyPlace] = useState<any>({});
   const [_startDate, _setStartDate] = useState<any>();
   const [_endDate, _setEndDate] = useState<any>();
@@ -56,13 +53,13 @@ const Mypage = () => {
         _setStartDate(response.data.startDate);
         _setEndDate(response.data.endDate);
       }
-
-      console.log(response.data);
     }
     fetchData();
   }, []);
-  console.log(startDate);
-  console.log(endDate);
+
+  const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
+  const [likePlace, setLikePlace] = useState<any>([]);
+  const likeURL = `${process.env.REACT_APP_API}/user/like`;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -81,12 +78,9 @@ const Mypage = () => {
     fetchData();
   }, []);
 
-  console.log("likePlace_Mypage", likePlace);
-
   return (
     <>
       <Modal />
-
       <Header />
       {/* <MyMap /> */}
       <div className="mypage">
