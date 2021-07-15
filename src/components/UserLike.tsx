@@ -14,9 +14,10 @@ const UserLike = ({ likePlace }: any) => {
                     );
                 })}
             </div>
-        </>
-    );
-
-}
-export default UserLike
-
+          );
+        })}
+      </div>
+    </>
+  );
+};
+export default UserLike;

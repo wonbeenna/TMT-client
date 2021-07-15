@@ -12,7 +12,7 @@ function InputListBtn({ startToday, endToday, lists }: any) {
   );
   const setAccessToken = accessToken.AccessToken.accessToken;
   const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
-  console.log(lists);
+
   const sendHandler = () => {
     if (isLogin) {
       const sendURL = `${process.env.REACT_APP_API}/trip/insertSpot`;
@@ -30,7 +30,7 @@ function InputListBtn({ startToday, endToday, lists }: any) {
             },
           }
         )
-        .then((res) => console.log(res));
+        .then((res) => res);
       window.location.href = "/Mypage";
     } else {
       const ModalHandler = (name: string) => {

@@ -91,10 +91,12 @@
   height: 500px;
 }
 
-#myMap {
+#staticMaps,
+#staticMap {
+  width: 550px;
+  height: 350px;
+  left: -550px;
   position: absolute;
-  width: 10vw;
-  height: 10vh;
 }
 
 .MapWrap {

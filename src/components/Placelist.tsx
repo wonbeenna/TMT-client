@@ -52,19 +52,20 @@ const Placelist = ({
     };
     fetchData();
   }, []);
-
+  console.log(likePlace);
   const likeHandler = async (el: any) => {
     if (isLogin) {
       if (likePlace?.includes(el.place)) {
-        await axios.delete(likeURL, {
-          headers: {
-            authorization: `Bearer ${setAccessToken}`,
-          },
-          data: {
-            place: el.place,
-          },
-        });
-        console.log('deletelike', el)
+        await axios
+          .delete(likeURL, {
+            headers: {
+              authorization: `Bearer ${setAccessToken}`,
+            },
+            data: {
+              place: el.place,
+            },
+          })
+          .then((res) => console.log(res));
         setLikePlace(likePlace?.filter((els: any) => els !== el.place));
       } else {
         await axios.post(

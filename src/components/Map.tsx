@@ -23,7 +23,7 @@ const Map = ({ lists, setLists }: any) => {
   const [markerArr, setMarkerArr] = useState<any>([]);
   const [nextMarkerArr, setNextMarkerArr] = useState<any>([]);
   const [pathArr, setPathArr] = useState<any>({});
-  console.log(nextMarkerArr);
+
   // 지도 실행
   useEffect(() => {
     kakaoMap();
