@@ -4,7 +4,6 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import UserLike from "../components/UserLike";
 import MyTriproute from "../components/MyTriproute";
-
 import { DayPickerRangeController, FocusedInputShape } from "react-dates";
 import "./CSS/Mypage.css";
 import "react-dates/initialize";
@@ -56,13 +55,9 @@ const Mypage = () => {
         _setStartDate(response.data.startDate);
         _setEndDate(response.data.endDate);
       }
-
-      console.log(response.data);
     }
     fetchData();
   }, []);
-  console.log(startDate);
-  console.log(endDate);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -73,15 +68,20 @@ const Mypage = () => {
               authorization: `Bearer ${setAccessToken}`,
             },
           })
-          .then((res) => setLikePlace(res.data.place));
+          .then((res) => {
+            if (res.data.length === 0) {
+              return;
+            } else {
+              setLikePlace(res.data)
+              console.log('www', res.data)
+            }
+          });
       } else {
         setLikePlace([]);
       }
     };
     fetchData();
   }, []);
-
-  console.log("likePlace_Mypage", likePlace);
 
   return (
     <>
