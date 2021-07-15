@@ -4,6 +4,7 @@ export type stateType = {
   modalStatus: boolean;
   modalName: string;
   listData: any;
+  nextListData: any;
 };
 
 export const initialState = {
@@ -12,4 +13,5 @@ export const initialState = {
   modalStatus: false,
   modalName: "",
   listData: [],
+  nextListData: [],
 };

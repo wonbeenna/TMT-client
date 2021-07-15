@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const Mainleftpage = () => {
+const Mainleftpage = ({ lists, setLists }: any) => {
   const options = [
     "서울",
     "인천",
@@ -325,6 +325,8 @@ const Mainleftpage = () => {
             totalPosts={placedata.length}
             paginate={paginate}
             currentPage={currentPage}
+            lists={lists}
+            setLists={setLists}
           />
         </div>
       </div>

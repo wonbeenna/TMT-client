@@ -1,0 +1,54 @@
+.map__wrap {
+  padding: 10px;
+  width: 300px;
+  background: #e6f0ff;
+}
+
+.map__info {
+  display: flex;
+  flex-direction: column;
+}
+.map__container {
+  display: flex;
+}
+.map__img {
+  display: flex;
+}
+.map__img img {
+  width: 70px;
+  height: 60px;
+  margin-right: 10px;
+}
+
+.map__num {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #417cff;
+  border: 3px solid #417cff;
+  border-radius: 150px;
+}
+
+.map__title {
+  font-weight: bold;
+  color: rgb(0, 0, 0, 0.75);
+}
+.map__ellipsis {
+  color: rgb(107, 107, 107);
+  font-size: 13px;
+}
+
+.map__randomNum {
+  font-size: 11px;
+  color: rgb(0, 0, 0, 0.75);
+}
+.map__save {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  margin-top: 10px;
+}

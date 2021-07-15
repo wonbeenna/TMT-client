@@ -86,7 +86,6 @@ const Header = () => {
     const mainPageURL = `${process.env.REACT_APP_BUCKET}/Mainpage`;
     const domainURL = `${process.env.REACT_APP_DOMAIN}/Mainpage`;
     const domainURL2 = `${process.env.REACT_APP_DOMAIN2}/Mainpage`;
-    console.log(domainURL2);
     if (
       curURL === mainPageURL ||
       curURL === domainURL ||
