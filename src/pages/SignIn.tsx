@@ -112,8 +112,6 @@ function SignIn() {
         dispatch(Actions.LoginStatus(true));
         modalCloseHandler();
         window.location.href = "/Mainpage";
-        console.log(accessToken, refreshToken);
-        console.log(res);
       })
       .catch((err) => {
         const status = err.response.status;
@@ -242,7 +240,7 @@ function SignIn() {
             {/* <button className="signIn__google">Google</button> */}
             <KakaoLogin
               token={CLIENT_ID}
-              onSuccess={(res) => console.log(res)}
+              onSuccess={(res) => res}
               onFail={console.error}
               onLogout={console.info}
               className="signIn__kakao"
