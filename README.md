@@ -46,6 +46,12 @@
 <img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white"/>
 
 ---
+## Flow-Chart
+
+![image](https://user-images.githubusercontent.com/74464061/125727470-01ac591f-5207-4443-b1da-9a4d31a231ea.png)
+![image](https://user-images.githubusercontent.com/74464061/125727484-20efff73-ff60-497c-bc5f-a19f90149921.png)
+
+---
 
 ## Wiki &#128214;
 
