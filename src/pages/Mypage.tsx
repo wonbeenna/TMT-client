@@ -16,9 +16,12 @@ import { RootReducer } from "../reducers";
 import axios from "axios";
 
 const Mypage = () => {
-  const [myplace, setMyPlace] = useState<Array<object>>([]);
-  const [startDate, setStartDate] = useState<Moment | null>(null);
-  const [endDate, setEndDate] = useState<Moment | null>(null);
+  const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
+  const [likePlace, setLikePlace] = useState<any>([]);
+  const likeURL = `${process.env.REACT_APP_API}/user/like`;
+  const [myplace, setMyPlace] = useState<any>({});
+  const [_startDate, _setStartDate] = useState<any>();
+  const [_endDate, _setEndDate] = useState<any>();
   const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(
     null
   );
@@ -28,8 +31,8 @@ const Mypage = () => {
   const setAccessToken = accessToken.AccessToken.accessToken;
   const searchURL = `${process.env.REACT_APP_API}/user/myPage`;
 
-  const _startDate = moment(startDate);
-  const _endDate = moment(endDate);
+  const startDate = moment(_startDate);
+  const endDate = moment(_endDate);
 
   const handlendDatesChange = (arg: {
     startDate: moment.Moment | null;
@@ -41,26 +44,25 @@ const Mypage = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get(searchURL, {
+      const response: any = await axios.get(searchURL, {
         headers: {
           authorization: `Bearer ${setAccessToken}`,
         },
       });
+      if (response.data === null || response.data === undefined) {
+        return;
+      } else {
+        setMyPlace(response.data);
+        _setStartDate(response.data.startDate);
+        _setEndDate(response.data.endDate);
+      }
 
-      setMyPlace(response.data.spot);
-      setStartDate(moment(response.data.startDate));
-      setEndDate(moment(response.data.endDate));
+      console.log(response.data);
     }
     fetchData();
   }, []);
-
-  console.log(_startDate);
-  console.log(_endDate);
-
-
-  const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
-  const [likePlace, setLikePlace] = useState<any>([]);
-  const likeURL = `${process.env.REACT_APP_API}/user/like`;
+  console.log(startDate);
+  console.log(endDate);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -79,7 +81,7 @@ const Mypage = () => {
     fetchData();
   }, []);
 
-  console.log('likePlace_Mypage', likePlace)
+  console.log("likePlace_Mypage", likePlace);
 
   return (
     <>
@@ -89,15 +91,12 @@ const Mypage = () => {
       {/* <MyMap /> */}
       <div className="mypage">
         <div className="mypageside">
-
           <div className="route">
             <div className="route_title"> 경로</div>
             <MyTriproute myplace={myplace} />
           </div>
-
         </div>
         <div className="mypageLeft">
-
           <div className="calendar">
             <DayPickerRangeController
               startDate={startDate}
@@ -115,16 +114,11 @@ const Mypage = () => {
             여행지like
             <UserLike likePlace={likePlace} />
           </div>
-
         </div>
         <div className="mypageLeft">
-
           <div className="MapWrap">
             <MyMap className="MyMap1" />
           </div>
-
-
-
         </div>
       </div>
       <Footer />

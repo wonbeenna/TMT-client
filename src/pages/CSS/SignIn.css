@@ -243,11 +243,19 @@ input::placeholder {
 .signIn__emailSearch {
   margin-right: 0.5rem;
   cursor: pointer;
+  border: none;
+  color: #2de1de;
+  background: none;
+  font-size: 12px;
 }
 
 .signIn__pwSearch {
   margin-left: 0.5rem;
+  color: #2de1de;
   cursor: pointer;
+  border: none;
+  background: none;
+  font-size: 12px;
 }
 
 .signIn__signUp {

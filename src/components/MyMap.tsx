@@ -9,40 +9,38 @@ declare global {
     kakao: any;
   }
 }
-
 const MyMap = (placedata: any) => {
   const accessToken: any = useSelector(
     (state: RootReducer) => state.accessTokenReducer
   );
   const setAccessToken = accessToken.AccessToken.accessToken;
-  const [myplace, setMyplace] = useState([]);
+  const [myplace, setMyplace] = useState<any>({});
   const searchUrl = `${process.env.REACT_APP_API}/user/myPage`;
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get(searchUrl, {
+      const response: any = await axios.get(searchUrl, {
         headers: {
           authorization: `Bearer ${setAccessToken}`,
         },
       });
-      setMyplace(response.data.spot);
-      console.log("myres123", response.data.spot);
+      setMyplace(response.data);
+      // console.log("myres123", .data.spot);
     }
     fetchData();
   }, []);
-  console.log('myplaceofmymap', myplace)
-
 
   useEffect(() => {
     let mapContainer = document.getElementById("staticMap");
     let mapOption = {
       center: new window.kakao.maps.LatLng(
-        33.36197069309868, 126.52923096776973
+        33.36197069309868,
+        126.52923096776973
       ), // 지도생길때 보여주는 범위 좌표
       level: 8,
       draggable: true,
     };
     let map = new window.kakao.maps.Map(mapContainer, mapOption);
-  })
+  });
 
   useEffect(() => {
     var markerPosition = new window.kakao.maps.LatLng(33.450701, 126.570667);
@@ -71,8 +69,8 @@ const MyMap = (placedata: any) => {
 
     let bounds = new window.kakao.maps.LatLngBounds();
 
-    myplace.forEach((el: any) => {
-      console.log('elofmymap', el[0].lat, el[0].long)
+    myplace?.spot?.forEach((el: any) => {
+      console.log("elofmymap", el[0].lat, el[0].long);
       let imageSrc = "./img/marker_map_icon.png";
       let imageSize = new window.kakao.maps.Size(50, 50);
       let markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize);
@@ -86,10 +84,9 @@ const MyMap = (placedata: any) => {
 
       marker.setMap(staticMap);
 
-      bounds.extend(new window.kakao.maps.LatLng(el[0].lat, el[0].long))
+      bounds.extend(new window.kakao.maps.LatLng(el[0].lat, el[0].long));
 
       // marker.push(marker);
-
     });
 
     if (!isNaN(bounds.ha)) {
