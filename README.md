@@ -28,6 +28,8 @@
 
 ## SKILLS &#128295;
 
+![image](https://user-images.githubusercontent.com/76897473/125735128-e594d96f-12e3-455a-bfa4-c82da187d534.png)
+
 ### FRONT
 
 </br><img src="https://img.shields.io/badge/html-E34F26?style=for-the-badge&logo=html5&logoColor=white">
