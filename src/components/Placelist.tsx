@@ -39,7 +39,13 @@ const Placelist = ({
               authorization: `Bearer ${setAccessToken}`,
             },
           })
-          .then((res) => setLikePlace(res.data.place));
+          .then((res) => {
+            if (res.data.place === undefined) {
+              return;
+            } else {
+              setLikePlace(res.data.place);
+            }
+          });
       } else {
         setLikePlace([]);
       }

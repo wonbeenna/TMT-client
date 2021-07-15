@@ -173,20 +173,20 @@ const Map = ({ lists, setLists }: any) => {
           )
         );
         infowindow.close();
-        // removeNextMarker2();
+        removeNextMarker2();
       });
 
-      // function removeNextMarker2() {
-      //   dispatch(
-      //     Actions.nextPlaceList(
-      //       NextListData[0].filter((e: any) => e.place !== el.place)
-      //     )
-      //   );
-      // }
+      function removeNextMarker2() {
+        dispatch(
+          Actions.nextPlaceList(
+            NextListData[0].filter((e: any) => e.place !== el.place)
+          )
+        );
+      }
     });
     setNextMarkerArr(NextTempArr);
     function removeMarker() {
-      // markerArr?.forEach((e: any) => e?.setMap(null));
+      markerArr?.forEach((e: any) => e?.setMap(null));
       for (let i = 0; i < markerArr?.length; i++) {
         markerArr[i]?.setMap(null);
       }

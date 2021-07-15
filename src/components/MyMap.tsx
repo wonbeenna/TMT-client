@@ -25,11 +25,11 @@ const MyMap = (placedata: any) => {
         },
       });
       setMyplace(response.data.spot);
-      console.log("myres123", response.data.spot);
+      // console.log("myres123", response.data.spot);
     }
     fetchData();
   }, []);
-  console.log('myplaceofmymap', myplace)
+  // console.log('myplaceofmymap', myplace)
 
 
   useEffect(() => {
