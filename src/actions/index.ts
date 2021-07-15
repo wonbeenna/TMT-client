@@ -4,6 +4,7 @@ export const ACTIONS = {
   MODAL_STATUS: "MODAL_STATUS",
   MODAL_NAME: "MODAL_NAME",
   PLACE_LIST: "PLACE_LIST",
+  NEXT_PLACE_LIST: "NEXT_PLACE_LIST",
 };
 
 export const Actions = {
@@ -41,6 +42,13 @@ export const Actions = {
       payload: listData,
     };
   },
+
+  nextPlaceList: (nextListData: any) => {
+    return {
+      type: ACTIONS.NEXT_PLACE_LIST,
+      payload: nextListData,
+    };
+  },
 };
 
 export type ActionsType =
@@ -48,4 +56,5 @@ export type ActionsType =
   | ReturnType<typeof Actions.AccessToken>
   | ReturnType<typeof Actions.modalStatus>
   | ReturnType<typeof Actions.modalName>
-  | ReturnType<typeof Actions.placeList>;
+  | ReturnType<typeof Actions.placeList>
+  | ReturnType<typeof Actions.nextPlaceList>;

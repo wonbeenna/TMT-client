@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Actions } from "../actions";
 import { RootReducer } from "../reducers";
 import "./CSS/Map.css";
 
@@ -9,15 +10,20 @@ declare global {
   }
 }
 
-const Map = (placedata: any) => {
-  let ListData: any = useSelector(
+const Map = ({ lists, setLists }: any) => {
+  const dispatch = useDispatch();
+  const ListData: any = useSelector(
     (state: RootReducer) => state.placeListReducer.listData
+  );
+  const NextListData: any = useSelector(
+    (state: RootReducer) => state.nextPlaceListReducer.nextListData
   );
   const { kakao } = window;
   const [map, setMap] = useState<any>(null);
   const [markerArr, setMarkerArr] = useState<any>([]);
+  const [nextMarkerArr, setNextMarkerArr] = useState<any>([]);
   const [pathArr, setPathArr] = useState<any>({});
-
+  console.log(nextMarkerArr);
   // 지도 실행
   useEffect(() => {
     kakaoMap();
@@ -25,7 +31,7 @@ const Map = (placedata: any) => {
 
   useEffect(() => {
     viewMarker();
-  }, [ListData]);
+  }, [ListData, NextListData]);
 
   const kakaoMap = () => {
     kakao.maps.load(() => {
@@ -44,6 +50,10 @@ const Map = (placedata: any) => {
     if (markerArr.length > 0) {
       removeMarker();
     }
+    if (nextMarkerArr.length > 0) {
+      removeNextMarker();
+    }
+
     let imageSrc = "./img/marker_map_icon.png";
     let imageSize = new kakao.maps.Size(50, 50);
     let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
@@ -66,20 +76,23 @@ const Map = (placedata: any) => {
       map.setBounds(bounds);
 
       var iwContent =
-        '<div class="wrap">' +
-        '    <div class="info">' +
-        '        <div class="num">' +
+        '<div class="map__wrap">' +
+        '    <div class="map__info">' +
+        '    <div class="map__container">' +
+        '        <span class="map__num">' +
         `            ${idx + 1}` +
-        "        </div>" +
-        '        <div class="title">' +
+        "        </span>" +
+        '        <span class="map__title">' +
         `            ${el.place}` +
-        "        </div>" +
-        '        <div class="body">' +
-        '            <div class="desc">' +
-        `                <div class="ellipsis">${el.address}</div>` +
+        "        </span>" +
+        "            </div>" +
+        '        <div class="map__body">' +
+        '            <div class="map__desc">' +
+        `                <div class="map__ellipsis">${el.address}</div>` +
         "            </div>" +
         "        </div>" +
         "    </div>" +
+        "</div>" +
         "</div>";
 
       var infowindow = new kakao.maps.InfoWindow({
@@ -105,6 +118,73 @@ const Map = (placedata: any) => {
     setPathArr(polyline);
     setMarkerArr(tempArr);
 
+    const NextTempArr: any = [];
+    NextListData[0]?.forEach((el: any) => {
+      let imageSrc = "./img/thumbtack.png";
+      let imageSize = new kakao.maps.Size(40, 40);
+      let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+      let marker = new kakao.maps.Marker({
+        map: map,
+        position: new kakao.maps.LatLng(el.lat, el.long),
+        image: markerImage,
+      });
+      NextTempArr.push(marker);
+      var randomNum = Math.floor(Math.random() * 1000) + 1;
+      var iwContent =
+        '<div class="map__wrap">' +
+        '    <div class="map__info">' +
+        '        <div class="map__img">' +
+        `            <img src=${el.photo} />` +
+        '    <div class="map__info">' +
+        '        <div class="map__title">' +
+        `            ${el.place}` +
+        "        </div>" +
+        '        <div class="map__body">' +
+        '            <div class="map__desc">' +
+        `                <div class="map__ellipsis">${el.address}</div>` +
+        '        <div class="map__randomNum">' +
+        `            ${randomNum} 명이 추천했습니다!` +
+        "        </div>" +
+        "            </div>" +
+        "            </div>" +
+        "            </div>" +
+        "        </div>" +
+        "    </div>" +
+        '        <div class="map__save">' +
+        `            마커를 클릭하면 여행일정에 저장됩니다.` +
+        "        </div>" +
+        "</div>";
+      var infowindow = new kakao.maps.InfoWindow({
+        content: iwContent,
+      });
+
+      kakao.maps.event.addListener(marker, "mouseover", function () {
+        infowindow.open(map, marker);
+      });
+
+      kakao.maps.event.addListener(marker, "mouseout", function () {
+        infowindow.close();
+      });
+
+      kakao.maps.event.addListener(marker, "click", function () {
+        setLists(
+          [...lists].concat(
+            NextListData[0].filter((e: any) => e.place === el.place)
+          )
+        );
+        infowindow.close();
+        // removeNextMarker2();
+      });
+
+      // function removeNextMarker2() {
+      //   dispatch(
+      //     Actions.nextPlaceList(
+      //       NextListData[0].filter((e: any) => e.place !== el.place)
+      //     )
+      //   );
+      // }
+    });
+    setNextMarkerArr(NextTempArr);
     function removeMarker() {
       // markerArr?.forEach((e: any) => e?.setMap(null));
       for (let i = 0; i < markerArr?.length; i++) {
@@ -112,6 +192,11 @@ const Map = (placedata: any) => {
       }
       pathArr?.setMap(null);
       // ListData = [];
+    }
+    function removeNextMarker() {
+      for (let i = 0; i < nextMarkerArr.length; i++) {
+        nextMarkerArr[i]?.setMap(null);
+      }
     }
   };
 

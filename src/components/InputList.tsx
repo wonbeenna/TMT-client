@@ -29,8 +29,8 @@ function InputList({ _startDate, _endDate, lists, setLists }: any) {
     }
   });
 
-  const deleteHandler = (index: any) => {
-    setLists(lists.filter((el: any, idx: any) => idx !== index));
+  const deleteHandler = (index: number) => {
+    setLists(lists.filter((el: any, idx: number) => idx !== index));
   };
 
   const handleChange = (result: any) => {
@@ -43,6 +43,7 @@ function InputList({ _startDate, _endDate, lists, setLists }: any) {
     setLists(items);
   };
   dispatch(Actions.placeList(lists));
+
   return (
     <div className={open ? "inputList" : "inputList__close"}>
       <div

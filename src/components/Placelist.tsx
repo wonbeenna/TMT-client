@@ -16,11 +16,13 @@ const Placelist = ({
   totalPosts,
   paginate,
   currentPage,
+  lists,
+  setLists,
 }: any) => {
   const dispatch = useDispatch();
   const [likePlace, setLikePlace] = useState<any>([]);
-  const [lists, setLists] = useState<Array<object>>([]);
-  const [recommend, setRecommend]: any = useState<string | any>([]);
+  // const [lists, setLists] = useState<Array<object>>([]);
+  const [recommend, setRecommend] = useState<any>([]);
   const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
   const accessToken: any = useSelector(
     (state: RootReducer) => state.accessTokenReducer
@@ -90,7 +92,6 @@ const Placelist = ({
             {place.map((el: any, idx: number) => {
               const inputHandler = () => {
                 setLists([...lists].concat(el));
-                console.log('Placelist_lists', lists)
                 const searchURL = `${process.env.REACT_APP_API}/trip/recommend`;
                 axios
                   .post(
@@ -103,19 +104,8 @@ const Placelist = ({
                     }
                   )
                   .then((res) => {
-                    console.log("recommendPOST_res.data", res.data);
-                    setRecommend(res.data)
-                    // => 받은 데이터값의 lat,long으로 mainpage 지도에 마커를 찍어줘야한다.
-                    // => 리덕스로 상태 관리
-                    // recommendPOST_res.data 콘솔결과(지금 청계천만가능)
-                    // [{…}, {…}, {…}]
-                    // 0:
-                    // address: "서울특별시 종로구 세종로 사직로 161"
-                    // lat: 37.579698652999916
-                    // long: 126.97699720184801
-                    // photo: "http://tong.visitkorea.or.kr/cms/resource/23/2678623_image2_1.jpg"
-                    // place: "경복궁"
-                    // theme: (4) ["역사&문화", "야경", "휴식&힐링", "가족"]
+                    setRecommend([...recommend].concat(res.data));
+                    dispatch(Actions.nextPlaceList(res.data));
                   })
                   .catch((err) => console.log("err", err));
               };
