@@ -4,7 +4,6 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import UserLike from "../components/UserLike";
 import MyTriproute from "../components/MyTriproute";
-
 import { DayPickerRangeController, FocusedInputShape } from "react-dates";
 import "./CSS/Mypage.css";
 import "react-dates/initialize";
@@ -61,6 +60,7 @@ const Mypage = () => {
   const [likePlace, setLikePlace] = useState<any>([]);
   const likeURL = `${process.env.REACT_APP_API}/user/like`;
 
+
   useEffect(() => {
     const fetchData = async () => {
       if (isLogin) {
@@ -70,7 +70,14 @@ const Mypage = () => {
               authorization: `Bearer ${setAccessToken}`,
             },
           })
-          .then((res) => setLikePlace(res.data.place));
+          .then((res) => {
+            if (res.data.length === 0) {
+              return;
+            } else {
+              setLikePlace(res.data)
+              console.log('www', res.data)
+            }
+          });
       } else {
         setLikePlace([]);
       }

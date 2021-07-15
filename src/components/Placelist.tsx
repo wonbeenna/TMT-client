@@ -21,8 +21,6 @@ const Placelist = ({
 }: any) => {
   const dispatch = useDispatch();
   const [likePlace, setLikePlace] = useState<any>([]);
-
-  // const [lists, setLists] = useState<Array<object>>([]);
   const [recommend, setRecommend] = useState<any>([]);
   const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
   const accessToken: any = useSelector(
@@ -41,10 +39,11 @@ const Placelist = ({
             },
           })
           .then((res) => {
-            if (res.data.place === undefined) {
+            console.log('likeGet', res)
+            if (res.data === "") {
               return;
             } else {
-              setLikePlace(res.data.place);
+              setLikePlace(res.data);
             }
           });
       } else {
@@ -80,6 +79,7 @@ const Placelist = ({
             },
           }
         );
+        console.log('postlike', el)
         setLikePlace([...likePlace]?.concat(el.place));
       }
     } else {
@@ -91,6 +91,8 @@ const Placelist = ({
     }
   };
 
+  console.log('place이뭐야', place)
+  console.log('likePlace뭐야', likePlace)
   return (
     <>
       <div className="placeList__warp">
@@ -133,13 +135,17 @@ const Placelist = ({
                       {el.place}
                       <img src="../img/flag.png" alt="" />
                     </div>
-
                     <div className="placeList__list__address">{el.address}</div>
                   </div>
+
                   <div className="placeList__list__like">
+                    {/* {likePlace?.map((e: any) => {
+                      console.log('좋아하는장소', e)
+                      console.log('검색결과장소', el)
+                    })} */}
                     <img
                       src={
-                        likePlace?.includes(el.place)
+                        likePlace.place?.includes(el.place)
                           ? "../img/heart.png"
                           : "../img/noheart.png"
                       }
