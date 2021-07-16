@@ -21,8 +21,8 @@ const Placelist = ({
 }: any) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState<boolean>(false);
-  const [likePlace, setLikePlace] = useState<any>([]);
-  const [recommend, setRecommend] = useState<any>([]);
+  const [likePlace, setLikePlace] = useState<Array<string>>([]);
+  const [recommend, setRecommend] = useState<Array<object>>([]);
   const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
   const accessToken: any = useSelector(
     (state: RootReducer) => state.accessTokenReducer
@@ -40,12 +40,7 @@ const Placelist = ({
             },
           })
           .then((res) => {
-            console.log("likeGet", res);
-            if (res.data === "") {
-              return;
-            } else {
-              setLikePlace(res.data);
-            }
+            setLikePlace(res.data.place);
           });
       } else {
         setLikePlace([]);
@@ -53,20 +48,18 @@ const Placelist = ({
     };
     fetchData();
   }, []);
-  console.log(likePlace);
+
   const likeHandler = async (el: any) => {
     if (isLogin) {
       if (likePlace?.includes(el.place)) {
-        await axios
-          .delete(likeURL, {
-            headers: {
-              authorization: `Bearer ${setAccessToken}`,
-            },
-            data: {
-              place: el.place,
-            },
-          })
-          .then((res) => console.log(res));
+        await axios.delete(likeURL, {
+          headers: {
+            authorization: `Bearer ${setAccessToken}`,
+          },
+          data: {
+            place: el.place,
+          },
+        });
         setLikePlace(likePlace?.filter((els: any) => els !== el.place));
       } else {
         await axios.post(
@@ -80,8 +73,11 @@ const Placelist = ({
             },
           }
         );
-        console.log("postlike", el);
-        setLikePlace([...likePlace]?.concat(el.place));
+        if (likePlace === undefined) {
+          setLikePlace([el.place]);
+        } else {
+          setLikePlace([...likePlace]?.concat(el.place));
+        }
       }
     } else {
       const ModalHandler = (name: string) => {
@@ -92,8 +88,6 @@ const Placelist = ({
     }
   };
 
-  console.log("place이뭐야", place);
-  console.log("likePlace뭐야", likePlace);
   return (
     <>
       <div className="placeList__warp">
@@ -115,6 +109,7 @@ const Placelist = ({
                     }
                   )
                   .then((res) => {
+                    console.log(res.data);
                     setRecommend([...recommend].concat(res.data));
                     dispatch(Actions.nextPlaceList(res.data));
                   })
@@ -150,7 +145,7 @@ const Placelist = ({
                     })} */}
                     <img
                       src={
-                        likePlace.place?.includes(el.place)
+                        likePlace?.includes(el.place)
                           ? "../img/heart.png"
                           : "../img/noheart.png"
                       }
