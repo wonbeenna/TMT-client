@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
+import "./CSS/UserLike.css";
 
 const UserLike = ({ likePlace }: any) => {
-
   return (
     <>
-      <div className="route_body">
+      <div className="userLike">
         {likePlace?.map((el: any) => {
           return (
-            <div className="route_oneoflike">
-              <img src={el.photo} />
-              <p>{el.place}</p>
+            <div className="userLike__contents">
+              <div className="userLike__img">
+                <img src={el.photo} />
+              </div>
+              <div className="userLike__info">
+                <p>{el.place}</p>
+              </div>
             </div>
           );
         })}

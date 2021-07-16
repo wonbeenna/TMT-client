@@ -10,14 +10,12 @@ const Header = () => {
   const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
   const dispatch = useDispatch();
   const history = useHistory();
-  console.log(isLogin);
   const signOutHandler = () => {
     dispatch(Actions.AccessToken("", ""));
     dispatch(Actions.LoginStatus(false));
     history.push("/Mainpage");
     // window.location.href = "/Mainpage";
     // window.location.href = "/Landing.html";
-    console.log(isLogin);
   };
   const landingPage = () => {
     window.location.href = "/Landing.html";

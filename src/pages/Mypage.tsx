@@ -55,11 +55,15 @@ const Mypage = () => {
     }
     fetchData();
   }, []);
+  console.log(startDate);
+  console.log(_startDate);
 
+  const msDiff = new Date(_startDate).getTime() - new Date(_endDate).getTime();
+  const range = Math.abs(msDiff / (1000 * 60 * 60 * 24)) + 1;
+  console.log(range);
   const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
   const [likePlace, setLikePlace] = useState<any>([]);
   const likeURL = `${process.env.REACT_APP_API}/user/like`;
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -74,8 +78,8 @@ const Mypage = () => {
             if (res.data.length === 0) {
               return;
             } else {
-              setLikePlace(res.data)
-              console.log('www', res.data)
+              setLikePlace(res.data);
+              console.log("www", res.data);
             }
           });
       } else {
@@ -87,42 +91,49 @@ const Mypage = () => {
 
   return (
     <>
-      <Modal />
-      <Header />
-      {/* <MyMap /> */}
-      <div className="mypage">
-        <div className="mypageside">
-          <div className="route">
-            <div className="route_title"> 경로</div>
+      <div className="myPage">
+        <Modal />
+        <Header />
+        {/* <MyMap /> */}
+
+        <div className="myPage__warp">
+          <div className="myPage__title">
+            <h1>{range}일 간의 여행 일정</h1>
+          </div>
+          <div className="myPage__section">
+            <div className="myPage__Map">
+              <MyMap />
+            </div>
+
+            <div className="myPage__calendar">
+              <DayPickerRangeController
+                startDate={startDate}
+                endDate={endDate}
+                onDatesChange={handlendDatesChange}
+                focusedInput={focusedInput}
+                onFocusChange={setFocusedInput}
+                initialVisibleMonth={null}
+                numberOfMonths={2}
+                monthFormat={"YYYY년 MM월"}
+              />
+            </div>
+          </div>
+          <div className="myPage__section__route__title">
+            <h4>나의 여행 경로</h4>
+          </div>
+          <div className="myPage__section__route">
             <MyTriproute myplace={myplace} />
           </div>
-        </div>
-        <div className="mypageLeft">
-          <div className="calendar">
-            <DayPickerRangeController
-              startDate={startDate}
-              endDate={endDate}
-              onDatesChange={handlendDatesChange}
-              focusedInput={focusedInput}
-              onFocusChange={setFocusedInput}
-              initialVisibleMonth={null}
-              numberOfMonths={2}
-              monthFormat={"YYYY년 MM월"}
-            />
+          <div className="myPage__like__title">
+            <h1>좋아요 목록</h1>
           </div>
-
-          <div className="like">
-            여행지like
+          <div className="myPage__like">
             <UserLike likePlace={likePlace} />
           </div>
         </div>
-        <div className="mypageLeft">
-          <div className="MapWrap">
-            <MyMap className="MyMap1" />
-          </div>
-        </div>
+
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 };

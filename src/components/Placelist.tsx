@@ -20,6 +20,7 @@ const Placelist = ({
   setLists,
 }: any) => {
   const dispatch = useDispatch();
+  const [open, setOpen] = useState<boolean>(false);
   const [likePlace, setLikePlace] = useState<any>([]);
   const [recommend, setRecommend] = useState<any>([]);
   const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
@@ -39,7 +40,7 @@ const Placelist = ({
             },
           })
           .then((res) => {
-            console.log('likeGet', res)
+            console.log("likeGet", res);
             if (res.data === "") {
               return;
             } else {
@@ -79,7 +80,7 @@ const Placelist = ({
             },
           }
         );
-        console.log('postlike', el)
+        console.log("postlike", el);
         setLikePlace([...likePlace]?.concat(el.place));
       }
     } else {
@@ -91,8 +92,8 @@ const Placelist = ({
     }
   };
 
-  console.log('place이뭐야', place)
-  console.log('likePlace뭐야', likePlace)
+  console.log("place이뭐야", place);
+  console.log("likePlace뭐야", likePlace);
   return (
     <>
       <div className="placeList__warp">
@@ -118,6 +119,10 @@ const Placelist = ({
                     dispatch(Actions.nextPlaceList(res.data));
                   })
                   .catch((err) => console.log("err", err));
+
+                if (lists.length >= 0) {
+                  setOpen(true);
+                }
               };
               return (
                 <div key={idx} className="placeList__destination">
@@ -168,6 +173,8 @@ const Placelist = ({
           _endDate={_endDate}
           lists={lists}
           setLists={setLists}
+          open={open}
+          setOpen={setOpen}
         />
       </div>
     </>
