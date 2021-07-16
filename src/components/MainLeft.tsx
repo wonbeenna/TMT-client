@@ -39,6 +39,7 @@ const Mainleftpage = ({ lists, setLists }: any) => {
     "부산",
     "광주",
     "경기",
+    "세종",
     "강원도",
     "충청북도",
     "충청남도",
