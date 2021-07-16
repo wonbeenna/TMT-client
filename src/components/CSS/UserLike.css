@@ -1,4 +1,9 @@
+.userLikeWrap {
+  position: relative;
+  top: 65px;
+}
 .userLike {
+  grid-gap: 25px;
   height: 100%;
   grid-row-gap: 5vw;
   margin-top: 55px;

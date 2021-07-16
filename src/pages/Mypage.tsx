@@ -15,6 +15,10 @@ import { RootReducer } from "../reducers";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 const Mypage = () => {
+  // console.log('Mypage_length1', document.documentElement.scrollHeight) 
+  // console.log('Mypage_length2', document.body.scrollHeight) 
+  // console.log('Mypage_scrollTop', document.documentElement.scrollTop, document.body.scrollTop)  
+  // console.log('Mypage_clientHeight', document.documentElement.clientHeight)
   const [myplace, setMyPlace] = useState<any>({});
   const [_startDate, _setStartDate] = useState<any>();
   const [_endDate, _setEndDate] = useState<any>();
