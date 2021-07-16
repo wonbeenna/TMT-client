@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootReducer } from "../reducers";
 import { Actions } from "../actions";
 import axios from "axios";
-
+axios.defaults.withCredentials = true;
 function InputListBtn({ startToday, endToday, lists }: any) {
   const dispatch = useDispatch();
   const accessToken: any = useSelector(

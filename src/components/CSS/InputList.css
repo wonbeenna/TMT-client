@@ -155,3 +155,17 @@
   width: 25px;
   height: 25px;
 }
+
+@media screen and (max-width: 900px) {
+  .inputList {
+    position: initial;
+    height: 50vh;
+  }
+  .inputList__close {
+    position: initial;
+    height: 50vh;
+  }
+  .inputList__contents {
+    min-height: 0;
+  }
+}

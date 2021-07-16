@@ -11,7 +11,7 @@ import axios from "axios";
 import { Actions } from "../actions";
 import { useHistory } from "react-router-dom";
 require("dotenv").config();
-
+axios.defaults.withCredentials = true;
 function SignIn() {
   const history = useHistory();
   const dispatch = useDispatch();

@@ -8,7 +8,7 @@ import { RootReducer } from "../reducers";
 import { Actions } from "../actions";
 import { useHistory } from "react-router-dom";
 require("dotenv").config();
-
+axios.defaults.withCredentials = true;
 function UserInfo() {
   const [curPassword, setCurPassword] = useState("");
   const [password, setPassword] = useState("");

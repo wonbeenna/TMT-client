@@ -417,3 +417,30 @@ ul {
 .overlaybox li:hover .down {
   background-position: 0 -20px;
 }
+@media screen and (max-width: 685px) {
+  .mainleft_warp {
+    position: relative;
+  }
+  .mainleft_container {
+    width: 100vw;
+  }
+  .placeList__contents {
+    height: 50vh;
+  }
+  .inputList__container {
+    width: 100vw;
+    flex: 1;
+  }
+  .inputList__warp {
+    width: 90vw !important;
+    margin: 0 !important;
+  }
+  .inputList__save {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  .inputList__saveBtn {
+    width: 50vw !important;
+  }
+}
