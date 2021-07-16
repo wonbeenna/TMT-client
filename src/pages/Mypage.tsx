@@ -63,7 +63,7 @@ const Mypage = () => {
   console.log(range);
   const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
   const [likePlace, setLikePlace] = useState<any>([]);
-  const likeURL = `${process.env.REACT_APP_API}/user/like`;
+  const likeURL = `${process.env.REACT_APP_API}/user/photoLike`;
 
   useEffect(() => {
     const fetchData = async () => {
