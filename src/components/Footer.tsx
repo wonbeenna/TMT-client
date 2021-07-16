@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./CSS/Footer.css"
 const Footer = () => {
   const handleGit = (Name: string): void => {
     window.open(`https://github.com/${Name}`);
