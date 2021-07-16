@@ -7,6 +7,7 @@ import TimelineContent from "@material-ui/lab/TimelineContent";
 import TimelineDot from "@material-ui/lab/TimelineDot";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
+import "./CSS/MyTriproute.css";
 
 //타임라인가로 css
 const useStyles = makeStyles({
@@ -15,7 +16,7 @@ const useStyles = makeStyles({
     // marginLeft: 0,
     // position: 'inherit',
     // overflowY: "scroll",
-    width: 500,
+    // width: 500,
     // height: 500
   },
   // timelineContentContainer: {
@@ -53,38 +54,30 @@ const MyTriproute = ({ myplace }: any) => {
   return (
     <>
       {/* <img src={"../img/pic1.jpeg"} /> */}
-      <div className="route_body">
-        <Timeline className={classes.timeline}>
-          {myplace?.spot?.map((el: any) => {
-            return el?.map((e: any) => {
-              return (
-                <TimelineItem>
-                  <TimelineSeparator>
-                    <TimelineDot
-                    // className={classes.timelineIcon}
-                    />
-                    <TimelineConnector />
-                  </TimelineSeparator>
-                  <TimelineContent
-                  // className={classes.timelineContentContainer}
-                  >
-                    <Paper
-                    //  className={classes.timelineContent}
-                    >
-                      <div className="route_oneofroute">
-                        <img src={e.photo} />
-                        <div className="descplace">
-                          <div className="desplacename">{e.place}</div>
-                          <div>{e.address}</div>
-                        </div>
-                      </div>
-                    </Paper>
-                  </TimelineContent>
-                </TimelineItem>
-              );
-            });
-          })}
-        </Timeline>
+      <div className="route__body">
+        {/* <Timeline className={classes.timeline}> */}
+        {myplace?.spot?.map((el: any, idx: number) => {
+          return el?.map((e: any) => {
+            return (
+              <>
+                <div className="route__warp">
+                  <div className="route__contents">
+                    <img src={e.photo} alt="" />
+                    <a href={e.photo} target="_blank"></a>
+
+                    <div className="route__content">
+                      <div className="route__place">{e.place}</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="route__arrow">
+                  <img src="./img/arrow.png" alt="" />
+                </div>
+              </>
+            );
+          });
+        })}
+        {/* </Timeline> */}
       </div>
     </>
   );

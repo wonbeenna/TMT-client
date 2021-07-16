@@ -1,105 +1,74 @@
-.mypage {
-  display: flex;
-}
-
-.mypageLeft {
-  position: relative;
-  flex-basis: 50%;
-}
-.MyMap1 {
-  display: block;
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  right: 0;
-}
-.route {
-  width: 700px;
-  /* height: 500px; */
-  /* box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 16px 0px; */
-  /* justify-content: center; */
+.myPage {
   display: flex;
   flex-direction: column;
-  /* border: 1px solid hsl(350, 100%, 88%); */
-  margin-left: 1rem;
+  overflow-x: hidden;
 }
-/* .route_title {
-  position: relative;
-  top: -190px;
+.myPage__warp {
+  display: flex;
+  flex-direction: column;
+  margin: 40px;
+}
+/* .myPage__warp h1 {
+  margin: 5px auto 25px;
+  color: rgb(0, 0, 0, 0.75);
 } */
-.route_body {
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* border: 1px solid rgb(11, 11, 240); */
+.myPage__title {
+  margin-left: 70px;
+}
+.myPage__title h1 {
+  margin: 5px 25px;
+  color: rgb(0, 0, 0, 0.75);
+  border-bottom: 1px solid #bebebe;
+}
+.myPage__section {
   display: flex;
-  flex-direction: row;
-  margin-left: 1rem;
-  overflow: hidden;
-  position: inherit;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  width: 100%;
 }
-
-.route_oneofroute {
-  width: 500px;
-  display: flex;
-  /* align-items: center; */
-  flex-direction: row;
-  /* justify-content: flex-end; */
-  margin: 3px 5px;
-  box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 16px 0px;
-  border-radius: 10px;
-  background-color: #fef4ec;
-  /* border: 1px solid green; */
-}
-.route_oneoflike {
-  width: 250px;
-  height: 250px;
-  display: flex;
-  flex-direction: column;
-}
-.route_oneoflike img {
-  width: 100px;
-  height: 100px;
-}
-
-.route img {
-  width: 100px;
-  height: 100px;
-  border-radius: 10px;
-  display: flex;
-  align-items: left;
-}
-.descplace {
-  margin-left: 1rem;
-  display: flex;
-  flex-direction: column;
-}
-.desplacename {
-  font-size: 130%;
-}
-/* .mypageroutewrap {
-  display: flex;
-  flex-direction: column;
-} */
-.calendar {
-  width: 300px;
-  height: 500px;
-  flex-basis: 30%;
-}
-
-.like {
-  box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 16px 0px;
-  height: 500px;
-}
-
 #staticMaps,
 #staticMap {
-  width: 550px;
-  height: 350px;
-  left: -550px;
-  position: absolute;
+  width: 600px;
+  height: 450px;
+  left: 0px;
+  border-radius: 10px;
 }
-
-.MapWrap {
-  width: 50vw;
-  height: 50vh;
+.myPage__calendar {
+  margin: 20px 20px 10px;
+  height: 100%;
+}
+.myPage__section__route {
+  margin: 25px auto;
+}
+.myPage__section__route__title {
+  margin: 50px 0 0 70px;
+}
+.myPage__section__route__title h4 {
+  margin: 5px 25px;
+  font-size: 25px;
+  color: rgb(0, 0, 0, 0.75);
+  border-bottom: 1px solid #bebebe;
+}
+.myPage__like {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.myPage__like__title {
+  margin-left: 70px;
+}
+.myPage__like__title h1 {
+  margin: 5px 25px;
+  color: rgb(0, 0, 0, 0.75);
+  border-bottom: 1px solid #bebebe;
+}
+@media screen and (max-width: 1260px) {
+  .myPage__section {
+    flex-direction: column;
+  }
+  .myPage__calendar {
+    margin: 0;
+  }
 }

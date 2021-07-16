@@ -8,9 +8,16 @@ import { Actions } from "../actions";
 import "./CSS/InputList.css";
 import InputListBtn from "./InputListBtn";
 
-function InputList({ _startDate, _endDate, lists, setLists }: any) {
+function InputList({
+  _startDate,
+  _endDate,
+  lists,
+  setLists,
+  open,
+  setOpen,
+}: any) {
   const dispatch = useDispatch();
-  const [open, setOpen] = useState<boolean>(true);
+  // const [open, setOpen] = useState<boolean>(false);
   const [startToday, setStartToday] = useState<string>("");
   const [endToday, setEndToday] = useState<string>("");
 
