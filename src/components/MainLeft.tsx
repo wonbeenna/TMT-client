@@ -166,12 +166,12 @@ const Mainleftpage = ({ lists, setLists }: any) => {
   const searchPlace = (text: string) => {
     if (!text) {
       setSpotMatch([]);
+      setSearch("");
     } else {
-      let matchedPlace = spot.placeOnly.filter((el: any) => {
+      let matchedPlace = spot?.placeOnly?.filter((el: any) => {
         let regex = new RegExp(`${text}`, "gi");
         return el.place.match(regex);
       });
-
       setSpotMatch(matchedPlace);
       setSearch(text);
     }
@@ -179,7 +179,7 @@ const Mainleftpage = ({ lists, setLists }: any) => {
 
   let changeInput = (el: any) => {
     setSearch(el);
-    setSpotMatch([]);
+    setSpotMatch([el]);
   };
 
   const sendSearchReq = async (): Promise<any> => {
@@ -210,8 +210,8 @@ const Mainleftpage = ({ lists, setLists }: any) => {
                 list="spotlist"
                 placeholder="장소 검색"
                 onChange={(e) => searchPlace(e.target.value)}
-                value={search}
-              ></input>
+                value={search || [search] || ""}
+              />
               {spotMatch && (
                 <div className="placeContainer">
                   {spotMatch.map((el: any, index: number) => {
