@@ -9,7 +9,7 @@ import {
 } from "../components/ValidationCheck";
 import "./CSS/SignUp.css";
 require("dotenv").config();
-
+axios.defaults.withCredentials = true;
 function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

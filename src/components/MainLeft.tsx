@@ -12,7 +12,7 @@ import "./CSS/_datepicker.css";
 import moment, { Moment } from "moment";
 import { DateRangePicker, FocusedInputShape } from "react-dates";
 require("dotenv").config();
-
+axios.defaults.withCredentials = true;
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {

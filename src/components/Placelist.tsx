@@ -7,7 +7,7 @@ import "./CSS/MainLeft.css";
 import "./CSS/PlaceList.css";
 import InputList from "./InputList";
 import Paging from "./Pagination";
-
+axios.defaults.withCredentials = true;
 const Placelist = ({
   place,
   _startDate,

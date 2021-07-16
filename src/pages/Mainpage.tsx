@@ -9,12 +9,14 @@ import Map from "../components/Map";
 const Mainpage = () => {
   const [lists, setLists] = useState<any>([]);
   return (
-    <div className="mainpage_container">
-      <Modal />
-      <Header />
-      <Mainleftpage lists={lists} setLists={setLists} />
-      <Map className="Map" lists={lists} setLists={setLists} />
-    </div>
+    <>
+      <div className="mainpage_container">
+        <Header />
+        <Modal />
+        <Mainleftpage lists={lists} setLists={setLists} />
+        <Map className="Map" lists={lists} setLists={setLists} />
+      </div>
+    </>
   );
 };
 

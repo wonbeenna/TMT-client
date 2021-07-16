@@ -13,7 +13,7 @@
   color: rgb(0, 0, 0, 0.75);
 } */
 .myPage__title {
-  margin-left: 70px;
+  margin: 70px 0 0 70px;
 }
 .myPage__title h1 {
   margin: 5px 25px;

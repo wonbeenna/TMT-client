@@ -13,8 +13,8 @@ const Header = () => {
   const signOutHandler = () => {
     dispatch(Actions.AccessToken("", ""));
     dispatch(Actions.LoginStatus(false));
-    // history.push("/Mainpage");
-    window.location.href = "/Mainpage";
+    history.push("/Mainpage");
+    // window.location.href = "/Mainpage";
     // window.location.href = "/Landing.html";
   };
   const landingPage = () => {
@@ -36,8 +36,7 @@ const Header = () => {
     const curURL = window.location.href;
     const mypageURL = `${process.env.REACT_APP_BUCKET}/Mypage`;
     const domainURL = `${process.env.REACT_APP_DOMAIN}/Mypage`;
-    const domainURL2 = `${process.env.REACT_APP_DOMAIN2}/Mypage`;
-    if (curURL === mypageURL || curURL === domainURL || curURL === domainURL2) {
+    if (curURL === mypageURL || curURL === domainURL) {
       return (
         <div className="headerContainer">
           <div className="headerLogo" onClick={landingPage}>
@@ -84,12 +83,7 @@ const Header = () => {
     const curURL = window.location.href;
     const mainPageURL = `${process.env.REACT_APP_BUCKET}/Mainpage`;
     const domainURL = `${process.env.REACT_APP_DOMAIN}/Mainpage`;
-    const domainURL2 = `${process.env.REACT_APP_DOMAIN2}/Mainpage`;
-    if (
-      curURL === mainPageURL ||
-      curURL === domainURL ||
-      curURL === domainURL2
-    ) {
+    if (curURL === mainPageURL || curURL === domainURL) {
       return (
         <div className="headerContainer">
           <div className="headerLogo" onClick={landingPage}>

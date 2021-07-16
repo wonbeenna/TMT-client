@@ -13,7 +13,7 @@ import { withRouter } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootReducer } from "../reducers";
 import axios from "axios";
-
+axios.defaults.withCredentials = true;
 const Mypage = () => {
   const [myplace, setMyPlace] = useState<any>({});
   const [_startDate, _setStartDate] = useState<any>();

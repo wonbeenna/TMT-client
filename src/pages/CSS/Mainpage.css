@@ -14,3 +14,20 @@
   right: 0;
   bottom: 0;
 }
+@media screen and (max-width: 900px) {
+  .mainpage_container {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    overflow-x: hidden;
+  }
+  .Map {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+@media screen and (max-width: 685px) {
+  .Map {
+    display: none;
+  }
+}
