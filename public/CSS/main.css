@@ -259,14 +259,7 @@ body.before-load {
   font-size: 1.2rem;
   color: #888;
 }
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 7rem;
-  color: white;
-  background: gray;
-}
+
 .sticky-elem {
   display: none;
   position: fixed;
@@ -467,4 +460,39 @@ body.before-load {
 }
 .daejeon {
   color: #eda832;
+}
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 7rem;
+  color: white;
+  background: gray;
+}
+.footer img {
+  width: 200px;
+  height: 50px;
+}
+.team {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contact,
+.member {
+  display: flex;
+  flex-direction: column;
+  padding-left: 15px;
+}
+.contact a {
+  z-index: 101;
+  cursor: pointer;
+  color: white;
+  padding: 5px;
+}
+.member a {
+  z-index: 101;
+  cursor: pointer;
+  color: white;
+  padding: 2px;
 }

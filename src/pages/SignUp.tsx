@@ -132,6 +132,8 @@ function SignUp() {
         const status = err.response.status;
         if (status === 409) {
           setErrEmail("이미 사용중인 이메일 입니다");
+        } else {
+          throw err;
         }
       });
   };

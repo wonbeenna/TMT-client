@@ -6,7 +6,7 @@
   border-bottom: 1px solid rgb(207, 207, 207);
   background: white;
   z-index: 10;
-  position: fixed;
+  position: sticky;
   width: 100vw;
 }
 
@@ -35,10 +35,4 @@
   flex-wrap: nowrap;
   color: gray;
   cursor: pointer;
-}
-
-@media screen and (max-width: 400px) {
-  .headerRightside p {
-    margin-right: 1px;
-  }
 }
