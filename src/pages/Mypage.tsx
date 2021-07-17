@@ -58,7 +58,6 @@ const Mypage = () => {
 
   const msDiff = new Date(_startDate).getTime() - new Date(_endDate).getTime();
   const range = Math.abs(msDiff / (1000 * 60 * 60 * 24)) + 1;
-  // console.log(range);
 
   return (
     <>
@@ -83,7 +82,8 @@ const Mypage = () => {
                 onFocusChange={setFocusedInput}
                 initialVisibleMonth={null}
                 numberOfMonths={2}
-                monthFormat={"YYYY년 MM월"} />
+                monthFormat={"YYYY년 MM월"}
+              />
             </div>
           </div>
           <div className="myPage__section__route__title">

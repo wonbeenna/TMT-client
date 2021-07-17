@@ -29,6 +29,11 @@ function UserInfo() {
   );
   const setAccessToken = accessToken.AccessToken.accessToken;
   const setRefreshToken = accessToken.AccessToken.refreshToken;
+  const ModalHandler = (name: string) => {
+    dispatch(Actions.modalStatus(true));
+    dispatch(Actions.modalName(name));
+  };
+
   const userInfoHandler = async () => {
     if (!curPassword) {
       setCurPasswordValid(false);
@@ -59,6 +64,8 @@ function UserInfo() {
         }
       )
       .then((res) => {
+        modalCloseHandler();
+        ModalHandler("UserInfoCheck");
         history.push("./Mypage");
       })
       .catch((err) => {
@@ -67,6 +74,8 @@ function UserInfo() {
           setErrCurPassword(
             "현재 비밀번호가 일치하지 않습니다. 다시 입력해주세요"
           );
+        } else {
+          throw err;
         }
         if (status === 409) {
           dispatch(Actions.LoginStatus(false));
@@ -127,6 +136,14 @@ function UserInfo() {
                       setRefreshToken
                     )
                   );
+                })
+                .catch((err) => {
+                  const status = err.response.status;
+                  if (status === 401) {
+                    dispatch(Actions.LoginStatus(false));
+                  } else {
+                    throw err;
+                  }
                 });
             };
             callbackAxios();

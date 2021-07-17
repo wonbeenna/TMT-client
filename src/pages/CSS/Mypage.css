@@ -13,10 +13,11 @@
   color: rgb(0, 0, 0, 0.75);
 } */
 .myPage__title {
-  margin: 70px 0 0 70px;
+  margin-top: 70px;
+  width: 100%;
 }
 .myPage__title h1 {
-  margin: 5px 25px;
+  margin: 5px 90px 15px;
   color: rgb(0, 0, 0, 0.75);
   border-bottom: 1px solid #bebebe;
 }
@@ -42,10 +43,10 @@
   margin: 25px auto;
 }
 .myPage__section__route__title {
-  margin: 50px 0 0 70px;
+  margin-top: 50px;
 }
 .myPage__section__route__title h4 {
-  margin: 5px 25px;
+  margin: 5px 90px 15px;
   font-size: 25px;
   color: rgb(0, 0, 0, 0.75);
   border-bottom: 1px solid #bebebe;
@@ -57,10 +58,10 @@
   align-items: center;
 }
 .myPage__like__title {
-  margin-left: 70px;
+  margin-top: 40px;
 }
 .myPage__like__title h1 {
-  margin: 5px 25px;
+  margin: 5px 90px 15px;
   color: rgb(0, 0, 0, 0.75);
   border-bottom: 1px solid #bebebe;
 }
@@ -70,5 +71,18 @@
   }
   .myPage__calendar {
     margin: 0;
+  }
+}
+@media screen and (max-width: 545px) {
+  .myPage__title h1,
+  .myPage__like__title h1,
+  .myPage__section__route__title h4 {
+    margin: 0;
+  }
+  .route__body {
+    padding: 10px;
+  }
+  .route__warp {
+    padding: 5px;
   }
 }

@@ -200,8 +200,6 @@ const Mainleftpage = ({ lists, setLists }: any) => {
         </div>
         <div className="mainleft_container">
           <div className="place">
-            {/* <div className="mainleft_place"> */}
-            {/*장소입력*/}
             <input
               className="mainleft_placeInput"
               type="text"
@@ -225,7 +223,6 @@ const Mainleftpage = ({ lists, setLists }: any) => {
                 })}
               </div>
             )}
-            {/*장소검색*/}
             <img
               className="mainleft_placeInputImg"
               src="../img/search.png"
@@ -233,15 +230,13 @@ const Mainleftpage = ({ lists, setLists }: any) => {
               title="장소로 검색"
               onClick={sendSearchReq}
             />
-            {/* </div> */}
-            {/*지역입력*/}
+
             <div className="location__warp">
               <div className="location">
                 <Autocomplete
                   value={value}
                   onChange={(event: any, newValue: string | null) => {
                     setValue(newValue);
-                    // changeHandler(event, "location");
                   }}
                   inputValue={inputValue}
                   onInputChange={(event, newInputValue) => {
@@ -260,7 +255,6 @@ const Mainleftpage = ({ lists, setLists }: any) => {
                   )}
                 />
               </div>
-              {/*테마입력*/}
               <div className="mainpage_plancontainer">
                 <Button
                   aria-describedby={id}
@@ -287,7 +281,6 @@ const Mainleftpage = ({ lists, setLists }: any) => {
                     ))}
                   </div>
                 </Popper>
-                {/*지역,테마검색*/}
                 <button
                   className="searchBtn"
                   onClick={handleSearch}

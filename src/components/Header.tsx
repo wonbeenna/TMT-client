@@ -14,8 +14,6 @@ const Header = () => {
     dispatch(Actions.AccessToken("", ""));
     dispatch(Actions.LoginStatus(false));
     history.push("/Mainpage");
-    // window.location.href = "/Mainpage";
-    // window.location.href = "/Landing.html";
   };
   const landingPage = () => {
     window.location.href = "/Landing.html";

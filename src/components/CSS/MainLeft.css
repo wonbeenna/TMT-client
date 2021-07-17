@@ -135,6 +135,7 @@
   border-radius: 5px;
   color: #2a99f2;
   cursor: pointer;
+  font-size: 13px;
 }
 .searchBtn:hover {
   transition: all 0.3s;
@@ -183,7 +184,6 @@
   top: 20px;
   right: 65px;
   cursor: pointer;
-  margin-top: 5px;
 }
 
 .mainleft_placeCalendar {
@@ -388,11 +388,6 @@ ul {
 .overlaybox li:hover .down {
   background-position: 0 -20px;
 }
-@media screen and (max-width: 900px) {
-  .mainleft_placeInputImg {
-    margin-top: -3px;
-  }
-}
 @media screen and (max-width: 685px) {
   .mainleft_warp {
     position: relative;
@@ -419,6 +414,9 @@ ul {
   .inputList__saveBtn {
     width: 25rem !important;
   }
+  .mainleft_placeInputImg {
+    margin-top: -12px;
+  }
 }
 @media screen and (max-width: 400px) {
   .mainleft_container {
@@ -428,14 +426,18 @@ ul {
     height: 50vh;
   }
   .inputList__warp {
-    width: 80vw !important;
+    width: 84vw !important;
     margin: 0 !important;
   }
   .inputList__saveBtn {
     width: 15rem !important;
   }
   .mainleft_placeInputImg {
-    right: 90px;
+    right: 40px;
+  }
+  .placeContainer {
+    left: 30px;
+    top: 40px;
   }
 }
 #simple-popper {

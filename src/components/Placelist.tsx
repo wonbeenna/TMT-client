@@ -28,6 +28,8 @@ const Placelist = ({
     (state: RootReducer) => state.accessTokenReducer
   );
   const setAccessToken = accessToken.AccessToken.accessToken;
+  const setRefreshToken = accessToken.AccessToken.refreshToken;
+  const tokenURL = `${process.env.REACT_APP_API}/token/refreshToken`;
   const likeURL = `${process.env.REACT_APP_API}/user/like`;
 
   useEffect(() => {
@@ -44,6 +46,33 @@ const Placelist = ({
           });
       } else {
         setLikePlace([]);
+        const callbackAxios = async () => {
+          await axios
+            .post(
+              tokenURL,
+              {},
+              {
+                headers: {
+                  authorization: `Bearer ${setRefreshToken}`,
+                },
+              }
+            )
+            .then((res) => {
+              dispatch(Actions.LoginStatus(true));
+              dispatch(
+                Actions.AccessToken(res.data.newAccessToken, setRefreshToken)
+              );
+            })
+            .catch((err) => {
+              const status = err.response?.status;
+              if (status === 401) {
+                dispatch(Actions.LoginStatus(false));
+              } else {
+                throw err;
+              }
+            });
+        };
+        callbackAxios();
       }
     };
     fetchData();
@@ -109,7 +138,6 @@ const Placelist = ({
                     }
                   )
                   .then((res) => {
-                    console.log(res.data);
                     setRecommend([...recommend].concat(res.data));
                     dispatch(Actions.nextPlaceList(res.data));
                   })
@@ -139,10 +167,6 @@ const Placelist = ({
                   </div>
 
                   <div className="placeList__list__like">
-                    {/* {likePlace?.map((e: any) => {
-                      console.log('좋아하는장소', e)
-                      console.log('검색결과장소', el)
-                    })} */}
                     <img
                       src={
                         likePlace?.includes(el.place)
@@ -176,24 +200,3 @@ const Placelist = ({
   );
 };
 export default Placelist;
-
-// 0: ["역사&문화", "야경", "랜드마크", "휴식&힐링", "사진"]
-// 1: "덕수궁"
-// 2: "서울 중구 세종대로 99 덕수궁"
-// 3: 37.565972575797396
-// 4: 126.97515152495737
-// 5: "www.dfjkjeeogoo.png"
-
-// 0: (5) ["역사&문화", "야경", "랜드마크", "휴식&힐링", "사진"]
-// 1: "경복궁"
-// 2: "서울특별시 종로구 세종로 사직로 161"
-// 3: 37.579698652999916
-// 4: 126.97699720184801
-// 5: "www.geeess.png"
-
-// 0: (5) ["야경", "휴식&힐링", "사진", "데이트", "가족"]
-// 1: "청계천"
-// 2: "서울특별시 종로구 서린동 청계천로 1 "
-// 3: 37.56929706865797
-// 4: 126.97865846930021
-// 5: "www.geeess.png"
