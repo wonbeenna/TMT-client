@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import Popper from "@material-ui/core/Popper";
-import Button from "@material-ui/core/Button";
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import Placelist from "./Placelist";
 import axios from "axios";
 import "./CSS/MainLeft.css";
-import "react-dates/initialize";
 import "./CSS/_datepicker.css";
+import "react-dates/initialize";
 import moment, { Moment } from "moment";
 import { DateRangePicker, FocusedInputShape } from "react-dates";
+import Popper from "@material-ui/core/Popper";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 require("dotenv").config();
 axios.defaults.withCredentials = true;
 const useStyles = makeStyles((theme: Theme) =>
@@ -39,7 +39,6 @@ const Mainleftpage = ({ lists, setLists }: any) => {
     "부산",
     "광주",
     "경기",
-    "세종",
     "강원도",
     "충청북도",
     "충청남도",
@@ -66,7 +65,6 @@ const Mainleftpage = ({ lists, setLists }: any) => {
   const [value, setValue] = React.useState<string | null>(null);
   const [inputValue, setInputValue] = React.useState("");
   const [province, setProvince] = useState<string | null>("");
-
   const [placedata, setPlacedata]: any = useState<string | any>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [postsPerPage] = useState<number>(10);
@@ -78,8 +76,8 @@ const Mainleftpage = ({ lists, setLists }: any) => {
     setCurrentPage(pageNumber);
   };
 
+  const listURL = `${process.env.REACT_APP_API}/trip/list`;
   useEffect(() => {
-    const listURL = `${process.env.REACT_APP_API}/trip/list`;
     const fetchData = async () => {
       await axios.get(listURL, {}).then((res) => setPlacedata(res.data));
     };
@@ -94,10 +92,9 @@ const Mainleftpage = ({ lists, setLists }: any) => {
   };
 
   const handleSearch = () => {
-    const searchURL = `${process.env.REACT_APP_API}/trip/list`;
     axios
       .post(
-        searchURL,
+        listURL,
         {
           province: province,
           theme: checkItems,
@@ -203,40 +200,40 @@ const Mainleftpage = ({ lists, setLists }: any) => {
         </div>
         <div className="mainleft_container">
           <div className="place">
-            <div className="mainleft_place">
-              {/*장소입력*/}
-              <input
-                className="mainleft_placeInput"
-                type="text"
-                list="spotlist"
-                placeholder="장소 검색"
-                onChange={(e) => searchPlace(e.target.value)}
-                value={search || [search] || ""}
-              />
-              {spotMatch && (
-                <div className="placeContainer">
-                  {spotMatch.map((el: any, index: number) => {
-                    return (
-                      <div
-                        onClick={() => changeInput(el.place)}
-                        className="option"
-                        key={index}
-                      >
-                        <div>{el.place}</div>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-              {/*장소검색*/}
-              <img
-                className="mainleft_placeInputImg"
-                src="../img/search.png"
-                alt=""
-                title="장소로 검색"
-                onClick={sendSearchReq}
-              />
-            </div>
+            {/* <div className="mainleft_place"> */}
+            {/*장소입력*/}
+            <input
+              className="mainleft_placeInput"
+              type="text"
+              list="spotlist"
+              placeholder="장소 검색"
+              onChange={(e) => searchPlace(e.target.value)}
+              value={search || [search] || ""}
+            />
+            {spotMatch && (
+              <div className="placeContainer">
+                {spotMatch.map((el: any, index: number) => {
+                  return (
+                    <div
+                      onClick={() => changeInput(el.place)}
+                      className="option"
+                      key={index}
+                    >
+                      <div>{el.place}</div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+            {/*장소검색*/}
+            <img
+              className="mainleft_placeInputImg"
+              src="../img/search.png"
+              alt=""
+              title="장소로 검색"
+              onClick={sendSearchReq}
+            />
+            {/* </div> */}
             {/*지역입력*/}
             <div className="location">
               <Autocomplete
