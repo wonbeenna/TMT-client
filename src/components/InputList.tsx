@@ -17,7 +17,6 @@ function InputList({
   setOpen,
 }: any) {
   const dispatch = useDispatch();
-  // const [open, setOpen] = useState<boolean>(false);
   const [startToday, setStartToday] = useState<string>("");
   const [endToday, setEndToday] = useState<string>("");
 

@@ -129,7 +129,7 @@ function SignUp() {
         ModalHandler("SignIn");
       })
       .catch((err) => {
-        const status = err.response.status;
+        const status = err.response?.status;
         if (status === 409) {
           setErrEmail("이미 사용중인 이메일 입니다");
         } else {
@@ -210,11 +210,6 @@ function SignUp() {
           <button className="signUp__SignUpBtn" onClick={handleSignUp}>
             회원가입
           </button>
-
-          {/* <div className="signUp__social">
-            <button className="signUp__google">Google</button>
-            <button className="signUp__kakao">Kakao</button>
-          </div> */}
 
           <div className="signUp__signIn">
             <div className="signUp__signInText">이미 회원 이신가요?</div>

@@ -1,13 +1,13 @@
-import React, { useEffect, useState, useCallback, } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import "./CSS/UserLike.css";
 import axios from "axios";
 import { RootReducer } from "../reducers";
 
 const UserLike = () => {
-  const [result, setResult] = useState<Array<string>>([]);
+  const [result, setResult] = useState<any | any[]>([]);
   const [likePlace, setLikePlace] = useState<any | any[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
   const accessToken: any = useSelector(
     (state: RootReducer) => state.accessTokenReducer
@@ -16,10 +16,11 @@ const UserLike = () => {
   const likeURL = `${process.env.REACT_APP_API}/user/photoLike`;
 
   const fetchMoreData = async () => {
-    setIsLoading(true)
-    setResult(result.concat(likePlace.slice(0, 5)))
-    setIsLoading(false)
-  }
+    setIsLoading(true);
+    setResult(result.concat(likePlace.slice(0, 5)));
+    setLikePlace(likePlace.slice(5));
+    setIsLoading(false);
+  };
 
   const _infiniteScroll = useCallback(() => {
     let scrollHeight = Math.max(
@@ -31,9 +32,9 @@ const UserLike = () => {
       document.body.scrollTop
     );
     let clientHeight = document.documentElement.clientHeight;
-    scrollHeight -= 100
+    scrollHeight -= 100;
     if (scrollTop + clientHeight >= scrollHeight && isLoading === false) {
-      fetchMoreData()
+      fetchMoreData();
     }
   }, [isLoading]);
 
@@ -46,31 +47,34 @@ const UserLike = () => {
           },
         })
         .then((res) => {
-          let response = res.data
-          setResult(response.slice(0, 5))
-          response = response.slice(5)
-          setLikePlace(response)
-          setIsLoading(false)
-        }).catch(err => console.log(err))
+          if (res.data === undefined || res.data === "") {
+            return;
+          } else {
+            let response = res.data;
+            setResult(response.slice(0, 5));
+            response = response.slice(5);
+            setLikePlace(response);
+            setIsLoading(false);
+          }
+        })
+        .catch((err) => console.log(err));
     } else {
       setLikePlace([]);
     }
   };
 
   useEffect(() => {
-    fetchData()
-  }, [])
-
+    fetchData();
+  }, []);
   useEffect(() => {
     window.addEventListener("scroll", _infiniteScroll, true);
     return () => window.removeEventListener("scroll", _infiniteScroll, true);
   }, [_infiniteScroll]);
-  console.log(likePlace);
 
   return (
     <div className="userLikeWrap">
       <div className="userLike">
-        {likePlace?.map((el: any) => {
+        {result?.map((el: any) => {
           return (
             <div className="userLike__contents">
               <div className="userLike__img">

@@ -13,7 +13,6 @@ import { useHistory } from "react-router-dom";
 require("dotenv").config();
 axios.defaults.withCredentials = true;
 function SignIn() {
-  const history = useHistory();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -94,7 +93,7 @@ function SignIn() {
         window.location.href = "/Mainpage";
       })
       .catch((err) => {
-        const status = err.response.status;
+        const status = err.response?.status;
         if (status === 409) {
           setErrLogin("이메일과 비밀번호를 확인해 주세요");
         } else {
@@ -116,7 +115,7 @@ function SignIn() {
         window.location.href = "/Mainpage";
       })
       .catch((err) => {
-        const status = err.response.status;
+        const status = err.response?.status;
         if (status === 500) {
           setErrLogin("서버와 연결이 불안정 합니다!");
         } else {
@@ -140,7 +139,7 @@ function SignIn() {
         token: response.tokenObj.id_token,
       })
       .then((res) => {
-        const status = res.status;
+        const status = res?.status;
         if (status === 200 || status === 201) {
           const accessToken = res.data.accessToken;
           const refreshToken = res.data.refreshToken;
@@ -152,7 +151,7 @@ function SignIn() {
         }
       })
       .catch((err) => {
-        const status = err.response.status;
+        const status = err.response?.status;
         if (status === 404) {
           alert("다시 시도해 주세요");
         } else {
@@ -243,7 +242,6 @@ function SignIn() {
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
             />
-            {/* <button className="signIn__google">Google</button> */}
             <KakaoLogin
               token={CLIENT_ID}
               onSuccess={(res) => res}
