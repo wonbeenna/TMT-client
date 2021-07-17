@@ -1,21 +1,22 @@
 .pagination {
   display: flex;
   justify-content: center;
+  align-items: center;
   list-style: none;
   margin-top: 10px;
 }
 .Paginate_li {
-  width: 30px;
-  height: 30px;
-  font-size: 18px;
-  border: 1px solid #424242;
+  width: 23px;
+  height: 23px;
+  font-size: 15px;
+  border: 1px solid #dddddd;
   border-radius: 5px;
   cursor: pointer;
   text-align: center;
   margin: 5px;
 }
 .Paginate_li:hover {
-  background: #417cff;
+  background: #3aa0f3;
 }
 .Paginate_a {
   color: black;
@@ -25,7 +26,7 @@
   color: white;
 }
 .active {
-  background: #417cff;
+  background: #3aa0f3;
 }
 
 /* .next,

@@ -67,21 +67,24 @@
   display: flex;
   width: 100%;
 }
+.location__warp {
+  display: flex;
+}
 .location {
-  width: 240px;
+  width: 200px;
 }
 .mainpage_plancontainer {
-  font-size: 10px;
+  font-size: 15px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  margin-top: 3px;
+  margin-top: 10px;
 }
 .paperInput {
   margin-top: 5px;
+  z-index: 15;
   /* padding-top: 15px; */
 }
 .theme {
@@ -124,49 +127,23 @@
 }
 
 .searchBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin-left: 3px;
-}
-.themeButton {
-  height: 25px;
-  border-radius: 10px;
-  border: 2px solid #6698cb;
+  height: 35px;
+  width: 65px;
+  background: white;
+  border: 1px solid #2a99f2;
+  border-radius: 5px;
+  color: #2a99f2;
   cursor: pointer;
-  position: relative;
-  text-align: center;
-  box-sizing: border-box;
-  overflow: hidden;
-  background-color: #fff;
 }
-.themeButton a {
-  color: #34495e;
-  position: relative;
-  text-decoration: none;
-  transition: all 0.5s ease;
-  z-index: 2;
-  font-size: 1rem;
+.searchBtn:hover {
+  transition: all 0.3s;
+  color: white;
+  background: #2a99f2;
 }
-.themeEff {
-  width: 160px;
-  height: 50px;
-  bottom: -65px;
-  position: absolute;
-  margin-left: -10px;
-  background-color: #6698cb;
-  transition: all 0.5s ease;
-  z-index: 1;
-}
-.themeButton:hover .themeEff {
-  bottom: 0;
-}
-.themeButton:hover a {
-  color: #fff;
-}
-.place {
-  height: 180px;
 
+.place {
+  height: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -174,25 +151,27 @@
 }
 .mainleft_place {
   display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 10px;
 }
 .placeContainer {
-  font-size: 13px;
+  font-size: 15px;
   position: absolute;
   background: white;
-  width: 220px;
+  width: 300px;
   right: 0;
-  left: 105px;
-  top: 50px;
+  left: 70px;
+  top: 55px;
   z-index: 15;
 }
 .mainleft_placeInput {
-  width: 15rem;
   border: 1px solid rgb(202, 202, 202);
-  border-radius: 20px;
+  border-radius: 5px;
   padding: 10px;
   outline: none;
   font-size: 1rem;
+  width: 20rem;
 }
 .mainleft_placeInputImg {
   overflow: hidden;
@@ -201,19 +180,12 @@
   height: 24px;
   vertical-align: top;
   position: absolute;
-  top: 16px;
-  right: 110px;
+  top: 20px;
+  right: 65px;
   cursor: pointer;
   margin-top: 5px;
 }
 
-.place button:hover {
-  background-color: #88b5e2;
-  border: none;
-  letter-spacing: 1px;
-  box-shadow: 5px 40px -10px rgba(0, 0, 0, 0.57);
-  transition: all 0.4s ease 0s;
-}
 .mainleft_placeCalendar {
   display: flex;
   width: 100%;
@@ -224,7 +196,7 @@
 .mainleft_placeCalendar img {
   width: 20px;
   height: 20px;
-  margin-right: 10px;
+  margin: 10px 10px 0 0;
 }
 .mainpage_body {
   display: flex;
@@ -273,9 +245,9 @@
   display: flex;
 }
 .placeList__list__content img {
-  margin-top: 2px;
-  width: 20px;
-  height: 20px;
+  margin-top: 6px;
+  width: 14px;
+  height: 14px;
 }
 
 .list_detail {
@@ -418,7 +390,7 @@ ul {
 }
 @media screen and (max-width: 900px) {
   .mainleft_placeInputImg {
-    margin-top: 2px;
+    margin-top: -3px;
   }
 }
 @media screen and (max-width: 685px) {
@@ -465,4 +437,7 @@ ul {
   .mainleft_placeInputImg {
     right: 90px;
   }
+}
+#simple-popper {
+  z-index: 15;
 }

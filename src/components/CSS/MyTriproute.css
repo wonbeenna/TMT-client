@@ -5,7 +5,8 @@
   display: flex;
   flex-wrap: wrap;
   padding: 25px;
-  min-height: 350px;
+  min-height: 250px;
+  max-width: 70vw;
 }
 .route__warp {
   /* display: flex;
@@ -40,14 +41,6 @@
   font-size: 14px;
   max-width: 90px;
 }
-
-.route__warp:first-of-type .route__line {
-  background: red;
-}
-.route__warp:last-of-type .route__line {
-  background: green;
-}
-
 .route__arrow {
   display: flex;
   flex-direction: column;

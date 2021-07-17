@@ -238,62 +238,65 @@ const Mainleftpage = ({ lists, setLists }: any) => {
               />
             </div>
             {/*지역입력*/}
-            <div className="location">
-              <Autocomplete
-                value={value}
-                onChange={(event: any, newValue: string | null) => {
-                  setValue(newValue);
-                  // changeHandler(event, "location");
-                }}
-                inputValue={inputValue}
-                onInputChange={(event, newInputValue) => {
-                  setInputValue(newInputValue);
-                  locationHandler(event, "location");
-                }}
-                id="controllable-states-demo"
-                options={options}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="지역 선택"
-                    variant="standard"
-                    className="loaction_label"
-                  />
-                )}
-              />
-            </div>
-            {/*테마입력*/}
-            <div className="mainpage_plancontainer">
-              <Button aria-describedby={id} type="button" onClick={handleClick}>
-                테마 선택
-              </Button>
-              <Popper id={id} open={open} anchorEl={anchorEl}>
-                <div className={classes.paper}>
-                  {theme18.map((el, idx: number) => (
-                    <>
-                      <input
-                        className="paperInput"
-                        key={idx}
-                        type={"checkbox"}
-                        onChange={(e) => {
-                          handleSingleCheck(e.target.checked, el.title);
-                        }}
-                        checked={checkItems.includes(el.title) ? true : false}
-                      ></input>
-                      <span className="theme">{el.title}</span>
-                    </>
-                  ))}
-                </div>
-              </Popper>
-              {/*지역,테마검색*/}
-              <div className="searchBtn">
+            <div className="location__warp">
+              <div className="location">
+                <Autocomplete
+                  value={value}
+                  onChange={(event: any, newValue: string | null) => {
+                    setValue(newValue);
+                    // changeHandler(event, "location");
+                  }}
+                  inputValue={inputValue}
+                  onInputChange={(event, newInputValue) => {
+                    setInputValue(newInputValue);
+                    locationHandler(event, "location");
+                  }}
+                  id="controllable-states-demo"
+                  options={options}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="지역 선택"
+                      variant="standard"
+                      className="loaction_label"
+                    />
+                  )}
+                />
+              </div>
+              {/*테마입력*/}
+              <div className="mainpage_plancontainer">
+                <Button
+                  aria-describedby={id}
+                  type="button"
+                  onClick={handleClick}
+                >
+                  테마 선택
+                </Button>
+                <Popper id={id} open={open} anchorEl={anchorEl}>
+                  <div className={classes.paper}>
+                    {theme18.map((el, idx: number) => (
+                      <>
+                        <input
+                          className="paperInput"
+                          key={idx}
+                          type={"checkbox"}
+                          onChange={(e) => {
+                            handleSingleCheck(e.target.checked, el.title);
+                          }}
+                          checked={checkItems.includes(el.title) ? true : false}
+                        ></input>
+                        <span className="theme">{el.title}</span>
+                      </>
+                    ))}
+                  </div>
+                </Popper>
+                {/*지역,테마검색*/}
                 <button
-                  className="themeButton"
+                  className="searchBtn"
                   onClick={handleSearch}
                   title="지역&테마로 검색"
                 >
-                  <div className="themeEff"></div>
-                  <a>search</a>
+                  search
                 </button>
               </div>
             </div>
