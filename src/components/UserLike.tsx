@@ -1,9 +1,25 @@
-import { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, } from "react";
+import { useSelector } from "react-redux";
 import "./CSS/UserLike.css";
+import axios from "axios";
+import { RootReducer } from "../reducers";
 
-const UserLike = ({ likePlace }: any) => {
-  const [itemIndex, setItemIndex] = useState(0);
-  const [result, setResult] = useState(likePlace.slice(0, 5));
+const UserLike = () => {
+  const [result, setResult] = useState<Array<string>>([]);
+  const [likePlace, setLikePlace] = useState<any | any[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
+  const accessToken: any = useSelector(
+    (state: RootReducer) => state.accessTokenReducer
+  );
+  const setAccessToken = accessToken.AccessToken.accessToken;
+  const likeURL = `${process.env.REACT_APP_API}/user/photoLike`;
+
+  const fetchMoreData = async () => {
+    setIsLoading(true)
+    setResult(result.concat(likePlace.slice(0, 5)))
+    setIsLoading(false)
+  }
 
   const _infiniteScroll = useCallback(() => {
     let scrollHeight = Math.max(
@@ -15,24 +31,42 @@ const UserLike = ({ likePlace }: any) => {
       document.body.scrollTop
     );
     let clientHeight = document.documentElement.clientHeight;
-    // console.log('qqq', scrollTop + clientHeight)
-    // console.log('wwwww2wwww', scrollHeight)
-    if (scrollTop + clientHeight === scrollHeight) {
-      setItemIndex(itemIndex + 5);
-      setResult(result.concat(likePlace.slice(itemIndex + 5, itemIndex + 10)));
+    scrollHeight -= 100
+    if (scrollTop + clientHeight >= scrollHeight && isLoading === false) {
+      fetchMoreData()
     }
-  }, [itemIndex, result]);
+  }, [isLoading]);
+
+  const fetchData = async () => {
+    if (isLogin) {
+      await axios
+        .get(likeURL, {
+          headers: {
+            authorization: `Bearer ${setAccessToken}`,
+          },
+        })
+        .then((res) => {
+          let response = res.data
+          setResult(response.slice(0, 5))
+          response = response.slice(5)
+          setLikePlace(response)
+          setIsLoading(false)
+        }).catch(err => console.log(err))
+    } else {
+      setLikePlace([]);
+    }
+  };
+
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   useEffect(() => {
     window.addEventListener("scroll", _infiniteScroll, true);
     return () => window.removeEventListener("scroll", _infiniteScroll, true);
   }, [_infiniteScroll]);
   console.log(likePlace);
-  // console.log('length1', document.documentElement.scrollHeight) //3173 => 4087
-  // console.log('length2', document.body.scrollHeight) //3173 => 4087
-  // console.log('scrollTop', document.documentElement.scrollTop, document.body.scrollTop)  //683 0 => => 0 0
-  // console.log('clientHeight', document.documentElement.clientHeight) //1099 => 764
-  // console.log('구조가 어떻게 되나', likePlace)
+
   return (
     <div className="userLikeWrap">
       <div className="userLike">
