@@ -10,9 +10,9 @@ const Mainpage = () => {
   const [lists, setLists] = useState<any>([]);
   return (
     <>
+      <Modal />
       <div className="mainpage_container">
         <Header />
-        <Modal />
         <Mainleftpage lists={lists} setLists={setLists} />
         <Map className="Map" lists={lists} setLists={setLists} />
       </div>

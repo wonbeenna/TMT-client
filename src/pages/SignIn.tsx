@@ -97,6 +97,8 @@ function SignIn() {
         const status = err.response.status;
         if (status === 409) {
           setErrLogin("이메일과 비밀번호를 확인해 주세요");
+        } else {
+          throw err;
         }
       });
   };
@@ -117,6 +119,8 @@ function SignIn() {
         const status = err.response.status;
         if (status === 500) {
           setErrLogin("서버와 연결이 불안정 합니다!");
+        } else {
+          throw err;
         }
       });
   };
@@ -151,6 +155,8 @@ function SignIn() {
         const status = err.response.status;
         if (status === 404) {
           alert("다시 시도해 주세요");
+        } else {
+          throw err;
         }
       });
   };
