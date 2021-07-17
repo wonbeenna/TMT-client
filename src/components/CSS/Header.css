@@ -36,3 +36,9 @@
   color: gray;
   cursor: pointer;
 }
+
+@media screen and (max-width: 400px) {
+  .headerRightside p {
+    margin-right: 1px;
+  }
+}

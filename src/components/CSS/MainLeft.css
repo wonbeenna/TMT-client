@@ -20,7 +20,6 @@
 }
 .placeList__warp {
   padding: 10px;
-  height: 85%;
 }
 
 .placeList__title {
@@ -36,7 +35,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 68vh;
+  height: 70vh;
 }
 .placeList__content {
   display: flex;
@@ -167,7 +166,7 @@
 }
 .place {
   height: 180px;
-  width: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -205,7 +204,7 @@
   top: 16px;
   right: 110px;
   cursor: pointer;
-  margin-top: 2px;
+  margin-top: 5px;
 }
 
 .place button:hover {
@@ -417,22 +416,27 @@ ul {
 .overlaybox li:hover .down {
   background-position: 0 -20px;
 }
+@media screen and (max-width: 900px) {
+  .mainleft_placeInputImg {
+    margin-top: 2px;
+  }
+}
 @media screen and (max-width: 685px) {
   .mainleft_warp {
     position: relative;
   }
   .mainleft_container {
-    width: 100vw;
+    width: 28rem;
   }
   .placeList__contents {
     height: 50vh;
   }
   .inputList__container {
-    width: 100vw;
+    width: 25rem;
     flex: 1;
   }
   .inputList__warp {
-    width: 90vw !important;
+    width: 25rem !important;
     margin: 0 !important;
   }
   .inputList__save {
@@ -441,6 +445,24 @@ ul {
     margin-top: 10px;
   }
   .inputList__saveBtn {
-    width: 50vw !important;
+    width: 25rem !important;
+  }
+}
+@media screen and (max-width: 400px) {
+  .mainleft_container {
+    width: 100vw;
+  }
+  .placeList__contents {
+    height: 50vh;
+  }
+  .inputList__warp {
+    width: 80vw !important;
+    margin: 0 !important;
+  }
+  .inputList__saveBtn {
+    width: 15rem !important;
+  }
+  .mainleft_placeInputImg {
+    right: 90px;
   }
 }
