@@ -160,10 +160,12 @@
   .inputList {
     position: initial;
     height: 50vh;
+    width: 28rem;
   }
   .inputList__close {
     position: initial;
     height: 50vh;
+    width: 28rem;
   }
   .inputList__contents {
     min-height: 0;

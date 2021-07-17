@@ -3,11 +3,17 @@ import "./CSS/UserLike.css";
 
 const UserLike = ({ likePlace }: any) => {
   const [itemIndex, setItemIndex] = useState(0);
-  const [result, setResult] = useState(likePlace.slice(0, 5))
+  const [result, setResult] = useState(likePlace.slice(0, 5));
 
   const _infiniteScroll = useCallback(() => {
-    let scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
-    let scrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
+    let scrollHeight = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight
+    );
+    let scrollTop = Math.max(
+      document.documentElement.scrollTop,
+      document.body.scrollTop
+    );
     let clientHeight = document.documentElement.clientHeight;
     // console.log('qqq', scrollTop + clientHeight)
     // console.log('wwwww2wwww', scrollHeight)
@@ -18,10 +24,10 @@ const UserLike = ({ likePlace }: any) => {
   }, [itemIndex, result]);
 
   useEffect(() => {
-    window.addEventListener('scroll', _infiniteScroll, true);
-    return () => window.removeEventListener('scroll', _infiniteScroll, true);
+    window.addEventListener("scroll", _infiniteScroll, true);
+    return () => window.removeEventListener("scroll", _infiniteScroll, true);
   }, [_infiniteScroll]);
-
+  console.log(likePlace);
   // console.log('length1', document.documentElement.scrollHeight) //3173 => 4087
   // console.log('length2', document.body.scrollHeight) //3173 => 4087
   // console.log('scrollTop', document.documentElement.scrollTop, document.body.scrollTop)  //683 0 => => 0 0
