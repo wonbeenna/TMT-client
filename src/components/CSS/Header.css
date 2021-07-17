@@ -31,7 +31,6 @@
 
 .headerRightside p {
   margin-right: 10px;
-  font-weight: 600;
   flex-wrap: nowrap;
   color: gray;
   cursor: pointer;
@@ -40,5 +39,6 @@
 @media screen and (max-width: 400px) {
   .headerRightside p {
     margin-right: 1px;
+    font-size: 13px;
   }
 }

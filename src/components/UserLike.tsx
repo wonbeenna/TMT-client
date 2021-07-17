@@ -70,7 +70,7 @@ const UserLike = () => {
   return (
     <div className="userLikeWrap">
       <div className="userLike">
-        {result?.map((el: any) => {
+        {likePlace?.map((el: any) => {
           return (
             <div className="userLike__contents">
               <div className="userLike__img">
