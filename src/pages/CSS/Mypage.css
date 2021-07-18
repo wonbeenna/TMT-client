@@ -45,9 +45,8 @@
 .myPage__section__route__title {
   margin-top: 50px;
 }
-.myPage__section__route__title h4 {
+.myPage__section__route__title h1 {
   margin: 5px 90px 15px;
-  font-size: 25px;
   color: rgb(0, 0, 0, 0.75);
   border-bottom: 1px solid #bebebe;
 }
