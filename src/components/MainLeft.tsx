@@ -195,9 +195,6 @@ const Mainleftpage = ({ lists, setLists }: any) => {
   return (
     <>
       <div className="mainleft_warp">
-        <div className="mainpage_wrap">
-          <div className="mainpage_top"></div>
-        </div>
         <div className="mainleft_container">
           <div className="place">
             <input
