@@ -49,7 +49,7 @@ const Mainleftpage = ({ lists, setLists }: any) => {
     "제주도",
   ];
 
-  const theme18 = [
+  const theme10 = [
     { title: "레저" },
     { title: "바다" },
     { title: "산" },
@@ -84,7 +84,6 @@ const Mainleftpage = ({ lists, setLists }: any) => {
     fetchData();
   }, []);
 
-  //지역 onchange
   const locationHandler = (event: any, type: string): void => {
     if (type === "location") {
       setProvince(event.target.innerText);
@@ -230,7 +229,6 @@ const Mainleftpage = ({ lists, setLists }: any) => {
               title="장소로 검색"
               onClick={sendSearchReq}
             />
-
             <div className="location__warp">
               <div className="location">
                 <Autocomplete
@@ -265,7 +263,7 @@ const Mainleftpage = ({ lists, setLists }: any) => {
                 </Button>
                 <Popper id={id} open={open} anchorEl={anchorEl}>
                   <div className={classes.paper}>
-                    {theme18.map((el, idx: number) => (
+                    {theme10.map((el, idx: number) => (
                       <>
                         <input
                           className="paperInput"

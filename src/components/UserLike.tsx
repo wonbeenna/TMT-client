@@ -36,7 +36,7 @@ const UserLike = () => {
     if (scrollTop + clientHeight >= scrollHeight && isLoading === false) {
       fetchMoreData();
     }
-  }, [isLoading]);
+  }, [isLoading, fetchMoreData]);
 
   const fetchData = async () => {
     if (isLogin) {
@@ -64,8 +64,9 @@ const UserLike = () => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData()
+  }, [fetchData]);
+
   useEffect(() => {
     window.addEventListener("scroll", _infiniteScroll, true);
     return () => window.removeEventListener("scroll", _infiniteScroll, true);
@@ -78,7 +79,7 @@ const UserLike = () => {
           return (
             <div className="userLike__contents">
               <div className="userLike__img">
-                <img src={el.photo} />
+                <img src={el.photo} alt='likephoto' />
               </div>
               <div className="userLike__info">
                 <p>{el.place}</p>
