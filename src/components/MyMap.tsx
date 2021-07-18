@@ -23,14 +23,13 @@ const MyMap = (placedata: any) => {
           authorization: `Bearer ${setAccessToken}`,
         },
       });
-
       setMyplace(response.data);
-      // console.log("myres123", .data.spot);
     }
     fetchData();
   }, []);
   const [map, setMap] = useState<any>(null);
   const [, setMarkerArr] = useState<any>([]);
+
   useEffect(() => {
     kakaoMap();
   }, []);
@@ -59,7 +58,8 @@ const MyMap = (placedata: any) => {
     let imageSize = new window.kakao.maps.Size(50, 50);
     let markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize);
     const tempArr: any = [];
-    console.log(myplace);
+    const linePath: any = [];
+
     myplace?.spot?.forEach((el: any) => {
       let marker = new window.kakao.maps.Marker({
         map: map, // 마커를 표시할 지도
@@ -72,12 +72,17 @@ const MyMap = (placedata: any) => {
       let bounds = new window.kakao.maps.LatLngBounds(sw, ne);
       bounds.extend(new window.kakao.maps.LatLng(el[0].lat, el[0].long));
       map.setBounds(bounds);
-      // marker.push(marker);
+      linePath.push(new window.kakao.maps.LatLng(el[0].lat, el[0].long));
     });
+    let polyline = new window.kakao.maps.Polyline({
+      path: linePath,
+      strokeWeight: 5,
+      strokeColor: "#75B8FA",
+      strokeOpacity: 0.7,
+      strokeStyle: "solid",
+    });
+    polyline.setMap(map);
     setMarkerArr(tempArr);
-    // if (!isNaN(bounds.ha) || null) {
-    //   map.setBounds(bounds, 90, 30, 10, 400);
-    // }
   };
 
   return (

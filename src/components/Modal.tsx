@@ -6,6 +6,7 @@ import SignUp from "../pages/SignUp";
 import UserInfo from "../pages/UserInfo";
 import LikeCheckModal from "./LikeCheckModal";
 import { RootReducer } from "../reducers";
+import UserInfoCheck from "./UserInfoCheck";
 
 function Modal() {
   const dispatch = useDispatch();
@@ -29,8 +30,15 @@ function Modal() {
     <SignUp {...ModalHandler} />,
     <UserInfo {...ModalHandler} />,
     <LikeCheckModal {...ModalHandler} />,
+    <UserInfoCheck {...ModalHandler} />,
   ];
-  const ModalNamesIndex = ["SignIn", "SignUp", "UserInfo", "LikeCheckModal"];
+  const ModalNamesIndex = [
+    "SignIn",
+    "SignUp",
+    "UserInfo",
+    "LikeCheckModal",
+    "UserInfoCheck",
+  ];
 
   return <div>{ModalName[ModalNamesIndex.indexOf(modalName)]}</div>;
 }

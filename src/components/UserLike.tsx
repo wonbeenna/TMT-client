@@ -7,7 +7,7 @@ import { RootReducer } from "../reducers";
 const UserLike = () => {
   const [result, setResult] = useState<any | any[]>([]);
   const [likePlace, setLikePlace] = useState<any | any[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
   const accessToken: any = useSelector(
     (state: RootReducer) => state.accessTokenReducer
@@ -16,11 +16,11 @@ const UserLike = () => {
   const likeURL = `${process.env.REACT_APP_API}/user/photoLike`;
 
   const fetchMoreData = async () => {
-    setIsLoading(true)
-    setResult(result.concat(likePlace.slice(0, 5)))
-    setLikePlace(likePlace.slice(5))
-    setIsLoading(false)
-  }
+    setIsLoading(true);
+    setResult(result.concat(likePlace.slice(0, 5)));
+    setLikePlace(likePlace.slice(5));
+    setIsLoading(false);
+  };
 
   const _infiniteScroll = useCallback(() => {
     let scrollHeight = Math.max(
@@ -32,9 +32,9 @@ const UserLike = () => {
       document.body.scrollTop
     );
     let clientHeight = document.documentElement.clientHeight;
-    scrollHeight -= 100
+    scrollHeight -= 100;
     if (scrollTop + clientHeight >= scrollHeight && isLoading === false) {
-      fetchMoreData()
+      fetchMoreData();
     }
   }, [isLoading, fetchMoreData]);
 
@@ -47,12 +47,17 @@ const UserLike = () => {
           },
         })
         .then((res) => {
-          let response = res.data
-          setResult(response.slice(0, 5))
-          response = response.slice(5)
-          setLikePlace(response)
-          setIsLoading(false)
-        }).catch(err => console.log(err))
+          if (res.data === undefined || res.data === "") {
+            return;
+          } else {
+            let response = res.data;
+            setResult(response.slice(0, 5));
+            response = response.slice(5);
+            setLikePlace(response);
+            setIsLoading(false);
+          }
+        })
+        .catch((err) => console.log(err));
     } else {
       setLikePlace([]);
     }
@@ -60,7 +65,7 @@ const UserLike = () => {
 
   useEffect(() => {
     fetchData()
-  }, [fetchData])
+  }, [fetchData]);
 
   useEffect(() => {
     window.addEventListener("scroll", _infiniteScroll, true);

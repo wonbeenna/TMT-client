@@ -66,12 +66,12 @@ const Map = ({ lists, setLists }: any) => {
         image: markerImage,
       });
       tempArr.push(marker);
-      let sw = new kakao.maps.LatLng(38, 127.5);
-      let ne = new kakao.maps.LatLng(37, 127);
+      let sw = new kakao.maps.LatLng(el.lat - 0.03, el.long - 0.03);
+      let ne = new kakao.maps.LatLng(el.lat + 0.03, el.long + 0.03);
       let bounds = new kakao.maps.LatLngBounds(sw, ne);
-      bounds.extend(new kakao.maps.LatLng(el.lat - 1, el.long - 1));
+      bounds.extend(new kakao.maps.LatLng(el.lat, el.long));
+      map.setBounds(bounds, 200, 100, 100, 600);
       linePath.push(new kakao.maps.LatLng(el.lat, el.long));
-      map.setBounds(bounds);
 
       var iwContent =
         '<div class="map__wrap">' +

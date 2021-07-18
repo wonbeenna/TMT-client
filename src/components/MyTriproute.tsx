@@ -1,7 +1,7 @@
 import "./CSS/MyTriproute.css";
 
 const MyTriproute = ({ myplace }: any) => {
-
+  
   return (
     <>
       <div className="route__body">

@@ -109,7 +109,7 @@ mainLinkBtn.addEventListener("click", MainLinkHandler);
     {
       // 3
       type: "sticky",
-      heightNum: 5, // 브라우저 높이의 5배로 scrollHeight 세팅
+      heightNum: 10, // 브라우저 높이의 5배로 scrollHeight 세팅
       scrollHeight: 0,
       objs: {
         container: document.querySelector("#scroll-section-3"),
@@ -121,22 +121,22 @@ mainLinkBtn.addEventListener("click", MainLinkHandler);
         videoImages: [], // 이미지를 담을 빈 객체
       },
       values: {
-        videoImagesCount: 5, // 이미지 개수
-        imageSequence: [0, 4], // 이미지 순서
+        videoImagesCount: 62, // 이미지 개수
+        imageSequence: [0, 61], // 이미지 순서
         canvas_opacity_in: [0, 1, { start: 0.15, end: 0.2 }],
-        canvas_opacity_out: [1, 0, { start: 0.99, end: 1 }],
-        messageA_translateY_in: [20, 0, { start: 0.15, end: 0.2 }],
+        canvas_opacity_out: [1, 0, { start: 0.95, end: 1 }],
+        messageA_translateY_in: [20, 0, { start: 0.15, end: 0.2 }], // 트랜스 인
         messageB_translateY_in: [30, 0, { start: 0.6, end: 0.65 }],
         messageC_translateY_in: [30, 0, { start: 0.87, end: 0.92 }],
-        messageA_opacity_in: [0, 1, { start: 0.25, end: 0.3 }],
+        messageA_opacity_in: [0, 1, { start: 0.25, end: 0.3 }], // 오팩시티 인
         messageB_opacity_in: [0, 1, { start: 0.6, end: 0.65 }],
         messageC_opacity_in: [0, 1, { start: 0.87, end: 0.92 }],
-        messageA_translateY_out: [0, -20, { start: 0.4, end: 0.45 }],
+        messageA_translateY_out: [0, -20, { start: 0.4, end: 0.45 }], // 트랜스 아웃
         messageB_translateY_out: [0, -20, { start: 0.68, end: 0.73 }],
         messageC_translateY_out: [0, -20, { start: 0.95, end: 1 }],
-        messageA_opacity_out: [1, 0, { start: 0.4, end: 0.45 }],
+        messageA_opacity_out: [1, 0, { start: 0.4, end: 0.45 }], // 오팩시티 아웃
         messageB_opacity_out: [1, 0, { start: 0.68, end: 0.73 }],
-        messageC_opacity_out: [1, 0, { start: 0.99, end: 1 }],
+        messageC_opacity_out: [1, 0, { start: 0.95, end: 1 }],
       },
     },
     {
@@ -180,7 +180,7 @@ mainLinkBtn.addEventListener("click", MainLinkHandler);
     let imgElem3;
     for (let i = 0; i < sceneInfo[3].values.videoImagesCount; i++) {
       imgElem3 = new Image();
-      imgElem3.src = `./video/004/테스트${0 + i}.jpg`;
+      imgElem3.src = `./video/004/img${0 + i}.jpg`;
       sceneInfo[3].objs.videoImages.push(imgElem3);
     }
     let imgElem4;
@@ -512,7 +512,7 @@ mainLinkBtn.addEventListener("click", MainLinkHandler);
           );
         }
 
-        if (scrollRatio <= 0.22) {
+        if (scrollRatio <= 0.32) {
           // in
           objs.messageA.style.opacity = calcValues(
             values.messageA_opacity_in,
@@ -534,7 +534,7 @@ mainLinkBtn.addEventListener("click", MainLinkHandler);
           )}%, 0)`;
         }
 
-        if (scrollRatio <= 0.45) {
+        if (scrollRatio <= 0.67) {
           // in
           objs.messageB.style.transform = `translate3d(0, ${calcValues(
             values.messageB_translateY_in,
@@ -556,7 +556,7 @@ mainLinkBtn.addEventListener("click", MainLinkHandler);
           );
         }
 
-        if (scrollRatio <= 0.65) {
+        if (scrollRatio <= 0.93) {
           // in
           objs.messageC.style.transform = `translate3d(0, ${calcValues(
             values.messageC_translateY_in,

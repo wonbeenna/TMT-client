@@ -64,14 +64,14 @@
   font-size: 1.3rem;
   flex: 1;
   font-weight: 600;
-  color: rgb(0, 0, 0, 0.8);
+  color: #3aa0f3;
 }
 .inputList__date {
   display: flex;
   font-size: 13px;
   justify-content: center;
   align-items: center;
-  color: #417cff;
+  color: rgb(0, 0, 0, 0.8);
 }
 .inputList__card {
   padding: 15px;
@@ -87,6 +87,7 @@
 .inputList__calendar {
   width: 15px;
   height: 15px;
+  margin-right: 5px;
 }
 .inputList__list__num {
   width: 2.5rem;
@@ -122,7 +123,7 @@
   font-weight: 550;
   text-align: center;
   color: white;
-  background: #2de1de;
+  background: #3aa0f3;
   border: 0;
   margin-bottom: 0.5rem;
   border-radius: 5px;
@@ -156,14 +157,16 @@
   height: 25px;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 685px) {
   .inputList {
-    position: initial;
+    position: relative;
+    left: 0;
     height: 50vh;
     width: 28rem;
   }
   .inputList__close {
-    position: initial;
+    position: relative;
+    left: 0;
     height: 50vh;
     width: 28rem;
   }
