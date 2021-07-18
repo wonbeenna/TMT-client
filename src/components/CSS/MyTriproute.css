@@ -24,8 +24,8 @@
   border-radius: 999px;
 }
 .route__contents a {
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
   position: absolute;
   border-radius: 999px;
 }
@@ -38,6 +38,7 @@
   justify-content: center;
 }
 .route__place {
+  margin-top: 5px;
   font-size: 14px;
   max-width: 90px;
 }

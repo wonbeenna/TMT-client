@@ -344,7 +344,7 @@ body.before-load {
   left: 50%;
 }
 .sticky-elem-canvas #video-canvas-2 {
-  left: 70%;
+  left: 65%;
 }
 #scroll-section-4 {
   display: flex;
@@ -383,33 +383,16 @@ body.before-load {
   .main-message {
     font-size: 4vw;
   }
-  /* .description {
-    padding: 0;
-    font-size: 2rem;
-  }
-  .description strong {
-    font-size: 2rem;
-  } */
   #scroll-section-3 .main-message3 {
     font-size: 1.5vw;
   }
-  /* .sticky-elem.desc-message2 {
-    width: 20%;
-  }
-  #scroll-section-2 .b {
-    top: 20%;
-    left: 53%;
-  }
-  #scroll-section-2 .c {
-    left: 55%;
-  } */
   .mid-message {
     width: 1000px;
     padding: 0;
     font-size: 4vw;
   }
   .canvas-caption {
-    margin-top: -8rem;
+    margin-top: 5rem;
     padding: 0;
     font-size: 1.5rem;
     word-break: keep-all;
@@ -432,13 +415,6 @@ body.before-load {
   left: 50%;
   margin-left: -45vw;
 }
-/* .section-img-title-header.c {
-  position: absolute;
-  width: 80vw;
-  left: 10%;
-  bottom: -85%;
-  font-size: 4vw;
-} */
 .section-word {
   position: absolute;
   width: 10vw;

@@ -64,7 +64,6 @@ const Mypage = () => {
       <div className="myPage">
         <Modal />
         <Header />
-        {/* <MyMap /> */}
         <div className="myPage__warp">
           <div className="myPage__title">
             <h1>{range}일 간의 여행 일정</h1>
