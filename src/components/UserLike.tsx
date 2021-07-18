@@ -65,7 +65,7 @@ const UserLike = () => {
 
   useEffect(() => {
     fetchData()
-  }, [fetchData]);
+  }, []);
 
   useEffect(() => {
     window.addEventListener("scroll", _infiniteScroll, true);
