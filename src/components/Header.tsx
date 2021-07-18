@@ -42,14 +42,14 @@ const Header = () => {
           </div>
           {isLogin ? (
             <div className="headerRightside">
-              <p onClick={mainpage}>돌아가기</p>
-              <p
+              <img src='../img/business-plan.png' alt='돌아가기' onClick={mainpage}></img>
+              <img src='../img/account.png' alt='내정보'
                 onClick={() => {
                   ModalHandler("UserInfo");
                 }}
               >
-                내정보
-              </p>
+
+              </img>
               <p onClick={signOutHandler}>로그아웃</p>
             </div>
           ) : (
