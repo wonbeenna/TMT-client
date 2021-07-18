@@ -270,14 +270,8 @@ body.before-load {
   max-width: 1000px;
   height: 150px;
   margin: 0 auto;
-  /* padding: 0 1rem;
-  font-size: 2rem;
-  color: #888; */
 }
-/* .mid-message strong {
-  color: rgb(29, 29, 31);
-  height: 100px;
-} */
+
 .canvas-caption {
   max-width: 1000px;
   margin: -24rem auto 0;
@@ -473,8 +467,8 @@ body.before-load {
   background: gray;
 }
 .footer img {
-  width: 200px;
-  height: 50px;
+  width: 110px;
+  height: 35px;
 }
 .team {
   display: flex;

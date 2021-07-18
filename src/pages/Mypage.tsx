@@ -86,7 +86,7 @@ const Mypage = () => {
             </div>
           </div>
           <div className="myPage__section__route__title">
-            <h4>나의 여행 경로</h4>
+            <h1>나의 여행 경로</h1>
           </div>
           <div className="myPage__section__route">
             <MyTriproute myplace={myplace} />
