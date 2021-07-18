@@ -1,0 +1,218 @@
+.UserInfo {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  z-index: 500;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.UserInfo__modal {
+  width: 30rem;
+  height: 40rem;
+  background: white;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.UserInfo__close {
+  text-align: right;
+  top: -1rem;
+  font-size: 20px;
+  font-weight: 600;
+  color: #888;
+}
+
+.UserInfo__closeBtn {
+  width: 20px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.UserInfo__contents {
+  margin: 0 auto;
+  width: 90%;
+  position: relative;
+  padding: 2.5rem 1rem 0 1rem;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.UserInfo__title {
+  margin-bottom: 1rem;
+  width: 100%;
+  text-align: center;
+}
+
+.UserInfo__title__img {
+  width: 65%;
+  height: 4.5rem;
+}
+
+.UserInfo__Name {
+  margin-top: 0.5rem;
+  width: 100%;
+  height: 2.5rem;
+  border-style: none;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 0.7rem;
+  padding: 9px 12px;
+  outline: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.UserInfo__Email {
+  margin-top: 0.5rem;
+  width: 100%;
+  height: 2.5rem;
+  border-style: none;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 0.7rem;
+  padding: 9px 12px;
+  outline: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+input::placeholder {
+  color: #999999;
+}
+.UserInfo__curPassword {
+  margin-top: 0.5rem;
+  width: 100%;
+  height: 2.5rem;
+  border-style: none;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 0.7rem;
+  padding: 9px 12px;
+  outline: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.UserInfo__curPassword:focus {
+  border-bottom: 1px solid #417cff;
+}
+
+.UserInfo__curPassword__inValid {
+  margin-top: 0.5rem;
+  width: 100%;
+  height: 2.5rem;
+  border-style: none;
+  border-bottom: 1px solid #f34242;
+  margin-bottom: 0.2rem;
+  padding: 9px 12px;
+  outline: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.UserInfo__Password {
+  margin-top: 0.5rem;
+  width: 100%;
+  height: 2.5rem;
+  border-style: none;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 0.7rem;
+  padding: 9px 12px;
+  outline: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.UserInfo__Password:focus {
+  border-bottom: 1px solid #417cff;
+}
+
+.UserInfo__Password__inValid {
+  margin-top: 0.5rem;
+  width: 100%;
+  height: 2.5rem;
+  border-style: none;
+  border-bottom: 1px solid #f34242;
+  margin-bottom: 0.2rem;
+  padding: 9px 12px;
+  outline: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.UserInfo__PasswordCk {
+  margin-top: 0.5rem;
+  width: 100%;
+  height: 2.5rem;
+  border-style: none;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 0.2rem;
+  padding: 9px 12px;
+  outline: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.UserInfo__PasswordCk:focus {
+  border-bottom: 1px solid #417cff;
+}
+
+.UserInfo__PasswordCk__inValid {
+  margin-top: 0.5rem;
+  width: 100%;
+  height: 2.5rem;
+  border-style: none;
+  border-bottom: 1px solid #f34242;
+  margin-bottom: 0.2rem;
+  padding: 9px 12px;
+  outline: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.UserInfo__Btn {
+  width: 100%;
+  height: 2.7rem;
+  font-size: 1.2rem;
+  font-weight: 550;
+  text-align: center;
+  color: white;
+  background: #2de1de;
+  border: 0;
+  margin-top: 4rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.UserInfo__Btn:hover {
+  transition: all 0.3s;
+  background: #417cff;
+}
+
+.UserInfo__errCurPassword {
+  color: #f34242;
+  font-size: 0.7rem;
+}
+.UserInfo__errPassword {
+  color: #f34242;
+  font-size: 0.7rem;
+}
+.UserInfo__errPasswordCk {
+  color: #f34242;
+  font-size: 0.7rem;
+}
+
+@media (max-width: 480px) {
+  .signUp__modal {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 0 !important;
+    margin-top: 0;
+  }
+}

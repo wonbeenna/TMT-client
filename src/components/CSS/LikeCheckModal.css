@@ -1,0 +1,107 @@
+.likeCheckModal {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  z-index: 500;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+}
+@keyframes modal-bg-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 2;
+  }
+}
+.likeCheckModal__modal {
+  width: 27rem;
+  height: 27rem;
+  background: white;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  overflow: hidden;
+  animation: modal-bg-show 0.7s;
+}
+.likeCheckModal__contents {
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+.likeCheckModal__close {
+  text-align: right;
+  top: -1rem;
+  font-size: 20px;
+  font-weight: 600;
+  color: #888;
+}
+.likeCheckModal__closeBtn {
+  width: 20px;
+  cursor: pointer;
+  margin-left: auto;
+}
+.likeCheckModal__title {
+  width: 100%;
+  text-align: center;
+}
+.likeCheckModal__title__img {
+  width: 65%;
+  height: 3.5rem;
+}
+.likeCheckModal__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+}
+.likeCheckModal__content__img {
+  width: 90px;
+  height: 90px;
+  margin-bottom: 2rem;
+}
+.likeCheckModal__subTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.likeCheckModal__subTitle .a {
+  font-size: 35px;
+  font-weight: bold;
+}
+.likeCheckModal__subTitle .b {
+  font-size: 17px;
+  margin-top: 35px;
+}
+.likeCheckModal__Btn {
+  display: flex;
+  justify-content: center;
+}
+.likeCheckModal__SignInBtn,
+.likeCheckModal__SignUpBtn {
+  width: 10rem;
+  height: 2.7rem;
+  font-size: 1.2rem;
+  font-weight: 550;
+  text-align: center;
+  color: white;
+  background: #2de1de;
+  border: 0;
+  margin: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.likeCheckModal__SignInBtn:hover,
+.likeCheckModal__SignUpBtn:hover {
+  transition: all 0.3s;
+  background: #417cff;
+}

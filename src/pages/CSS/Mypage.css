@@ -1,0 +1,87 @@
+.myPage {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+.myPage__warp {
+  display: flex;
+  flex-direction: column;
+  margin: 40px;
+}
+/* .myPage__warp h1 {
+  margin: 5px auto 25px;
+  color: rgb(0, 0, 0, 0.75);
+} */
+.myPage__title {
+  margin-top: 70px;
+  width: 100%;
+}
+.myPage__title h1 {
+  margin: 5px 90px 15px;
+  color: rgb(0, 0, 0, 0.75);
+  border-bottom: 1px solid #bebebe;
+}
+.myPage__section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  width: 100%;
+}
+#staticMaps,
+#staticMap {
+  width: 600px;
+  height: 450px;
+  left: 0px;
+  border-radius: 10px;
+}
+.myPage__calendar {
+  margin: 20px 20px 10px;
+  height: 100%;
+}
+.myPage__section__route {
+  margin: 25px auto;
+}
+.myPage__section__route__title {
+  margin-top: 50px;
+}
+.myPage__section__route__title h1 {
+  margin: 5px 90px 15px;
+  color: rgb(0, 0, 0, 0.75);
+  border-bottom: 1px solid #bebebe;
+}
+.myPage__like {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.myPage__like__title {
+  margin-top: 40px;
+}
+.myPage__like__title h1 {
+  margin: 5px 90px 15px;
+  color: rgb(0, 0, 0, 0.75);
+  border-bottom: 1px solid #bebebe;
+}
+@media screen and (max-width: 1260px) {
+  .myPage__section {
+    flex-direction: column;
+  }
+  .myPage__calendar {
+    margin: 0;
+  }
+}
+@media screen and (max-width: 545px) {
+  .myPage__title h1,
+  .myPage__like__title h1,
+  .myPage__section__route__title h4 {
+    margin: 0;
+  }
+  .route__body {
+    padding: 10px;
+  }
+  .route__warp {
+    padding: 5px;
+  }
+}

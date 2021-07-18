@@ -1,26 +1,23 @@
-import React from 'react';
-import Mainrightpage from '../components/MainRight';
-import Mainleftpage from '../components/MainLeft';
-import './CSS/Mainpage.css'
-// function Mainpage() {
-//   return (
-//    <div className='MainContainer'>
-//      <Greetings name="Hello" onClick={onClick} />;
-//     <Mainleftpage message="Hello"/>
-//     <Mainrightpage message="i"/>
-//         </div>
-//   );
-// }
+import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
+import Header from "../components/Header";
+import Mainleftpage from "../components/MainLeft";
+import Modal from "../components/Modal";
+import "./CSS/Mainpage.css";
+import Map from "../components/Map";
 
-const Mainpage = ()  => {
-    
-    return (
-
-        <div className='mainpage_container'>
-        <Mainleftpage message="TMT"/>
-        <Mainrightpage message="i"/>
-        </div>
-    )
+const Mainpage = () => {
+  const [lists, setLists] = useState<any>([]);
+  return (
+    <>
+      <Modal />
+      <div className="mainpage_container">
+        <Header />
+        <Mainleftpage lists={lists} setLists={setLists} />
+        <Map className="Map" lists={lists} setLists={setLists} />
+      </div>
+    </>
+  );
 };
-  
-export default Mainpage;
+
+export default withRouter(Mainpage);

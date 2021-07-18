@@ -1,0 +1,10 @@
+.placeList__list__like {
+  display: flex;
+  padding-top: 80px;
+  padding-right: 15px;
+}
+.placeList__list__like img {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
