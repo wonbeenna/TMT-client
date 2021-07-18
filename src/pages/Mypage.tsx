@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootReducer } from "../reducers";
 import MyMap from "../components/MyMap";
+import Modal from "../components/Modal";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import UserLike from "../components/UserLike";
 import MyTriproute from "../components/MyTriproute";
+import moment from "moment";
 import { DayPickerRangeController, FocusedInputShape } from "react-dates";
 import "./CSS/Mypage.css";
 import "react-dates/initialize";
-import moment from "moment";
-import Modal from "../components/Modal";
-import { withRouter } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootReducer } from "../reducers";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 const Mypage = () => {
@@ -21,11 +21,6 @@ const Mypage = () => {
   const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(
     null
   );
-  const accessToken: any = useSelector(
-    (state: RootReducer) => state.accessTokenReducer
-  );
-  const setAccessToken = accessToken.AccessToken.accessToken;
-  const searchURL = `${process.env.REACT_APP_API}/user/myPage`;
 
   const startDate = moment(_startDate);
   const endDate = moment(_endDate);
@@ -38,6 +33,11 @@ const Mypage = () => {
     console.log(arg.endDate);
   };
 
+  const accessToken: any = useSelector(
+    (state: RootReducer) => state.accessTokenReducer
+  );
+  const searchURL = `${process.env.REACT_APP_API}/user/myPage`;
+  const setAccessToken = accessToken.AccessToken.accessToken;
   useEffect(() => {
     async function fetchData() {
       const response: any = await axios.get(searchURL, {
@@ -54,11 +54,10 @@ const Mypage = () => {
       }
     }
     fetchData();
-  }, []);
+  }, [searchURL, setAccessToken]);
 
   const msDiff = new Date(_startDate).getTime() - new Date(_endDate).getTime();
   const range = Math.abs(msDiff / (1000 * 60 * 60 * 24)) + 1;
-  // console.log(range);
 
   return (
     <>
@@ -99,7 +98,6 @@ const Mypage = () => {
             <UserLike />
           </div>
         </div>
-
         <Footer />
       </div>
     </>

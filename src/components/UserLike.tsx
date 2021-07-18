@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useCallback, } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import "./CSS/UserLike.css";
 import axios from "axios";
 import { RootReducer } from "../reducers";
 
 const UserLike = () => {
-  const [result, setResult] = useState<Array<string>>([]);
+  const [result, setResult] = useState<any | any[]>([]);
   const [likePlace, setLikePlace] = useState<any | any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
@@ -18,6 +18,7 @@ const UserLike = () => {
   const fetchMoreData = async () => {
     setIsLoading(true)
     setResult(result.concat(likePlace.slice(0, 5)))
+    setLikePlace(likePlace.slice(5))
     setIsLoading(false)
   }
 
@@ -35,7 +36,7 @@ const UserLike = () => {
     if (scrollTop + clientHeight >= scrollHeight && isLoading === false) {
       fetchMoreData()
     }
-  }, [isLoading]);
+  }, [isLoading, fetchMoreData]);
 
   const fetchData = async () => {
     if (isLogin) {
@@ -59,22 +60,21 @@ const UserLike = () => {
 
   useEffect(() => {
     fetchData()
-  }, [])
+  }, [fetchData])
 
   useEffect(() => {
     window.addEventListener("scroll", _infiniteScroll, true);
     return () => window.removeEventListener("scroll", _infiniteScroll, true);
   }, [_infiniteScroll]);
-  console.log(likePlace);
 
   return (
     <div className="userLikeWrap">
       <div className="userLike">
-        {likePlace?.map((el: any) => {
+        {result?.map((el: any) => {
           return (
             <div className="userLike__contents">
               <div className="userLike__img">
-                <img src={el.photo} />
+                <img src={el.photo} alt='likephoto' />
               </div>
               <div className="userLike__info">
                 <p>{el.place}</p>
