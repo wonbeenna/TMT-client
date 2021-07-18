@@ -49,7 +49,7 @@ const Mainleftpage = ({ lists, setLists }: any) => {
     "제주도",
   ];
 
-  const theme18 = [
+  const theme10 = [
     { title: "레저" },
     { title: "바다" },
     { title: "산" },
@@ -84,7 +84,6 @@ const Mainleftpage = ({ lists, setLists }: any) => {
     fetchData();
   }, []);
 
-  //지역 onchange
   const locationHandler = (event: any, type: string): void => {
     if (type === "location") {
       setProvince(event.target.innerText);
@@ -200,8 +199,6 @@ const Mainleftpage = ({ lists, setLists }: any) => {
         </div>
         <div className="mainleft_container">
           <div className="place">
-            {/* <div className="mainleft_place"> */}
-            {/*장소입력*/}
             <input
               className="mainleft_placeInput"
               type="text"
@@ -225,7 +222,6 @@ const Mainleftpage = ({ lists, setLists }: any) => {
                 })}
               </div>
             )}
-            {/*장소검색*/}
             <img
               className="mainleft_placeInputImg"
               src="../img/search.png"
@@ -233,15 +229,12 @@ const Mainleftpage = ({ lists, setLists }: any) => {
               title="장소로 검색"
               onClick={sendSearchReq}
             />
-            {/* </div> */}
-            {/*지역입력*/}
             <div className="location__warp">
               <div className="location">
                 <Autocomplete
                   value={value}
                   onChange={(event: any, newValue: string | null) => {
                     setValue(newValue);
-                    // changeHandler(event, "location");
                   }}
                   inputValue={inputValue}
                   onInputChange={(event, newInputValue) => {
@@ -260,7 +253,6 @@ const Mainleftpage = ({ lists, setLists }: any) => {
                   )}
                 />
               </div>
-              {/*테마입력*/}
               <div className="mainpage_plancontainer">
                 <Button
                   aria-describedby={id}
@@ -271,7 +263,7 @@ const Mainleftpage = ({ lists, setLists }: any) => {
                 </Button>
                 <Popper id={id} open={open} anchorEl={anchorEl}>
                   <div className={classes.paper}>
-                    {theme18.map((el, idx: number) => (
+                    {theme10.map((el, idx: number) => (
                       <>
                         <input
                           className="paperInput"
@@ -287,7 +279,6 @@ const Mainleftpage = ({ lists, setLists }: any) => {
                     ))}
                   </div>
                 </Popper>
-                {/*지역,테마검색*/}
                 <button
                   className="searchBtn"
                   onClick={handleSearch}

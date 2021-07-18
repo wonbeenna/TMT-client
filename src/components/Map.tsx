@@ -24,7 +24,6 @@ const Map = ({ lists, setLists }: any) => {
   const [nextMarkerArr, setNextMarkerArr] = useState<any>([]);
   const [pathArr, setPathArr] = useState<any>({});
 
-  // 지도 실행
   useEffect(() => {
     kakaoMap();
   }, []);
@@ -45,7 +44,6 @@ const Map = ({ lists, setLists }: any) => {
     });
   };
 
-  // 지도 띄우기
   const viewMarker = () => {
     if (markerArr.length > 0) {
       removeMarker();
