@@ -1,7 +1,6 @@
 import "./CSS/MyTriproute.css";
 
 const MyTriproute = ({ myplace }: any) => {
-  
   return (
     <>
       <div className="route__body">
@@ -12,7 +11,7 @@ const MyTriproute = ({ myplace }: any) => {
                 <div className="route__warp">
                   <div className="route__contents">
                     <img src={e.photo} alt="" />
-                    <a href={e.photo} target="_blank" ></a>
+                    <a target="_blank"></a>
                     <div className="route__content">
                       <div className="route__place">{e.place}</div>
                     </div>

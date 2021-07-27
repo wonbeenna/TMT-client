@@ -320,10 +320,13 @@
 }
 .DayPickerNavigation__verticalDefault {
   position: absolute;
-  width: 100%;
-  height: 52px;
-  bottom: 0;
-  left: 0;
+  width: 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  top: 0;
+  right: 0;
 }
 .DayPickerNavigation__verticalScrollableDefault {
   position: relative;
@@ -389,16 +392,21 @@
   right: 22px;
 }
 .DayPickerNavigation_button__verticalDefault {
-  padding: 5px;
-  background: #fff;
-  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
+  /* padding: 5px; */
+  /* background: #fff; */
+  /* box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1); */
   position: relative;
   display: inline-block;
   text-align: center;
   height: 100%;
-  width: 50%;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }
 .DayPickerNavigation_nextButton__verticalDefault {
+  display: flex;
+  justify-content: center;
   border-left: 0;
 }
 .DayPickerNavigation_nextButton__verticalScrollableDefault,
@@ -412,9 +420,13 @@
   display: block;
 }
 .DayPickerNavigation_svg__vertical {
-  height: 42px;
-  width: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 19px;
+  width: 19px;
   fill: #484848;
+  display: block;
 }
 .DayPickerNavigation_svg__disabled {
   fill: #f2f2f2;
@@ -450,6 +462,11 @@
 .DayPicker_focusRegion {
   outline: 0;
   margin-top: 85px;
+}
+@media screen and (max-width: 430px) {
+  .DayPicker_focusRegion {
+    width: 100vw;
+  }
 }
 .DayPicker_calendarInfo__horizontal,
 .DayPicker_wrapper__horizontal {
@@ -657,7 +674,7 @@
   width: 200px;
 }
 .DateRangePicker_picker {
-  width: 0;
+  /* width: 0; */
   height: 0;
   z-index: 11;
   position: absolute;
