@@ -69,13 +69,13 @@
     flex-direction: column;
   }
   .myPage__calendar {
-    margin: 0;
+    margin-right: 60px;
   }
 }
 @media screen and (max-width: 545px) {
   .myPage__title h1,
   .myPage__like__title h1,
-  .myPage__section__route__title h4 {
+  .myPage__section__route__title h1 {
     margin: 0;
   }
   .route__body {
