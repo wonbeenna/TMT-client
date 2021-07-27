@@ -80,7 +80,7 @@ const Mypage = () => {
                 focusedInput={focusedInput}
                 onFocusChange={setFocusedInput}
                 initialVisibleMonth={null}
-                numberOfMonths={2}
+                numberOfMonths={1}
                 monthFormat={"YYYY년 MM월"}
               />
             </div>

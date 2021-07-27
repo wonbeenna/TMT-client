@@ -272,10 +272,15 @@ function UserInfo() {
             }}
           />
           <span className="UserInfo__errPasswordCk">{errPasswordCk}</span>
-
           <button className="UserInfo__Btn" onClick={userInfoHandler}>
             변경하기
           </button>
+          <div
+            className="UserInfo__withDraw"
+            onClick={() => ModalHandler("WithDraw")}
+          >
+            <p>회원탈퇴</p>
+          </div>
         </div>
       </div>
     </div>

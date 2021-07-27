@@ -7,6 +7,7 @@ import UserInfo from "../pages/UserInfo";
 import LikeCheckModal from "./LikeCheckModal";
 import { RootReducer } from "../reducers";
 import UserInfoCheck from "./UserInfoCheck";
+import WithDraw from "./WithDraw";
 
 function Modal() {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function Modal() {
     <UserInfo {...ModalHandler} />,
     <LikeCheckModal {...ModalHandler} />,
     <UserInfoCheck {...ModalHandler} />,
+    <WithDraw {...ModalHandler} />,
   ];
   const ModalNamesIndex = [
     "SignIn",
@@ -38,6 +40,7 @@ function Modal() {
     "UserInfo",
     "LikeCheckModal",
     "UserInfoCheck",
+    "WithDraw",
   ];
 
   return <div>{ModalName[ModalNamesIndex.indexOf(modalName)]}</div>;
