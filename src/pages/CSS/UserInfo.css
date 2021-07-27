@@ -209,10 +209,25 @@ input::placeholder {
 }
 
 @media (max-width: 480px) {
-  .signUp__modal {
+  .UserInfo__modal {
     width: 100% !important;
     height: 100% !important;
     border-radius: 0 !important;
     margin-top: 0;
   }
+}
+
+.UserInfo__withDraw {
+  text-align: right;
+  top: -1rem;
+  font-size: 13px;
+  color: #888;
+}
+.UserInfo__withDraw p {
+  width: 50px;
+  margin-left: auto;
+  cursor: pointer;
+}
+.UserInfo__withDraw p:hover {
+  color: #f34242;
 }
