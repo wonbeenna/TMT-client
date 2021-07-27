@@ -173,4 +173,7 @@
   .inputList__contents {
     min-height: 0;
   }
+  .inputList__title {
+    font-size: 1rem;
+  }
 }
