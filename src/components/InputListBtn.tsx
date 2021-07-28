@@ -12,10 +12,10 @@ function InputListBtn({ startToday, endToday, lists }: any) {
   const setAccessToken = accessToken.AccessToken.accessToken;
   const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
 
-  const sendHandler = () => {
+  const sendHandler = async () => {
     if (isLogin) {
       const sendURL = `${process.env.REACT_APP_API}/trip/insertSpot`;
-      axios
+      await axios
         .post(
           sendURL,
           {
@@ -29,8 +29,9 @@ function InputListBtn({ startToday, endToday, lists }: any) {
             },
           }
         )
-        .then((res) => res);
-      window.location.href = "/Mypage";
+        .then((res) => {
+          window.location.href = "/Mypage";
+        });
     } else {
       const ModalHandler = (name: string) => {
         dispatch(Actions.modalStatus(true));
