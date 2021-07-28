@@ -404,7 +404,7 @@ ul {
     margin-top: -12px;
   }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 414px) {
   .mainleft_container {
     width: 100vw;
   }

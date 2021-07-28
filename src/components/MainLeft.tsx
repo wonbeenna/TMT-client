@@ -190,6 +190,9 @@ const Mainleftpage = ({ lists, setLists }: any) => {
       });
     return placeInfo;
   };
+  const orientation = window.matchMedia("(max-width: 635px)").matches
+    ? "vertical"
+    : "horizontal";
 
   return (
     <>
@@ -303,6 +306,7 @@ const Mainleftpage = ({ lists, setLists }: any) => {
                 block
                 noBorder
                 showClearDates
+                orientation={orientation}
               />
             </div>
           </div>
