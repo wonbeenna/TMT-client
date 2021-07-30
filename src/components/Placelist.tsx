@@ -67,6 +67,7 @@ const Placelist = ({
               const status = err.response?.status;
               if (status === 401) {
                 dispatch(Actions.LoginStatus(false));
+                dispatch(Actions.AccessToken("", ""));
               } else {
                 throw err;
               }
