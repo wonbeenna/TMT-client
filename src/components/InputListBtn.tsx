@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootReducer } from "../reducers";
-import { Actions } from "../actions";
+import { RootReducer } from "../redux/reducers";
+import { Actions } from "../redux/actions";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 function InputListBtn({ startToday, endToday, lists }: any) {

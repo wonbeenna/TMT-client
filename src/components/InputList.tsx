@@ -4,7 +4,7 @@ import { useCallback } from "react";
 import { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
-import { Actions } from "../actions";
+import { Actions } from "../redux/actions";
 import "./CSS/InputList.css";
 import InputListBtn from "./InputListBtn";
 
@@ -22,7 +22,7 @@ function InputList({
 
   const openContainer = useCallback(() => {
     setOpen(!open);
-  }, [open]);
+  }, [open, setOpen]);
 
   useEffect(() => {
     if (_startDate === "Invalid date" && _endDate === "Invalid date") {
@@ -33,7 +33,7 @@ function InputList({
       setStartToday(_startDate);
       setEndToday(_endDate);
     }
-  });
+  }, [_startDate, _endDate]);
 
   const deleteHandler = (index: number) => {
     setLists(lists.filter((el: any, idx: number) => idx !== index));
@@ -48,7 +48,9 @@ function InputList({
     items.splice(result.destination.index, 0, reorderedItem);
     setLists(items);
   };
-  dispatch(Actions.placeList(lists));
+  useEffect(() => {
+    dispatch(Actions.placeList(lists));
+  }, [dispatch, lists]);
 
   return (
     <div className={open ? "inputList" : "inputList__close"}>
@@ -71,7 +73,7 @@ function InputList({
               </div>
             </div>
 
-            <DragDropContext onDragEnd={handleChange}>
+            <DragDropContext onDragEnd={(e) => handleChange(e)}>
               <Droppable droppableId="lists">
                 {(provided) => (
                   <div
@@ -111,6 +113,7 @@ function InputList({
                         </Draggable>
                       );
                     })}
+                    {provided.placeholder}
                   </div>
                 )}
               </Droppable>

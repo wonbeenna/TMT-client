@@ -11,6 +11,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import requests from "../modules/requests";
 require("dotenv").config();
 axios.defaults.withCredentials = true;
 const useStyles = makeStyles((theme: Theme) =>
@@ -76,10 +77,11 @@ const Mainleftpage = ({ lists, setLists }: any) => {
     setCurrentPage(pageNumber);
   };
 
-  const listURL = `${process.env.REACT_APP_API}/trip/list`;
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get(listURL, {}).then((res) => setPlacedata(res.data));
+      await axios
+        .get(requests.listURL, {})
+        .then((res) => setPlacedata(res.data));
     };
     fetchData();
   }, []);
@@ -93,7 +95,7 @@ const Mainleftpage = ({ lists, setLists }: any) => {
   const handleSearch = () => {
     axios
       .post(
-        listURL,
+        requests.listURL,
         {
           province: province,
           theme: checkItems,
@@ -152,9 +154,7 @@ const Mainleftpage = ({ lists, setLists }: any) => {
 
   useEffect(() => {
     const place = async (): Promise<any> => {
-      const response = await axios.get(
-        `${process.env.REACT_APP_API}/trip/search`
-      );
+      const response = await axios.get(requests.spotURL);
       setSpot(response.data);
     };
     place();
@@ -181,7 +181,7 @@ const Mainleftpage = ({ lists, setLists }: any) => {
 
   const sendSearchReq = async (): Promise<any> => {
     let placeInfo = await axios
-      .post(`${process.env.REACT_APP_API}/trip/search`, {
+      .post(requests.spotURL, {
         inputElement: search,
       })
       .then((res) => {

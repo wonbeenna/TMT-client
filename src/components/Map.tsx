@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Actions } from "../actions";
-import { RootReducer } from "../reducers";
+import { Actions } from "../redux/actions";
+import { RootReducer } from "../redux/reducers";
 import "./CSS/Map.css";
 
 declare global {
@@ -191,7 +191,6 @@ const Map = ({ lists, setLists }: any) => {
         markerArr[i]?.setMap(null);
       }
       pathArr?.setMap(null);
-      // ListData = [];
     }
     function removeNextMarker() {
       for (let i = 0; i < nextMarkerArr.length; i++) {
