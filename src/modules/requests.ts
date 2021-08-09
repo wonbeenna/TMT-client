@@ -15,6 +15,7 @@ const requests = {
   listURL: `${process.env.REACT_APP_API}/trip/list`,
   spotURL: `${process.env.REACT_APP_API}/trip/search`,
   sendURL: `${process.env.REACT_APP_API}/trip/insertSpot`,
+  recommendURL: `${process.env.REACT_APP_API}/trip/recommend`,
   //domain
   myPageURL: `${process.env.REACT_APP_BUCKET}/Mypage`,
   MyDomainURL: `${process.env.REACT_APP_DOMAIN}/Mypage`,

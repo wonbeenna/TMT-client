@@ -97,10 +97,9 @@ const Placelist = ({
             {place.map((el: any, idx: number) => {
               const inputHandler = () => {
                 setLists([...lists].concat(el));
-                const searchURL = `${process.env.REACT_APP_API}/trip/recommend`;
                 axios
                   .post(
-                    searchURL,
+                    requests.recommendURL,
                     {
                       place: el.place,
                     },
