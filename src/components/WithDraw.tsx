@@ -1,9 +1,10 @@
 import axios from "axios";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Actions } from "../actions";
-import { RootReducer } from "../reducers";
+import { Actions } from "../redux/actions";
+import { RootReducer } from "../redux/reducers";
 import "./CSS/WithDraw.css";
+import requests from "../modules/requests";
 axios.defaults.withCredentials = true;
 
 function WithDraw() {
@@ -17,7 +18,6 @@ function WithDraw() {
     dispatch(Actions.modalName(""));
   };
 
-  const WithDrawURL = `${process.env.REACT_APP_API}/user/withdrawal`;
   const accessToken: any = useSelector(
     (state: RootReducer) => state.accessTokenReducer
   );
@@ -25,7 +25,7 @@ function WithDraw() {
 
   const WithDrawHandler = async () => {
     await axios
-      .delete(WithDrawURL, {
+      .delete(requests.WithDrawURL, {
         headers: {
           authorization: `Bearer ${setAccessToken}`,
         },

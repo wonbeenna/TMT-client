@@ -2,7 +2,8 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import "./CSS/UserLike.css";
 import axios from "axios";
-import { RootReducer } from "../reducers";
+import { RootReducer } from "../redux/reducers";
+import requests from "../modules/requests";
 
 const UserLike = () => {
   const [result, setResult] = useState<any | any[]>([]);
@@ -13,7 +14,6 @@ const UserLike = () => {
     (state: RootReducer) => state.accessTokenReducer
   );
   const setAccessToken = accessToken.AccessToken.accessToken;
-  const likeURL = `${process.env.REACT_APP_API}/user/photoLike`;
 
   const fetchMoreData = async () => {
     setIsLoading(true);
@@ -36,12 +36,12 @@ const UserLike = () => {
     if (scrollTop + clientHeight >= scrollHeight && isLoading === false) {
       fetchMoreData();
     }
-  }, [isLoading, fetchMoreData]);
+  }, [isLoading]);
 
   const fetchData = async () => {
     if (isLogin) {
       await axios
-        .get(likeURL, {
+        .get(requests.photoLikeURL, {
           headers: {
             authorization: `Bearer ${setAccessToken}`,
           },
@@ -64,7 +64,7 @@ const UserLike = () => {
   };
 
   useEffect(() => {
-    fetchData()
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -79,7 +79,7 @@ const UserLike = () => {
           return (
             <div className="userLike__contents">
               <div className="userLike__img">
-                <img src={el.photo} alt='likephoto' />
+                <img src={el.photo} alt="likephoto" />
               </div>
               <div className="userLike__info">
                 <p>{el.place}</p>

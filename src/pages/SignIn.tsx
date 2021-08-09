@@ -2,14 +2,14 @@ import { useState } from "react";
 import {
   ValidationEmail,
   ValidationPassword,
-} from "../components/ValidationCheck";
+} from "../modules/ValidationCheck";
 import "./CSS/SignIn.css";
 import GoogleLogin from "react-google-login";
 import KakaoLogin from "react-kakao-login";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import { Actions } from "../actions";
-import { useHistory } from "react-router-dom";
+import { Actions } from "../redux/actions";
+import requests from "../modules/requests";
 require("dotenv").config();
 axios.defaults.withCredentials = true;
 function SignIn() {
@@ -63,18 +63,17 @@ function SignIn() {
   };
 
   const loginHandler = async () => {
-    const loginURL = `${process.env.REACT_APP_API}/user/signIn`;
-    if (!email) {
+    if (!emailValid) {
       setEmailValid(false);
       setErrEmail("이메일을 입력해 주세요");
     }
-    if (!password) {
+    if (!passwordValid) {
       setPasswordValid(false);
       setErrPassword("비밀번호를 입력해 주세요");
     }
     await axios
       .post(
-        loginURL,
+        requests.loginURL,
         {
           email,
           password,
@@ -103,9 +102,8 @@ function SignIn() {
   };
 
   const nonUserLoginHandler = async () => {
-    const nonUserLoginURL = `${process.env.REACT_APP_API}/user/nonUser`;
     await axios
-      .get(nonUserLoginURL, {})
+      .get(requests.nonUserLoginURL, {})
       .then((res) => {
         const accessToken = res.data.accessToken;
         const refreshToken = res.data.refreshToken;
@@ -133,9 +131,8 @@ function SignIn() {
   // 구글
   const clientId: any = process.env.REACT_APP_GOOGLE_API;
   const responseGoogle = async (response: any) => {
-    const googleURL = `${process.env.REACT_APP_API}/auth/google`;
     await axios
-      .post(googleURL, {
+      .post(requests.googleURL, {
         token: response.tokenObj.id_token,
       })
       .then((res) => {
@@ -162,16 +159,6 @@ function SignIn() {
 
   // 카카오
   const CLIENT_ID: any = process.env.REACT_APP_KAKAO_KEY;
-  // const REDIRECT_URL: any = `http://localhost:3000/oauth/kakao`;
-  // const KAKAO_AUTH_URL: any = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&response_type=code`;
-  // const responseKakao = () => {
-  //   window.location.assign(KAKAO_AUTH_URL);
-  // };
-  // let KAKAO_CODE = new URL(window.location.href).searchParams.get("code");
-  // console.log(KAKAO_CODE);
-  // 리다이렉트 URL로 인증코드를 발급받는다,
-  // 발급 받은 코드를 서버로 전송해 서버에서 토큰을 발급받고,
-  // 유저를 확인한 후 클라이언트로 보내줌
 
   return (
     <div className="signIn">

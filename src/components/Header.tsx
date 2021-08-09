@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Actions } from "../actions";
-import { RootReducer } from "../reducers";
+import { Actions } from "../redux/actions";
+import { RootReducer } from "../redux/reducers";
 import "./CSS/Header.css";
 import { useHistory } from "react-router";
 import { withRouter } from "react-router-dom";
+import requests from "../modules/requests";
 require("dotenv").config();
 
 const Header = () => {
@@ -32,9 +33,7 @@ const Header = () => {
 
   const mypageRender = () => {
     const curURL = window.location.href;
-    const mypageURL = `${process.env.REACT_APP_BUCKET}/Mypage`;
-    const domainURL = `${process.env.REACT_APP_DOMAIN}/Mypage`;
-    if (curURL === mypageURL || curURL === domainURL) {
+    if (curURL === requests.myPageURL || curURL === requests.MyDomainURL) {
       return (
         <div className="headerContainer">
           <div className="headerLogo" onClick={landingPage}>
@@ -90,9 +89,8 @@ const Header = () => {
 
   const mainPageRender = () => {
     const curURL = window.location.href;
-    const mainPageURL = `${process.env.REACT_APP_BUCKET}/Mainpage`;
-    const domainURL = `${process.env.REACT_APP_DOMAIN}/Mainpage`;
-    if (curURL === mainPageURL || curURL === domainURL) {
+
+    if (curURL === requests.mainPageURL || curURL === requests.MainDomainURL) {
       return (
         <div className="headerContainer">
           <div className="headerLogo" onClick={landingPage}>

@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Actions } from "../actions";
-import { RootReducer } from "../reducers";
+import { Actions } from "../redux/actions";
+import { RootReducer } from "../redux/reducers";
 import "./CSS/MainLeft.css";
 import "./CSS/PlaceList.css";
 import InputList from "./InputList";
 import Paging from "./Pagination";
+import requests from "../modules/requests";
 axios.defaults.withCredentials = true;
 const Placelist = ({
   place,
@@ -28,15 +29,12 @@ const Placelist = ({
     (state: RootReducer) => state.accessTokenReducer
   );
   const setAccessToken = accessToken.AccessToken.accessToken;
-  const setRefreshToken = accessToken.AccessToken.refreshToken;
-  const tokenURL = `${process.env.REACT_APP_API}/token/refreshToken`;
-  const likeURL = `${process.env.REACT_APP_API}/user/like`;
 
   useEffect(() => {
     const fetchData = async () => {
       if (isLogin) {
         await axios
-          .get(likeURL, {
+          .get(requests.likeURL, {
             headers: {
               authorization: `Bearer ${setAccessToken}`,
             },
@@ -46,43 +44,15 @@ const Placelist = ({
           });
       } else {
         setLikePlace([]);
-        const callbackAxios = async () => {
-          await axios
-            .post(
-              tokenURL,
-              {},
-              {
-                headers: {
-                  authorization: `Bearer ${setRefreshToken}`,
-                },
-              }
-            )
-            .then((res) => {
-              dispatch(Actions.LoginStatus(true));
-              dispatch(
-                Actions.AccessToken(res.data.newAccessToken, setRefreshToken)
-              );
-            })
-            .catch((err) => {
-              const status = err.response?.status;
-              if (status === 401) {
-                dispatch(Actions.LoginStatus(false));
-                dispatch(Actions.AccessToken("", ""));
-              } else {
-                throw err;
-              }
-            });
-        };
-        callbackAxios();
       }
     };
     fetchData();
-  }, []);
+  }, [isLogin, setAccessToken]);
 
   const likeHandler = async (el: any) => {
     if (isLogin) {
       if (likePlace?.includes(el.place)) {
-        await axios.delete(likeURL, {
+        await axios.delete(requests.likeURL, {
           headers: {
             authorization: `Bearer ${setAccessToken}`,
           },
@@ -93,7 +63,7 @@ const Placelist = ({
         setLikePlace(likePlace?.filter((els: any) => els !== el.place));
       } else {
         await axios.post(
-          likeURL,
+          requests.likeURL,
           {
             place: el.place,
           },
@@ -174,6 +144,7 @@ const Placelist = ({
                           ? "../img/heart.png"
                           : "../img/noheart.png"
                       }
+                      alt=""
                       onClick={() => likeHandler(el)}
                     />
                   </div>

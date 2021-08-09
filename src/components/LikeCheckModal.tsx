@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Actions } from "../actions";
+import { Actions } from "../redux/actions";
 import "./CSS/LikeCheckModal.css";
 
 function LikeCheckModal() {
