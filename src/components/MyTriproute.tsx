@@ -10,8 +10,7 @@ const MyTriproute = ({ myplace }: any) => {
               <>
                 <div className="route__warp">
                   <div className="route__contents">
-                    <img src={e.photo} alt="" />
-                    <a target="_blank"></a>
+                    <img key={idx} src={e.photo} alt="" />
                     <div className="route__content">
                       <div className="route__place">{e.place}</div>
                     </div>

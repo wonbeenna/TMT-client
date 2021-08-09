@@ -1,13 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Actions } from "../actions";
+import { Actions } from "../redux/actions";
 import {
   ValidationName,
   ValidationEmail,
   ValidationPassword,
-} from "../components/ValidationCheck";
+} from "../modules/ValidationCheck";
 import "./CSS/SignUp.css";
+import requests from "../modules/requests";
 require("dotenv").config();
 axios.defaults.withCredentials = true;
 function SignUp() {
@@ -94,22 +95,22 @@ function SignUp() {
   };
 
   const handleSignUp = async () => {
-    if (!name) {
+    if (!nameValid) {
       setNameValid(false);
       setErrName("이름을 입력해 주세요");
       return;
     }
-    if (!email) {
+    if (!emailValid) {
       setEmailValid(false);
       setErrEmail("이메일을 입력해 주세요");
       return;
     }
-    if (!password) {
+    if (!passwordValid) {
       setPasswordValid(false);
       setErrPassword("비밀번호를 입력해 주세요");
       return;
     }
-    if (!passwordCk) {
+    if (!passwordCkValid) {
       setPasswordCKValid(false);
       setErrPasswordCk("비밀번호를 확인해 주세요");
       return;
@@ -118,9 +119,8 @@ function SignUp() {
       return;
     }
 
-    const signUpURL = `${process.env.REACT_APP_API}/user/signUp`;
     await axios
-      .post(signUpURL, {
+      .post(requests.signUpURL, {
         name,
         email,
         ...(password ? { password: password } : {}),

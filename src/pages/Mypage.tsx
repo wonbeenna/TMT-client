@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { RootReducer } from "../reducers";
+import { RootReducer } from "../redux/reducers";
 import MyMap from "../components/MyMap";
 import Modal from "../components/Modal";
 import Header from "../components/Header";
@@ -13,6 +13,7 @@ import { DayPickerRangeController, FocusedInputShape } from "react-dates";
 import "./CSS/Mypage.css";
 import "react-dates/initialize";
 import axios from "axios";
+import requests from "../modules/requests";
 axios.defaults.withCredentials = true;
 const Mypage = () => {
   const [myplace, setMyPlace] = useState<any>({});
@@ -36,11 +37,11 @@ const Mypage = () => {
   const accessToken: any = useSelector(
     (state: RootReducer) => state.accessTokenReducer
   );
-  const searchURL = `${process.env.REACT_APP_API}/user/myPage`;
+
   const setAccessToken = accessToken.AccessToken.accessToken;
   useEffect(() => {
     async function fetchData() {
-      const response: any = await axios.get(searchURL, {
+      const response: any = await axios.get(requests.searchURL, {
         headers: {
           authorization: `Bearer ${setAccessToken}`,
         },
@@ -54,7 +55,7 @@ const Mypage = () => {
       }
     }
     fetchData();
-  }, [searchURL, setAccessToken]);
+  }, [setAccessToken]);
 
   const msDiff = new Date(_startDate).getTime() - new Date(_endDate).getTime();
   const range = Math.abs(msDiff / (1000 * 60 * 60 * 24)) + 1;

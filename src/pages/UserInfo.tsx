@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { ValidationPassword } from "../components/ValidationCheck";
+import { ValidationPassword } from "../modules/ValidationCheck";
 import axios from "axios";
 import "./CSS/UserInfo.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootReducer } from "../reducers";
-import { Actions } from "../actions";
+import { RootReducer } from "../redux/reducers";
+import { Actions } from "../redux/actions";
 import { useHistory } from "react-router-dom";
+import requests from "../modules/requests";
 require("dotenv").config();
 axios.defaults.withCredentials = true;
 function UserInfo() {
@@ -19,8 +20,6 @@ function UserInfo() {
   const [errCurPassword, setErrCurPassword] = useState<string>("");
   const [errPassword, setErrPassword] = useState<string>("");
   const [errPasswordCk, setErrPasswordCk] = useState<string>("");
-  const userInfoURL = `${process.env.REACT_APP_API}/user/userInfo`;
-  const tokenURL = `${process.env.REACT_APP_API}/token/refreshToken`;
   const dispatch = useDispatch();
   const history = useHistory();
   const [infors, setInfors]: any = useState<string>("");
@@ -52,7 +51,7 @@ function UserInfo() {
     }
     await axios
       .post(
-        userInfoURL,
+        requests.userInfoURL,
         {
           originalPw: curPassword,
           newPw: password,
@@ -82,7 +81,7 @@ function UserInfo() {
           const callbackAxios = async () => {
             await axios
               .post(
-                tokenURL,
+                requests.tokenURL,
                 {},
                 {
                   headers: {
@@ -105,7 +104,7 @@ function UserInfo() {
   useEffect(() => {
     async function fetchDate() {
       await axios
-        .get(userInfoURL, {
+        .get(requests.userInfoURL, {
           headers: {
             authorization: `Bearer ${setAccessToken}`,
           },
@@ -117,41 +116,11 @@ function UserInfo() {
           const status = err.response.status;
           if (status === 409) {
             dispatch(Actions.LoginStatus(false));
-            const callbackAxios = async () => {
-              await axios
-                .post(
-                  tokenURL,
-                  {},
-                  {
-                    headers: {
-                      authorization: `Bearer ${setRefreshToken}`,
-                    },
-                  }
-                )
-                .then((res) => {
-                  dispatch(Actions.LoginStatus(true));
-                  dispatch(
-                    Actions.AccessToken(
-                      res.data.newAccessToken,
-                      setRefreshToken
-                    )
-                  );
-                })
-                .catch((err) => {
-                  const status = err.response.status;
-                  if (status === 401) {
-                    dispatch(Actions.LoginStatus(false));
-                  } else {
-                    throw err;
-                  }
-                });
-            };
-            callbackAxios();
           }
         });
     }
     fetchDate();
-  });
+  }, [dispatch, setAccessToken]);
 
   const modalCloseHandler = () => {
     dispatch(Actions.modalStatus(false));
