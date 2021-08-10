@@ -11,6 +11,7 @@ const requests = {
   nonUserLoginURL: `${process.env.REACT_APP_API}/user/nonUser`,
   //auth
   googleURL: `${process.env.REACT_APP_API}/auth/google`,
+  kakaoURL: `${process.env.REACT_APP_API}/auth/kakao`,
   //trip
   listURL: `${process.env.REACT_APP_API}/trip/list`,
   spotURL: `${process.env.REACT_APP_API}/trip/search`,

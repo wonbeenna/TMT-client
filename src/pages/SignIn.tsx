@@ -160,6 +160,33 @@ function SignIn() {
   // 카카오
   const CLIENT_ID: any = process.env.REACT_APP_KAKAO_KEY;
 
+  const responseKakao = async (res: any) => {
+    await axios
+      .post(requests.kakaoURL, {
+        kakaoToken: res.response.access_token,
+      })
+      .then((res) => {
+        const status = res?.status;
+        if (status === 200 || status === 201) {
+          const accessToken = res.data.accessToken;
+          const refreshToken = res.data.refreshToken;
+          dispatch(Actions.AccessToken(accessToken, refreshToken));
+          dispatch(Actions.LoginStatus(true));
+          modalCloseHandler();
+          setErrLogin("");
+          window.location.href = "/Mainpage";
+        }
+      })
+      .catch((err) => {
+        const status = err.response?.status;
+        if (status === 404) {
+          alert("다시 시도해 주세요");
+        } else {
+          throw err;
+        }
+      });
+  };
+
   return (
     <div className="signIn">
       <div className="signIn__modal">
@@ -231,7 +258,7 @@ function SignIn() {
             />
             <KakaoLogin
               token={CLIENT_ID}
-              onSuccess={(res) => res}
+              onSuccess={(res) => responseKakao(res)}
               onFail={console.error}
               onLogout={console.info}
               className="signIn__kakao"
