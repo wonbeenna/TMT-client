@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Actions } from "../modules/api";
-import SignIn from "../pages/SignIn";
-import SignUp from "../pages/SignUp";
-import UserInfo from "../pages/UserInfo";
-import LikeCheckModal from "./LikeCheckModal";
-import { RootReducer } from "../modules/reducer";
-import UserInfoCheck from "./UserInfoCheck";
-import WithDraw from "./WithDraw";
+import { Actions } from "../api";
+import SignIn from "../../pages/SignIn";
+import SignUp from "../../pages/SignUp";
+import UserInfo from "../../pages/UserInfo";
+import LikeCheckModal from "../../components/LikeCheckModal";
+import { RootReducer } from "../reducer";
+import UserInfoCheck from "../../components/UserInfoCheck";
+import WithDraw from "../../components/WithDraw";
 
 function Modal() {
   const dispatch = useDispatch();

@@ -1,4 +1,5 @@
 import { ACTIONS_MODAL } from "../../actionsType";
+import { ActionsType } from "./actions/action";
 
 export type stateType = {
   modalStatus: boolean;
@@ -12,7 +13,7 @@ export const initialState = {
 
 export const modalNameReducer = (
   state: stateType = initialState,
-  action: { type: any; payload: any }
+  action: ActionsType
 ) => {
   switch (action.type) {
     case ACTIONS_MODAL.MODAL_NAME: {
@@ -27,7 +28,7 @@ export const modalNameReducer = (
 
 export const modalStatusReducer = (
   state: stateType = initialState,
-  action: { type: any; payload: any }
+  action: ActionsType
 ) => {
   switch (action.type) {
     case ACTIONS_MODAL.MODAL_STATUS: {

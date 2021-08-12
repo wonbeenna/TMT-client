@@ -1,11 +1,12 @@
 import { ACTIONS_USER } from "../../actionsType";
+import { ActionsType } from "./actions/action";
 
 export type stateType = {
   isLogin: boolean;
   userInfo: { name: string; email: string };
   AccessToken: { accessToken: string; refreshToken: string };
-  userLike: any;
-  userLikePhoto: any;
+  userLike: Array<string>;
+  userLikePhoto: Array<string>;
 };
 
 export const initialState = {
@@ -18,7 +19,7 @@ export const initialState = {
 
 export const LoginReducer = (
   state: stateType = initialState,
-  action: { type: string; payload: boolean }
+  action: ActionsType
 ) => {
   switch (action.type) {
     case ACTIONS_USER.LOGIN_STATUS: {
@@ -33,7 +34,7 @@ export const LoginReducer = (
 
 export const accessTokenReducer = (
   state: stateType = initialState,
-  action: { type: string; payload: string }
+  action: ActionsType
 ) => {
   switch (action.type) {
     case ACTIONS_USER.ACCESS_TOKEN: {
@@ -48,7 +49,7 @@ export const accessTokenReducer = (
 
 export const userInfoReducer = (
   state: stateType = initialState,
-  action: { type: string; payload: string }
+  action: ActionsType
 ) => {
   switch (action.type) {
     case ACTIONS_USER.USER_INFO: {
@@ -63,7 +64,7 @@ export const userInfoReducer = (
 
 export const userLikeReducer = (
   state: stateType = initialState,
-  action: { type: string; payload: Array<string> }
+  action: ActionsType
 ) => {
   switch (action.type) {
     case ACTIONS_USER.USER_LIKE: {
@@ -79,7 +80,7 @@ export const userLikeReducer = (
 
 export const userLikePhotoReducer = (
   state: stateType = initialState,
-  action: { type: string; payload: Array<string> }
+  action: ActionsType
 ) => {
   switch (action.type) {
     case ACTIONS_USER.USER_LIKE_PHOTO: {

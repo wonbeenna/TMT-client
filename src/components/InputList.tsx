@@ -6,7 +6,7 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
 import { Actions } from "../modules/api";
 import "./CSS/InputList.css";
-import InputListBtn from "./InputListBtn";
+import InputListBtn from "./InputListBtn/InputListBtn";
 
 function InputList({
   _startDate,

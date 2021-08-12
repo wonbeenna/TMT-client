@@ -1,3 +1,4 @@
+import { ActionsType } from "./actions/action";
 import { ACTIONS_PLACE } from "../../actionsType";
 
 export type stateType = {
@@ -16,7 +17,7 @@ export const initialState = {
 
 export const placeListReducer = (
   state: stateType = initialState,
-  action: { type: string; payload: Array<string> }
+  action: ActionsType
 ) => {
   switch (action.type) {
     case ACTIONS_PLACE.PLACE_LIST: {
@@ -33,7 +34,7 @@ export const placeListReducer = (
 
 export const NextPlaceListReducer = (
   state: stateType = initialState,
-  action: { type: string; payload: Array<string> }
+  action: ActionsType
 ) => {
   switch (action.type) {
     case ACTIONS_PLACE.NEXT_PLACE_LIST: {
@@ -50,7 +51,7 @@ export const NextPlaceListReducer = (
 
 export const myPlaceListReducer = (
   state: stateType = initialState,
-  action: { type: string; payload: Array<string> }
+  action: ActionsType
 ) => {
   switch (action.type) {
     case ACTIONS_PLACE.MY_PLACE_LIST: {
@@ -67,7 +68,7 @@ export const myPlaceListReducer = (
 
 export const placeDataReducer = (
   state: stateType = initialState,
-  actions: { type: string; payload: Array<string> }
+  actions: ActionsType
 ) => {
   switch (actions.type) {
     case ACTIONS_PLACE.PLACE_DATA: {

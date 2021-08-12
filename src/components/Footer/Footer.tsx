@@ -1,4 +1,4 @@
-import "./CSS/Footer.css";
+import "./Footer.css";
 const Footer = () => {
   const handleGit = (Name: string): void => {
     window.open(`https://github.com/${Name}`);

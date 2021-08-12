@@ -14,3 +14,7 @@ export const modalActions = {
     };
   },
 };
+
+export type ActionsType =
+  | ReturnType<typeof modalActions.modalStatus>
+  | ReturnType<typeof modalActions.modalName>;
