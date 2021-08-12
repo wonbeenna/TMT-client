@@ -8,14 +8,13 @@ import {
   ValidationPassword,
 } from "../modules/utils/ValidationCheck";
 import "./CSS/SignUp.css";
-import requests from "../modules/utils/requests";
 require("dotenv").config();
 axios.defaults.withCredentials = true;
 function SignUp() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordCk, setPasswordCk] = useState("");
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [passwordCk, setPasswordCk] = useState<string>("");
   const [nameValid, setNameValid] = useState<boolean>(true);
   const [emailValid, setEmailValid] = useState<boolean>(true);
   const [passwordValid, setPasswordValid] = useState<boolean>(true);
@@ -119,23 +118,6 @@ function SignUp() {
       return;
     }
     dispatch(Actions.signUpReq({ name, email, password }));
-    // await axios
-    //   .post(requests.signUpURL, {
-    //     name,
-    //     email,
-    //     ...(password ? { password: password } : {}),
-    //   })
-    //   .then((res) => {
-    //     ModalHandler("SignIn");
-    //   })
-    //   .catch((err) => {
-    //     const status = err.response?.status;
-    //     if (status === 409) {
-    //       setErrEmail("이미 사용중인 이메일 입니다");
-    //     } else {
-    //       throw err;
-    //     }
-    //   });
   };
 
   return (

@@ -11,6 +11,7 @@ import {
   likeGetReq,
   likeDeleteReq,
   likePostReq,
+  likePhotoReq,
   withDrawReq,
 } from "./user/";
 import {
@@ -36,6 +37,7 @@ export const Actions = {
   likeGetReq,
   likeDeleteReq,
   likePostReq,
+  likePhotoReq,
   myPlaceListReq,
   placeDataReq,
   searchPlaceReq,

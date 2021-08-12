@@ -9,14 +9,13 @@ import KakaoLogin from "react-kakao-login";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { Actions } from "../modules/api";
-import requests from "../modules/utils/requests";
 import { googleReq, kakaoReq, nonUserReq } from "../modules/api/user";
 require("dotenv").config();
 axios.defaults.withCredentials = true;
 function SignIn() {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [emailValid, setEmailValid] = useState<boolean>(true);
   const [passwordValid, setPasswordValid] = useState<boolean>(true);
   const [errEmail, setErrEmail] = useState<string>("");
@@ -73,56 +72,10 @@ function SignIn() {
       setErrPassword("비밀번호를 입력해 주세요");
     }
     dispatch(Actions.signInReq({ email, password }));
-    // await axios
-    //   .post(
-    //     requests.loginURL,
-    //     {
-    //       email,
-    //       password,
-    //     },
-    //     {
-    //       withCredentials: true,
-    //     }
-    //   )
-    //   .then((res) => {
-    //     const accessToken = res.data.accessToken;
-    //     const refreshToken = res.data.refreshToken;
-    //     dispatch(Actions.userActions.LoginStatus(true));
-    //     dispatch(Actions.userActions.AccessToken(accessToken, refreshToken));
-    //     modalCloseHandler();
-    //     setErrLogin("");
-    //     // window.location.href = "/Mainpage";
-    //   })
-    //   .catch((err) => {
-    //     const status = err.response?.status;
-    //     if (status === 409) {
-    //       setErrLogin("이메일과 비밀번호를 확인해 주세요");
-    //     } else {
-    //       throw err;
-    //     }
-    //   });
   };
 
   const nonUserLoginHandler = () => {
     dispatch(nonUserReq());
-    // await axios
-    //   .get(requests.nonUserLoginURL, {})
-    //   .then((res) => {
-    //     const accessToken = res.data.accessToken;
-    //     const refreshToken = res.data.refreshToken;
-    //     dispatch(Actions.userActions.AccessToken(accessToken, refreshToken));
-    //     dispatch(Actions.userActions.LoginStatus(true));
-    //     modalCloseHandler();
-    //     // window.location.href = "/Mainpage";
-    //   })
-    //   .catch((err) => {
-    //     const status = err.response?.status;
-    //     if (status === 500) {
-    //       setErrLogin("서버와 연결이 불안정 합니다!");
-    //     } else {
-    //       throw err;
-    //     }
-    //   });
   };
   const searchHandler = () => {
     setErrPassword("");
@@ -142,30 +95,6 @@ function SignIn() {
 
   const responseKakao = async (res: any) => {
     dispatch(kakaoReq(res));
-    // await axios
-    //   .post(requests.kakaoURL, {
-    //     kakaoToken: res.response.access_token,
-    //   })
-    //   .then((res) => {
-    //     const status = res?.status;
-    //     if (status === 200 || status === 201) {
-    //       const accessToken = res.data.accessToken;
-    //       const refreshToken = res.data.refreshToken;
-    //       dispatch(Actions.userActions.AccessToken(accessToken, refreshToken));
-    //       dispatch(Actions.userActions.LoginStatus(true));
-    //       modalCloseHandler();
-    //       setErrLogin("");
-    //       window.location.href = "/Mainpage";
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     const status = err.response?.status;
-    //     if (status === 404) {
-    //       alert("다시 시도해 주세요");
-    //     } else {
-    //       throw err;
-    //     }
-    //   });
   };
 
   return (
@@ -245,9 +174,6 @@ function SignIn() {
               className="signIn__kakao"
               style={{}}
             />
-            {/* <button onClick={responseKakao} className="signIn__kakao">
-              카카오계정으로 로그인
-            </button> */}
             <button className="signIn__nonMember" onClick={nonUserLoginHandler}>
               비회원으로 로그인하기
             </button>

@@ -1,27 +1,27 @@
 import axios from "axios";
 import { Actions } from "../..";
-import { accessToken } from "../../../../interface";
 import requests from "../../../utils/requests";
 
-export const likeGetReq = (accessToken: accessToken) => (dispatch: any) => {
-  axios
-    .get(requests.likeURL, {
-      headers: {
-        authorization: `Bearer ${accessToken}`,
-      },
-    })
-    .then((res) => {
-      if (!accessToken) {
-        return;
-      } else {
-        console.log(res.data.place);
-        dispatch(Actions.userActions.userLike(res.data.place));
-      }
-    });
-};
+export const likeGetReq =
+  (accessToken: string) =>
+  (dispatch: (arg0: { type: string; payload: string[] }) => void) => {
+    axios
+      .get(requests.likeURL, {
+        headers: {
+          authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((res) => {
+        if (!accessToken) {
+          return;
+        } else {
+          dispatch(Actions.userActions.userLike(res.data.place));
+        }
+      });
+  };
 
 export const likeDeleteReq =
-  (place: any, accessToken: accessToken) => (dispatch: any) => {
+  (place: Array<string>, accessToken: string) => () => {
     axios
       .delete(requests.likeURL, {
         headers: {
@@ -32,12 +32,12 @@ export const likeDeleteReq =
         },
       })
       .then((res) => {
-        console.log(res);
+        return res.data;
       });
   };
 
 export const likePostReq =
-  (place: any, accessToken: accessToken) => (dispatch: any) => {
+  (place: Array<string>, accessToken: string) => () => {
     axios
       .post(
         requests.likeURL,
@@ -50,5 +50,30 @@ export const likePostReq =
           },
         }
       )
-      .then((res) => console.log(res));
+      .then((res) => {
+        return res.data;
+      });
+  };
+
+export const likePhotoReq =
+  (setResult: any, setLikePlace: any, setIsLoading: any, accessToken: string) =>
+  () => {
+    axios
+      .get(requests.photoLikeURL, {
+        headers: {
+          authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((res) => {
+        if (res.data === undefined || res.data === "") {
+          return;
+        } else {
+          let response = res.data;
+          setResult(response.slice(0, 5));
+          response = response.slice(5);
+          setLikePlace(response);
+          setIsLoading(false);
+        }
+      })
+      .catch((err) => console.log(err));
   };

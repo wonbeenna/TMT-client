@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootReducer } from "../modules/reducer";
 import { Actions } from "../modules/api";
@@ -16,23 +15,6 @@ function InputListBtn({ startToday, endToday, lists }: any) {
   const sendHandler = async () => {
     if (isLogin) {
       dispatch(insertSpotReq(lists, startToday, endToday, setAccessToken));
-      // await axios
-      //   .post(
-      //     sendURL,
-      //     {
-      //       place: lists,
-      //       startDate: startToday,
-      //       endDate: endToday,
-      //     },
-      //     {
-      //       headers: {
-      //         authorization: `Bearer ${setAccessToken}`,
-      //       },
-      //     }
-      //   )
-      //   .then((res) => {
-      //     window.location.href = "/Mypage";
-      //   });
     } else {
       const ModalHandler = (name: string) => {
         dispatch(Actions.modalActions.modalStatus(true));

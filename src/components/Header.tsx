@@ -12,9 +12,11 @@ const Header = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const signOutHandler = () => {
-    dispatch(Actions.userActions.AccessToken("", ""));
-    dispatch(Actions.userActions.LoginStatus(false));
     history.push("/Mainpage");
+    dispatch(Actions.userActions.LoginStatus(false));
+    dispatch(Actions.userActions.AccessToken("", ""));
+    dispatch(Actions.userActions.userInfo("", ""));
+    dispatch(Actions.userActions.userLike([]));
   };
   const landingPage = () => {
     window.location.href = "/Landing.html";
@@ -89,7 +91,6 @@ const Header = () => {
 
   const mainPageRender = () => {
     const curURL = window.location.href;
-
     if (curURL === requests.mainPageURL || curURL === requests.MainDomainURL) {
       return (
         <div className="headerContainer">

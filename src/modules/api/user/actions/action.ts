@@ -19,10 +19,16 @@ export const userActions = {
       payload: { accessToken, refreshToken },
     };
   },
-  userLike: (userLike: any) => {
+  userLike: (userLike: Array<string>) => {
     return {
       type: ACTIONS_USER.USER_LIKE,
       payload: userLike,
+    };
+  },
+  userLikePhoto: (userLikePhoto: Array<string>) => {
+    return {
+      type: ACTIONS_USER.USER_LIKE_PHOTO,
+      payload: userLikePhoto,
     };
   },
 };

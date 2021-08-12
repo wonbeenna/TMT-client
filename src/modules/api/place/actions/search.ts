@@ -1,9 +1,8 @@
 import axios from "axios";
 import requests from "../../../utils/requests";
-import { accessToken } from "../../../../interface";
 import { Actions } from "../..";
 
-export const myPlaceListReq = (accessToken: accessToken) => (dispatch: any) => {
+export const myPlaceListReq = (accessToken: string) => (dispatch: any) => {
   axios
     .get(requests.searchURL, {
       headers: {
@@ -20,11 +19,3 @@ export const myPlaceListReq = (accessToken: accessToken) => (dispatch: any) => {
       )
     );
 };
-
-// export const myPlaceMapReq = (accessToken: accessToken) => (dispatch: any) => {
-//   axios.get(requests.searchURL, {
-//     headers: {
-//       authorization: `Bearer ${accessToken}`,
-//     },
-//   }).then(res => dispatch(Actions.placeActions.myPlaceList))
-// };
