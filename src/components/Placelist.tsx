@@ -1,13 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Actions } from "../redux/actions";
-import { RootReducer } from "../redux/reducers";
+import { Actions } from "../modules/api";
+import { RootReducer } from "../modules/reducer";
 import "./CSS/MainLeft.css";
 import "./CSS/PlaceList.css";
 import InputList from "./InputList";
 import Paging from "./Pagination";
-import requests from "../modules/requests";
+import requests from "../modules/utils/requests";
+import { likeDeleteReq, likeGetReq, likePostReq } from "../modules/api/user";
+import { recommendReq } from "../modules/api/place";
 axios.defaults.withCredentials = true;
 const Placelist = ({
   place,
@@ -22,67 +24,58 @@ const Placelist = ({
 }: any) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState<boolean>(false);
-  const [likePlace, setLikePlace] = useState<Array<string>>([]);
-  const [recommend, setRecommend] = useState<Array<object>>([]);
   const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
   const accessToken: any = useSelector(
     (state: RootReducer) => state.accessTokenReducer
   );
   const setAccessToken = accessToken.AccessToken.accessToken;
 
+  const { userLike }: any = useSelector(
+    (state: RootReducer) => state.userLikeReducer
+  );
   useEffect(() => {
-    const fetchData = async () => {
-      if (isLogin) {
-        await axios
-          .get(requests.likeURL, {
-            headers: {
-              authorization: `Bearer ${setAccessToken}`,
-            },
-          })
-          .then((res) => {
-            setLikePlace(res.data.place);
-          });
-      } else {
-        setLikePlace([]);
-      }
-    };
-    fetchData();
-  }, [isLogin, setAccessToken]);
+    dispatch(likeGetReq(setAccessToken));
+    // const fetchData = async () => {
+    //   if (isLogin) {
+    //     await axios
+    //       .get(requests.likeURL, {
+    //         headers: {
+    //           authorization: `Bearer ${setAccessToken}`,
+    //         },
+    //       })
+    //       .then((res) => {
+    //         setLikePlace(res.data.place);
+    //       });
+    //   } else {
+    //     setLikePlace([]);
+    //   }
+    // };
+    // fetchData();
+  }, [setAccessToken]);
 
-  const likeHandler = async (el: any) => {
+  const likeHandler = (el: any) => {
     if (isLogin) {
-      if (likePlace?.includes(el.place)) {
-        await axios.delete(requests.likeURL, {
-          headers: {
-            authorization: `Bearer ${setAccessToken}`,
-          },
-          data: {
-            place: el.place,
-          },
-        });
-        setLikePlace(likePlace?.filter((els: any) => els !== el.place));
-      } else {
-        await axios.post(
-          requests.likeURL,
-          {
-            place: el.place,
-          },
-          {
-            headers: {
-              authorization: `Bearer ${setAccessToken}`,
-            },
-          }
+      if (userLike?.includes(el.place)) {
+        dispatch(likeDeleteReq(el.place, setAccessToken));
+        dispatch(
+          Actions.userActions.userLike(
+            userLike?.filter((els: any) => els !== el.place)
+          )
         );
-        if (likePlace === undefined) {
-          setLikePlace([el.place]);
+      } else {
+        dispatch(likePostReq(el.place, setAccessToken));
+        if (userLike === undefined) {
+          dispatch(Actions.userActions.userLike([el.place]));
         } else {
-          setLikePlace([...likePlace]?.concat(el.place));
+          dispatch(
+            Actions.userActions.userLike([...userLike]?.concat(el.place))
+          );
         }
       }
     } else {
       const ModalHandler = (name: string) => {
-        dispatch(Actions.modalStatus(true));
-        dispatch(Actions.modalName(name));
+        dispatch(Actions.modalActions.modalStatus(true));
+        dispatch(Actions.modalActions.modalName(name));
       };
       ModalHandler("LikeCheckModal");
     }
@@ -97,21 +90,22 @@ const Placelist = ({
             {place.map((el: any, idx: number) => {
               const inputHandler = () => {
                 setLists([...lists].concat(el));
-                axios
-                  .post(
-                    requests.recommendURL,
-                    {
-                      place: el.place,
-                    },
-                    {
-                      withCredentials: true,
-                    }
-                  )
-                  .then((res) => {
-                    setRecommend([...recommend].concat(res.data));
-                    dispatch(Actions.nextPlaceList(res.data));
-                  })
-                  .catch((err) => console.log("err", err));
+                dispatch(recommendReq(el.place));
+                // axios
+                //   .post(
+                //     requests.recommendURL,
+                //     {
+                //       place: el.place,
+                //     },
+                //     {
+                //       withCredentials: true,
+                //     }
+                //   )
+                //   .then((res) => {
+                //     setRecommend([...recommend].concat(res.data));
+                //     dispatch(Actions.placeActions.nextPlaceList(res.data));
+                //   })
+                //   .catch((err) => console.log("err", err));
 
                 if (lists.length >= 0) {
                   setOpen(true);
@@ -139,7 +133,7 @@ const Placelist = ({
                   <div className="placeList__list__like">
                     <img
                       src={
-                        likePlace?.includes(el.place)
+                        userLike?.includes(el.place)
                           ? "../img/heart.png"
                           : "../img/noheart.png"
                       }

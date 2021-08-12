@@ -2,8 +2,8 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import "./CSS/UserLike.css";
 import axios from "axios";
-import { RootReducer } from "../redux/reducers";
-import requests from "../modules/requests";
+import { RootReducer } from "../modules/reducer";
+import requests from "../modules/utils/requests";
 
 const UserLike = () => {
   const [result, setResult] = useState<any | any[]>([]);
@@ -14,7 +14,7 @@ const UserLike = () => {
     (state: RootReducer) => state.accessTokenReducer
   );
   const setAccessToken = accessToken.AccessToken.accessToken;
-
+  console.log(likePlace, result);
   const fetchMoreData = async () => {
     setIsLoading(true);
     setResult(result.concat(likePlace.slice(0, 5)));

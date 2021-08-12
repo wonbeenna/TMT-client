@@ -1,13 +1,12 @@
 import { useState } from "react";
-import { ValidationPassword } from "../modules/ValidationCheck";
+import { ValidationPassword } from "../modules/utils/ValidationCheck";
 import axios from "axios";
 import "./CSS/UserInfo.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootReducer } from "../redux/reducers";
-import { Actions } from "../redux/actions";
-import { useHistory } from "react-router-dom";
-import requests from "../modules/requests";
+import { RootReducer } from "../modules/reducer";
+import { Actions } from "../modules/api";
+
 require("dotenv").config();
 axios.defaults.withCredentials = true;
 function UserInfo() {
@@ -21,16 +20,16 @@ function UserInfo() {
   const [errPassword, setErrPassword] = useState<string>("");
   const [errPasswordCk, setErrPasswordCk] = useState<string>("");
   const dispatch = useDispatch();
-  const history = useHistory();
-  const [infors, setInfors]: any = useState<string>("");
+  const { userInfo }: any = useSelector(
+    (state: RootReducer) => state.userInfoReducer
+  );
   const accessToken: any = useSelector(
     (state: RootReducer) => state.accessTokenReducer
   );
   const setAccessToken = accessToken.AccessToken.accessToken;
-  const setRefreshToken = accessToken.AccessToken.refreshToken;
   const ModalHandler = (name: string) => {
-    dispatch(Actions.modalStatus(true));
-    dispatch(Actions.modalName(name));
+    dispatch(Actions.modalActions.modalStatus(true));
+    dispatch(Actions.modalActions.modalName(name));
   };
 
   const userInfoHandler = async () => {
@@ -49,82 +48,87 @@ function UserInfo() {
       setErrPasswordCk("변경하실 비밀번호를 다시한번 입력해 주세요");
       return;
     }
-    await axios
-      .post(
-        requests.userInfoURL,
-        {
-          originalPw: curPassword,
-          newPw: password,
-        },
-        {
-          headers: {
-            authorization: `Bearer ${setAccessToken}`,
-          },
-        }
-      )
-      .then((res) => {
-        modalCloseHandler();
-        ModalHandler("UserInfoCheck");
-        history.push("./Mypage");
-      })
-      .catch((err) => {
-        const status = err.response.status;
-        if (status === 405) {
-          setErrCurPassword(
-            "현재 비밀번호가 일치하지 않습니다. 다시 입력해주세요"
-          );
-        } else {
-          throw err;
-        }
-        if (status === 409) {
-          dispatch(Actions.LoginStatus(false));
-          const callbackAxios = async () => {
-            await axios
-              .post(
-                requests.tokenURL,
-                {},
-                {
-                  headers: {
-                    authorization: `Bearer ${setRefreshToken}`,
-                  },
-                }
-              )
-              .then((res) => {
-                dispatch(Actions.LoginStatus(true));
-                dispatch(
-                  Actions.AccessToken(res.data.newAccessToken, setRefreshToken)
-                );
-              });
-          };
-          callbackAxios();
-        }
-      });
+    dispatch(Actions.userInfoPostReq({ curPassword, password, accessToken }));
+    // await axios
+    //   .post(
+    //     requests.userInfoURL,
+    //     {
+    //       originalPw: curPassword,
+    //       newPw: password,
+    //     },
+    //     {
+    //       headers: {
+    //         authorization: `Bearer ${setAccessToken}`,
+    //       },
+    //     }
+    //   )
+    //   .then((res) => {
+    //     modalCloseHandler();
+    //     ModalHandler("UserInfoCheck");
+    //     history.push("./Mypage");
+    //   })
+    //   .catch((err) => {
+    //     const status = err.response.status;
+    //     if (status === 405) {
+    //       setErrCurPassword(
+    //         "현재 비밀번호가 일치하지 않습니다. 다시 입력해주세요"
+    //       );
+    //     } else {
+    //       throw err;
+    //     }
+    //     if (status === 409) {
+    //       dispatch(Actions.userActions.LoginStatus(false));
+    //       const callbackAxios = async () => {
+    //         await axios
+    //           .post(
+    //             requests.tokenURL,
+    //             {},
+    //             {
+    //               headers: {
+    //                 authorization: `Bearer ${setRefreshToken}`,
+    //               },
+    //             }
+    //           )
+    //           .then((res) => {
+    //             dispatch(Actions.userActions.LoginStatus(true));
+    //             dispatch(
+    //               Actions.userActions.AccessToken(
+    //                 res.data.newAccessToken,
+    //                 setRefreshToken
+    //               )
+    //             );
+    //           });
+    //       };
+    //       callbackAxios();
+    //     }
+    //   });
   };
 
   useEffect(() => {
-    async function fetchDate() {
-      await axios
-        .get(requests.userInfoURL, {
-          headers: {
-            authorization: `Bearer ${setAccessToken}`,
-          },
-        })
-        .then((res) => {
-          setInfors(res.data);
-        })
-        .catch((err) => {
-          const status = err.response.status;
-          if (status === 409) {
-            dispatch(Actions.LoginStatus(false));
-          }
-        });
-    }
-    fetchDate();
+    // async function fetchDate() {
+    //   await axios
+    //     .get(requests.userInfoURL, {
+    //       headers: {
+    //         authorization: `Bearer ${setAccessToken}`,
+    //       },
+    //     })
+    //     .then((res) => {
+    //       setInfors(res.data);
+    //     })
+    //     .catch((err) => {
+    //       const status = err.response.status;
+    //       if (status === 409) {
+    //         dispatch(Actions.userActions.LoginStatus(false));
+    //       }
+    //     });
+    // }
+    // fetchDate();
+    dispatch(Actions.userInfoGetReq(setAccessToken));
   }, [dispatch, setAccessToken]);
 
   const modalCloseHandler = () => {
-    dispatch(Actions.modalStatus(false));
-    dispatch(Actions.modalName(""));
+    dispatch(Actions.modalActions.modalStatus(false));
+    dispatch(Actions.modalActions.modalName(""));
   };
 
   const onChangeHandler = (event: any, type: string): void => {
@@ -175,7 +179,7 @@ function UserInfo() {
       }
     }
   };
-
+  console.log(userInfo);
   return (
     <div className="UserInfo">
       <div className="UserInfo__modal">
@@ -193,9 +197,9 @@ function UserInfo() {
             />
           </div>
 
-          <div className="UserInfo__Name">{infors.name}</div>
+          <div className="UserInfo__Name">{userInfo.name}</div>
 
-          <div className="UserInfo__Email">{infors.email}</div>
+          <div className="UserInfo__Email">{userInfo.email}</div>
 
           <input
             className={

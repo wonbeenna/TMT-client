@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootReducer } from "../redux/reducers";
+import { useDispatch, useSelector } from "react-redux";
 import MyMap from "../components/MyMap";
 import Modal from "../components/Modal";
 import Header from "../components/Header";
@@ -13,18 +12,21 @@ import { DayPickerRangeController, FocusedInputShape } from "react-dates";
 import "./CSS/Mypage.css";
 import "react-dates/initialize";
 import axios from "axios";
-import requests from "../modules/requests";
+import requests from "../modules/utils/requests";
+import { RootReducer } from "../modules/reducer";
+import { Actions } from "../modules/api";
 axios.defaults.withCredentials = true;
 const Mypage = () => {
-  const [myplace, setMyPlace] = useState<any>({});
-  const [_startDate, _setStartDate] = useState<any>();
-  const [_endDate, _setEndDate] = useState<any>();
   const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(
     null
   );
-
-  const startDate = moment(_startDate);
-  const endDate = moment(_endDate);
+  const dispatch = useDispatch();
+  const { myListData }: any = useSelector(
+    (state: RootReducer) => state.myPlaceListReducer
+  );
+  console.log(myListData);
+  const startDate = moment(myListData?.startDate);
+  const endDate = moment(myListData?.endDate);
 
   const handlendDatesChange = (arg: {
     startDate: moment.Moment | null;
@@ -39,25 +41,14 @@ const Mypage = () => {
   );
 
   const setAccessToken = accessToken.AccessToken.accessToken;
+
   useEffect(() => {
-    async function fetchData() {
-      const response: any = await axios.get(requests.searchURL, {
-        headers: {
-          authorization: `Bearer ${setAccessToken}`,
-        },
-      });
-      if (response.data === null || response.data === undefined) {
-        return;
-      } else {
-        setMyPlace(response.data);
-        _setStartDate(response.data.startDate);
-        _setEndDate(response.data.endDate);
-      }
-    }
-    fetchData();
+    dispatch(Actions.myPlaceListReq(setAccessToken));
   }, [setAccessToken]);
 
-  const msDiff = new Date(_startDate).getTime() - new Date(_endDate).getTime();
+  const msDiff =
+    new Date(myListData?.startDate).getTime() -
+    new Date(myListData?.endDate).getTime();
   const range = Math.abs(msDiff / (1000 * 60 * 60 * 24)) + 1;
 
   return (
@@ -90,7 +81,7 @@ const Mypage = () => {
             <h1>나의 여행 경로</h1>
           </div>
           <div className="myPage__section__route">
-            <MyTriproute myplace={myplace} />
+            <MyTriproute myplace={myListData} />
           </div>
           <div className="myPage__like__title">
             <h1>좋아요 목록</h1>

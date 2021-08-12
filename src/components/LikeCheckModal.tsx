@@ -1,18 +1,18 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Actions } from "../redux/actions";
+import { Actions } from "../modules/api";
 import "./CSS/LikeCheckModal.css";
 
 function LikeCheckModal() {
   const dispatch = useDispatch();
 
   const ModalHandler = (name: string) => {
-    dispatch(Actions.modalStatus(true));
-    dispatch(Actions.modalName(name));
+    dispatch(Actions.modalActions.modalStatus(true));
+    dispatch(Actions.modalActions.modalName(name));
   };
   const modalCloseHandler = () => {
-    dispatch(Actions.modalStatus(false));
-    dispatch(Actions.modalName(""));
+    dispatch(Actions.modalActions.modalStatus(false));
+    dispatch(Actions.modalActions.modalName(""));
   };
 
   return (

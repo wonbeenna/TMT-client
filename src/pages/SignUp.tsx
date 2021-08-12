@@ -1,14 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Actions } from "../redux/actions";
+import { Actions } from "../modules/api";
 import {
   ValidationName,
   ValidationEmail,
   ValidationPassword,
-} from "../modules/ValidationCheck";
+} from "../modules/utils/ValidationCheck";
 import "./CSS/SignUp.css";
-import requests from "../modules/requests";
+import requests from "../modules/utils/requests";
 require("dotenv").config();
 axios.defaults.withCredentials = true;
 function SignUp() {
@@ -27,12 +27,12 @@ function SignUp() {
   const dispatch = useDispatch();
 
   const ModalHandler = (name: string) => {
-    dispatch(Actions.modalStatus(true));
-    dispatch(Actions.modalName(name));
+    dispatch(Actions.modalActions.modalStatus(true));
+    dispatch(Actions.modalActions.modalName(name));
   };
   const modalCloseHandler = () => {
-    dispatch(Actions.modalStatus(false));
-    dispatch(Actions.modalName(""));
+    dispatch(Actions.modalActions.modalStatus(false));
+    dispatch(Actions.modalActions.modalName(""));
   };
   // 이름, 이메일, 비밀번호, 비밀번호체크 유효성 검사
   const onChangeHandler = (event: any, type: string): void => {
@@ -118,24 +118,24 @@ function SignUp() {
     if (password !== passwordCk) {
       return;
     }
-
-    await axios
-      .post(requests.signUpURL, {
-        name,
-        email,
-        ...(password ? { password: password } : {}),
-      })
-      .then((res) => {
-        ModalHandler("SignIn");
-      })
-      .catch((err) => {
-        const status = err.response?.status;
-        if (status === 409) {
-          setErrEmail("이미 사용중인 이메일 입니다");
-        } else {
-          throw err;
-        }
-      });
+    dispatch(Actions.signUpReq({ name, email, password }));
+    // await axios
+    //   .post(requests.signUpURL, {
+    //     name,
+    //     email,
+    //     ...(password ? { password: password } : {}),
+    //   })
+    //   .then((res) => {
+    //     ModalHandler("SignIn");
+    //   })
+    //   .catch((err) => {
+    //     const status = err.response?.status;
+    //     if (status === 409) {
+    //       setErrEmail("이미 사용중인 이메일 입니다");
+    //     } else {
+    //       throw err;
+    //     }
+    //   });
   };
 
   return (
