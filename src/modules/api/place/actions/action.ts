@@ -29,3 +29,8 @@ export const placeActions = {
     };
   },
 };
+export type ActionsType =
+  | ReturnType<typeof placeActions.placeList>
+  | ReturnType<typeof placeActions.nextPlaceList>
+  | ReturnType<typeof placeActions.myPlaceList>
+  | ReturnType<typeof placeActions.placeData>;

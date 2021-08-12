@@ -13,12 +13,9 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import requests from "../modules/utils/requests";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  placeDataReq,
-  searchPlaceReq,
-} from "../modules/api/place/actions/placeData";
 import { RootReducer } from "../modules/reducer";
 import { Actions } from "../modules/api";
+import { placeDataReq, searchPlaceReq } from "../modules/api/place";
 require("dotenv").config();
 axios.defaults.withCredentials = true;
 const useStyles = makeStyles((theme: Theme) =>

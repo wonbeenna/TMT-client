@@ -21,11 +21,12 @@ import {
   searchPlaceReq,
   recommendReq,
 } from "./place";
-
+import { headerActions } from "./header";
 export const Actions = {
   modalActions,
   userActions,
   placeActions,
+  headerActions,
   signInReq,
   signUpReq,
   nonUserReq,

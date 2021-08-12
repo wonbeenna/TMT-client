@@ -32,3 +32,10 @@ export const userActions = {
     };
   },
 };
+
+export type ActionsType =
+  | ReturnType<typeof userActions.LoginStatus>
+  | ReturnType<typeof userActions.userInfo>
+  | ReturnType<typeof userActions.AccessToken>
+  | ReturnType<typeof userActions.userLike>
+  | ReturnType<typeof userActions.userLikePhoto>;

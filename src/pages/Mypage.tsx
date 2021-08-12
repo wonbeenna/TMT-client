@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import MyMap from "../components/MyMap";
-import Modal from "../components/Modal";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Modal from "../modules/utils/Modal";
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
 import UserLike from "../components/UserLike";
 import MyTriproute from "../components/MyTriproute";
 import moment from "moment";
@@ -14,7 +14,7 @@ import "react-dates/initialize";
 import axios from "axios";
 import { RootReducer } from "../modules/reducer";
 import { Actions } from "../modules/api";
-import ErrPage from "../components/ErrPage";
+import ErrPage from "../components/ErrPage/ErrPage";
 axios.defaults.withCredentials = true;
 
 const Mypage = () => {
@@ -28,6 +28,9 @@ const Mypage = () => {
   );
   const setAccessToken = accessToken.AccessToken.accessToken;
 
+  useEffect(() => {
+    dispatch(Actions.headerActions.headerStatus("/Mypage"));
+  }, [dispatch]);
   useEffect(() => {
     dispatch(Actions.myPlaceListReq(setAccessToken));
   }, [dispatch, setAccessToken]);

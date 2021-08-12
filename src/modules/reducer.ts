@@ -13,6 +13,7 @@ import {
   myPlaceListReducer,
   placeDataReducer,
 } from "../modules/api/place";
+import { headerReducer } from "../modules/api/header";
 
 export const rootReducer = combineReducers({
   LoginReducer,
@@ -26,6 +27,7 @@ export const rootReducer = combineReducers({
   NextPlaceListReducer,
   myPlaceListReducer,
   placeDataReducer,
+  headerReducer,
 });
 
 export default rootReducer;

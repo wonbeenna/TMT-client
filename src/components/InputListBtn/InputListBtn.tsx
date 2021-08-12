@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootReducer } from "../modules/reducer";
-import { Actions } from "../modules/api";
+import { RootReducer } from "../../modules/reducer";
+import { Actions } from "../../modules/api";
 import axios from "axios";
-import { insertSpotReq } from "../modules/api/place";
+import { insertSpotReq } from "../../modules/api/place";
+import "./InputListBtn.css";
 axios.defaults.withCredentials = true;
 function InputListBtn({ startToday, endToday, lists }: any) {
   const dispatch = useDispatch();
