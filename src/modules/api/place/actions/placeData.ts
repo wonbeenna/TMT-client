@@ -1,6 +1,5 @@
 import axios from "axios";
 import requests from "../../../utils/requests";
-import { accessToken } from "../../../../interface";
 import { Actions } from "../..";
 axios.defaults.withCredentials = true;
 export const placeDataReq = () => (dispatch: any) => {

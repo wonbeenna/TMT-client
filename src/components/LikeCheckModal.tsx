@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch } from "react-redux";
 import { Actions } from "../modules/api";
 import "./CSS/LikeCheckModal.css";

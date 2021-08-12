@@ -17,7 +17,7 @@ import {
   placeDataReq,
   searchPlaceReq,
 } from "../modules/api/place/actions/placeData";
-import rootReducer, { RootReducer } from "../modules/reducer";
+import { RootReducer } from "../modules/reducer";
 import { Actions } from "../modules/api";
 require("dotenv").config();
 axios.defaults.withCredentials = true;
@@ -81,7 +81,6 @@ const Mainleftpage = ({ lists, setLists }: any) => {
   const { placeData } = useSelector(
     (state: RootReducer) => state.placeDataReducer
   );
-  // console.log(placeData);
   const currentPosts = placeData.slice(indexOfFirstPost, indexOfLastPost);
 
   const paginate = (pageNumber: number) => {
@@ -89,14 +88,8 @@ const Mainleftpage = ({ lists, setLists }: any) => {
   };
 
   useEffect(() => {
-    // const fetchData = async () => {
-    //   await axios
-    //     .get(requests.listURL, {})
-    //     .then((res) => setPlacedata(res.data));
-    // };
-    // fetchData();
     dispatch(placeDataReq());
-  }, []);
+  }, [dispatch]);
 
   const locationHandler = (event: any, type: string): void => {
     if (type === "location") {
@@ -106,21 +99,6 @@ const Mainleftpage = ({ lists, setLists }: any) => {
 
   const handleSearch = () => {
     dispatch(searchPlaceReq(province, checkItems));
-    // axios
-    //   .post(
-    //     requests.listURL,
-    //     {
-    //       province: province,
-    //       theme: checkItems,
-    //     },
-    //     {
-    //       withCredentials: true,
-    //     }
-    //   )
-    //   .then((res) => {
-    //     dispatch(Actions.placeActions.placeData(res.data));
-    //   })
-    //   .catch((err) => console.log("err", err));
   };
 
   const [startDate, setStartDate] = useState<Moment | null>(null);

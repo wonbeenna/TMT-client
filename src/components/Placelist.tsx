@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Actions } from "../modules/api";
 import { RootReducer } from "../modules/reducer";
@@ -7,7 +7,6 @@ import "./CSS/MainLeft.css";
 import "./CSS/PlaceList.css";
 import InputList from "./InputList";
 import Paging from "./Pagination";
-import requests from "../modules/utils/requests";
 import { likeDeleteReq, likeGetReq, likePostReq } from "../modules/api/user";
 import { recommendReq } from "../modules/api/place";
 axios.defaults.withCredentials = true;
@@ -35,23 +34,7 @@ const Placelist = ({
   );
   useEffect(() => {
     dispatch(likeGetReq(setAccessToken));
-    // const fetchData = async () => {
-    //   if (isLogin) {
-    //     await axios
-    //       .get(requests.likeURL, {
-    //         headers: {
-    //           authorization: `Bearer ${setAccessToken}`,
-    //         },
-    //       })
-    //       .then((res) => {
-    //         setLikePlace(res.data.place);
-    //       });
-    //   } else {
-    //     setLikePlace([]);
-    //   }
-    // };
-    // fetchData();
-  }, [setAccessToken]);
+  }, [dispatch, setAccessToken]);
 
   const likeHandler = (el: any) => {
     if (isLogin) {
@@ -91,22 +74,6 @@ const Placelist = ({
               const inputHandler = () => {
                 setLists([...lists].concat(el));
                 dispatch(recommendReq(el.place));
-                // axios
-                //   .post(
-                //     requests.recommendURL,
-                //     {
-                //       place: el.place,
-                //     },
-                //     {
-                //       withCredentials: true,
-                //     }
-                //   )
-                //   .then((res) => {
-                //     setRecommend([...recommend].concat(res.data));
-                //     dispatch(Actions.placeActions.nextPlaceList(res.data));
-                //   })
-                //   .catch((err) => console.log("err", err));
-
                 if (lists.length >= 0) {
                   setOpen(true);
                 }

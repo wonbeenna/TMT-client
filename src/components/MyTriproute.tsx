@@ -12,7 +12,9 @@ const MyTriproute = ({ myplace }: any) => {
                   <div className="route__contents">
                     <img key={idx} src={e.photo} alt="" />
                     <div className="route__content">
-                      <div className="route__place">{e.place}</div>
+                      <div key={idx} className="route__place">
+                        {e.place}
+                      </div>
                     </div>
                   </div>
                 </div>

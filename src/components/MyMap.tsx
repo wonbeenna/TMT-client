@@ -1,9 +1,7 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootReducer } from "../modules/reducer";
-import axios from "axios";
-import requests from "../modules/utils/requests";
 
 declare global {
   interface Window {
@@ -14,22 +12,10 @@ const MyMap = (placedata: any) => {
   const accessToken: any = useSelector(
     (state: RootReducer) => state.accessTokenReducer
   );
-  const setAccessToken = accessToken.AccessToken.accessToken;
-  const [myplace, setMyplace] = useState<any>({});
+
   const { myListData }: any = useSelector(
     (state: RootReducer) => state.myPlaceListReducer
   );
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const response: any = await axios.get(requests.searchURL, {
-  //       headers: {
-  //         authorization: `Bearer ${setAccessToken}`,
-  //       },
-  //     });
-  //     setMyplace(response.data);
-  //   }
-  //   fetchData();
-  // }, []);
 
   const [map, setMap] = useState<any>(null);
   const [, setMarkerArr] = useState<any>([]);

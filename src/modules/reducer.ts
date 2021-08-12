@@ -4,6 +4,7 @@ import {
   LoginReducer,
   userInfoReducer,
   userLikeReducer,
+  userLikePhotoReducer,
 } from "../modules/api/user";
 import { modalStatusReducer, modalNameReducer } from "../modules/api/modal";
 import {
@@ -18,6 +19,7 @@ export const rootReducer = combineReducers({
   userInfoReducer,
   accessTokenReducer,
   userLikeReducer,
+  userLikePhotoReducer,
   modalStatusReducer,
   modalNameReducer,
   placeListReducer,

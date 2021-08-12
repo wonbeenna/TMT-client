@@ -3,6 +3,7 @@ export {
   accessTokenReducer,
   userInfoReducer,
   userLikeReducer,
+  userLikePhotoReducer,
 } from "./reducer";
 export {
   signInReq,
@@ -12,6 +13,11 @@ export {
   kakaoReq,
 } from "./actions/sign";
 export { userInfoPostReq, userInfoGetReq } from "./actions/userInfo";
-export { likeGetReq, likeDeleteReq, likePostReq } from "./actions/like";
+export {
+  likeGetReq,
+  likeDeleteReq,
+  likePostReq,
+  likePhotoReq,
+} from "./actions/like";
 export { withDrawReq } from "./actions/withDraw";
 export * from "./actions/action";

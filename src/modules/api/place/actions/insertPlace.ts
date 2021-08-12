@@ -1,10 +1,8 @@
 import axios from "axios";
 import requests from "../../../utils/requests";
-import { accessToken } from "../../../../interface";
 
 export const insertSpotReq =
-  (place: any, startDate: any, endDate: any, accessToken: accessToken) =>
-  () => {
+  (place: any, startDate: any, endDate: any, accessToken: string) => () => {
     axios
       .post(
         requests.sendURL,

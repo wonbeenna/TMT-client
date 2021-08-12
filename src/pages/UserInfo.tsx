@@ -10,9 +10,9 @@ import { Actions } from "../modules/api";
 require("dotenv").config();
 axios.defaults.withCredentials = true;
 function UserInfo() {
-  const [curPassword, setCurPassword] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordCk, setPasswordCk] = useState("");
+  const [curPassword, setCurPassword] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [passwordCk, setPasswordCk] = useState<string>("");
   const [curPasswordValid, setCurPasswordValid] = useState<boolean>(true);
   const [passwordValid, setPasswordValid] = useState<boolean>(true);
   const [passwordCkValid, setPasswordCKValid] = useState<boolean>(true);
@@ -27,6 +27,7 @@ function UserInfo() {
     (state: RootReducer) => state.accessTokenReducer
   );
   const setAccessToken = accessToken.AccessToken.accessToken;
+
   const ModalHandler = (name: string) => {
     dispatch(Actions.modalActions.modalStatus(true));
     dispatch(Actions.modalActions.modalName(name));
@@ -49,80 +50,9 @@ function UserInfo() {
       return;
     }
     dispatch(Actions.userInfoPostReq({ curPassword, password, accessToken }));
-    // await axios
-    //   .post(
-    //     requests.userInfoURL,
-    //     {
-    //       originalPw: curPassword,
-    //       newPw: password,
-    //     },
-    //     {
-    //       headers: {
-    //         authorization: `Bearer ${setAccessToken}`,
-    //       },
-    //     }
-    //   )
-    //   .then((res) => {
-    //     modalCloseHandler();
-    //     ModalHandler("UserInfoCheck");
-    //     history.push("./Mypage");
-    //   })
-    //   .catch((err) => {
-    //     const status = err.response.status;
-    //     if (status === 405) {
-    //       setErrCurPassword(
-    //         "현재 비밀번호가 일치하지 않습니다. 다시 입력해주세요"
-    //       );
-    //     } else {
-    //       throw err;
-    //     }
-    //     if (status === 409) {
-    //       dispatch(Actions.userActions.LoginStatus(false));
-    //       const callbackAxios = async () => {
-    //         await axios
-    //           .post(
-    //             requests.tokenURL,
-    //             {},
-    //             {
-    //               headers: {
-    //                 authorization: `Bearer ${setRefreshToken}`,
-    //               },
-    //             }
-    //           )
-    //           .then((res) => {
-    //             dispatch(Actions.userActions.LoginStatus(true));
-    //             dispatch(
-    //               Actions.userActions.AccessToken(
-    //                 res.data.newAccessToken,
-    //                 setRefreshToken
-    //               )
-    //             );
-    //           });
-    //       };
-    //       callbackAxios();
-    //     }
-    //   });
   };
 
   useEffect(() => {
-    // async function fetchDate() {
-    //   await axios
-    //     .get(requests.userInfoURL, {
-    //       headers: {
-    //         authorization: `Bearer ${setAccessToken}`,
-    //       },
-    //     })
-    //     .then((res) => {
-    //       setInfors(res.data);
-    //     })
-    //     .catch((err) => {
-    //       const status = err.response.status;
-    //       if (status === 409) {
-    //         dispatch(Actions.userActions.LoginStatus(false));
-    //       }
-    //     });
-    // }
-    // fetchDate();
     dispatch(Actions.userInfoGetReq(setAccessToken));
   }, [dispatch, setAccessToken]);
 
@@ -179,7 +109,7 @@ function UserInfo() {
       }
     }
   };
-  console.log(userInfo);
+
   return (
     <div className="UserInfo">
       <div className="UserInfo__modal">

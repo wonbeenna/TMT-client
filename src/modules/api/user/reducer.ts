@@ -5,6 +5,7 @@ export type stateType = {
   userInfo: { name: string; email: string };
   AccessToken: { accessToken: string; refreshToken: string };
   userLike: any;
+  userLikePhoto: any;
 };
 
 export const initialState = {
@@ -12,6 +13,7 @@ export const initialState = {
   userInfo: { name: "", email: "" },
   AccessToken: { accessToken: "", refreshToken: "" },
   userLike: [],
+  userLikePhoto: [],
 };
 
 export const LoginReducer = (
@@ -61,13 +63,29 @@ export const userInfoReducer = (
 
 export const userLikeReducer = (
   state: stateType = initialState,
-  action: { type: any; payload: any }
+  action: { type: string; payload: Array<string> }
 ) => {
   switch (action.type) {
     case ACTIONS_USER.USER_LIKE: {
       return {
         ...state,
         userLike: action.payload,
+      };
+    }
+    default:
+      return state;
+  }
+};
+
+export const userLikePhotoReducer = (
+  state: stateType = initialState,
+  action: { type: string; payload: Array<string> }
+) => {
+  switch (action.type) {
+    case ACTIONS_USER.USER_LIKE_PHOTO: {
+      return {
+        ...state,
+        userLikePhoto: action.payload,
       };
     }
     default:

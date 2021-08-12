@@ -1,10 +1,8 @@
 import axios from "axios";
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Actions } from "../modules/api";
 import { RootReducer } from "../modules/reducer";
 import "./CSS/WithDraw.css";
-import requests from "../modules/utils/requests";
 import { withDrawReq } from "../modules/api/user";
 
 axios.defaults.withCredentials = true;
