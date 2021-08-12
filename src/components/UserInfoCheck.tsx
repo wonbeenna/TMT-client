@@ -1,14 +1,14 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Actions } from "../redux/actions";
+import { Actions } from "../modules/api";
 import "./CSS/UserInfoCheck.css";
 
 function UserInfoCheck() {
   const dispatch = useDispatch();
 
   const modalCloseHandler = () => {
-    dispatch(Actions.modalStatus(false));
-    dispatch(Actions.modalName(""));
+    dispatch(Actions.modalActions.modalStatus(false));
+    dispatch(Actions.modalActions.modalName(""));
   };
 
   return (

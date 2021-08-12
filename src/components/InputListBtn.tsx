@@ -1,8 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootReducer } from "../redux/reducers";
-import { Actions } from "../redux/actions";
+import { RootReducer } from "../modules/reducer";
+import { Actions } from "../modules/api";
 import axios from "axios";
+import { insertSpotReq } from "../modules/api/place";
 axios.defaults.withCredentials = true;
 function InputListBtn({ startToday, endToday, lists }: any) {
   const dispatch = useDispatch();
@@ -14,28 +15,28 @@ function InputListBtn({ startToday, endToday, lists }: any) {
 
   const sendHandler = async () => {
     if (isLogin) {
-      const sendURL = `${process.env.REACT_APP_API}/trip/insertSpot`;
-      await axios
-        .post(
-          sendURL,
-          {
-            place: lists,
-            startDate: startToday,
-            endDate: endToday,
-          },
-          {
-            headers: {
-              authorization: `Bearer ${setAccessToken}`,
-            },
-          }
-        )
-        .then((res) => {
-          window.location.href = "/Mypage";
-        });
+      dispatch(insertSpotReq(lists, startToday, endToday, setAccessToken));
+      // await axios
+      //   .post(
+      //     sendURL,
+      //     {
+      //       place: lists,
+      //       startDate: startToday,
+      //       endDate: endToday,
+      //     },
+      //     {
+      //       headers: {
+      //         authorization: `Bearer ${setAccessToken}`,
+      //       },
+      //     }
+      //   )
+      //   .then((res) => {
+      //     window.location.href = "/Mypage";
+      //   });
     } else {
       const ModalHandler = (name: string) => {
-        dispatch(Actions.modalStatus(true));
-        dispatch(Actions.modalName(name));
+        dispatch(Actions.modalActions.modalStatus(true));
+        dispatch(Actions.modalActions.modalName(name));
       };
       ModalHandler("LikeCheckModal");
     }

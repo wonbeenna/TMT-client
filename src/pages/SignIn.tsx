@@ -2,14 +2,15 @@ import { useState } from "react";
 import {
   ValidationEmail,
   ValidationPassword,
-} from "../modules/ValidationCheck";
+} from "../modules/utils/ValidationCheck";
 import "./CSS/SignIn.css";
 import GoogleLogin from "react-google-login";
 import KakaoLogin from "react-kakao-login";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import { Actions } from "../redux/actions";
-import requests from "../modules/requests";
+import { Actions } from "../modules/api";
+import requests from "../modules/utils/requests";
+import { googleReq, kakaoReq, nonUserReq } from "../modules/api/user";
 require("dotenv").config();
 axios.defaults.withCredentials = true;
 function SignIn() {
@@ -23,12 +24,12 @@ function SignIn() {
   const [errLogin, setErrLogin] = useState<string>("");
 
   const ModalHandler = (name: string) => {
-    dispatch(Actions.modalStatus(true));
-    dispatch(Actions.modalName(name));
+    dispatch(Actions.modalActions.modalStatus(true));
+    dispatch(Actions.modalActions.modalName(name));
   };
   const modalCloseHandler = () => {
-    dispatch(Actions.modalStatus(false));
-    dispatch(Actions.modalName(""));
+    dispatch(Actions.modalActions.modalStatus(false));
+    dispatch(Actions.modalActions.modalName(""));
   };
   // 이메일, 비밀번호 유효성 검사
   const onChangeHandler = (event: any, type: string): void => {
@@ -71,55 +72,57 @@ function SignIn() {
       setPasswordValid(false);
       setErrPassword("비밀번호를 입력해 주세요");
     }
-    await axios
-      .post(
-        requests.loginURL,
-        {
-          email,
-          password,
-        },
-        {
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        const accessToken = res.data.accessToken;
-        const refreshToken = res.data.refreshToken;
-        dispatch(Actions.AccessToken(accessToken, refreshToken));
-        dispatch(Actions.LoginStatus(true));
-        modalCloseHandler();
-        setErrLogin("");
-        window.location.href = "/Mainpage";
-      })
-      .catch((err) => {
-        const status = err.response?.status;
-        if (status === 409) {
-          setErrLogin("이메일과 비밀번호를 확인해 주세요");
-        } else {
-          throw err;
-        }
-      });
+    dispatch(Actions.signInReq({ email, password }));
+    // await axios
+    //   .post(
+    //     requests.loginURL,
+    //     {
+    //       email,
+    //       password,
+    //     },
+    //     {
+    //       withCredentials: true,
+    //     }
+    //   )
+    //   .then((res) => {
+    //     const accessToken = res.data.accessToken;
+    //     const refreshToken = res.data.refreshToken;
+    //     dispatch(Actions.userActions.LoginStatus(true));
+    //     dispatch(Actions.userActions.AccessToken(accessToken, refreshToken));
+    //     modalCloseHandler();
+    //     setErrLogin("");
+    //     // window.location.href = "/Mainpage";
+    //   })
+    //   .catch((err) => {
+    //     const status = err.response?.status;
+    //     if (status === 409) {
+    //       setErrLogin("이메일과 비밀번호를 확인해 주세요");
+    //     } else {
+    //       throw err;
+    //     }
+    //   });
   };
 
-  const nonUserLoginHandler = async () => {
-    await axios
-      .get(requests.nonUserLoginURL, {})
-      .then((res) => {
-        const accessToken = res.data.accessToken;
-        const refreshToken = res.data.refreshToken;
-        dispatch(Actions.AccessToken(accessToken, refreshToken));
-        dispatch(Actions.LoginStatus(true));
-        modalCloseHandler();
-        window.location.href = "/Mainpage";
-      })
-      .catch((err) => {
-        const status = err.response?.status;
-        if (status === 500) {
-          setErrLogin("서버와 연결이 불안정 합니다!");
-        } else {
-          throw err;
-        }
-      });
+  const nonUserLoginHandler = () => {
+    dispatch(nonUserReq());
+    // await axios
+    //   .get(requests.nonUserLoginURL, {})
+    //   .then((res) => {
+    //     const accessToken = res.data.accessToken;
+    //     const refreshToken = res.data.refreshToken;
+    //     dispatch(Actions.userActions.AccessToken(accessToken, refreshToken));
+    //     dispatch(Actions.userActions.LoginStatus(true));
+    //     modalCloseHandler();
+    //     // window.location.href = "/Mainpage";
+    //   })
+    //   .catch((err) => {
+    //     const status = err.response?.status;
+    //     if (status === 500) {
+    //       setErrLogin("서버와 연결이 불안정 합니다!");
+    //     } else {
+    //       throw err;
+    //     }
+    //   });
   };
   const searchHandler = () => {
     setErrPassword("");
@@ -131,60 +134,38 @@ function SignIn() {
   // 구글
   const clientId: any = process.env.REACT_APP_GOOGLE_API;
   const responseGoogle = async (response: any) => {
-    await axios
-      .post(requests.googleURL, {
-        token: response.tokenObj.id_token,
-      })
-      .then((res) => {
-        const status = res?.status;
-        if (status === 200 || status === 201) {
-          const accessToken = res.data.accessToken;
-          const refreshToken = res.data.refreshToken;
-          dispatch(Actions.AccessToken(accessToken, refreshToken));
-          dispatch(Actions.LoginStatus(true));
-          modalCloseHandler();
-          setErrLogin("");
-          window.location.href = "/Mainpage";
-        }
-      })
-      .catch((err) => {
-        const status = err.response?.status;
-        if (status === 404) {
-          alert("다시 시도해 주세요");
-        } else {
-          throw err;
-        }
-      });
+    dispatch(googleReq(response));
   };
 
   // 카카오
   const CLIENT_ID: any = process.env.REACT_APP_KAKAO_KEY;
 
   const responseKakao = async (res: any) => {
-    await axios
-      .post(requests.kakaoURL, {
-        kakaoToken: res.response.access_token,
-      })
-      .then((res) => {
-        const status = res?.status;
-        if (status === 200 || status === 201) {
-          const accessToken = res.data.accessToken;
-          const refreshToken = res.data.refreshToken;
-          dispatch(Actions.AccessToken(accessToken, refreshToken));
-          dispatch(Actions.LoginStatus(true));
-          modalCloseHandler();
-          setErrLogin("");
-          window.location.href = "/Mainpage";
-        }
-      })
-      .catch((err) => {
-        const status = err.response?.status;
-        if (status === 404) {
-          alert("다시 시도해 주세요");
-        } else {
-          throw err;
-        }
-      });
+    dispatch(kakaoReq(res));
+    // await axios
+    //   .post(requests.kakaoURL, {
+    //     kakaoToken: res.response.access_token,
+    //   })
+    //   .then((res) => {
+    //     const status = res?.status;
+    //     if (status === 200 || status === 201) {
+    //       const accessToken = res.data.accessToken;
+    //       const refreshToken = res.data.refreshToken;
+    //       dispatch(Actions.userActions.AccessToken(accessToken, refreshToken));
+    //       dispatch(Actions.userActions.LoginStatus(true));
+    //       modalCloseHandler();
+    //       setErrLogin("");
+    //       window.location.href = "/Mainpage";
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     const status = err.response?.status;
+    //     if (status === 404) {
+    //       alert("다시 시도해 주세요");
+    //     } else {
+    //       throw err;
+    //     }
+    //   });
   };
 
   return (

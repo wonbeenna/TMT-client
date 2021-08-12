@@ -1,21 +1,23 @@
 import axios from "axios";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Actions } from "../redux/actions";
-import { RootReducer } from "../redux/reducers";
+import { Actions } from "../modules/api";
+import { RootReducer } from "../modules/reducer";
 import "./CSS/WithDraw.css";
-import requests from "../modules/requests";
+import requests from "../modules/utils/requests";
+import { withDrawReq } from "../modules/api/user";
+
 axios.defaults.withCredentials = true;
 
 function WithDraw() {
   const dispatch = useDispatch();
   const ModalHandler = (name: string) => {
-    dispatch(Actions.modalStatus(true));
-    dispatch(Actions.modalName(name));
+    dispatch(Actions.modalActions.modalStatus(true));
+    dispatch(Actions.modalActions.modalName(name));
   };
   const modalCloseHandler = () => {
-    dispatch(Actions.modalStatus(false));
-    dispatch(Actions.modalName(""));
+    dispatch(Actions.modalActions.modalStatus(false));
+    dispatch(Actions.modalActions.modalName(""));
   };
 
   const accessToken: any = useSelector(
@@ -24,21 +26,8 @@ function WithDraw() {
   const setAccessToken = accessToken.AccessToken.accessToken;
 
   const WithDrawHandler = async () => {
-    await axios
-      .delete(requests.WithDrawURL, {
-        headers: {
-          authorization: `Bearer ${setAccessToken}`,
-        },
-      })
-      .then((res) => {
-        dispatch(Actions.AccessToken("", ""));
-        dispatch(Actions.LoginStatus(false));
-        modalCloseHandler();
-        window.location.href = "/Mainpage";
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    dispatch(withDrawReq(setAccessToken));
+    modalCloseHandler();
   };
   return (
     <div>

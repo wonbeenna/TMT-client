@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { RootReducer } from "../redux/reducers";
+import { RootReducer } from "../modules/reducer";
 import axios from "axios";
-import requests from "../modules/requests";
+import requests from "../modules/utils/requests";
 
 declare global {
   interface Window {
@@ -16,17 +16,21 @@ const MyMap = (placedata: any) => {
   );
   const setAccessToken = accessToken.AccessToken.accessToken;
   const [myplace, setMyplace] = useState<any>({});
-  useEffect(() => {
-    async function fetchData() {
-      const response: any = await axios.get(requests.searchURL, {
-        headers: {
-          authorization: `Bearer ${setAccessToken}`,
-        },
-      });
-      setMyplace(response.data);
-    }
-    fetchData();
-  }, []);
+  const { myListData }: any = useSelector(
+    (state: RootReducer) => state.myPlaceListReducer
+  );
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const response: any = await axios.get(requests.searchURL, {
+  //       headers: {
+  //         authorization: `Bearer ${setAccessToken}`,
+  //       },
+  //     });
+  //     setMyplace(response.data);
+  //   }
+  //   fetchData();
+  // }, []);
+
   const [map, setMap] = useState<any>(null);
   const [, setMarkerArr] = useState<any>([]);
 
@@ -36,7 +40,7 @@ const MyMap = (placedata: any) => {
 
   useEffect(() => {
     viewMap();
-  }, [myplace]);
+  }, [myListData]);
 
   const kakaoMap = () => {
     window.kakao.maps.load(() => {
@@ -60,7 +64,7 @@ const MyMap = (placedata: any) => {
     const tempArr: any = [];
     const linePath: any = [];
 
-    myplace?.spot?.forEach((el: any) => {
+    myListData?.spot?.forEach((el: any) => {
       let marker = new window.kakao.maps.Marker({
         map: map, // 마커를 표시할 지도
         position: new window.kakao.maps.LatLng(el[0].lat, el[0].long),

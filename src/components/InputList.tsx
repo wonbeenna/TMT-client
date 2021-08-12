@@ -4,7 +4,7 @@ import { useCallback } from "react";
 import { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
-import { Actions } from "../redux/actions";
+import { Actions } from "../modules/api";
 import "./CSS/InputList.css";
 import InputListBtn from "./InputListBtn";
 
@@ -49,7 +49,7 @@ function InputList({
     setLists(items);
   };
   useEffect(() => {
-    dispatch(Actions.placeList(lists));
+    dispatch(Actions.placeActions.placeList(lists));
   }, [dispatch, lists]);
 
   return (

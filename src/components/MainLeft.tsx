@@ -11,7 +11,14 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import requests from "../modules/requests";
+import requests from "../modules/utils/requests";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  placeDataReq,
+  searchPlaceReq,
+} from "../modules/api/place/actions/placeData";
+import rootReducer, { RootReducer } from "../modules/reducer";
+import { Actions } from "../modules/api";
 require("dotenv").config();
 axios.defaults.withCredentials = true;
 const useStyles = makeStyles((theme: Theme) =>
@@ -66,24 +73,29 @@ const Mainleftpage = ({ lists, setLists }: any) => {
   const [value, setValue] = React.useState<string | null>(null);
   const [inputValue, setInputValue] = React.useState("");
   const [province, setProvince] = useState<string | null>("");
-  const [placedata, setPlacedata]: any = useState<string | any>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [postsPerPage] = useState<number>(10);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = placedata.slice(indexOfFirstPost, indexOfLastPost);
+  const dispatch = useDispatch();
+  const { placeData } = useSelector(
+    (state: RootReducer) => state.placeDataReducer
+  );
+  // console.log(placeData);
+  const currentPosts = placeData.slice(indexOfFirstPost, indexOfLastPost);
 
   const paginate = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      await axios
-        .get(requests.listURL, {})
-        .then((res) => setPlacedata(res.data));
-    };
-    fetchData();
+    // const fetchData = async () => {
+    //   await axios
+    //     .get(requests.listURL, {})
+    //     .then((res) => setPlacedata(res.data));
+    // };
+    // fetchData();
+    dispatch(placeDataReq());
   }, []);
 
   const locationHandler = (event: any, type: string): void => {
@@ -93,21 +105,22 @@ const Mainleftpage = ({ lists, setLists }: any) => {
   };
 
   const handleSearch = () => {
-    axios
-      .post(
-        requests.listURL,
-        {
-          province: province,
-          theme: checkItems,
-        },
-        {
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        setPlacedata(res.data);
-      })
-      .catch((err) => console.log("err", err));
+    dispatch(searchPlaceReq(province, checkItems));
+    // axios
+    //   .post(
+    //     requests.listURL,
+    //     {
+    //       province: province,
+    //       theme: checkItems,
+    //     },
+    //     {
+    //       withCredentials: true,
+    //     }
+    //   )
+    //   .then((res) => {
+    //     dispatch(Actions.placeActions.placeData(res.data));
+    //   })
+    //   .catch((err) => console.log("err", err));
   };
 
   const [startDate, setStartDate] = useState<Moment | null>(null);
@@ -185,11 +198,12 @@ const Mainleftpage = ({ lists, setLists }: any) => {
         inputElement: search,
       })
       .then((res) => {
-        setPlacedata([res.data]);
+        dispatch(Actions.placeActions.placeData([res.data]));
         setSearch("");
       });
     return placeInfo;
   };
+
   const orientation = window.matchMedia("(max-width: 635px)").matches
     ? "vertical"
     : "horizontal";
@@ -315,7 +329,7 @@ const Mainleftpage = ({ lists, setLists }: any) => {
             _startDate={_startDate}
             _endDate={_endDate}
             postsPerPage={postsPerPage}
-            totalPosts={placedata.length}
+            totalPosts={placeData.length}
             paginate={paginate}
             currentPage={currentPage}
             lists={lists}

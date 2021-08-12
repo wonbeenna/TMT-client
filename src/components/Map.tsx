@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Actions } from "../redux/actions";
-import { RootReducer } from "../redux/reducers";
+import { Actions } from "../modules/api";
+import { RootReducer } from "../modules/reducer";
 import "./CSS/Map.css";
 
 declare global {
@@ -16,7 +16,7 @@ const Map = ({ lists, setLists }: any) => {
     (state: RootReducer) => state.placeListReducer.listData
   );
   const NextListData: any = useSelector(
-    (state: RootReducer) => state.nextPlaceListReducer.nextListData
+    (state: RootReducer) => state.NextPlaceListReducer.nextListData
   );
   const { kakao } = window;
   const [map, setMap] = useState<any>(null);
@@ -177,7 +177,7 @@ const Map = ({ lists, setLists }: any) => {
 
       function removeNextMarker2() {
         dispatch(
-          Actions.nextPlaceList(
+          Actions.placeActions.nextPlaceList(
             NextListData[0].filter((e: any) => e.place !== el.place)
           )
         );

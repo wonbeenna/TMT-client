@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Actions } from "../redux/actions";
-import { RootReducer } from "../redux/reducers";
+import { Actions } from "../modules/api";
+import { RootReducer } from "../modules/reducer";
 import "./CSS/Header.css";
 import { useHistory } from "react-router";
 import { withRouter } from "react-router-dom";
-import requests from "../modules/requests";
+import requests from "../modules/utils/requests";
 require("dotenv").config();
 
 const Header = () => {
@@ -12,8 +12,8 @@ const Header = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const signOutHandler = () => {
-    dispatch(Actions.AccessToken("", ""));
-    dispatch(Actions.LoginStatus(false));
+    dispatch(Actions.userActions.AccessToken("", ""));
+    dispatch(Actions.userActions.LoginStatus(false));
     history.push("/Mainpage");
   };
   const landingPage = () => {
@@ -27,8 +27,8 @@ const Header = () => {
   };
 
   const ModalHandler = (name: string) => {
-    dispatch(Actions.modalStatus(true));
-    dispatch(Actions.modalName(name));
+    dispatch(Actions.modalActions.modalStatus(true));
+    dispatch(Actions.modalActions.modalName(name));
   };
 
   const mypageRender = () => {
