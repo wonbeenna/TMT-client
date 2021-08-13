@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Actions } from "../modules/api";
@@ -9,7 +8,7 @@ import {
 } from "../modules/utils/ValidationCheck";
 import "./CSS/SignUp.css";
 require("dotenv").config();
-axios.defaults.withCredentials = true;
+
 function SignUp() {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -34,7 +33,10 @@ function SignUp() {
     dispatch(Actions.modalActions.modalName(""));
   };
   // 이름, 이메일, 비밀번호, 비밀번호체크 유효성 검사
-  const onChangeHandler = (event: any, type: string): void => {
+  const onChangeHandler = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    type: string
+  ): void => {
     if (type === "Name") {
       setName(event.target.value);
       if (event.target.value.length === 0) {
@@ -93,7 +95,7 @@ function SignUp() {
     }
   };
 
-  const handleSignUp = async () => {
+  const handleSignUp = () => {
     if (!nameValid) {
       setNameValid(false);
       setErrName("이름을 입력해 주세요");

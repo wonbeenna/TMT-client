@@ -1,15 +1,17 @@
 import axios from "axios";
+import { insertSpot, accessToken } from "../../../../interfaces";
 import requests from "../../../utils/requests";
 
 export const insertSpotReq =
-  (place: any, startDate: any, endDate: any, accessToken: string) => () => {
+  ({ lists, startToday, endToday }: insertSpot, accessToken: accessToken) =>
+  () => {
     axios
       .post(
         requests.sendURL,
         {
-          place,
-          startDate,
-          endDate,
+          place: lists,
+          startDate: startToday,
+          endDate: endToday,
         },
         {
           headers: {

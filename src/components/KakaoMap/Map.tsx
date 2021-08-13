@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { ListProps } from "../../interfaces";
 import { Actions } from "../../modules/api";
 import { RootReducer } from "../../modules/reducer";
 import "./Map.css";
@@ -10,7 +11,7 @@ declare global {
   }
 }
 
-const Map = ({ lists, setLists }: any) => {
+function Map({ lists, setLists }: ListProps) {
   const dispatch = useDispatch();
   const ListData: any = useSelector(
     (state: RootReducer) => state.placeListReducer.listData
@@ -56,8 +57,8 @@ const Map = ({ lists, setLists }: any) => {
     let imageSize = new kakao.maps.Size(50, 50);
     let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
-    const tempArr: any = [];
-    const linePath: any = [];
+    const tempArr: Array<string> = [];
+    const linePath: Array<string> = [];
 
     ListData[0]?.forEach((el: any, idx: number) => {
       let marker = new kakao.maps.Marker({
@@ -116,7 +117,7 @@ const Map = ({ lists, setLists }: any) => {
     setPathArr(polyline);
     setMarkerArr(tempArr);
 
-    const NextTempArr: any = [];
+    const NextTempArr: Array<string> = [];
     NextListData[0]?.forEach((el: any) => {
       let imageSrc = "./img/thumbtack.png";
       let imageSize = new kakao.maps.Size(40, 40);
@@ -204,6 +205,6 @@ const Map = ({ lists, setLists }: any) => {
       <div id="map" />
     </div>
   );
-};
+}
 
 export default Map;

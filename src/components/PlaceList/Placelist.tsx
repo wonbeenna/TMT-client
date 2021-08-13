@@ -1,16 +1,15 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Actions } from "../../modules/api";
 import { RootReducer } from "../../modules/reducer";
-import "../CSS/MainLeft.css";
 import "./PlaceList.css";
 import InputList from "../InputList/InputList";
 import Paging from "../Pagination/Pagination";
 import { likeDeleteReq, likeGetReq, likePostReq } from "../../modules/api/user";
 import { recommendReq } from "../../modules/api/place";
-axios.defaults.withCredentials = true;
-const Placelist = ({
+import { PlaceListProps } from "../../interfaces";
+
+const PlaceList = ({
   place,
   _startDate,
   _endDate,
@@ -20,7 +19,7 @@ const Placelist = ({
   currentPage,
   lists,
   setLists,
-}: any) => {
+}: PlaceListProps) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState<boolean>(false);
   const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
@@ -131,4 +130,4 @@ const Placelist = ({
     </>
   );
 };
-export default Placelist;
+export default PlaceList;

@@ -1,14 +1,11 @@
 import { useState } from "react";
 import { ValidationPassword } from "../modules/utils/ValidationCheck";
-import axios from "axios";
 import "./CSS/UserInfo.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootReducer } from "../modules/reducer";
 import { Actions } from "../modules/api";
 
-require("dotenv").config();
-axios.defaults.withCredentials = true;
 function UserInfo() {
   const [curPassword, setCurPassword] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -33,7 +30,7 @@ function UserInfo() {
     dispatch(Actions.modalActions.modalName(name));
   };
 
-  const userInfoHandler = async () => {
+  const userInfoHandler = () => {
     if (!curPassword) {
       setCurPasswordValid(false);
       setErrCurPassword("현재 비밀번호를 입력해 주세요.");
@@ -49,7 +46,9 @@ function UserInfo() {
       setErrPasswordCk("변경하실 비밀번호를 다시한번 입력해 주세요");
       return;
     }
-    dispatch(Actions.userInfoPostReq({ curPassword, password, accessToken }));
+    dispatch(
+      Actions.userInfoPostReq({ curPassword, password }, setAccessToken)
+    );
   };
 
   useEffect(() => {
@@ -61,7 +60,10 @@ function UserInfo() {
     dispatch(Actions.modalActions.modalName(""));
   };
 
-  const onChangeHandler = (event: any, type: string): void => {
+  const onChangeHandler = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    type: string
+  ): void => {
     if (type === "curPassword") {
       setCurPassword(event.target.value);
       if (event.target.value.length === 0) {

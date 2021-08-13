@@ -1,0 +1,47 @@
+.placeInput {
+  border: 1px solid rgb(202, 202, 202);
+  border-radius: 5px;
+  padding: 10px;
+  outline: none;
+  font-size: 1rem;
+  width: 20rem;
+}
+
+.placeInput__Container {
+  font-size: 15px;
+  position: absolute;
+  background: white;
+  width: 300px;
+  right: 0;
+  left: 70px;
+  top: 55px;
+  z-index: 15;
+}
+
+.placeInput__Img {
+  overflow: hidden;
+  display: inline-block;
+  width: 25px;
+  height: 24px;
+  vertical-align: top;
+  position: absolute;
+  top: 20px;
+  right: 65px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 414px) {
+  .placeInput__Container {
+    left: 30px;
+    top: 40px;
+  }
+  .placeInput__Img {
+    right: 40px;
+  }
+}
+
+@media screen and (max-width: 685px) {
+  .placeInput__Img {
+    margin-top: -12px;
+  }
+}

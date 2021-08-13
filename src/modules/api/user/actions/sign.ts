@@ -1,13 +1,13 @@
-import { ACTIONS_USER } from "../../../actionsType";
 import axios from "axios";
 import requests from "../../../utils/requests";
 import { Actions } from "../..";
+import { signIn, signUp } from "../../../../interfaces";
 axios.defaults.withCredentials = true;
 
 export const signInReq =
-  ({ email, password }: any) =>
+  ({ email, password }: signIn) =>
   (
-    dispatch: (arg0: {
+    dispatch: (type: {
       type:
         | string
         | { LOGIN_STATUS: string; USER_INFO: string; ACCESS_TOKEN: string };
@@ -18,7 +18,6 @@ export const signInReq =
         | { accessToken: string; refreshToken: string };
     }) => void
   ) => {
-    dispatch({ type: ACTIONS_USER });
     axios
       .post(requests.loginURL, {
         email,
@@ -39,8 +38,8 @@ export const signInReq =
   };
 
 export const signUpReq =
-  ({ name, email, password }: any) =>
-  (dispatch: (arg0: { type: string; payload: string }) => void) => {
+  ({ name, email, password }: signUp) =>
+  (dispatch: (type: { type: string; payload: string }) => void) => {
     axios
       .post(requests.signUpURL, {
         name,
@@ -55,7 +54,7 @@ export const signUpReq =
 export const nonUserReq =
   () =>
   (
-    dispatch: (arg0: {
+    dispatch: (type: {
       type: string;
       payload: string | boolean | { accessToken: string; refreshToken: string };
     }) => void
@@ -76,7 +75,7 @@ export const nonUserReq =
 export const googleReq =
   (response: any) =>
   (
-    dispatch: (arg0: {
+    dispatch: (type: {
       type: string;
       payload:
         | string
@@ -110,7 +109,7 @@ export const googleReq =
 export const kakaoReq =
   (response: any) =>
   (
-    dispatch: (arg0: {
+    dispatch: (type: {
       type: string;
       payload:
         | string

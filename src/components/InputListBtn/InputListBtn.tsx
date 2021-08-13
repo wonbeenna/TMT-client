@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootReducer } from "../../modules/reducer";
 import { Actions } from "../../modules/api";
-import axios from "axios";
 import { insertSpotReq } from "../../modules/api/place";
 import "./InputListBtn.css";
-axios.defaults.withCredentials = true;
-function InputListBtn({ startToday, endToday, lists }: any) {
+import { InputListBtnProps } from "../../interfaces";
+
+function InputListBtn({ startToday, endToday, lists }: InputListBtnProps) {
   const dispatch = useDispatch();
   const accessToken: any = useSelector(
     (state: RootReducer) => state.accessTokenReducer
@@ -15,7 +15,7 @@ function InputListBtn({ startToday, endToday, lists }: any) {
 
   const sendHandler = async () => {
     if (isLogin) {
-      dispatch(insertSpotReq(lists, startToday, endToday, setAccessToken));
+      dispatch(insertSpotReq({ lists, startToday, endToday }, setAccessToken));
     } else {
       const ModalHandler = (name: string) => {
         dispatch(Actions.modalActions.modalStatus(true));

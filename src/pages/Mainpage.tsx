@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import Header from "../components/Header/Header";
-import Mainleftpage from "../components/MainLeft";
+import MainList from "../components/MainList/MainList";
 import Modal from "../modules/utils/Modal";
 import "./CSS/Mainpage.css";
 import Map from "../components/KakaoMap/Map";
 import { useDispatch } from "react-redux";
 import { Actions } from "../modules/api";
 
-const Mainpage = () => {
+function Mainpage() {
   const dispatch = useDispatch();
   const [lists, setLists] = useState<Array<string>>([]);
   useEffect(() => {
@@ -19,11 +19,11 @@ const Mainpage = () => {
       <Modal />
       <div className="mainpage_container">
         <Header />
-        <Mainleftpage lists={lists} setLists={setLists} />
-        <Map className="Map" lists={lists} setLists={setLists} />
+        <MainList lists={lists} setLists={setLists} />
+        <Map lists={lists} setLists={setLists} />
       </div>
     </>
   );
-};
+}
 
 export default withRouter(Mainpage);

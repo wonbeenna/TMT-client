@@ -8,11 +8,7 @@ declare global {
     kakao: any;
   }
 }
-const MyMap = (placedata: any) => {
-  const accessToken: any = useSelector(
-    (state: RootReducer) => state.accessTokenReducer
-  );
-
+function MyMap(placedata: any) {
   const { myListData }: any = useSelector(
     (state: RootReducer) => state.myPlaceListReducer
   );
@@ -47,8 +43,8 @@ const MyMap = (placedata: any) => {
     let imageSrc = "./img/marker_map_icon.png";
     let imageSize = new window.kakao.maps.Size(50, 50);
     let markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize);
-    const tempArr: any = [];
-    const linePath: any = [];
+    const tempArr: Array<string> = [];
+    const linePath: Array<string> = [];
 
     myListData?.spot?.forEach((el: any) => {
       let marker = new window.kakao.maps.Marker({
@@ -80,6 +76,6 @@ const MyMap = (placedata: any) => {
       <div id="staticMaps" />
     </div>
   );
-};
+}
 
 export default MyMap;

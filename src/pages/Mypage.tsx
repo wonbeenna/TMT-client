@@ -17,7 +17,7 @@ import { Actions } from "../modules/api";
 import ErrPage from "../components/ErrPage/ErrPage";
 axios.defaults.withCredentials = true;
 
-const Mypage = () => {
+function Mypage() {
   const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(
     null
   );
@@ -98,10 +98,10 @@ const Mypage = () => {
           <Footer />
         </div>
       ) : (
-        <ErrPage /> // 에러페이지 만들어야함
+        <ErrPage />
       )}
     </>
   );
-};
+}
 
 export default withRouter(Mypage);

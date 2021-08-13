@@ -1,0 +1,36 @@
+.themeInput {
+  font-size: 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+.paperInput {
+  margin-top: 5px;
+  z-index: 15;
+  /* padding-top: 15px; */
+}
+#simple-popper {
+  z-index: 15;
+}
+.themeInput__title {
+  margin-right: 2px;
+}
+.themeInput__btn {
+  margin-left: 3px;
+  height: 35px;
+  width: 65px;
+  background: white;
+  border: 1px solid #2a99f2;
+  border-radius: 5px;
+  color: #2a99f2;
+  cursor: pointer;
+  font-size: 13px;
+}
+.themeInput__btn:hover {
+  transition: all 0.3s;
+  color: white;
+  background: #2a99f2;
+}
