@@ -1,5 +1,5 @@
 import Pagination from "react-js-pagination";
-import "./CSS/Pagination.css";
+import "./Pagination.css";
 
 function Paging({ postsPerPage, totalPosts, paginate, currentPage }: any) {
   return (

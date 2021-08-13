@@ -1,14 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Actions } from "../modules/api";
-import { RootReducer } from "../modules/reducer";
-import "./CSS/MainLeft.css";
-import "./CSS/PlaceList.css";
-import InputList from "./InputList";
-import Paging from "./Pagination";
-import { likeDeleteReq, likeGetReq, likePostReq } from "../modules/api/user";
-import { recommendReq } from "../modules/api/place";
+import { Actions } from "../../modules/api";
+import { RootReducer } from "../../modules/reducer";
+import "../CSS/MainLeft.css";
+import "./PlaceList.css";
+import InputList from "../InputList/InputList";
+import Paging from "../Pagination/Pagination";
+import { likeDeleteReq, likeGetReq, likePostReq } from "../../modules/api/user";
+import { recommendReq } from "../../modules/api/place";
 axios.defaults.withCredentials = true;
 const Placelist = ({
   place,

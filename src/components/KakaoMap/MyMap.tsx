@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { RootReducer } from "../modules/reducer";
+import { RootReducer } from "../../modules/reducer";
 
 declare global {
   interface Window {

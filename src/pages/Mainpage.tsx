@@ -4,7 +4,7 @@ import Header from "../components/Header/Header";
 import Mainleftpage from "../components/MainLeft";
 import Modal from "../modules/utils/Modal";
 import "./CSS/Mainpage.css";
-import Map from "../components/Map";
+import Map from "../components/KakaoMap/Map";
 import { useDispatch } from "react-redux";
 import { Actions } from "../modules/api";
 

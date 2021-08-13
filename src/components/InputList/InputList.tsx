@@ -4,9 +4,9 @@ import { useCallback } from "react";
 import { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
-import { Actions } from "../modules/api";
-import "./CSS/InputList.css";
-import InputListBtn from "./InputListBtn/InputListBtn";
+import { Actions } from "../../modules/api";
+import "./InputList.css";
+import InputListBtn from "../InputListBtn/InputListBtn";
 
 function InputList({
   _startDate,

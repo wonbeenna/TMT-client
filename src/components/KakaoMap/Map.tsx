@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Actions } from "../modules/api";
-import { RootReducer } from "../modules/reducer";
-import "./CSS/Map.css";
+import { Actions } from "../../modules/api";
+import { RootReducer } from "../../modules/reducer";
+import "./Map.css";
 
 declare global {
   interface Window {

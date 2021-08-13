@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
-import { Actions } from "../modules/api";
-import "./CSS/LikeCheckModal.css";
+import { Actions } from "../../modules/api";
+import "./LikeCheckModal.css";
 
 function LikeCheckModal() {
   const dispatch = useDispatch();

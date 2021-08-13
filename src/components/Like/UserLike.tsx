@@ -1,8 +1,8 @@
 import { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./CSS/UserLike.css";
-import { RootReducer } from "../modules/reducer";
-import { likePhotoReq } from "../modules/api/user/actions/like";
+import "./UserLike.css";
+import { RootReducer } from "../../modules/reducer";
+import { likePhotoReq } from "../../modules/api/user/actions/like";
 
 const UserLike = () => {
   const [result, setResult] = useState<Array<string>>([]);
