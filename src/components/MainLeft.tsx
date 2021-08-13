@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Placelist from "./Placelist";
+import Placelist from "./PlaceList/Placelist";
 import axios from "axios";
 import "./CSS/MainLeft.css";
-import "./CSS/_datepicker.css";
-import "react-dates/initialize";
-import moment, { Moment } from "moment";
-import { DateRangePicker, FocusedInputShape } from "react-dates";
 import Popper from "@material-ui/core/Popper";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -16,6 +12,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootReducer } from "../modules/reducer";
 import { Actions } from "../modules/api";
 import { placeDataReq, searchPlaceReq } from "../modules/api/place";
+import DatePicker from "./DatePicker/DatePicker";
+import moment, { Moment } from "moment";
+
 require("dotenv").config();
 axios.defaults.withCredentials = true;
 const useStyles = makeStyles((theme: Theme) =>
@@ -98,27 +97,8 @@ const Mainleftpage = ({ lists, setLists }: any) => {
     dispatch(searchPlaceReq(province, checkItems));
   };
 
-  const [startDate, setStartDate] = useState<Moment | null>(null);
-  const [endDate, setEndDate] = useState<Moment | null>(null);
-  const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(
-    null
-  );
-
-  const handlendDatesChange = (arg: {
-    startDate: moment.Moment | null;
-    endDate: moment.Moment | null;
-  }) => {
-    setStartDate(arg.startDate);
-    setEndDate(arg.endDate);
-  };
-  const _startDate = moment(startDate).format("YYYY-MM-DD");
-  const _endDate = moment(endDate).format("YYYY-MM-DD");
-
-  const handleFocusChange = (arg: FocusedInputShape | null) => {
-    setFocusedInput(arg);
-  };
-
   const [checkItems, setCheckItems] = useState<Array<string>>([]);
+
   const handleSingleCheck = (checked: boolean, theme: string) => {
     if (checked) {
       setCheckItems([...checkItems, theme]);
@@ -178,10 +158,18 @@ const Mainleftpage = ({ lists, setLists }: any) => {
       });
     return placeInfo;
   };
+  const [startDate, setStartDate] = useState<Moment | null>(null);
+  const [endDate, setEndDate] = useState<Moment | null>(null);
+  const _startDate = moment(startDate).format("YYYY-MM-DD");
+  const _endDate = moment(endDate).format("YYYY-MM-DD");
 
-  const orientation = window.matchMedia("(max-width: 635px)").matches
-    ? "vertical"
-    : "horizontal";
+  const handlendDatesChange = (arg: {
+    startDate: moment.Moment | null;
+    endDate: moment.Moment | null;
+  }) => {
+    setStartDate(arg.startDate);
+    setEndDate(arg.endDate);
+  };
 
   return (
     <>
@@ -277,27 +265,11 @@ const Mainleftpage = ({ lists, setLists }: any) => {
                 </button>
               </div>
             </div>
-            <div className="mainleft_placeCalendar">
-              <img src="../img/calendar-icon.png" alt="" />
-              <DateRangePicker
-                startDate={startDate}
-                startDateId="startDate"
-                endDate={endDate}
-                endDateId="endDate"
-                onDatesChange={handlendDatesChange}
-                focusedInput={focusedInput}
-                onFocusChange={handleFocusChange}
-                startDatePlaceholderText={"여행 시작일"}
-                endDatePlaceholderText={"여행 종료일"}
-                isOutsideRange={(day) => moment().diff(day) >= 0}
-                monthFormat={"YYYY년 MM월"}
-                minimumNights={0}
-                block
-                noBorder
-                showClearDates
-                orientation={orientation}
-              />
-            </div>
+            <DatePicker
+              startDate={startDate}
+              endDate={endDate}
+              handlendDatesChange={handlendDatesChange}
+            />
           </div>
           <Placelist
             place={currentPosts}

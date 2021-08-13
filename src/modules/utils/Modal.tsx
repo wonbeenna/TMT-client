@@ -4,10 +4,10 @@ import { Actions } from "../api";
 import SignIn from "../../pages/SignIn";
 import SignUp from "../../pages/SignUp";
 import UserInfo from "../../pages/UserInfo";
-import LikeCheckModal from "../../components/LikeCheckModal";
+import LikeCheckModal from "../../components/LikeCheck/LikeCheckModal";
 import { RootReducer } from "../reducer";
-import UserInfoCheck from "../../components/UserInfoCheck";
-import WithDraw from "../../components/WithDraw";
+import UserInfoCheck from "../../components/UserInfoCheck/UserInfoCheck";
+import WithDraw from "../../components/WithDraw/WithDraw";
 
 function Modal() {
   const dispatch = useDispatch();

@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
-import { Actions } from "../modules/api";
-import "./CSS/UserInfoCheck.css";
+import { Actions } from "../../modules/api";
+import "./UserInfoCheck.css";
 
 function UserInfoCheck() {
   const dispatch = useDispatch();

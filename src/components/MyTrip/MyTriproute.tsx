@@ -1,4 +1,4 @@
-import "./CSS/MyTriproute.css";
+import "./MyTriproute.css";
 
 const MyTriproute = ({ myplace }: any) => {
   return (

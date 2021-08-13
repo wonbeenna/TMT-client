@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import MyMap from "../components/MyMap";
+import MyMap from "../components/KakaoMap/MyMap";
 import Modal from "../modules/utils/Modal";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import UserLike from "../components/UserLike";
-import MyTriproute from "../components/MyTriproute";
+import UserLike from "../components/Like/UserLike";
+import MyTriproute from "../components/MyTrip/MyTriproute";
 import moment from "moment";
 import { DayPickerRangeController, FocusedInputShape } from "react-dates";
 import "./CSS/Mypage.css";
