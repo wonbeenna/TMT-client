@@ -1,10 +1,11 @@
 import axios from "axios";
 import { Actions } from "../..";
 import requests from "../../../utils/requests";
+import { accessToken, likePhoto, place } from "../../../../interfaces/";
 
 export const likeGetReq =
-  (accessToken: string) =>
-  (dispatch: (arg0: { type: string; payload: string[] }) => void) => {
+  (accessToken: accessToken) =>
+  (dispatch: (type: { type: string; payload: string[] }) => void) => {
     axios
       .get(requests.likeURL, {
         headers: {
@@ -20,43 +21,44 @@ export const likeGetReq =
       });
   };
 
-export const likeDeleteReq =
-  (place: Array<string>, accessToken: string) => () => {
-    axios
-      .delete(requests.likeURL, {
+export const likeDeleteReq = (place: place, accessToken: accessToken) => () => {
+  axios
+    .delete(requests.likeURL, {
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+      data: {
+        place: place,
+      },
+    })
+    .then((res) => {
+      return res.data;
+    });
+};
+
+export const likePostReq = (place: place, accessToken: accessToken) => () => {
+  axios
+    .post(
+      requests.likeURL,
+      {
+        place: place,
+      },
+      {
         headers: {
           authorization: `Bearer ${accessToken}`,
         },
-        data: {
-          place: place,
-        },
-      })
-      .then((res) => {
-        return res.data;
-      });
-  };
-
-export const likePostReq =
-  (place: Array<string>, accessToken: string) => () => {
-    axios
-      .post(
-        requests.likeURL,
-        {
-          place: place,
-        },
-        {
-          headers: {
-            authorization: `Bearer ${accessToken}`,
-          },
-        }
-      )
-      .then((res) => {
-        return res.data;
-      });
-  };
+      }
+    )
+    .then((res) => {
+      return res.data;
+    });
+};
 
 export const likePhotoReq =
-  (setResult: any, setLikePlace: any, setIsLoading: any, accessToken: string) =>
+  (
+    { setResult, setLikePlace, setIsLoading }: likePhoto,
+    accessToken: accessToken
+  ) =>
   () => {
     axios
       .get(requests.photoLikeURL, {

@@ -2,11 +2,17 @@ import moment from "moment";
 import { useEffect } from "react";
 import { useCallback } from "react";
 import { useState } from "react";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import {
+  DragDropContext,
+  Draggable,
+  Droppable,
+  DropResult,
+} from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
 import { Actions } from "../../modules/api";
 import "./InputList.css";
 import InputListBtn from "../InputListBtn/InputListBtn";
+import { InputListProps } from "../../interfaces";
 
 function InputList({
   _startDate,
@@ -15,7 +21,7 @@ function InputList({
   setLists,
   open,
   setOpen,
-}: any) {
+}: InputListProps) {
   const dispatch = useDispatch();
   const [startToday, setStartToday] = useState<string>("");
   const [endToday, setEndToday] = useState<string>("");
@@ -36,10 +42,10 @@ function InputList({
   }, [_startDate, _endDate]);
 
   const deleteHandler = (index: number) => {
-    setLists(lists.filter((el: any, idx: number) => idx !== index));
+    setLists(lists.filter((el, idx: number) => idx !== index));
   };
 
-  const handleChange = (result: any) => {
+  const handleChange = (result: DropResult) => {
     if (!result.destination) {
       return;
     }

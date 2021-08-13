@@ -1,5 +1,4 @@
 import "./_datepicker.css";
-import "../CSS/MainLeft.css";
 import { DateRangePicker, FocusedInputShape } from "react-dates";
 import { useState } from "react";
 import moment from "moment";
@@ -18,7 +17,7 @@ function DatePicker({ startDate, endDate, handlendDatesChange }: any) {
     : "horizontal";
 
   return (
-    <div className="mainleft_placeCalendar">
+    <div className="datePicker">
       <img src="../img/calendar-icon.png" alt="" />
       <DateRangePicker
         startDate={startDate}

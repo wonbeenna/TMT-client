@@ -20,6 +20,8 @@ import {
   placeDataReq,
   searchPlaceReq,
   recommendReq,
+  searchSpotPostReq,
+  searchSpotGetReq,
 } from "./place";
 import { headerActions } from "./header";
 export const Actions = {
@@ -43,4 +45,6 @@ export const Actions = {
   placeDataReq,
   searchPlaceReq,
   recommendReq,
+  searchSpotPostReq,
+  searchSpotGetReq,
 };

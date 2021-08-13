@@ -5,14 +5,6 @@
   position: fixed;
 }
 
-.Map {
-  display: block;
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  right: 0;
-  bottom: 0;
-}
 @media screen and (max-width: 900px) {
   .mainpage_container {
     width: 100vw;

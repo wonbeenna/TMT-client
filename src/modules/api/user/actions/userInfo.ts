@@ -1,10 +1,11 @@
 import axios from "axios";
 import { Actions } from "../..";
+import { accessToken, userInfoPassword } from "../../../../interfaces";
 import requests from "../../../utils/requests";
 
 export const userInfoPostReq =
-  ({ curPassword, password, accessToken }: any) =>
-  (dispatch: (arg0: { type: string; payload: string }) => void) => {
+  ({ curPassword, password }: userInfoPassword, accessToken: accessToken) =>
+  (dispatch: (type: { type: string; payload: string }) => void) => {
     axios
       .post(
         requests.userInfoURL,
@@ -20,10 +21,11 @@ export const userInfoPostReq =
       )
       .then((res) => {
         dispatch(Actions.modalActions.modalName(""));
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
-export const userInfoGetReq = (accessToken: string) => () => {
+export const userInfoGetReq = (accessToken: accessToken) => () => {
   axios
     .get(requests.userInfoURL, {
       headers: {

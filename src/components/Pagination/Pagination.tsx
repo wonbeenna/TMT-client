@@ -1,7 +1,13 @@
 import Pagination from "react-js-pagination";
+import { PagingProps } from "../../interfaces";
 import "./Pagination.css";
 
-function Paging({ postsPerPage, totalPosts, paginate, currentPage }: any) {
+function Paging({
+  postsPerPage,
+  totalPosts,
+  paginate,
+  currentPage,
+}: PagingProps) {
   return (
     <Pagination
       totalItemsCount={totalPosts}

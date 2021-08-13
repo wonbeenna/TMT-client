@@ -41,7 +41,10 @@ const UserLike = () => {
     const fetchData = async () => {
       if (isLogin) {
         dispatch(
-          likePhotoReq(setResult, setLikePlace, setIsLoading, setAccessToken)
+          likePhotoReq(
+            { setResult, setLikePlace, setIsLoading },
+            setAccessToken
+          )
         );
       } else {
         setLikePlace([]);

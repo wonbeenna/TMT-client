@@ -1,11 +1,12 @@
 import axios from "axios";
 import { Actions } from "../..";
 import requests from "../../../utils/requests";
+import { accessToken } from "../../../../interfaces/";
 
 export const withDrawReq =
-  (accessToken: string) =>
+  (accessToken: accessToken) =>
   (
-    dispatch: (arg0: {
+    dispatch: (type: {
       type: string;
       payload: boolean | { accessToken: string; refreshToken: string };
     }) => void

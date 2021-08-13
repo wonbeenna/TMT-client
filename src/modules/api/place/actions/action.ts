@@ -1,28 +1,28 @@
 import { ACTIONS_PLACE } from "../../../actionsType";
 
 export const placeActions = {
-  placeList: (listData: any) => {
+  placeList: (listData: Array<{}>) => {
     return {
       type: ACTIONS_PLACE.PLACE_LIST,
       payload: listData,
     };
   },
 
-  nextPlaceList: (nextListData: any) => {
+  nextPlaceList: (nextListData: Array<{}>) => {
     return {
       type: ACTIONS_PLACE.NEXT_PLACE_LIST,
       payload: nextListData,
     };
   },
 
-  myPlaceList: (spot: any, startDate: any, endDate: any) => {
+  myPlaceList: (spot: string[], startDate: string, endDate: string) => {
     return {
       type: ACTIONS_PLACE.MY_PLACE_LIST,
       payload: { spot, startDate, endDate },
     };
   },
 
-  placeData: (placeData: any) => {
+  placeData: (placeData: Array<{}>) => {
     return {
       type: ACTIONS_PLACE.PLACE_DATA,
       payload: placeData,

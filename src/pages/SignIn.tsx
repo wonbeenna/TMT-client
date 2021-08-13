@@ -7,11 +7,10 @@ import "./CSS/SignIn.css";
 import GoogleLogin from "react-google-login";
 import KakaoLogin from "react-kakao-login";
 import { useDispatch } from "react-redux";
-import axios from "axios";
 import { Actions } from "../modules/api";
 import { googleReq, kakaoReq, nonUserReq } from "../modules/api/user";
 require("dotenv").config();
-axios.defaults.withCredentials = true;
+
 function SignIn() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState<string>("");
@@ -31,7 +30,10 @@ function SignIn() {
     dispatch(Actions.modalActions.modalName(""));
   };
   // 이메일, 비밀번호 유효성 검사
-  const onChangeHandler = (event: any, type: string): void => {
+  const onChangeHandler = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    type: string
+  ): void => {
     if (type === "Email") {
       setEmail(event.target.value);
       if (event.target.value.length === 0) {
