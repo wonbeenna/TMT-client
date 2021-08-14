@@ -1,7 +1,7 @@
 import axios from "axios";
 import requests from "../../../utils/requests";
 import { Actions } from "../..";
-import { signIn, signUp } from "../../../../interfaces";
+import { accessToken, signIn, signUp } from "../../../../interfaces";
 axios.defaults.withCredentials = true;
 
 export const signInReq =
@@ -34,6 +34,11 @@ export const signInReq =
           )
         );
         window.location.href = "/Mainpage";
+      })
+      .catch((err) => {
+        const status = err.response.data;
+        dispatch(Actions.modalActions.modalName("ErrModal"));
+        dispatch(Actions.modalActions.modalMessage(status.message));
       });
   };
 
@@ -48,6 +53,11 @@ export const signUpReq =
       })
       .then((res) => {
         dispatch(Actions.modalActions.modalName("SignIn"));
+      })
+      .catch((err) => {
+        const status = err.response.data;
+        dispatch(Actions.modalActions.modalName("ErrModal"));
+        dispatch(Actions.modalActions.modalMessage(status.message));
       });
   };
 
@@ -59,17 +69,24 @@ export const nonUserReq =
       payload: string | boolean | { accessToken: string; refreshToken: string };
     }) => void
   ) => {
-    axios.get(requests.nonUserLoginURL, {}).then((res) => {
-      dispatch(
-        Actions.userActions.AccessToken(
-          res.data.accessToken,
-          res.data.refreshToken
-        )
-      );
-      dispatch(Actions.userActions.LoginStatus(true));
-      dispatch(Actions.modalActions.modalName(""));
-      window.location.href = "/Mainpage";
-    });
+    axios
+      .get(requests.nonUserLoginURL, {})
+      .then((res) => {
+        dispatch(
+          Actions.userActions.AccessToken(
+            res.data.accessToken,
+            res.data.refreshToken
+          )
+        );
+        dispatch(Actions.userActions.LoginStatus(true));
+        dispatch(Actions.modalActions.modalName(""));
+        window.location.href = "/Mainpage";
+      })
+      .catch((err) => {
+        const status = err.response.data;
+        dispatch(Actions.modalActions.modalName("ErrModal"));
+        dispatch(Actions.modalActions.modalMessage(status.message));
+      });
   };
 
 export const googleReq =
@@ -103,7 +120,11 @@ export const googleReq =
           window.location.href = "/Mainpage";
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        const status = err.response.data;
+        dispatch(Actions.modalActions.modalName("ErrModal"));
+        dispatch(Actions.modalActions.modalMessage(status.message));
+      });
   };
 
 export const kakaoReq =
@@ -136,5 +157,10 @@ export const kakaoReq =
           dispatch(Actions.modalActions.modalName(""));
           window.location.href = "/Mainpage";
         }
+      })
+      .catch((err) => {
+        const status = err.response.data;
+        dispatch(Actions.modalActions.modalName("ErrModal"));
+        dispatch(Actions.modalActions.modalMessage(status.message));
       });
   };

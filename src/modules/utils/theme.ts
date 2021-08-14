@@ -18,14 +18,14 @@ export const options = [
 ];
 
 export const theme = [
-  { title: "레저" },
-  { title: "바다" },
-  { title: "산" },
-  { title: "야경" },
-  { title: "캠핑" },
-  { title: "역사&문화" },
-  { title: "휴식&힐링" },
-  { title: "데이트" },
-  { title: "가족" },
-  { title: "계곡" },
+  { id: 1, title: "가족" },
+  { id: 2, title: "계곡" },
+  { id: 3, title: "데이트" },
+  { id: 4, title: "레저" },
+  { id: 5, title: "바다" },
+  { id: 6, title: "산" },
+  { id: 7, title: "야경" },
+  { id: 8, title: "역사&문화" },
+  { id: 9, title: "캠핑" },
+  { id: 10, title: "휴식&힐링" },
 ];

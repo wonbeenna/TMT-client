@@ -6,7 +6,11 @@ import {
   userLikeReducer,
   userLikePhotoReducer,
 } from "../modules/api/user";
-import { modalStatusReducer, modalNameReducer } from "../modules/api/modal";
+import {
+  modalStatusReducer,
+  modalNameReducer,
+  modalMessageReducer,
+} from "../modules/api/modal";
 import {
   placeListReducer,
   NextPlaceListReducer,
@@ -23,6 +27,7 @@ export const rootReducer = combineReducers({
   userLikePhotoReducer,
   modalStatusReducer,
   modalNameReducer,
+  modalMessageReducer,
   placeListReducer,
   NextPlaceListReducer,
   myPlaceListReducer,

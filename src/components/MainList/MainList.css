@@ -16,14 +16,12 @@
 
 .MainList__Location {
   display: flex;
+  justify-content: center;
 }
 
 .MainList__place {
-  height: 150px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
+  margin: 5px;
 }
 
 @media screen and (max-width: 685px) {

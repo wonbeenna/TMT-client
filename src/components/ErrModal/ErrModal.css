@@ -1,0 +1,36 @@
+.errModal {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  z-index: 500;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+}
+.errModal__container {
+  width: 350px;
+  height: 350px;
+  background: white;
+  border-radius: 10px;
+}
+
+.errModal__contents {
+  height: 290px;
+  padding: 30px;
+  text-align: center;
+}
+.errModal__contents img {
+  margin: 50px 0 0 20px;
+}
+.errModal__close__Btn {
+  float: right;
+  cursor: pointer;
+  font-size: 25px;
+}
+.errModal__title {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 18px;
+}

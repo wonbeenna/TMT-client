@@ -5,7 +5,7 @@ import MyMap from "../components/KakaoMap/MyMap";
 import Modal from "../modules/utils/Modal";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import UserLike from "../components/Like/UserLike";
+import UserLike from "../components/UserLike/UserLike";
 import MyTriproute from "../components/MyTrip/MyTriproute";
 import moment from "moment";
 import { DayPickerRangeController, FocusedInputShape } from "react-dates";
@@ -31,6 +31,7 @@ function Mypage() {
   useEffect(() => {
     dispatch(Actions.headerActions.headerStatus("/Mypage"));
   }, [dispatch]);
+
   useEffect(() => {
     dispatch(Actions.myPlaceListReq(setAccessToken));
   }, [dispatch, setAccessToken]);

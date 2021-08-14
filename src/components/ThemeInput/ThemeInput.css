@@ -1,26 +1,33 @@
 .themeInput {
+  position: absolute;
   font-size: 15px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-}
-.paperInput {
-  margin-top: 5px;
-  z-index: 15;
-  /* padding-top: 15px; */
-}
-#simple-popper {
-  z-index: 15;
+  display: grid;
+  grid-template-columns: repeat(2, 90px);
+  text-align: left;
+  top: 100px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
 }
 .themeInput__title {
   margin-right: 2px;
 }
+
+.themeInput__off,
+.themeInput__on {
+  margin: 0 0 10px 15px;
+  height: 40px;
+  width: 65px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+}
 .themeInput__btn {
-  margin-left: 3px;
-  height: 35px;
+  margin-left: 15px;
+  height: 40px;
   width: 65px;
   background: white;
   border: 1px solid #2a99f2;

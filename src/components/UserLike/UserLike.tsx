@@ -63,12 +63,12 @@ const UserLike = () => {
       <div className="userLike">
         {result?.map((el: any, key: number) => {
           return (
-            <div className="userLike__contents">
+            <div key={key} className="userLike__contents">
               <div className="userLike__img">
-                <img key={key} src={el.photo} alt="likephoto" />
+                <img src={el.photo} alt="likephoto" />
               </div>
               <div className="userLike__info">
-                <p key={key}>{el.place}</p>
+                <p>{el.place}</p>
               </div>
             </div>
           );

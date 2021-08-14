@@ -24,6 +24,7 @@ function WithDraw() {
     dispatch(withDrawReq(setAccessToken));
     modalCloseHandler();
   };
+
   return (
     <div>
       <div className="WithDraw">

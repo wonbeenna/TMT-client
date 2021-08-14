@@ -45,26 +45,15 @@ const Header = () => {
           </div>
           {isLogin ? (
             <div className="headerRightside">
-              <img
-                src="../img/business-plan.png"
-                alt="돌아가기"
-                title="돌아가기"
-                onClick={mainpage}
-              ></img>
-              <img
-                src="../img/profile.png"
-                alt=""
-                title="회원정보수정"
+              <p onClick={mainpage}>돌아가기</p>
+              <p
                 onClick={() => {
                   ModalHandler("UserInfo");
                 }}
-              ></img>
-              <img
-                src="./img/logout.png"
-                alt=""
-                title="로그아웃"
-                onClick={signOutHandler}
-              />
+              >
+                회원정보수정
+              </p>
+              <p onClick={signOutHandler}>로그아웃</p>
             </div>
           ) : (
             <div className="headerRightside">
@@ -100,18 +89,8 @@ const Header = () => {
           </div>
           {isLogin ? (
             <div className="headerRightside">
-              <img
-                src="./img/account.png"
-                alt=""
-                title="마이페이지"
-                onClick={mypage}
-              />
-              <img
-                src="./img/logout.png"
-                alt=""
-                title="로그아웃"
-                onClick={signOutHandler}
-              />
+              <p onClick={mypage}>마이페이지</p>
+              <p onClick={signOutHandler}>로그아웃</p>
             </div>
           ) : (
             <div className="headerRightside">
