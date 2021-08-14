@@ -1,0 +1,70 @@
+.emailCheck {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  z-index: 500;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+}
+.emailCheck__modal {
+  width: 25rem;
+  height: 20rem;
+  background: white;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.emailCheck__contents {
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+.emailCheck__contents__close {
+  text-align: right;
+  cursor: pointer;
+  font-size: 18px;
+}
+.emailCheck__title {
+  width: 100%;
+  text-align: center;
+}
+.emailCheck__title__img {
+  width: 65%;
+  height: 3.5rem;
+}
+.emailCheck__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.6);
+}
+.emailCheck__input {
+  margin-bottom: 20px;
+  height: 30px;
+  padding: 0 10px;
+}
+.emailCheck__closeBtn {
+  width: 100%;
+  height: 2.7rem;
+  font-size: 1.2rem;
+  font-weight: 550;
+  text-align: center;
+  color: white;
+  background: #2de1de;
+  border: 0;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+}

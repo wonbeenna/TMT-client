@@ -11,8 +11,9 @@ import {
 import { useDispatch } from "react-redux";
 import { Actions } from "../../modules/api";
 import "./InputList.css";
-import InputListBtn from "../InputListBtn/InputListBtn";
+
 import { InputListProps } from "../../interfaces";
+import { InputListBtn } from "../index";
 
 function InputList({
   _startDate,

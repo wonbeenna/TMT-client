@@ -1,4 +1,4 @@
-import "./_datepicker.css";
+import "./datepicker.css";
 import { DateRangePicker, FocusedInputShape } from "react-dates";
 import { useState } from "react";
 import moment from "moment";

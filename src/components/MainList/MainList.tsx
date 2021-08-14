@@ -1,14 +1,11 @@
 import { useState, useEffect } from "react";
-import PlaceList from "../PlaceList/PlaceList";
 import "./MainList.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootReducer } from "../../modules/reducer";
 import { placeDataReq } from "../../modules/api/place";
 import DatePicker from "../DatePicker/DatePicker";
 import moment, { Moment } from "moment";
-import PlaceInput from "../PlaceInput/PlaceInput";
-import LocationInput from "../LocationInput/LocationInput";
-import ThemeInput from "../ThemeInput/ThemeInput";
+import { ThemeInput, PlaceInput, LocationInput, PlaceList } from "../index";
 import { ListProps } from "../../interfaces";
 
 function MainList({ lists, setLists }: ListProps) {

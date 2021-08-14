@@ -12,7 +12,12 @@ export {
   googleReq,
   kakaoReq,
 } from "./actions/sign";
-export { userInfoPostReq, userInfoGetReq } from "./actions/userInfo";
+export {
+  userInfoPostReq,
+  userInfoGetReq,
+  checkEmailReq,
+  checkPasswordReq,
+} from "./actions/userInfo";
 export {
   likeGetReq,
   likeDeleteReq,
