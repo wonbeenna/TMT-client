@@ -36,9 +36,9 @@ function PlaceInput() {
     dispatch(searchSpotPostReq({ search, setSearch }));
   };
   return (
-    <>
+    <div className="placeInput">
       <input
-        className="placeInput"
+        className="placeInput__input"
         type="text"
         list="spotlist"
         placeholder="장소 검색"
@@ -52,23 +52,23 @@ function PlaceInput() {
             return (
               <div
                 onClick={() => changeInput(el.place)}
-                className="option"
+                className="placeInput__option"
                 key={index}
               >
                 <div>{el.place}</div>
               </div>
             );
           })}
+          <img
+            className="placeInput__Img"
+            src="../img/search.png"
+            alt=""
+            title="장소로 검색"
+            onClick={sendSearchReq}
+          />
         </div>
       )}
-      <img
-        className="placeInput__Img"
-        src="../img/search.png"
-        alt=""
-        title="장소로 검색"
-        onClick={sendSearchReq}
-      />
-    </>
+    </div>
   );
 }
 

@@ -1,43 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { options } from "../../modules/utils/theme";
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
 import { setProvinceProps } from "../../interfaces";
+import "./LocationInput.css";
 
 function LocationInput({ setProvince }: setProvinceProps) {
-  const [value, setValue] = React.useState<string | null>(null);
-  const [inputValue, setInputValue] = React.useState("");
+  const [value, setValue] = useState<string>("");
 
-  const locationHandler = (event: any, type: string): void => {
+  const locationHandler = (event: any, type: string) => {
     if (type === "location") {
-      setProvince(event.target.innerText);
+      setProvince(event.target.value);
     }
   };
 
   return (
     <>
       <div className="location">
-        <Autocomplete
+        <select
           value={value}
-          onChange={(_event: any, newValue: string | null) => {
-            setValue(newValue);
+          onChange={(e) => {
+            setValue(e.target.value);
+            locationHandler(e, "location");
           }}
-          inputValue={inputValue}
-          onInputChange={(event, newInputValue) => {
-            setInputValue(newInputValue);
-            locationHandler(event, "location");
-          }}
-          id="controllable-states-demo"
-          options={options}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="지역 선택"
-              variant="standard"
-              className="loaction_label"
-            />
-          )}
-        />
+        >
+          <option value={""}>지역검색</option>
+          {options.map((el, idx) => {
+            return (
+              <option value={el} key={idx}>
+                {el}
+              </option>
+            );
+          })}
+        </select>
       </div>
     </>
   );

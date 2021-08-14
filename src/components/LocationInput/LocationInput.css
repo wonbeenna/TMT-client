@@ -1,0 +1,8 @@
+.location select {
+  width: 70px;
+  height: 40px;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 0 0 10px;
+}

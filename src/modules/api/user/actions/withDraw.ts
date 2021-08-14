@@ -8,7 +8,7 @@ export const withDrawReq =
   (
     dispatch: (type: {
       type: string;
-      payload: boolean | { accessToken: string; refreshToken: string };
+      payload: string | boolean | { accessToken: string; refreshToken: string };
     }) => void
   ) => {
     axios
@@ -21,5 +21,10 @@ export const withDrawReq =
         dispatch(Actions.userActions.AccessToken("", ""));
         dispatch(Actions.userActions.LoginStatus(false));
         window.location.href = "/Mainpage";
+      })
+      .catch((err) => {
+        const status = err.response.data;
+        dispatch(Actions.modalActions.modalName("ErrModal"));
+        dispatch(Actions.modalActions.modalMessage(status.message));
       });
   };

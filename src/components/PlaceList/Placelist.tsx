@@ -9,7 +9,7 @@ import { likeDeleteReq, likeGetReq, likePostReq } from "../../modules/api/user";
 import { recommendReq } from "../../modules/api/place";
 import { PlaceListProps } from "../../interfaces";
 
-const PlaceList = ({
+function PlaceList({
   place,
   _startDate,
   _endDate,
@@ -19,7 +19,7 @@ const PlaceList = ({
   currentPage,
   lists,
   setLists,
-}: PlaceListProps) => {
+}: PlaceListProps) {
   const dispatch = useDispatch();
   const [open, setOpen] = useState<boolean>(false);
   const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
@@ -129,5 +129,5 @@ const PlaceList = ({
       </div>
     </>
   );
-};
+}
 export default PlaceList;

@@ -43,7 +43,6 @@ function MainList({ lists, setLists }: ListProps) {
     setStartDate(arg.startDate);
     setEndDate(arg.endDate);
   };
-
   return (
     <>
       <div className="MainList">

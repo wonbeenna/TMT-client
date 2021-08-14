@@ -8,7 +8,7 @@ declare global {
     kakao: any;
   }
 }
-function MyMap(placedata: any) {
+function MyMap() {
   const { myListData }: any = useSelector(
     (state: RootReducer) => state.myPlaceListReducer
   );
@@ -19,10 +19,6 @@ function MyMap(placedata: any) {
   useEffect(() => {
     kakaoMap();
   }, []);
-
-  useEffect(() => {
-    viewMap();
-  }, [myListData]);
 
   const kakaoMap = () => {
     window.kakao.maps.load(() => {
@@ -39,37 +35,40 @@ function MyMap(placedata: any) {
     });
   };
 
-  const viewMap = () => {
-    let imageSrc = "./img/marker_map_icon.png";
-    let imageSize = new window.kakao.maps.Size(50, 50);
-    let markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize);
-    const tempArr: Array<string> = [];
-    const linePath: Array<string> = [];
+  useEffect(() => {
+    const viewMap = () => {
+      let imageSrc = "./img/marker_map_icon.png";
+      let imageSize = new window.kakao.maps.Size(50, 50);
+      let markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize);
+      const tempArr: Array<string> = [];
+      const linePath: Array<string> = [];
 
-    myListData?.spot?.forEach((el: any) => {
-      let marker = new window.kakao.maps.Marker({
-        map: map, // 마커를 표시할 지도
-        position: new window.kakao.maps.LatLng(el[0].lat, el[0].long),
-        image: markerImage, // 마커 이미지
+      myListData?.spot?.forEach((el: any) => {
+        let marker = new window.kakao.maps.Marker({
+          map: map, // 마커를 표시할 지도
+          position: new window.kakao.maps.LatLng(el[0].lat, el[0].long),
+          image: markerImage, // 마커 이미지
+        });
+        tempArr.push(marker);
+        let sw = new window.kakao.maps.LatLng(38, 127.5);
+        let ne = new window.kakao.maps.LatLng(37, 127);
+        let bounds = new window.kakao.maps.LatLngBounds(sw, ne);
+        bounds.extend(new window.kakao.maps.LatLng(el[0].lat, el[0].long));
+        map.setBounds(bounds);
+        linePath.push(new window.kakao.maps.LatLng(el[0].lat, el[0].long));
       });
-      tempArr.push(marker);
-      let sw = new window.kakao.maps.LatLng(38, 127.5);
-      let ne = new window.kakao.maps.LatLng(37, 127);
-      let bounds = new window.kakao.maps.LatLngBounds(sw, ne);
-      bounds.extend(new window.kakao.maps.LatLng(el[0].lat, el[0].long));
-      map.setBounds(bounds);
-      linePath.push(new window.kakao.maps.LatLng(el[0].lat, el[0].long));
-    });
-    let polyline = new window.kakao.maps.Polyline({
-      path: linePath,
-      strokeWeight: 5,
-      strokeColor: "#75B8FA",
-      strokeOpacity: 0.7,
-      strokeStyle: "solid",
-    });
-    polyline.setMap(map);
-    setMarkerArr(tempArr);
-  };
+      let polyline = new window.kakao.maps.Polyline({
+        path: linePath,
+        strokeWeight: 5,
+        strokeColor: "#75B8FA",
+        strokeOpacity: 0.7,
+        strokeStyle: "solid",
+      });
+      polyline.setMap(map);
+      setMarkerArr(tempArr);
+    };
+    viewMap();
+  }, [myListData]);
 
   return (
     <div>

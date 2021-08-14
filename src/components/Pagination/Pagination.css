@@ -4,6 +4,7 @@
   align-items: center;
   list-style: none;
   margin-top: 10px;
+  padding: 0;
 }
 .Paginate_li {
   width: 23px;
@@ -28,8 +29,3 @@
 .active {
   background: #3aa0f3;
 }
-
-/* .next,
-.pre {
-  display: none;
-} */

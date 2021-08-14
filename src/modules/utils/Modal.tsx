@@ -8,6 +8,7 @@ import LikeCheckModal from "../../components/LikeCheck/LikeCheckModal";
 import { RootReducer } from "../reducer";
 import UserInfoCheck from "../../components/UserInfoCheck/UserInfoCheck";
 import WithDraw from "../../components/WithDraw/WithDraw";
+import ErrModal from "../../components/ErrModal/ErrModal";
 
 function Modal() {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ function Modal() {
     <LikeCheckModal {...ModalHandler} />,
     <UserInfoCheck {...ModalHandler} />,
     <WithDraw {...ModalHandler} />,
+    <ErrModal {...ModalHandler} />,
   ];
   const ModalNamesIndex = [
     "SignIn",
@@ -41,6 +43,7 @@ function Modal() {
     "LikeCheckModal",
     "UserInfoCheck",
     "WithDraw",
+    "ErrModal",
   ];
 
   return <div>{ModalName[ModalNamesIndex.indexOf(modalName)]}</div>;

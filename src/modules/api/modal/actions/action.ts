@@ -13,8 +13,15 @@ export const modalActions = {
       payload: modalName,
     };
   },
+  modalMessage: (modalMessage: string) => {
+    return {
+      type: ACTIONS_MODAL.MODAL_MESSAGE,
+      payload: modalMessage,
+    };
+  },
 };
 
 export type ActionsType =
   | ReturnType<typeof modalActions.modalStatus>
-  | ReturnType<typeof modalActions.modalName>;
+  | ReturnType<typeof modalActions.modalName>
+  | ReturnType<typeof modalActions.modalMessage>;

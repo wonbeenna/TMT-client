@@ -144,19 +144,27 @@
   .inputList {
     position: relative;
     left: 0;
-    height: 50vh;
-    width: 28rem;
   }
+
   .inputList__close {
     position: relative;
     left: 0;
     height: 50vh;
-    width: 28rem;
+    width: 22rem;
   }
   .inputList__contents {
     min-height: 0;
   }
   .inputList__title {
     font-size: 1rem;
+  }
+}
+@media screen and (max-width: 460px) {
+  .inputList__warp {
+    width: auto;
+    padding: 0;
+  }
+  .inputList__container {
+    min-width: 92vw;
   }
 }

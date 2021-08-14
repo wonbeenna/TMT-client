@@ -22,17 +22,28 @@ export const userInfoPostReq =
       .then((res) => {
         dispatch(Actions.modalActions.modalName(""));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        const status = err.response.data;
+        dispatch(Actions.modalActions.modalName("ErrModal"));
+        dispatch(Actions.modalActions.modalMessage(status.message));
+      });
   };
 
-export const userInfoGetReq = (accessToken: accessToken) => () => {
-  axios
-    .get(requests.userInfoURL, {
-      headers: {
-        authorization: `Bearer ${accessToken}`,
-      },
-    })
-    .then((res) => {
-      return res.data;
-    });
-};
+export const userInfoGetReq =
+  (accessToken: accessToken) =>
+  (dispatch: (type: { type: string; payload: string }) => void) => {
+    axios
+      .get(requests.userInfoURL, {
+        headers: {
+          authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        const status = err.response.data;
+        dispatch(Actions.modalActions.modalName("ErrModal"));
+        dispatch(Actions.modalActions.modalMessage(status.message));
+      });
+  };
