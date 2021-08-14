@@ -9,6 +9,8 @@ const requests = {
   photoLikeURL: `${process.env.REACT_APP_API}/user/photoLike`,
   WithDrawURL: `${process.env.REACT_APP_API}/user/withdrawal`,
   nonUserLoginURL: `${process.env.REACT_APP_API}/user/nonUser`,
+  checkEmailURL: `${process.env.REACT_APP_API}/user/checkEmail`,
+  checkPasswordURL: `${process.env.REACT_APP_API}/user/checkPassword`,
   //auth
   googleURL: `${process.env.REACT_APP_API}/auth/google`,
   kakaoURL: `${process.env.REACT_APP_API}/auth/kakao`,

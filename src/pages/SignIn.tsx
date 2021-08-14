@@ -8,7 +8,12 @@ import GoogleLogin from "react-google-login";
 import KakaoLogin from "react-kakao-login";
 import { useDispatch } from "react-redux";
 import { Actions } from "../modules/api";
-import { googleReq, kakaoReq, nonUserReq } from "../modules/api/user";
+import {
+  checkEmailReq,
+  googleReq,
+  kakaoReq,
+  nonUserReq,
+} from "../modules/api/user";
 require("dotenv").config();
 
 function SignIn() {
@@ -79,13 +84,6 @@ function SignIn() {
   const nonUserLoginHandler = () => {
     dispatch(nonUserReq());
   };
-  const searchHandler = () => {
-    setErrPassword("");
-    setErrEmail("");
-    setEmailValid(true);
-    setPasswordValid(true);
-    setErrLogin("개발 중인 기능입니다 :)");
-  };
   // 구글
   const clientId: any = process.env.REACT_APP_GOOGLE_API;
   const responseGoogle = async (response: any) => {
@@ -145,11 +143,21 @@ function SignIn() {
           </button>
 
           <div className="signIn__Search">
-            <button className="signIn__emailSearch" onClick={searchHandler}>
+            <button
+              className="signIn__emailSearch"
+              onClick={() => {
+                ModalHandler("EmailCheck");
+              }}
+            >
               이메일 찾기
             </button>
             <div>&#124;</div>
-            <button className="signIn__pwSearch" onClick={searchHandler}>
+            <button
+              className="signIn__pwSearch"
+              onClick={() => {
+                ModalHandler("PasswordCheck");
+              }}
+            >
               비밀번호 찾기
             </button>
           </div>

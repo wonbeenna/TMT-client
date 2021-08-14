@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
-import Header from "../components/Header/Header";
-import MainList from "../components/MainList/MainList";
 import Modal from "../modules/utils/Modal";
 import "./CSS/Mainpage.css";
-import Map from "../components/KakaoMap/Map";
+import { Map, Header, MainList } from "../components/index";
 import { useDispatch } from "react-redux";
 import { Actions } from "../modules/api";
 

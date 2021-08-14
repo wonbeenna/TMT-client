@@ -1,14 +1,17 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Actions } from "../api";
-import SignIn from "../../pages/SignIn";
-import SignUp from "../../pages/SignUp";
-import UserInfo from "../../pages/UserInfo";
-import LikeCheckModal from "../../components/LikeCheck/LikeCheckModal";
+import {
+  LikeCheckModal,
+  UserInfoCheck,
+  WithDraw,
+  ErrModal,
+  EmailCheck,
+  PasswordCheck,
+} from "../../components/index";
+import { SignIn, SignUp, UserInfo } from "../../pages/index";
+
 import { RootReducer } from "../reducer";
-import UserInfoCheck from "../../components/UserInfoCheck/UserInfoCheck";
-import WithDraw from "../../components/WithDraw/WithDraw";
-import ErrModal from "../../components/ErrModal/ErrModal";
 
 function Modal() {
   const dispatch = useDispatch();
@@ -35,6 +38,8 @@ function Modal() {
     <UserInfoCheck {...ModalHandler} />,
     <WithDraw {...ModalHandler} />,
     <ErrModal {...ModalHandler} />,
+    <EmailCheck {...ModalHandler} />,
+    <PasswordCheck {...ModalHandler} />,
   ];
   const ModalNamesIndex = [
     "SignIn",
@@ -44,6 +49,8 @@ function Modal() {
     "UserInfoCheck",
     "WithDraw",
     "ErrModal",
+    "EmailCheck",
+    "PasswordCheck",
   ];
 
   return <div>{ModalName[ModalNamesIndex.indexOf(modalName)]}</div>;
