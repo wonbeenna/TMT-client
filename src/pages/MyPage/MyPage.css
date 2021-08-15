@@ -8,10 +8,6 @@
   flex-direction: column;
   margin: 40px;
 }
-/* .myPage__warp h1 {
-  margin: 5px auto 25px;
-  color: rgb(0, 0, 0, 0.75);
-} */
 .myPage__title {
   margin-top: 70px;
   width: 100%;
@@ -35,10 +31,34 @@
   left: 0px;
   border-radius: 10px;
 }
-.myPage__calendar {
-  margin: 20px 20px 10px;
-  height: 100%;
+.myPage__share {
+  display: flex;
+  flex-direction: column;
 }
+.myPage__calendar {
+  margin: 20px 20px 0;
+}
+.myPage__Btn {
+  display: flex;
+}
+.myPage__shareBtn {
+  width: 100%;
+  height: 2.7rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  color: white;
+  background: #3aa0f3;
+  border: 0;
+  margin: 1.5rem 0.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.myPage__shareBtn:hover {
+  transition: all 0.3s;
+  background: #417cff;
+}
+
 .myPage__section__route {
   margin: 25px auto;
 }

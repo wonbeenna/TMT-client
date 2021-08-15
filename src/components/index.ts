@@ -20,3 +20,5 @@ export { default as UserLike } from "./UserLike/UserLike";
 export { default as WithDraw } from "./WithDraw/WithDraw";
 export { default as EmailCheck } from "./EmailCheck/EmailCheck";
 export { default as PasswordCheck } from "./PasswordCheck/PasswordCheck";
+export { default as PlanSearch } from "./PlanSearch/PlanSearch";
+export { default as PlanCard } from "./PlanCard/PlanCard";

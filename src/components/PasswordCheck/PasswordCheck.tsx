@@ -16,6 +16,10 @@ function PasswordCheck() {
   const checkEmail = () => {
     dispatch(checkPasswordReq(email));
   };
+  const ModalHandler = (name: string) => {
+    dispatch(Actions.modalActions.modalStatus(true));
+    dispatch(Actions.modalActions.modalName(name));
+  };
   const modalCloseHandler = () => {
     dispatch(Actions.modalActions.modalStatus(false));
     dispatch(Actions.modalActions.modalName(""));
@@ -52,6 +56,14 @@ function PasswordCheck() {
                 onChangHandler(e, "passwordCheck");
               }}
             />
+            <div
+              className="passwordCheck__backBtn"
+              onClick={() => {
+                ModalHandler("SignIn");
+              }}
+            >
+              돌아가기
+            </div>
             <div className="passwordCheck__closeBtn" onClick={checkEmail}>
               전송하기
             </div>

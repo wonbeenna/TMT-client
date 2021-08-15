@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Actions } from "../modules/api";
+import { Actions } from "../../modules/api";
 import {
   ValidationName,
   ValidationEmail,
   ValidationPassword,
-} from "../modules/utils/ValidationCheck";
-import "./CSS/SignUp.css";
-require("dotenv").config();
+} from "../../modules/utils/ValidationCheck";
+import "./SignUp.css";
 
 function SignUp() {
   const [name, setName] = useState<string>("");

@@ -54,7 +54,7 @@ function MyMap() {
         let ne = new window.kakao.maps.LatLng(37, 127);
         let bounds = new window.kakao.maps.LatLngBounds(sw, ne);
         bounds.extend(new window.kakao.maps.LatLng(el[0].lat, el[0].long));
-        map.setBounds(bounds);
+        map?.setBounds(bounds);
         linePath.push(new window.kakao.maps.LatLng(el[0].lat, el[0].long));
       });
       let polyline = new window.kakao.maps.Polyline({

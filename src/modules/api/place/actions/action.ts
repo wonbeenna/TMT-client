@@ -28,9 +28,17 @@ export const placeActions = {
       payload: placeData,
     };
   },
+
+  planList: (spot: string[]) => {
+    return {
+      type: ACTIONS_PLACE.PLAN_LIST,
+      payload: spot,
+    };
+  },
 };
 export type ActionsType =
   | ReturnType<typeof placeActions.placeList>
   | ReturnType<typeof placeActions.nextPlaceList>
   | ReturnType<typeof placeActions.myPlaceList>
-  | ReturnType<typeof placeActions.placeData>;
+  | ReturnType<typeof placeActions.placeData>
+  | ReturnType<typeof placeActions.planList>;

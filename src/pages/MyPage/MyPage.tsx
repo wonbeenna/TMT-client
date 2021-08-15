@@ -1,25 +1,25 @@
 import { useState, useEffect } from "react";
-import { withRouter } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Modal from "../modules/utils/Modal";
+import Modal from "../../modules/utils/Modal";
 import {
   MyMap,
   Header,
   Footer,
   UserLike,
   MyTriproute,
-} from "../components/index";
+  ErrPage,
+} from "../../components/index";
 import moment from "moment";
 import { DayPickerRangeController, FocusedInputShape } from "react-dates";
-import "./CSS/Mypage.css";
+import "./MyPage.css";
 import "react-dates/initialize";
-import axios from "axios";
-import { RootReducer } from "../modules/reducer";
-import { Actions } from "../modules/api";
-import ErrPage from "../components/ErrPage/ErrPage";
-axios.defaults.withCredentials = true;
+import { RootReducer } from "../../modules/reducer";
+import { Actions } from "../../modules/api";
+import { planPostReq } from "../../modules/api/place";
+import { useHistory } from "react-router-dom";
 
-function Mypage() {
+function MyPage() {
+  const history = useHistory();
   const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(
     null
   );
@@ -31,7 +31,7 @@ function Mypage() {
   const setAccessToken = accessToken.AccessToken.accessToken;
 
   useEffect(() => {
-    dispatch(Actions.headerActions.headerStatus("/Mypage"));
+    dispatch(Actions.headerActions.headerStatus("/MyPage"));
   }, [dispatch]);
 
   useEffect(() => {
@@ -58,6 +58,9 @@ function Mypage() {
     new Date(myListData?.endDate).getTime();
   const range = Math.abs(msDiff / (1000 * 60 * 60 * 24)) + 1;
 
+  const planPostHandler = () => {
+    dispatch(planPostReq(setAccessToken, myListData));
+  };
   return (
     <>
       {isLogin ? (
@@ -72,17 +75,33 @@ function Mypage() {
               <div className="myPage__Map">
                 <MyMap />
               </div>
-              <div className="myPage__calendar">
-                <DayPickerRangeController
-                  startDate={startDate}
-                  endDate={endDate}
-                  onDatesChange={handlendDatesChange}
-                  focusedInput={focusedInput}
-                  onFocusChange={setFocusedInput}
-                  initialVisibleMonth={null}
-                  numberOfMonths={1}
-                  monthFormat={"YYYY년 MM월"}
-                />
+              <div className="myPage__share">
+                <div className="myPage__calendar">
+                  <DayPickerRangeController
+                    startDate={startDate}
+                    endDate={endDate}
+                    onDatesChange={handlendDatesChange}
+                    focusedInput={focusedInput}
+                    onFocusChange={setFocusedInput}
+                    initialVisibleMonth={null}
+                    numberOfMonths={1}
+                    monthFormat={"YYYY년 MM월"}
+                  />
+                  <div className="myPage__Btn">
+                    <button
+                      className="myPage__shareBtn"
+                      onClick={() => history.push("./PlanPage")}
+                    >
+                      공유 페이지로 가기
+                    </button>
+                    <button
+                      className="myPage__shareBtn"
+                      onClick={planPostHandler}
+                    >
+                      여행 경로 공유 하기
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="myPage__section__route__title">
@@ -107,4 +126,4 @@ function Mypage() {
   );
 }
 
-export default withRouter(Mypage);
+export default MyPage;
