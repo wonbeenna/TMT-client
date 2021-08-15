@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
-import { withRouter } from "react-router-dom";
-import Modal from "../modules/utils/Modal";
-import "./CSS/Mainpage.css";
-import { Map, Header, MainList } from "../components/index";
+import Modal from "../../modules/utils/Modal";
+import "./MainPage.css";
+import { Map, Header, MainList } from "../../components/index";
 import { useDispatch } from "react-redux";
-import { Actions } from "../modules/api";
+import { Actions } from "../../modules/api";
 
-function Mainpage() {
+function MainPage() {
   const dispatch = useDispatch();
   const [lists, setLists] = useState<Array<string>>([]);
   useEffect(() => {
-    dispatch(Actions.headerActions.headerStatus("/Mainpage"));
+    dispatch(Actions.headerActions.headerStatus("/MainPage"));
   }, [dispatch]);
   return (
     <>
@@ -24,4 +23,4 @@ function Mainpage() {
   );
 }
 
-export default withRouter(Mainpage);
+export default MainPage;

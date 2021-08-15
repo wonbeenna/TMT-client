@@ -1,4 +1,4 @@
-.headerContainer {
+.MainHeaderContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -7,6 +7,17 @@
   background: white;
   z-index: 10;
   position: sticky;
+  width: 100vw;
+}
+.MyHeaderContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  top: 0;
+  border-bottom: 1px solid rgb(207, 207, 207);
+  background: white;
+  z-index: 10;
+  position: fixed;
   width: 100vw;
 }
 

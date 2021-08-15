@@ -1,0 +1,87 @@
+.planPage__searchTitle {
+  margin: 10px 0;
+  border-bottom: 1px solid rgb(216, 216, 216);
+}
+.planPage__searchTitle h2 {
+  margin: 10px 0;
+  word-break: keep-all;
+}
+
+.planPage__location,
+.planPage__theme {
+  margin: 10px 0;
+}
+.planPage__location p,
+.planPage__theme p {
+  margin-right: 10px;
+  word-break: keep-all;
+}
+.planPage__location,
+.planPage__theme {
+  display: flex;
+  align-items: center;
+}
+
+.planPage__location select {
+  width: 21.5vw;
+  height: 40px;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.planPage__theme__input {
+  font-size: 13px;
+  display: grid;
+  grid-template-columns: repeat(5, 80px);
+  text-align: left;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+}
+.planPage__theme__title {
+  margin-right: 2px;
+}
+.planPage__theme__on,
+.planPage__theme__off {
+  display: none;
+  word-break: keep-all;
+}
+.planPage__theme__btn {
+  margin-left: auto;
+  height: 40px;
+  width: 150px;
+  background: white;
+  border: 1px solid #2a99f2;
+  border-radius: 5px;
+  color: #2a99f2;
+  cursor: pointer;
+  font-size: 13px;
+}
+.planPage__theme__btn:hover {
+  transition: all 0.3s;
+  color: white;
+  background: #2a99f2;
+}
+@media screen and (max-width: 810px) {
+  .planPage__theme__input {
+    position: absolute;
+    font-size: 15px;
+    grid-template-columns: repeat(2, 90px);
+    padding: 10px;
+    top: 42.5rem;
+  }
+  .planPage__theme__on,
+  .planPage__theme__off {
+    display: block;
+    margin-right: 10px;
+    height: 40px;
+    width: 65px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+  }
+}

@@ -7,10 +7,10 @@ const MyTriproute = ({ myplace }: any) => {
         {myplace?.spot?.map((el: any, idx: number) => {
           return el?.map((e: any) => {
             return (
-              <div key={idx}>
+              <>
                 <div className="route__warp">
                   <div className="route__contents">
-                    <img src={e.photo} alt="" />
+                    <img src={e.photo} alt="" key={idx} />
                     <div className="route__content">
                       <div className="route__place">{e.place}</div>
                     </div>
@@ -19,7 +19,7 @@ const MyTriproute = ({ myplace }: any) => {
                 <div className="route__arrow">
                   <img src="./img/arrow.png" alt="" />
                 </div>
-              </div>
+              </>
             );
           });
         })}

@@ -1,5 +1,4 @@
-import Mainpage from "./pages/Mainpage";
-import Mypage from "./pages/Mypage";
+import { MainPage, MyPage, PlanPage, PlanView } from "./pages/index";
 import { Route, Switch } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 
@@ -8,12 +7,10 @@ function App() {
     <>
       <BrowserRouter>
         <Switch>
-          <Route exact path="/Mainpage">
-            <Mainpage />
-          </Route>
-          <Route exact path="/Mypage">
-            <Mypage />
-          </Route>
+          <Route exact path="/MainPage" component={MainPage} />
+          <Route exact path="/MyPage" component={MyPage} />
+          <Route exact path="/PlanPage" component={PlanPage} />
+          <Route exact path="/PlanView/:viewId" component={PlanView} />
         </Switch>
       </BrowserRouter>
     </>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { options } from "../../modules/utils/theme";
 import { setProvinceProps } from "../../interfaces";
 import "./LocationInput.css";

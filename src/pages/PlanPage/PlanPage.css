@@ -1,0 +1,52 @@
+.planPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  height: 100vh;
+}
+.planPage__container {
+  width: 70vw;
+}
+.planPage__banner {
+  margin-top: 8rem;
+  margin-bottom: 3rem;
+  height: auto;
+  width: 70vw;
+  border-radius: 5px;
+  position: relative;
+}
+.planPage__title {
+  color: rgb(59, 90, 161);
+  font-size: 25px;
+  font-weight: 600;
+  position: absolute;
+  margin: 3.5rem;
+}
+.planPage__MainBtn {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  width: 12rem;
+  top: 14rem;
+  margin-left: 3.5rem;
+  border-radius: 5px;
+  background-color: #3aa0f3;
+  color: white;
+  border-style: none;
+  cursor: pointer;
+}
+.planPage__banner img {
+  height: 20rem;
+  width: 70vw;
+  border-radius: 5px;
+  background-color: rgba(68, 67, 67, 0.4);
+}
+
+@media screen and (max-width: 500px) {
+  /* .planPage__MainBtn {
+    margin: 0;
+  } */
+}

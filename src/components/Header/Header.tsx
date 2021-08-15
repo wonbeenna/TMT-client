@@ -15,7 +15,7 @@ const Header = () => {
   );
 
   const signOutHandler = () => {
-    history.push("/Mainpage");
+    history.push("/MainPage");
     dispatch(Actions.userActions.LoginStatus(false));
     dispatch(Actions.userActions.AccessToken("", ""));
     dispatch(Actions.userActions.userInfo("", ""));
@@ -24,11 +24,11 @@ const Header = () => {
   const landingPage = () => {
     window.location.href = "/Landing.html";
   };
-  const mypage = () => {
-    window.location.href = "/Mypage";
+  const myPage = () => {
+    window.location.href = "/MyPage";
   };
-  const mainpage = () => {
-    window.location.href = "/Mainpage";
+  const mainPage = () => {
+    window.location.href = "/MainPage";
   };
 
   const ModalHandler = (name: string) => {
@@ -36,16 +36,16 @@ const Header = () => {
     dispatch(Actions.modalActions.modalName(name));
   };
 
-  const mypageRender = () => {
-    if (headerStatus === "/Mypage") {
+  const myPageRender = () => {
+    if (headerStatus === "/MyPage") {
       return (
-        <div className="headerContainer">
+        <div className="MyHeaderContainer">
           <div className="headerLogo" onClick={landingPage}>
             <img src="../img/Logo005.png" alt="" />
           </div>
           {isLogin ? (
             <div className="headerRightside">
-              <p onClick={mainpage}>돌아가기</p>
+              <p onClick={mainPage}>돌아가기</p>
               <p
                 onClick={() => {
                   ModalHandler("UserInfo");
@@ -81,15 +81,59 @@ const Header = () => {
   };
 
   const mainPageRender = () => {
-    if (headerStatus === "/Mainpage") {
+    if (headerStatus === "/MainPage") {
       return (
-        <div className="headerContainer">
+        <div className="MainHeaderContainer">
           <div className="headerLogo" onClick={landingPage}>
             <img src="../img/Logo005.png" alt="" />
           </div>
           {isLogin ? (
             <div className="headerRightside">
-              <p onClick={mypage}>마이페이지</p>
+              <p onClick={myPage}>마이페이지</p>
+              <p onClick={signOutHandler}>로그아웃</p>
+            </div>
+          ) : (
+            <div className="headerRightside">
+              <p
+                onClick={() => {
+                  ModalHandler("SignIn");
+                }}
+              >
+                로그인
+              </p>
+              <p
+                onClick={() => {
+                  ModalHandler("SignUp");
+                }}
+              >
+                회원가입
+              </p>
+            </div>
+          )}
+        </div>
+      );
+    } else {
+      return "";
+    }
+  };
+
+  const planPageRender = () => {
+    if (headerStatus === "/PlanPage") {
+      return (
+        <div className="MyHeaderContainer">
+          <div className="headerLogo" onClick={landingPage}>
+            <img src="../img/Logo005.png" alt="" />
+          </div>
+          {isLogin ? (
+            <div className="headerRightside">
+              <p onClick={mainPage}>돌아가기</p>
+              <p
+                onClick={() => {
+                  ModalHandler("UserInfo");
+                }}
+              >
+                회원정보수정
+              </p>
               <p onClick={signOutHandler}>로그아웃</p>
             </div>
           ) : (
@@ -119,10 +163,11 @@ const Header = () => {
 
   return (
     <>
-      {mypageRender()}
+      {myPageRender()}
       {mainPageRender()}
+      {planPageRender()}
     </>
   );
 };
 
-export default withRouter(Header);
+export default Header;

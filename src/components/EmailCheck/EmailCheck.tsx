@@ -16,6 +16,10 @@ function EmailCheck() {
   const checkEmail = () => {
     dispatch(checkEmailReq(email));
   };
+  const ModalHandler = (name: string) => {
+    dispatch(Actions.modalActions.modalStatus(true));
+    dispatch(Actions.modalActions.modalName(name));
+  };
   const modalCloseHandler = () => {
     dispatch(Actions.modalActions.modalStatus(false));
     dispatch(Actions.modalActions.modalName(""));
@@ -51,6 +55,14 @@ function EmailCheck() {
                 onChangHandler(e, "emailCheck");
               }}
             />
+            <div
+              className="emailCheck__backBtn"
+              onClick={() => {
+                ModalHandler("SignIn");
+              }}
+            >
+              돌아가기
+            </div>
             <div className="emailCheck__closeBtn" onClick={checkEmail}>
               확인하기
             </div>

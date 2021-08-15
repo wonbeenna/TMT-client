@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { ValidationPassword } from "../modules/utils/ValidationCheck";
-import "./CSS/UserInfo.css";
+import { ValidationPassword } from "../../modules/utils/ValidationCheck";
+import "./UserInfo.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootReducer } from "../modules/reducer";
-import { Actions } from "../modules/api";
+import { RootReducer } from "../../modules/reducer";
+import { Actions } from "../../modules/api";
 
 function UserInfo() {
   const [curPassword, setCurPassword] = useState<string>("");

@@ -2,18 +2,13 @@ import { useState } from "react";
 import {
   ValidationEmail,
   ValidationPassword,
-} from "../modules/utils/ValidationCheck";
-import "./CSS/SignIn.css";
+} from "../../modules/utils/ValidationCheck";
+import "./SignIn.css";
 import GoogleLogin from "react-google-login";
 import KakaoLogin from "react-kakao-login";
 import { useDispatch } from "react-redux";
-import { Actions } from "../modules/api";
-import {
-  checkEmailReq,
-  googleReq,
-  kakaoReq,
-  nonUserReq,
-} from "../modules/api/user";
+import { Actions } from "../../modules/api";
+import { googleReq, kakaoReq, nonUserReq } from "../../modules/api/user";
 require("dotenv").config();
 
 function SignIn() {
@@ -24,7 +19,6 @@ function SignIn() {
   const [passwordValid, setPasswordValid] = useState<boolean>(true);
   const [errEmail, setErrEmail] = useState<string>("");
   const [errPassword, setErrPassword] = useState<string>("");
-  const [errLogin, setErrLogin] = useState<string>("");
 
   const ModalHandler = (name: string) => {
     dispatch(Actions.modalActions.modalStatus(true));
@@ -92,7 +86,6 @@ function SignIn() {
 
   // 카카오
   const CLIENT_ID: any = process.env.REACT_APP_KAKAO_KEY;
-
   const responseKakao = async (res: any) => {
     dispatch(kakaoReq(res));
   };
@@ -137,7 +130,6 @@ function SignIn() {
             }}
           />
           <span className="signIn__errPassword">{errPassword}</span>
-          <span className="signIn__errLogin">{errLogin}</span>
           <button className="signIn__loginBtn" onClick={loginHandler}>
             로그인
           </button>
