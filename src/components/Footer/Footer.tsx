@@ -1,22 +1,59 @@
 import "./Footer.css";
 const Footer = () => {
-  const handleGit = (Name: string): void => {
-    window.open(`https://github.com/${Name}`);
-  };
-
   return (
-    <div className="footerContainer">
-      <img src="/img/GitLogo.png" alt=""></img>
-      <div className="footer__right">
-        <span onClick={() => handleGit("baymaxxxxx")}>지은</span>
-        <span>&#124;</span>
-        <span onClick={() => handleGit("wonbeenna")}>원빈</span>
-        <span>&#124;</span>
-        <span onClick={() => handleGit("Lee-SangRyeol")}>상렬</span>
-        <span>&#124;</span>
-        <span onClick={() => handleGit("yoolee741")}>유림</span>
+    <footer className="footer">
+      <img src="img/Logo005.png" alt="logo" />
+      <div className="team">
+        <div className="contact">
+          <a
+            target="_blank"
+            href="https://github.com/codestates/TMT-client"
+            rel="noreferrer"
+          >
+            Repository
+          </a>
+          <a
+            target="_blank"
+            href="https://github.com/codestates/TMT-client/wiki"
+            rel="noreferrer"
+          >
+            WiKi
+          </a>
+        </div>
+        <div className="member">
+          <a
+            target="_blank"
+            href="https://github.com/baymaxxxxx"
+            rel="noreferrer"
+          >
+            김지은 @Git
+          </a>
+          <a
+            target="_blank"
+            href="https://github.com/wonbeenna"
+            rel="noreferrer"
+          >
+            나원빈 @Git
+          </a>
+        </div>
+        <div className="member">
+          <a
+            target="_blank"
+            href="https://github.com/Lee-SangRyeol"
+            rel="noreferrer"
+          >
+            이상렬 @Git
+          </a>
+          <a
+            target="_blank"
+            href="https://github.com/yoolee741"
+            rel="noreferrer"
+          >
+            이유림 @Git
+          </a>
+        </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

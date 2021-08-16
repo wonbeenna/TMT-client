@@ -18,7 +18,7 @@ function PlanPage() {
   );
   useEffect(() => {
     dispatch(planGetReq());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -29,7 +29,7 @@ function PlanPage() {
             <div className="planPage__title">
               <p>
                 나만 알고있기 아깝지 않으세요?<br></br> 다른사람들과 여행경로를
-                공유해 보세요!
+                공유해 보세요!!
               </p>
             </div>
             <img src="./img/tour.png" alt="tour" />

@@ -7,6 +7,7 @@ export type stateType = {
   myPlaceList: object;
   placeData: Array<{}>;
   planList: Array<[]>;
+  viewList: Array<[]>;
 };
 
 export const initialState = {
@@ -15,6 +16,7 @@ export const initialState = {
   myPlaceList: {},
   placeData: [],
   planList: [],
+  viewList: [],
 };
 
 export const placeListReducer = (
@@ -93,6 +95,21 @@ export const planListReducer = (
       return {
         ...state,
         planList: actions.payload,
+      };
+    }
+    default:
+      return state;
+  }
+};
+
+export const viewListReducer = (
+  state: stateType = initialState,
+  actions: ActionsType
+) => {
+  switch (actions.type) {
+    case ACTIONS_PLACE.VIEW_LIST: {
+      return {
+        viewList: actions.payload,
       };
     }
     default:

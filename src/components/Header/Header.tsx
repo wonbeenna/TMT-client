@@ -3,7 +3,6 @@ import { Actions } from "../../modules/api";
 import { RootReducer } from "../../modules/reducer";
 import "./Header.css";
 import { useHistory } from "react-router";
-import { withRouter } from "react-router-dom";
 require("dotenv").config();
 
 const Header = () => {
@@ -56,22 +55,7 @@ const Header = () => {
               <p onClick={signOutHandler}>로그아웃</p>
             </div>
           ) : (
-            <div className="headerRightside">
-              <p
-                onClick={() => {
-                  ModalHandler("SignIn");
-                }}
-              >
-                로그인
-              </p>
-              <p
-                onClick={() => {
-                  ModalHandler("SignUp");
-                }}
-              >
-                회원가입
-              </p>
-            </div>
+            ""
           )}
         </div>
       );
@@ -126,14 +110,7 @@ const Header = () => {
           </div>
           {isLogin ? (
             <div className="headerRightside">
-              <p onClick={mainPage}>돌아가기</p>
-              <p
-                onClick={() => {
-                  ModalHandler("UserInfo");
-                }}
-              >
-                회원정보수정
-              </p>
+              <p onClick={myPage}>돌아가기</p>
               <p onClick={signOutHandler}>로그아웃</p>
             </div>
           ) : (

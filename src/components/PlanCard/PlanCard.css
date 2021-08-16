@@ -25,9 +25,12 @@
 .planCard__CardLocation,
 .planCard__CardTheme {
   font-size: 15px;
-  margin: 5px;
+  margin: 3px;
   color: rgb(82, 81, 81);
   word-break: keep-all;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .planCard__img img {
@@ -35,6 +38,19 @@
   width: 100%;
   border-radius: 5px 5px 0 0;
 }
+.planCard__Name {
+  font-size: 15px;
+  font-weight: bold;
+  margin: 3px;
+  color: rgb(82, 81, 81);
+  word-break: keep-all;
+}
 .planCard__contents p {
-  margin: 5px;
+  margin: 3px;
+}
+
+.planCard__CardTheme img {
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
 }
