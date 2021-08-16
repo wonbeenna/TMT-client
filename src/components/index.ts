@@ -7,6 +7,7 @@ export { default as InputList } from "./InputList/InputList";
 export { default as InputListBtn } from "./InputListBtn/InputListBtn";
 export { default as Map } from "./KakaoMap/Map";
 export { default as MyMap } from "./KakaoMap/MyMap";
+export { default as ViewMap } from "./KakaoMap/ViewMap";
 export { default as LikeCheckModal } from "./LikeCheck/LikeCheckModal";
 export { default as LocationInput } from "./LocationInput/LocationInput";
 export { default as MainList } from "./MainList/MainList";

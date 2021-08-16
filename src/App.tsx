@@ -10,7 +10,7 @@ function App() {
           <Route exact path="/MainPage" component={MainPage} />
           <Route exact path="/MyPage" component={MyPage} />
           <Route exact path="/PlanPage" component={PlanPage} />
-          <Route exact path="/PlanView/:viewId" component={PlanView} />
+          <Route exact path="/PlanView/:_id" component={PlanView} />
         </Switch>
       </BrowserRouter>
     </>

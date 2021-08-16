@@ -1,8 +1,11 @@
 import "./PlanSearch.css";
 import { options, theme } from "../../modules/utils/theme";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
+import { planSearchReq } from "../../modules/api/place";
+import { useDispatch } from "react-redux";
 
 function PlanSearch({ planList }: any) {
+  const dispatch = useDispatch();
   const [value, setValue] = useState<string>("");
   const [open, setOpen] = useState<boolean>(true);
   const [checkTheme, setCheckTheme] = useState<Array<string>>([]);
@@ -23,6 +26,10 @@ function PlanSearch({ planList }: any) {
     } else {
       setCheckTheme(checkTheme.filter((el: string) => el !== theme));
     }
+  };
+
+  const searchHandler = () => {
+    dispatch(planSearchReq(value, checkTheme));
   };
 
   return (
@@ -78,7 +85,11 @@ function PlanSearch({ planList }: any) {
               테마선택
             </button>
           )}
-          <button className="planPage__theme__btn" title="지역&테마로 검색">
+          <button
+            className="planPage__theme__btn"
+            title="지역&테마로 검색"
+            onClick={searchHandler}
+          >
             검색
           </button>
         </div>

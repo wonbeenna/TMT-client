@@ -8,7 +8,7 @@ export const myPlaceListReq =
   (
     dispatch: (type: {
       type: string;
-      payload: { spot: string[]; startDate: string; endDate: string };
+      payload: { spot: object; startDate: string; endDate: string };
     }) => any
   ) => {
     axios

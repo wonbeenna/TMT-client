@@ -1,19 +1,35 @@
-.footerContainer {
-  min-height: 100px;
+.footer {
   display: flex;
   align-items: center;
-  padding: 0 30px;
-  z-index: 1;
-  background-color: #a8a8a8;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  height: 7rem;
+  color: white;
+  background: gray;
 }
-.footerContainer img {
-  margin-left: 30px;
+.footer img {
+  width: 110px;
+  height: 35px;
 }
-.footer__right {
-  margin-right: 30px;
+.team {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.footer__right span {
-  margin: 0 3px;
+.contact,
+.member {
+  display: flex;
+  flex-direction: column;
+  padding-left: 15px;
+}
+.contact a {
+  z-index: 101;
   cursor: pointer;
+  color: white;
+  padding: 5px;
+}
+.member a {
+  z-index: 101;
+  cursor: pointer;
+  color: white;
+  padding: 2px;
 }

@@ -46,16 +46,16 @@ function MyMap() {
       myListData?.spot?.forEach((el: any) => {
         let marker = new window.kakao.maps.Marker({
           map: map, // 마커를 표시할 지도
-          position: new window.kakao.maps.LatLng(el[0].lat, el[0].long),
+          position: new window.kakao.maps.LatLng(el.lat, el.long),
           image: markerImage, // 마커 이미지
         });
         tempArr.push(marker);
         let sw = new window.kakao.maps.LatLng(38, 127.5);
         let ne = new window.kakao.maps.LatLng(37, 127);
         let bounds = new window.kakao.maps.LatLngBounds(sw, ne);
-        bounds.extend(new window.kakao.maps.LatLng(el[0].lat, el[0].long));
+        bounds.extend(new window.kakao.maps.LatLng(el.lat, el.long));
         map?.setBounds(bounds);
-        linePath.push(new window.kakao.maps.LatLng(el[0].lat, el[0].long));
+        linePath.push(new window.kakao.maps.LatLng(el.lat, el.long));
       });
       let polyline = new window.kakao.maps.Polyline({
         path: linePath,

@@ -1,0 +1,18 @@
+.planView {
+  width: 100vw;
+  height: 100vh;
+}
+.planView__container {
+  padding: 50px;
+}
+.view__Map {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#viewMaps {
+  width: 750px;
+  height: 450px;
+  left: 0px;
+  border-radius: 10px;
+}

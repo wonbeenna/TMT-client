@@ -24,7 +24,6 @@ function InputListBtn({ startToday, endToday, lists }: InputListBtnProps) {
       ModalHandler("LikeCheckModal");
     }
   };
-
   return (
     <div className="inputList__save">
       <button className="inputList__saveBtn" onClick={sendHandler}>
