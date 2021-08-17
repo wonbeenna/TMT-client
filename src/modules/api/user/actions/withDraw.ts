@@ -5,13 +5,13 @@ import { accessToken } from "../../../../interfaces/";
 
 export const withDrawReq =
   (accessToken: accessToken) =>
-  (
+  async (
     dispatch: (type: {
       type: string;
       payload: string | boolean | { accessToken: string; refreshToken: string };
     }) => void
   ) => {
-    axios
+    await axios
       .delete(requests.WithDrawURL, {
         headers: {
           authorization: `Bearer ${accessToken}`,

@@ -6,8 +6,8 @@ axios.defaults.withCredentials = true;
 
 export const recommendReq =
   (place: place) =>
-  (dispatch: (type: { type: string; payload: {}[] }) => void) => {
-    axios
+  async (dispatch: (type: { type: string; payload: {}[] }) => void) => {
+    await axios
       .post(requests.recommendURL, {
         place: place,
       })

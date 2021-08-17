@@ -1,12 +1,12 @@
 import axios from "axios";
 import requests from "../../../utils/requests";
 import { Actions } from "../..";
-import { accessToken, signIn, signUp } from "../../../../interfaces";
+import { signIn, signUp } from "../../../../interfaces";
 axios.defaults.withCredentials = true;
 
 export const signInReq =
   ({ email, password }: signIn) =>
-  (
+  async (
     dispatch: (type: {
       type:
         | string
@@ -18,7 +18,7 @@ export const signInReq =
         | { accessToken: string; refreshToken: string };
     }) => void
   ) => {
-    axios
+    await axios
       .post(requests.loginURL, {
         email,
         password,
@@ -44,8 +44,8 @@ export const signInReq =
 
 export const signUpReq =
   ({ name, email, password }: signUp) =>
-  (dispatch: (type: { type: string; payload: string }) => void) => {
-    axios
+  async (dispatch: (type: { type: string; payload: string }) => void) => {
+    await axios
       .post(requests.signUpURL, {
         name,
         email,
@@ -63,15 +63,20 @@ export const signUpReq =
 
 export const nonUserReq =
   () =>
-  (
+  async (
     dispatch: (type: {
       type: string;
-      payload: string | boolean | { accessToken: string; refreshToken: string };
+      payload:
+        | string
+        | boolean
+        | { name: string; email: string }
+        | { accessToken: string; refreshToken: string };
     }) => void
   ) => {
-    axios
+    await axios
       .get(requests.nonUserLoginURL, {})
       .then((res) => {
+        dispatch(Actions.userActions.userInfo(res.data.name, res.data.email));
         dispatch(
           Actions.userActions.AccessToken(
             res.data.accessToken,
@@ -91,7 +96,7 @@ export const nonUserReq =
 
 export const googleReq =
   (response: any) =>
-  (
+  async (
     dispatch: (type: {
       type: string;
       payload:
@@ -101,7 +106,7 @@ export const googleReq =
         | { name: string; email: string };
     }) => void
   ) => {
-    axios
+    await axios
       .post(requests.googleURL, {
         token: response.tokenObj.id_token,
       })
@@ -129,7 +134,7 @@ export const googleReq =
 
 export const kakaoReq =
   (response: any) =>
-  (
+  async (
     dispatch: (type: {
       type: string;
       payload:
@@ -139,7 +144,7 @@ export const kakaoReq =
         | { name: string; email: string };
     }) => void
   ) => {
-    axios
+    await axios
       .post(requests.kakaoURL, {
         kakaoToken: response.response.access_token,
       })

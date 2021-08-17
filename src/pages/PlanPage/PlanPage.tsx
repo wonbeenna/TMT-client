@@ -5,6 +5,7 @@ import { Header, PlanCard, PlanSearch } from "../../components/index";
 import { Actions } from "../../modules/api";
 import { planGetReq } from "../../modules/api/place";
 import { RootReducer } from "../../modules/reducer";
+import Modal from "../../modules/utils/Modal";
 import "./PlanPage.css";
 
 function PlanPage() {
@@ -22,8 +23,9 @@ function PlanPage() {
 
   return (
     <>
-      <Header />
+      <Modal />
       <div className="planPage">
+        <Header />
         <div className="planPage__container">
           <div className="planPage__banner">
             <div className="planPage__title">
@@ -40,8 +42,8 @@ function PlanPage() {
               나만의 경로 만들기
             </button>
           </div>
-          <PlanSearch planList={planList.data} />
-          <PlanCard planList={planList.data} />
+          <PlanSearch planList={planList} />
+          <PlanCard planList={planList} />
         </div>
       </div>
     </>

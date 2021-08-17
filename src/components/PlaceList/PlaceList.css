@@ -36,18 +36,21 @@
 .placeList__content::-webkit-scrollbar {
   display: none;
 }
-.placeList__destination {
+.placeList__destination,
+.planView__destination {
   cursor: pointer;
   display: flex;
   margin: 10px;
   box-shadow: rgba(0, 0, 0, 0.11) 0px 4px 16px 0px;
 }
 
-.placeList__destination__list {
+.placeList__destination__list,
+.planView__destination__list {
   display: flex;
 }
 
-.placeList__destination__list img {
+.placeList__destination__list img,
+.planView__destination__list img {
   width: 7rem;
   height: 5rem;
   margin: 15px;
@@ -55,27 +58,31 @@
   border-radius: 5px;
 }
 
-.placeList__destination__list img:hover {
+.placeList__destination__list img:hover,
+.planView__destination__list img:hover {
   transform: scale(1.1);
   transition: transform 0.5s;
 }
-.placeList__list__container {
+.placeList__list__container,
+.planView__list__container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   flex: 1;
 }
-.placeList__list__content {
-  font-size: 1rem;
-}
-.placeList__list__address {
+
+.placeList__list__address,
+.planView__list__address {
   font-size: 0.8rem;
   color: #5f5f5f;
 }
-.placeList__list__content {
+.placeList__list__content,
+.planView__list__content {
   display: flex;
+  font-size: 1rem;
 }
-.placeList__list__content img {
+.placeList__list__content img,
+.planView__list__content img {
   margin-top: 6px;
   width: 14px;
   height: 14px;

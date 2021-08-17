@@ -1,18 +1,61 @@
 .planView {
+  display: flex;
   width: 100vw;
   height: 100vh;
+  position: relative;
 }
 .planView__container {
-  padding: 50px;
-}
-.view__Map {
   display: flex;
   flex-direction: column;
+  background: white;
+  z-index: 9;
+  width: 30rem;
+}
+.planView__contents {
+  padding: 15px;
+  overflow-y: scroll;
+}
+.planView__contents h1 {
+  text-align: center;
+  color: #3aa0f3;
+  margin: 10px;
+  border-bottom: 1px solid rgb(216, 216, 216);
+}
+
+.planView__num {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 1rem;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  color: #417cff;
+  border: 3px solid #417cff;
+  border-radius: 150px;
+}
+.planView__Btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20rem;
+  height: 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+  background: #3aa0f3;
+  border: 0;
+  margin: 30px auto;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.planView__return img {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
 }
 #viewMaps {
-  width: 750px;
-  height: 450px;
-  left: 0px;
-  border-radius: 10px;
+  position: fixed;
+  display: block;
+  width: 100vw;
+  height: 100vh;
 }

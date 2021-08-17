@@ -55,9 +55,13 @@ function InputList({
     items.splice(result.destination.index, 0, reorderedItem);
     setLists(items);
   };
+
   useEffect(() => {
     dispatch(Actions.placeActions.placeList(lists));
-  }, [dispatch, lists]);
+    if (lists.length > 0) {
+      setOpen(true);
+    }
+  }, [dispatch, lists, setOpen]);
 
   return (
     <div className={open ? "inputList" : "inputList__close"}>

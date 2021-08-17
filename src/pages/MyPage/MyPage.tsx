@@ -59,7 +59,7 @@ function MyPage() {
   const range = Math.abs(msDiff / (1000 * 60 * 60 * 24)) + 1;
 
   const planPostHandler = () => {
-    if (myListData.spot.length === 0) {
+    if (myListData?.spot?.length === 0) {
       dispatch(Actions.modalActions.modalName("ErrModal"));
       dispatch(
         Actions.modalActions.modalMessage("하나 이상의 경로가 필요합니다.")

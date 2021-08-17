@@ -1,11 +1,13 @@
 import axios from "axios";
 import { Actions } from "../..";
+import { accessToken } from "../../../../interfaces";
 import requests from "../../../utils/requests";
 axios.defaults.withCredentials = true;
 
 export const planPostReq =
-  (accessToken: string, myListData: any) => (dispatch: any) => {
-    axios
+  (accessToken: accessToken, myListData: any) =>
+  async (dispatch: (type: { type: string; payload: string }) => void) => {
+    await axios
       .post(
         requests.planURL,
         {
@@ -23,27 +25,41 @@ export const planPostReq =
       });
   };
 
-export const planGetReq = () => (dispatch: any) => {
-  axios.get(requests.planURL).then((res) => {
-    dispatch(Actions.placeActions.planList(res.data));
-  });
-};
-
-export const viewReq =
-  (_id: any) =>
-  (dispatch: (type: { type: string; payload: string[] }) => any) => {
-    axios
-      .get(requests.viewURL + `${_id}`)
-      .then((res) => dispatch(Actions.placeActions.viewList(res.data)));
+export const planGetReq =
+  () => async (dispatch: (type: { type: string; payload: object }) => void) => {
+    await axios.get(requests.planURL).then((res) => {
+      dispatch(Actions.placeActions.planList(res.data.data));
+    });
   };
 
 export const planSearchReq =
-  (province: any, checkItems: any) =>
-  (dispatch: (type: { type: string; payload: string[] }) => any) => {
-    axios
+  (province: string, checkItems: Array<string>) =>
+  async (dispatch: (type: { type: string; payload: object }) => any) => {
+    await axios
       .post(requests.planSearchURL, {
         province,
         theme: checkItems,
       })
-      .then((res) => dispatch(Actions.placeActions.planList(res.data)));
+      .then((res) => dispatch(Actions.placeActions.planList(res.data.data)));
+  };
+
+export const planDeleteReq =
+  (_id: string, accessToken: accessToken) =>
+  async (
+    dispatch: (type: { type: string; payload: string | boolean }) => void
+  ) => {
+    await axios
+      .delete(requests.planURL, {
+        headers: {
+          authorization: `Bearer ${accessToken}`,
+        },
+        data: {
+          _id: _id,
+        },
+      })
+      .then((res) => {
+        dispatch(Actions.modalActions.modalStatus(true));
+        dispatch(Actions.modalActions.modalName("ErrModal"));
+        dispatch(Actions.modalActions.modalMessage("경로가 삭제되었습니다."));
+      });
   };
