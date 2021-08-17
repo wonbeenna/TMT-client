@@ -4,7 +4,6 @@ export {
   myPlaceListReducer,
   placeDataReducer,
   planListReducer,
-  viewListReducer,
 } from "./reducer";
 export * from "./actions/action";
 export {
@@ -15,7 +14,7 @@ export {
 export {
   planPostReq,
   planGetReq,
-  viewReq,
+  planDeleteReq,
   planSearchReq,
 } from "./actions/plan";
 export { insertSpotReq } from "./actions/insertPlace";

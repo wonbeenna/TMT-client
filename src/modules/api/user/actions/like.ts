@@ -5,8 +5,8 @@ import { accessToken, likePhoto, place } from "../../../../interfaces/";
 
 export const likeGetReq =
   (accessToken: accessToken) =>
-  (dispatch: (type: { type: string; payload: string[] }) => void) => {
-    axios
+  async (dispatch: (type: { type: string; payload: string[] }) => void) => {
+    await axios
       .get(requests.likeURL, {
         headers: {
           authorization: `Bearer ${accessToken}`,
@@ -21,46 +21,48 @@ export const likeGetReq =
       });
   };
 
-export const likeDeleteReq = (place: place, accessToken: accessToken) => () => {
-  axios
-    .delete(requests.likeURL, {
-      headers: {
-        authorization: `Bearer ${accessToken}`,
-      },
-      data: {
-        place: place,
-      },
-    })
-    .then((res) => {
-      return res.data;
-    });
-};
-
-export const likePostReq = (place: place, accessToken: accessToken) => () => {
-  axios
-    .post(
-      requests.likeURL,
-      {
-        place: place,
-      },
-      {
+export const likeDeleteReq =
+  (place: place, accessToken: accessToken) => async () => {
+    await axios
+      .delete(requests.likeURL, {
         headers: {
           authorization: `Bearer ${accessToken}`,
         },
-      }
-    )
-    .then((res) => {
-      return res.data;
-    });
-};
+        data: {
+          place: place,
+        },
+      })
+      .then((res) => {
+        return res.data;
+      });
+  };
+
+export const likePostReq =
+  (place: place, accessToken: accessToken) => async () => {
+    await axios
+      .post(
+        requests.likeURL,
+        {
+          place: place,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${accessToken}`,
+          },
+        }
+      )
+      .then((res) => {
+        return res.data;
+      });
+  };
 
 export const likePhotoReq =
   (
     { setResult, setLikePlace, setIsLoading }: likePhoto,
     accessToken: accessToken
   ) =>
-  () => {
-    axios
+  async () => {
+    await axios
       .get(requests.photoLikeURL, {
         headers: {
           authorization: `Bearer ${accessToken}`,

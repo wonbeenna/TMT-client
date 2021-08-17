@@ -26,7 +26,7 @@ import {
   searchSpotGetReq,
   planPostReq,
   planGetReq,
-  viewReq,
+  planDeleteReq,
   planSearchReq,
 } from "./place";
 import { headerActions } from "./header";
@@ -57,6 +57,6 @@ export const Actions = {
   searchSpotGetReq,
   planPostReq,
   planGetReq,
-  viewReq,
+  planDeleteReq,
   planSearchReq,
 };

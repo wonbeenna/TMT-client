@@ -4,8 +4,8 @@ import requests from "../../../utils/requests";
 
 export const insertSpotReq =
   ({ lists, startToday, endToday }: insertSpot, accessToken: accessToken) =>
-  () => {
-    axios
+  async () => {
+    await axios
       .post(
         requests.sendURL,
         {

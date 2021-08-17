@@ -5,13 +5,13 @@ import { accessToken, inputElement } from "../../../../interfaces";
 
 export const myPlaceListReq =
   (accessToken: accessToken) =>
-  (
+  async (
     dispatch: (type: {
       type: string;
       payload: { spot: object; startDate: string; endDate: string };
     }) => any
   ) => {
-    axios
+    await axios
       .get(requests.searchURL, {
         headers: {
           authorization: `Bearer ${accessToken}`,
@@ -30,8 +30,8 @@ export const myPlaceListReq =
 
 export const searchSpotPostReq =
   ({ search, setSearch }: inputElement) =>
-  (dispatch: (type: { type: string; payload: {}[] }) => void) => {
-    axios
+  async (dispatch: (type: { type: string; payload: {}[] }) => void) => {
+    await axios
       .post(requests.spotURL, {
         inputElement: search,
       })
@@ -41,8 +41,8 @@ export const searchSpotPostReq =
       });
   };
 
-export const searchSpotGetReq = (setSpot: any) => () => {
-  axios.get(requests.spotURL).then((res) => {
+export const searchSpotGetReq = (setSpot: any) => async () => {
+  await axios.get(requests.spotURL).then((res) => {
     setSpot(res.data);
   });
 };

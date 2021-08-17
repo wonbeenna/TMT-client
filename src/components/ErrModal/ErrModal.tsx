@@ -10,6 +10,7 @@ function ErrModal() {
     dispatch(Actions.modalActions.modalStatus(false));
     dispatch(Actions.modalActions.modalName(""));
     dispatch(Actions.modalActions.modalMessage(""));
+    window.history.go(0);
   };
   const { modalMessage }: any = useSelector(
     (state: RootReducer) => state.modalMessageReducer

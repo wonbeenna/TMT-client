@@ -31,7 +31,7 @@ function Map({ lists, setLists }: ListProps) {
 
   useEffect(() => {
     viewMarker();
-  }, [ListData, NextListData]);
+  }, [ListData, NextListData, lists]);
 
   const kakaoMap = () => {
     kakao.maps.load(() => {
@@ -60,7 +60,7 @@ function Map({ lists, setLists }: ListProps) {
     const tempArr: Array<string> = [];
     const linePath: Array<string> = [];
 
-    ListData[0]?.forEach((el: any, idx: number) => {
+    ListData?.forEach((el: any, idx: number) => {
       let marker = new kakao.maps.Marker({
         map: map,
         position: new kakao.maps.LatLng(el.lat, el.long),
@@ -71,7 +71,7 @@ function Map({ lists, setLists }: ListProps) {
       let ne = new kakao.maps.LatLng(el.lat + 0.03, el.long + 0.03);
       let bounds = new kakao.maps.LatLngBounds(sw, ne);
       bounds.extend(new kakao.maps.LatLng(el.lat, el.long));
-      map.setBounds(bounds, 200, 100, 100, 600);
+      map?.setBounds(bounds, 200, 100, 100, 600);
       linePath.push(new kakao.maps.LatLng(el.lat, el.long));
 
       var iwContent =

@@ -17,7 +17,6 @@ import {
   myPlaceListReducer,
   placeDataReducer,
   planListReducer,
-  viewListReducer,
 } from "../modules/api/place";
 import { headerReducer } from "../modules/api/header";
 
@@ -36,7 +35,6 @@ export const rootReducer = combineReducers({
   placeDataReducer,
   headerReducer,
   planListReducer,
-  viewListReducer,
 });
 
 export default rootReducer;

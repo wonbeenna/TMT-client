@@ -4,16 +4,16 @@ import { Actions } from "../..";
 import { theme } from "../../../../interfaces/";
 axios.defaults.withCredentials = true;
 export const placeDataReq =
-  () => (dispatch: (type: { type: string; payload: {}[] }) => void) => {
-    axios
+  () => async (dispatch: (type: { type: string; payload: {}[] }) => void) => {
+    await axios
       .get(requests.listURL, {})
       .then((res) => dispatch(Actions.placeActions.placeData(res.data)));
   };
 
 export const searchPlaceReq =
   ({ province, checkItems }: theme) =>
-  (dispatch: (type: { type: string; payload: {}[] }) => void) => {
-    axios
+  async (dispatch: (type: { type: string; payload: {}[] }) => void) => {
+    await axios
       .post(requests.listURL, {
         province,
         theme: checkItems,

@@ -19,6 +19,8 @@ const Header = () => {
     dispatch(Actions.userActions.AccessToken("", ""));
     dispatch(Actions.userActions.userInfo("", ""));
     dispatch(Actions.userActions.userLike([]));
+    dispatch(Actions.placeActions.placeList([]));
+    dispatch(Actions.placeActions.nextPlaceList([]));
   };
   const landingPage = () => {
     window.location.href = "/Landing.html";

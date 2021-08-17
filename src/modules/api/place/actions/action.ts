@@ -1,7 +1,7 @@
 import { ACTIONS_PLACE } from "../../../actionsType";
 
 export const placeActions = {
-  placeList: (listData: Array<{}>) => {
+  placeList: (listData: any) => {
     return {
       type: ACTIONS_PLACE.PLACE_LIST,
       payload: listData,
@@ -29,15 +29,9 @@ export const placeActions = {
     };
   },
 
-  planList: (spot: string[]) => {
+  planList: (spot: object) => {
     return {
       type: ACTIONS_PLACE.PLAN_LIST,
-      payload: spot,
-    };
-  },
-  viewList: (spot: string[]) => {
-    return {
-      type: ACTIONS_PLACE.VIEW_LIST,
       payload: spot,
     };
   },
@@ -47,5 +41,4 @@ export type ActionsType =
   | ReturnType<typeof placeActions.nextPlaceList>
   | ReturnType<typeof placeActions.myPlaceList>
   | ReturnType<typeof placeActions.placeData>
-  | ReturnType<typeof placeActions.planList>
-  | ReturnType<typeof placeActions.viewList>;
+  | ReturnType<typeof placeActions.planList>;

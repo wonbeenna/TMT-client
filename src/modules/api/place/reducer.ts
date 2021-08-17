@@ -2,7 +2,7 @@ import { ActionsType } from "./actions/action";
 import { ACTIONS_PLACE } from "../../actionsType";
 
 export type stateType = {
-  listData: Array<{}>;
+  listData: Array<[]>;
   nextListData: Array<{}>;
   myPlaceList: object;
   placeData: Array<{}>;
@@ -27,7 +27,7 @@ export const placeListReducer = (
     case ACTIONS_PLACE.PLACE_LIST: {
       return {
         ...state,
-        listData: [...state.listData, action.payload].slice(-1),
+        listData: action.payload,
       };
     }
 
@@ -95,21 +95,6 @@ export const planListReducer = (
       return {
         ...state,
         planList: actions.payload,
-      };
-    }
-    default:
-      return state;
-  }
-};
-
-export const viewListReducer = (
-  state: stateType = initialState,
-  actions: ActionsType
-) => {
-  switch (actions.type) {
-    case ACTIONS_PLACE.VIEW_LIST: {
-      return {
-        viewList: actions.payload,
       };
     }
     default:

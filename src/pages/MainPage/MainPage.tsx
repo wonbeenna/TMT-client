@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import Modal from "../../modules/utils/Modal";
 import "./MainPage.css";
 import { Map, Header, MainList } from "../../components/index";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Actions } from "../../modules/api";
+import { RootState } from "../../modules/store";
 
 function MainPage() {
   const dispatch = useDispatch();
@@ -11,6 +12,12 @@ function MainPage() {
   useEffect(() => {
     dispatch(Actions.headerActions.headerStatus("/MainPage"));
   }, [dispatch]);
+  const { listData } = useSelector(
+    (state: RootState) => state.placeListReducer
+  );
+  useEffect(() => {
+    setLists(listData);
+  }, []);
   return (
     <>
       <Modal />

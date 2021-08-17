@@ -45,8 +45,13 @@
   background-color: rgba(68, 67, 67, 0.4);
 }
 
-@media screen and (max-width: 500px) {
-  /* .planPage__MainBtn {
-    margin: 0;
-  } */
+@media screen and (max-width: 480px) {
+  .planPage__title {
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 440px) {
+  .planPage__MainBtn {
+    margin: 5px;
+  }
 }
