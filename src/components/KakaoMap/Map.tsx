@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ListProps } from "../../interfaces";
+import { ListProps, mapData } from "../../interfaces";
 import { Actions } from "../../modules/api";
 import { RootState } from "../../modules/store";
 import "./Map.css";
@@ -60,7 +60,7 @@ function Map({ lists, setLists }: ListProps) {
     const tempArr: Array<string> = [];
     const linePath: Array<string> = [];
 
-    ListData?.forEach((el: any, idx: number) => {
+    ListData?.forEach((el: mapData, idx: number) => {
       let marker = new kakao.maps.Marker({
         map: map,
         position: new kakao.maps.LatLng(el.lat, el.long),
@@ -118,7 +118,7 @@ function Map({ lists, setLists }: ListProps) {
     setMarkerArr(tempArr);
 
     const NextTempArr: Array<string> = [];
-    NextListData[0]?.forEach((el: any) => {
+    NextListData[0]?.forEach((el: mapData) => {
       let imageSrc = "./img/thumbtack.png";
       let imageSize = new kakao.maps.Size(40, 40);
       let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
@@ -169,7 +169,7 @@ function Map({ lists, setLists }: ListProps) {
       kakao.maps.event.addListener(marker, "click", function () {
         setLists(
           [...lists].concat(
-            NextListData[0].filter((e: any) => e.place === el.place)
+            NextListData[0].filter((e: mapData) => e.place === el.place)
           )
         );
         infowindow.close();
@@ -179,7 +179,7 @@ function Map({ lists, setLists }: ListProps) {
       function removeNextMarker2() {
         dispatch(
           Actions.placeActions.nextPlaceList(
-            NextListData[0].filter((e: any) => e.place !== el.place)
+            NextListData[0].filter((e: mapData) => e.place !== el.place)
           )
         );
       }
@@ -187,7 +187,7 @@ function Map({ lists, setLists }: ListProps) {
 
     setNextMarkerArr(NextTempArr);
     function removeMarker() {
-      markerArr?.forEach((e: any) => e?.setMap(null));
+      markerArr?.forEach((e: mapData) => e?.setMap(null));
       for (let i = 0; i < markerArr?.length; i++) {
         markerArr[i]?.setMap(null);
       }

@@ -52,3 +52,18 @@ export interface datePicker {
     endDate: moment.Moment | null;
   }) => void;
 }
+
+export interface mapData {
+  _id: string;
+  name: string;
+  email: string;
+  spot: any;
+  theme: string[];
+  place: string;
+  province: string;
+  address: string;
+  lat: number;
+  long: number;
+  photo: string;
+  setMap: any | null;
+}

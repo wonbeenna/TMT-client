@@ -14,7 +14,10 @@ function PlanSearch({ planList }: any) {
     setOpen(!open);
   }, [open, setOpen]);
 
-  const locationHandler = (event: any, type: string) => {
+  const locationHandler = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    type: string
+  ) => {
     if (type === "location") {
       setValue(event.target.value);
     }

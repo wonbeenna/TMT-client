@@ -5,7 +5,7 @@ import requests from "../../../utils/requests";
 axios.defaults.withCredentials = true;
 
 export const planPostReq =
-  (accessToken: accessToken, myListData: any) =>
+  (AccessToken: accessToken, myListData: any) =>
   async (dispatch: (type: { type: string; payload: string }) => void) => {
     await axios
       .post(
@@ -15,7 +15,7 @@ export const planPostReq =
         },
         {
           headers: {
-            authorization: `Bearer ${accessToken}`,
+            authorization: `Bearer ${AccessToken.accessToken}`,
           },
         }
       )
@@ -44,14 +44,14 @@ export const planSearchReq =
   };
 
 export const planDeleteReq =
-  (_id: string, accessToken: accessToken) =>
+  (_id: string, AccessToken: accessToken) =>
   async (
     dispatch: (type: { type: string; payload: string | boolean }) => void
   ) => {
     await axios
       .delete(requests.planURL, {
         headers: {
-          authorization: `Bearer ${accessToken}`,
+          authorization: `Bearer ${AccessToken.accessToken}`,
         },
         data: {
           _id: _id,

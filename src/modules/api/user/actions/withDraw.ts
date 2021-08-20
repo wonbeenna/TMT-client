@@ -4,7 +4,7 @@ import requests from "../../../utils/requests";
 import { accessToken } from "../../../../interfaces/";
 
 export const withDrawReq =
-  (accessToken: accessToken) =>
+  (AccessToken: accessToken) =>
   async (
     dispatch: (type: {
       type: string;
@@ -14,7 +14,7 @@ export const withDrawReq =
     await axios
       .delete(requests.WithDrawURL, {
         headers: {
-          authorization: `Bearer ${accessToken}`,
+          authorization: `Bearer ${AccessToken.accessToken}`,
         },
       })
       .then((res) => {

@@ -15,7 +15,7 @@ function MainList({ lists, setLists }: ListProps) {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const dispatch = useDispatch();
-  const { placeData }: any = useSelector(
+  const { placeData } = useSelector(
     (state: RootState) => state.placeDataReducer
   );
   const currentPosts = placeData.slice(indexOfFirstPost, indexOfLastPost);

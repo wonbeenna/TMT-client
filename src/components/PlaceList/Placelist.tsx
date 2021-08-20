@@ -23,29 +23,28 @@ function PlaceList({
   const dispatch = useDispatch();
   const [open, setOpen] = useState<boolean>(false);
   const { isLogin } = useSelector((state: RootState) => state.LoginReducer);
-  const accessToken: any = useSelector(
+  const { AccessToken } = useSelector(
     (state: RootState) => state.accessTokenReducer
   );
-  const setAccessToken = accessToken.AccessToken.accessToken;
-
   const { userLike }: any = useSelector(
     (state: RootState) => state.userLikeReducer
   );
+
   useEffect(() => {
-    dispatch(likeGetReq(setAccessToken));
-  }, [dispatch, setAccessToken]);
+    dispatch(likeGetReq(AccessToken));
+  }, [dispatch, AccessToken]);
 
   const likeHandler = (el: any) => {
     if (isLogin) {
       if (userLike?.includes(el.place)) {
-        dispatch(likeDeleteReq(el.place, setAccessToken));
+        dispatch(likeDeleteReq(el.place, AccessToken));
         dispatch(
           Actions.userActions.userLike(
             userLike?.filter((els: any) => els !== el.place)
           )
         );
       } else {
-        dispatch(likePostReq(el.place, setAccessToken));
+        dispatch(likePostReq(el.place, AccessToken));
         if (userLike === undefined) {
           dispatch(Actions.userActions.userLike([el.place]));
         } else {

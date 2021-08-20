@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { mapData } from "../../interfaces";
 import { RootState } from "../../modules/store";
 
 declare global {
@@ -9,7 +10,7 @@ declare global {
   }
 }
 function MyMap() {
-  const { myListData }: any = useSelector(
+  const { myPlaceList }: any = useSelector(
     (state: RootState) => state.myPlaceListReducer
   );
 
@@ -43,7 +44,7 @@ function MyMap() {
       const tempArr: Array<string> = [];
       const linePath: Array<string> = [];
 
-      myListData?.spot?.forEach((el: any) => {
+      myPlaceList?.spot?.forEach((el: mapData) => {
         let marker = new window.kakao.maps.Marker({
           map: map, // 마커를 표시할 지도
           position: new window.kakao.maps.LatLng(el.lat, el.long),
@@ -68,7 +69,7 @@ function MyMap() {
       setMarkerArr(tempArr);
     };
     viewMap();
-  }, [myListData]);
+  }, [myPlaceList]);
 
   return (
     <div>
