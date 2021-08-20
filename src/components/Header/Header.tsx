@@ -1,16 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Actions } from "../../modules/api";
-import { RootReducer } from "../../modules/reducer";
 import "./Header.css";
 import { useHistory } from "react-router";
+import { RootState } from "../../modules/store";
 require("dotenv").config();
 
 const Header = () => {
-  const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
+  const { isLogin } = useSelector((state: RootState) => state.LoginReducer);
   const dispatch = useDispatch();
   const history = useHistory();
   const { headerStatus } = useSelector(
-    (state: RootReducer) => state.headerReducer
+    (state: RootState) => state.headerReducer
   );
 
   const signOutHandler = () => {

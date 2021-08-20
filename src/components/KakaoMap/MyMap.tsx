@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { RootReducer } from "../../modules/reducer";
+import { RootState } from "../../modules/store";
 
 declare global {
   interface Window {
@@ -10,7 +10,7 @@ declare global {
 }
 function MyMap() {
   const { myListData }: any = useSelector(
-    (state: RootReducer) => state.myPlaceListReducer
+    (state: RootState) => state.myPlaceListReducer
   );
 
   const [map, setMap] = useState<any>(null);

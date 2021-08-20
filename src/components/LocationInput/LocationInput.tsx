@@ -6,7 +6,10 @@ import "./LocationInput.css";
 function LocationInput({ setProvince }: setProvinceProps) {
   const [value, setValue] = useState<string>("");
 
-  const locationHandler = (event: any, type: string) => {
+  const locationHandler = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    type: string
+  ) => {
     if (type === "location") {
       setProvince(event.target.value);
     }

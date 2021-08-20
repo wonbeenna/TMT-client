@@ -3,8 +3,8 @@ import { ValidationPassword } from "../../modules/utils/ValidationCheck";
 import "./UserInfo.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootReducer } from "../../modules/reducer";
 import { Actions } from "../../modules/api";
+import { RootState } from "../../modules/store";
 
 function UserInfo() {
   const [curPassword, setCurPassword] = useState<string>("");
@@ -18,10 +18,10 @@ function UserInfo() {
   const [errPasswordCk, setErrPasswordCk] = useState<string>("");
   const dispatch = useDispatch();
   const { userInfo }: any = useSelector(
-    (state: RootReducer) => state.userInfoReducer
+    (state: RootState) => state.userInfoReducer
   );
   const accessToken: any = useSelector(
-    (state: RootReducer) => state.accessTokenReducer
+    (state: RootState) => state.accessTokenReducer
   );
   const setAccessToken = accessToken.AccessToken.accessToken;
 

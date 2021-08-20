@@ -42,7 +42,7 @@ function ViewMap({ viewList }: any) {
       let imageSize = new window.kakao.maps.Size(50, 50);
       let markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize);
 
-      list?.forEach((e: any) => {
+      list?.forEach((e: any, idx: number) => {
         let marker = new window.kakao.maps.Marker({
           map: map, // 마커를 표시할 지도
           position: new window.kakao.maps.LatLng(e.lat, e.long),
@@ -55,6 +55,42 @@ function ViewMap({ viewList }: any) {
         bounds.extend(new window.kakao.maps.LatLng(e.lat, e.long + 0.3));
         map?.setBounds(bounds, 100, 50, 50, 400);
         linePath.push(new window.kakao.maps.LatLng(e.lat, e.long));
+
+        var randomNum = Math.floor(Math.random() * 1000) + 1;
+        var iwContent =
+          '<div class="map__wrap2">' +
+          '    <div class="map__info">' +
+          '        <div class="map__img">' +
+          `            <img src=${e.photo} />` +
+          '    <div class="map__info">' +
+          '        <div class="map__title">' +
+          `            ${e.place}` +
+          '          <img src="../img/quality.png" />' +
+          "        </div>" +
+          '        <div class="map__body">' +
+          '            <div class="map__desc">' +
+          `                <div class="map__ellipsis">${e.address}</div>` +
+          '        <div class="map__randomNum">' +
+          `            ${randomNum} 명이 추천했습니다!` +
+          "        </div>" +
+          "            </div>" +
+          "            </div>" +
+          "            </div>" +
+          "        </div>" +
+          "    </div>" +
+          "</div>";
+
+        var infowindow = new window.kakao.maps.InfoWindow({
+          content: iwContent,
+        });
+
+        window.kakao.maps.event.addListener(marker, "mouseover", function () {
+          infowindow.open(map, marker);
+        });
+
+        window.kakao.maps.event.addListener(marker, "mouseout", function () {
+          infowindow.close();
+        });
       });
 
       let polyline = new window.kakao.maps.Polyline({

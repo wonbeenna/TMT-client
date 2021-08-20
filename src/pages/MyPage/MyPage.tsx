@@ -13,10 +13,10 @@ import moment from "moment";
 import { DayPickerRangeController, FocusedInputShape } from "react-dates";
 import "./MyPage.css";
 import "react-dates/initialize";
-import { RootReducer } from "../../modules/reducer";
 import { Actions } from "../../modules/api";
 import { planPostReq } from "../../modules/api/place";
 import { useHistory } from "react-router-dom";
+import { RootState } from "../../modules/store";
 
 function MyPage() {
   const history = useHistory();
@@ -24,9 +24,9 @@ function MyPage() {
     null
   );
   const dispatch = useDispatch();
-  const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
+  const { isLogin } = useSelector((state: RootState) => state.LoginReducer);
   const accessToken: any = useSelector(
-    (state: RootReducer) => state.accessTokenReducer
+    (state: RootState) => state.accessTokenReducer
   );
   const setAccessToken = accessToken.AccessToken.accessToken;
 
@@ -39,7 +39,7 @@ function MyPage() {
   }, [dispatch, setAccessToken]);
 
   const { myListData }: any = useSelector(
-    (state: RootReducer) => state.myPlaceListReducer
+    (state: RootState) => state.myPlaceListReducer
   );
 
   const startDate = moment(myListData?.startDate);

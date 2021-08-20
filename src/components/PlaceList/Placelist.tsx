@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Actions } from "../../modules/api";
-import { RootReducer } from "../../modules/reducer";
 import "./PlaceList.css";
 import InputList from "../InputList/InputList";
 import Paging from "../Pagination/Pagination";
 import { likeDeleteReq, likeGetReq, likePostReq } from "../../modules/api/user";
 import { recommendReq } from "../../modules/api/place";
 import { PlaceListProps } from "../../interfaces";
+import { RootState } from "../../modules/store";
 
 function PlaceList({
   place,
@@ -22,14 +22,14 @@ function PlaceList({
 }: PlaceListProps) {
   const dispatch = useDispatch();
   const [open, setOpen] = useState<boolean>(false);
-  const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
+  const { isLogin } = useSelector((state: RootState) => state.LoginReducer);
   const accessToken: any = useSelector(
-    (state: RootReducer) => state.accessTokenReducer
+    (state: RootState) => state.accessTokenReducer
   );
   const setAccessToken = accessToken.AccessToken.accessToken;
 
   const { userLike }: any = useSelector(
-    (state: RootReducer) => state.userLikeReducer
+    (state: RootState) => state.userLikeReducer
   );
   useEffect(() => {
     dispatch(likeGetReq(setAccessToken));
