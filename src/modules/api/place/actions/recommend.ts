@@ -13,5 +13,6 @@ export const recommendReq =
       })
       .then((res) => {
         dispatch(Actions.placeActions.nextPlaceList(res.data));
-      });
+      })
+      .catch((err) => console.log(err));
   };

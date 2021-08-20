@@ -2,8 +2,9 @@ import "./datepicker.css";
 import { DateRangePicker, FocusedInputShape } from "react-dates";
 import { useState } from "react";
 import moment from "moment";
+import { datePicker } from "../../interfaces";
 
-function DatePicker({ startDate, endDate, handlendDatesChange }: any) {
+function DatePicker({ startDate, endDate, handlendDatesChange }: datePicker) {
   const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(
     null
   );

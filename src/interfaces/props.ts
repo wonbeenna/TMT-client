@@ -1,3 +1,4 @@
+import { Moment } from "moment";
 import { SetStateAction } from "react";
 
 export interface InputListProps {
@@ -41,4 +42,13 @@ export interface PlaceListProps {
   totalPosts: number;
   paginate: (pageNumber: number) => void;
   currentPage: number;
+}
+
+export interface datePicker {
+  startDate: Moment | null;
+  endDate: Moment | null;
+  handlendDatesChange: (type: {
+    startDate: moment.Moment | null;
+    endDate: moment.Moment | null;
+  }) => void;
 }

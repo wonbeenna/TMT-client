@@ -1,17 +1,17 @@
 import { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./UserLike.css";
-import { RootReducer } from "../../modules/reducer";
 import { likePhotoReq } from "../../modules/api/user/actions/like";
+import { RootState } from "../../modules/store";
 
 const UserLike = () => {
   const [result, setResult] = useState<Array<string>>([]);
   const [LikePlace, setLikePlace] = useState<Array<string>>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const dispatch = useDispatch();
-  const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
+  const { isLogin } = useSelector((state: RootState) => state.LoginReducer);
   const accessToken: any = useSelector(
-    (state: RootReducer) => state.accessTokenReducer
+    (state: RootState) => state.accessTokenReducer
   );
   const setAccessToken = accessToken.AccessToken.accessToken;
 

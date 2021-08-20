@@ -1,17 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootReducer } from "../../modules/reducer";
 import { Actions } from "../../modules/api";
 import { insertSpotReq } from "../../modules/api/place";
 import "./InputListBtn.css";
 import { InputListBtnProps } from "../../interfaces";
+import { RootState } from "../../modules/store";
 
 function InputListBtn({ startToday, endToday, lists }: InputListBtnProps) {
   const dispatch = useDispatch();
   const accessToken: any = useSelector(
-    (state: RootReducer) => state.accessTokenReducer
+    (state: RootState) => state.accessTokenReducer
   );
   const setAccessToken = accessToken.AccessToken.accessToken;
-  const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
+  const { isLogin } = useSelector((state: RootState) => state.LoginReducer);
 
   const sendHandler = async () => {
     if (isLogin) {

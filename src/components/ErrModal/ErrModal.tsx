@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Actions } from "../../modules/api";
-import { RootReducer } from "../../modules/reducer";
+import { RootState } from "../../modules/store";
 import "./ErrModal.css";
 
 function ErrModal() {
@@ -12,8 +12,8 @@ function ErrModal() {
     dispatch(Actions.modalActions.modalMessage(""));
     window.history.go(0);
   };
-  const { modalMessage }: any = useSelector(
-    (state: RootReducer) => state.modalMessageReducer
+  const { modalMessage } = useSelector(
+    (state: RootState) => state.modalMessageReducer
   );
 
   return (

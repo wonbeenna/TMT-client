@@ -92,7 +92,7 @@ function InputList({
                     {...provided.droppableProps}
                     ref={provided.innerRef}
                   >
-                    {lists?.map((el: any, index: number) => {
+                    {lists?.map((el: any, index) => {
                       return (
                         <Draggable
                           key={index}

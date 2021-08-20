@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { Header, PlanCard, PlanSearch } from "../../components/index";
 import { Actions } from "../../modules/api";
 import { planGetReq } from "../../modules/api/place";
-import { RootReducer } from "../../modules/reducer";
+import { RootState } from "../../modules/store";
 import Modal from "../../modules/utils/Modal";
 import "./PlanPage.css";
 
@@ -15,7 +15,7 @@ function PlanPage() {
     dispatch(Actions.headerActions.headerStatus("/PlanPage"));
   }, [dispatch]);
   const { planList }: any = useSelector(
-    (state: RootReducer) => state.planListReducer
+    (state: RootState) => state.planListReducer
   );
   useEffect(() => {
     dispatch(planGetReq());

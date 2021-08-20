@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { ErrPage, ViewMap } from "../../components";
 import { Actions } from "../../modules/api";
-import { RootReducer } from "../../modules/reducer";
+import { RootState } from "../../modules/store";
 import "./PlanView.css";
 
 function PlanView({ location }: any) {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { isLogin } = useSelector((state: RootReducer) => state.LoginReducer);
+  const { isLogin } = useSelector((state: RootState) => state.LoginReducer);
   useEffect(() => {
     dispatch(Actions.headerActions.headerStatus("/PlanPage"));
   }, [dispatch]);

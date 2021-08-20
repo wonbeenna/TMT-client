@@ -1,10 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Actions } from "../../modules/api";
 import { planDeleteReq } from "../../modules/api/place";
-import { RootReducer } from "../../modules/reducer";
 import { RootState } from "../../modules/store";
-import Modal from "../../modules/utils/Modal";
 import "./PlanCard.css";
 
 function PlanCard({ planList }: any) {
@@ -14,7 +11,7 @@ function PlanCard({ planList }: any) {
     (state: RootState) => state.userInfoReducer
   );
   const accessToken: any = useSelector(
-    (state: RootReducer) => state.accessTokenReducer
+    (state: RootState) => state.accessTokenReducer
   );
   const setAccessToken = accessToken.AccessToken.accessToken;
   const deleteHandler = (_id: any) => {

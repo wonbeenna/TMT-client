@@ -19,5 +19,6 @@ export const insertSpotReq =
           },
         }
       )
-      .then((res) => (window.location.href = "/Mypage"));
+      .then((res) => (window.location.href = "/Mypage"))
+      .catch((err) => console.log(err));
   };

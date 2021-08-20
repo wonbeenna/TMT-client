@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import "./MainList.css";
 import { useDispatch, useSelector } from "react-redux";
-import { RootReducer } from "../../modules/reducer";
 import { placeDataReq } from "../../modules/api/place";
 import DatePicker from "../DatePicker/DatePicker";
 import moment, { Moment } from "moment";
 import { ThemeInput, PlaceInput, LocationInput, PlaceList } from "../index";
 import { ListProps } from "../../interfaces";
+import { RootState } from "../../modules/store";
 
 function MainList({ lists, setLists }: ListProps) {
   const [province, setProvince] = useState<string | null>("");
@@ -16,7 +16,7 @@ function MainList({ lists, setLists }: ListProps) {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const dispatch = useDispatch();
   const { placeData }: any = useSelector(
-    (state: RootReducer) => state.placeDataReducer
+    (state: RootState) => state.placeDataReducer
   );
   const currentPosts = placeData.slice(indexOfFirstPost, indexOfLastPost);
 

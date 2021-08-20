@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Actions } from "../../modules/api";
-import { RootReducer } from "../../modules/reducer";
 import "./WithDraw.css";
 import { withDrawReq } from "../../modules/api/user";
+import { RootState } from "../../modules/store";
 
 function WithDraw() {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ function WithDraw() {
   };
 
   const accessToken: any = useSelector(
-    (state: RootReducer) => state.accessTokenReducer
+    (state: RootState) => state.accessTokenReducer
   );
   const setAccessToken = accessToken.AccessToken.accessToken;
 

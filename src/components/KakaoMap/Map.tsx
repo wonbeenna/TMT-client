@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ListProps } from "../../interfaces";
 import { Actions } from "../../modules/api";
-import { RootReducer } from "../../modules/reducer";
+import { RootState } from "../../modules/store";
 import "./Map.css";
 
 declare global {
@@ -13,14 +13,14 @@ declare global {
 
 function Map({ lists, setLists }: ListProps) {
   const dispatch = useDispatch();
-  const ListData: any = useSelector(
-    (state: RootReducer) => state.placeListReducer.listData
+  const ListData = useSelector(
+    (state: RootState) => state.placeListReducer.listData
   );
-  const NextListData: any = useSelector(
-    (state: RootReducer) => state.NextPlaceListReducer.nextListData
+  const NextListData = useSelector(
+    (state: RootState) => state.NextPlaceListReducer.nextListData
   );
   const { kakao } = window;
-  const [map, setMap] = useState<any>(null);
+  const [map, setMap] = useState<any | null>(null);
   const [markerArr, setMarkerArr] = useState<any>([]);
   const [nextMarkerArr, setNextMarkerArr] = useState<any>([]);
   const [pathArr, setPathArr] = useState<any>({});
