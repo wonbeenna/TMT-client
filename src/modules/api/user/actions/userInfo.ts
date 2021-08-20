@@ -4,7 +4,7 @@ import { accessToken, userInfoPassword } from "../../../../interfaces";
 import requests from "../../../utils/requests";
 
 export const userInfoPostReq =
-  ({ curPassword, password }: userInfoPassword, accessToken: accessToken) =>
+  ({ curPassword, password }: userInfoPassword, AccessToken: accessToken) =>
   async (dispatch: (type: { type: string; payload: string }) => void) => {
     await axios
       .post(
@@ -15,7 +15,7 @@ export const userInfoPostReq =
         },
         {
           headers: {
-            authorization: `Bearer ${accessToken}`,
+            authorization: `Bearer ${AccessToken.accessToken}`,
           },
         }
       )
@@ -30,12 +30,12 @@ export const userInfoPostReq =
   };
 
 export const userInfoGetReq =
-  (accessToken: accessToken) =>
+  (AccessToken: accessToken) =>
   async (dispatch: (type: { type: string; payload: string }) => void) => {
     await axios
       .get(requests.userInfoURL, {
         headers: {
-          authorization: `Bearer ${accessToken}`,
+          authorization: `Bearer ${AccessToken.accessToken}`,
         },
       })
       .then((res) => {
@@ -48,7 +48,7 @@ export const userInfoGetReq =
   };
 
 export const checkEmailReq =
-  (email: any) =>
+  (email: string) =>
   async (dispatch: (type: { type: string; payload: string }) => void) => {
     await axios
       .post(requests.checkEmailURL, {
@@ -66,7 +66,7 @@ export const checkEmailReq =
   };
 
 export const checkPasswordReq =
-  (email: any) =>
+  (email: string) =>
   async (dispatch: (type: { type: string; payload: string }) => void) => {
     await axios
       .post(requests.checkPasswordURL, {

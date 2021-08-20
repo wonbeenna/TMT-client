@@ -4,16 +4,16 @@ import requests from "../../../utils/requests";
 import { accessToken, likePhoto, place } from "../../../../interfaces/";
 
 export const likeGetReq =
-  (accessToken: accessToken) =>
+  (AccessToken: accessToken) =>
   async (dispatch: (type: { type: string; payload: string[] }) => void) => {
     await axios
       .get(requests.likeURL, {
         headers: {
-          authorization: `Bearer ${accessToken}`,
+          authorization: `Bearer ${AccessToken.accessToken}`,
         },
       })
       .then((res) => {
-        if (!accessToken) {
+        if (!AccessToken.accessToken) {
           return;
         } else {
           dispatch(Actions.userActions.userLike(res.data.place));
@@ -22,11 +22,11 @@ export const likeGetReq =
   };
 
 export const likeDeleteReq =
-  (place: place, accessToken: accessToken) => async () => {
+  (place: place, AccessToken: accessToken) => async () => {
     await axios
       .delete(requests.likeURL, {
         headers: {
-          authorization: `Bearer ${accessToken}`,
+          authorization: `Bearer ${AccessToken.accessToken}`,
         },
         data: {
           place: place,
@@ -38,7 +38,7 @@ export const likeDeleteReq =
   };
 
 export const likePostReq =
-  (place: place, accessToken: accessToken) => async () => {
+  (place: place, AccessToken: accessToken) => async () => {
     await axios
       .post(
         requests.likeURL,
@@ -47,7 +47,7 @@ export const likePostReq =
         },
         {
           headers: {
-            authorization: `Bearer ${accessToken}`,
+            authorization: `Bearer ${AccessToken.accessToken}`,
           },
         }
       )
@@ -59,13 +59,13 @@ export const likePostReq =
 export const likePhotoReq =
   (
     { setResult, setLikePlace, setIsLoading }: likePhoto,
-    accessToken: accessToken
+    AccessToken: accessToken
   ) =>
   async () => {
     await axios
       .get(requests.photoLikeURL, {
         headers: {
-          authorization: `Bearer ${accessToken}`,
+          authorization: `Bearer ${AccessToken.accessToken}`,
         },
       })
       .then((res) => {

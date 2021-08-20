@@ -10,10 +10,9 @@ const UserLike = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const dispatch = useDispatch();
   const { isLogin } = useSelector((state: RootState) => state.LoginReducer);
-  const accessToken: any = useSelector(
+  const { AccessToken } = useSelector(
     (state: RootState) => state.accessTokenReducer
   );
-  const setAccessToken = accessToken.AccessToken.accessToken;
 
   const _infiniteScroll = useCallback(() => {
     let scrollHeight = Math.max(
@@ -41,17 +40,14 @@ const UserLike = () => {
     const fetchData = async () => {
       if (isLogin) {
         dispatch(
-          likePhotoReq(
-            { setResult, setLikePlace, setIsLoading },
-            setAccessToken
-          )
+          likePhotoReq({ setResult, setLikePlace, setIsLoading }, AccessToken)
         );
       } else {
         setLikePlace([]);
       }
     };
     fetchData();
-  }, [dispatch, isLogin, setAccessToken]);
+  }, [dispatch, isLogin, AccessToken]);
 
   useEffect(() => {
     window.addEventListener("scroll", _infiniteScroll, true);

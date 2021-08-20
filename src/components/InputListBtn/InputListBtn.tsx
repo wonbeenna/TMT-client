@@ -7,15 +7,14 @@ import { RootState } from "../../modules/store";
 
 function InputListBtn({ startToday, endToday, lists }: InputListBtnProps) {
   const dispatch = useDispatch();
-  const accessToken: any = useSelector(
+  const { AccessToken } = useSelector(
     (state: RootState) => state.accessTokenReducer
   );
-  const setAccessToken = accessToken.AccessToken.accessToken;
   const { isLogin } = useSelector((state: RootState) => state.LoginReducer);
 
   const sendHandler = async () => {
     if (isLogin) {
-      dispatch(insertSpotReq({ lists, startToday, endToday }, setAccessToken));
+      dispatch(insertSpotReq({ lists, startToday, endToday }, AccessToken));
     } else {
       const ModalHandler = (name: string) => {
         dispatch(Actions.modalActions.modalStatus(true));

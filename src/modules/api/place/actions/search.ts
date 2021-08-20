@@ -4,7 +4,7 @@ import { Actions } from "../..";
 import { accessToken, inputElement } from "../../../../interfaces";
 
 export const myPlaceListReq =
-  (accessToken: accessToken) =>
+  (AccessToken: accessToken) =>
   async (
     dispatch: (type: {
       type: string;
@@ -14,7 +14,7 @@ export const myPlaceListReq =
     await axios
       .get(requests.searchURL, {
         headers: {
-          authorization: `Bearer ${accessToken}`,
+          authorization: `Bearer ${AccessToken.accessToken}`,
         },
       })
       .then((res) =>

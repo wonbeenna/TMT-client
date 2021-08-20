@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { mapData } from "../../interfaces";
 import { planDeleteReq } from "../../modules/api/place";
 import { RootState } from "../../modules/store";
 import "./PlanCard.css";
@@ -10,17 +11,18 @@ function PlanCard({ planList }: any) {
   const { userInfo }: any = useSelector(
     (state: RootState) => state.userInfoReducer
   );
-  const accessToken: any = useSelector(
+  const { AccessToken } = useSelector(
     (state: RootState) => state.accessTokenReducer
   );
-  const setAccessToken = accessToken.AccessToken.accessToken;
-  const deleteHandler = (_id: any) => {
-    dispatch(planDeleteReq(_id, setAccessToken));
+
+  const deleteHandler = (_id: string) => {
+    dispatch(planDeleteReq(_id, AccessToken));
   };
+
   return (
     <div className="planCard">
       <div className="planCard__container">
-        {planList?.map((el: any, idx: number) => {
+        {planList?.map((el: mapData, idx: number) => {
           return (
             <div className="planCard__Card" key={idx}>
               <div className="planCard__contents">
@@ -51,7 +53,7 @@ function PlanCard({ planList }: any) {
                 <div className="planCard__CardTheme">
                   <p>대표테마: {el?.spot && el?.spot[0]?.theme[0]}</p>
                   <div onClick={() => deleteHandler(el?._id)}>
-                    {el.email === userInfo.email ? (
+                    {el.email === userInfo?.email ? (
                       <img src="../img/delete.png" alt="" />
                     ) : (
                       ""

@@ -25,25 +25,23 @@ function MyPage() {
   );
   const dispatch = useDispatch();
   const { isLogin } = useSelector((state: RootState) => state.LoginReducer);
-  const accessToken: any = useSelector(
+  const { AccessToken } = useSelector(
     (state: RootState) => state.accessTokenReducer
   );
-  const setAccessToken = accessToken.AccessToken.accessToken;
-
   useEffect(() => {
     dispatch(Actions.headerActions.headerStatus("/MyPage"));
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(Actions.myPlaceListReq(setAccessToken));
-  }, [dispatch, setAccessToken]);
+    dispatch(Actions.myPlaceListReq(AccessToken));
+  }, [dispatch, AccessToken]);
 
-  const { myListData }: any = useSelector(
+  const { myPlaceList }: any = useSelector(
     (state: RootState) => state.myPlaceListReducer
   );
 
-  const startDate = moment(myListData?.startDate);
-  const endDate = moment(myListData?.endDate);
+  const startDate = moment(myPlaceList?.startDate);
+  const endDate = moment(myPlaceList?.endDate);
 
   const handlendDatesChange = (arg: {
     startDate: moment.Moment | null;
@@ -54,18 +52,18 @@ function MyPage() {
   };
 
   const msDiff =
-    new Date(myListData?.startDate).getTime() -
-    new Date(myListData?.endDate).getTime();
+    new Date(myPlaceList?.startDate).getTime() -
+    new Date(myPlaceList?.endDate).getTime();
   const range = Math.abs(msDiff / (1000 * 60 * 60 * 24)) + 1;
 
   const planPostHandler = () => {
-    if (myListData?.spot?.length === 0) {
+    if (myPlaceList?.spot?.length === 0) {
       dispatch(Actions.modalActions.modalName("ErrModal"));
       dispatch(
         Actions.modalActions.modalMessage("하나 이상의 경로가 필요합니다.")
       );
     } else {
-      dispatch(planPostReq(setAccessToken, myListData));
+      dispatch(planPostReq(AccessToken, myPlaceList));
     }
   };
 
@@ -116,7 +114,7 @@ function MyPage() {
               <h1>나의 여행 경로</h1>
             </div>
             <div className="myPage__section__route">
-              <MyTriproute myplace={myListData} />
+              <MyTriproute myPlaceList={myPlaceList} />
             </div>
             <div className="myPage__like__title">
               <h1>좋아요 목록</h1>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import "./PlaceInput.css";
 import { searchSpotPostReq, searchSpotGetReq } from "../../modules/api/place";
+import { mapData } from "../../interfaces";
 
 function PlaceInput() {
   const [spot, setSpot] = useState<string | any>([]);
@@ -18,7 +19,7 @@ function PlaceInput() {
       setSpotMatch([]);
       setSearch("");
     } else {
-      let matchedPlace = spot?.placeOnly?.filter((el: any) => {
+      let matchedPlace = spot?.placeOnly?.filter((el: mapData) => {
         let regex = new RegExp(`${text}`, "gi");
         return el.place.match(regex);
       });
@@ -27,7 +28,7 @@ function PlaceInput() {
     }
   };
 
-  let changeInput = (el: any) => {
+  let changeInput = (el: mapData) => {
     setSearch(el);
     setSpotMatch([el]);
   };

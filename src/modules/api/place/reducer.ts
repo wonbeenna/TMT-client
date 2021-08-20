@@ -61,7 +61,7 @@ export const myPlaceListReducer = (
     case ACTIONS_PLACE.MY_PLACE_LIST: {
       return {
         ...state,
-        myListData: action.payload,
+        myPlaceList: action.payload,
       };
     }
 

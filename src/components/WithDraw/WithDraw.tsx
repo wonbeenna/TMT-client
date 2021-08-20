@@ -15,13 +15,12 @@ function WithDraw() {
     dispatch(Actions.modalActions.modalName(""));
   };
 
-  const accessToken: any = useSelector(
+  const { AccessToken } = useSelector(
     (state: RootState) => state.accessTokenReducer
   );
-  const setAccessToken = accessToken.AccessToken.accessToken;
 
   const WithDrawHandler = async () => {
-    dispatch(withDrawReq(setAccessToken));
+    dispatch(withDrawReq(AccessToken));
     modalCloseHandler();
   };
 

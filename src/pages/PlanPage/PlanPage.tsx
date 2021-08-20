@@ -14,9 +14,7 @@ function PlanPage() {
   useEffect(() => {
     dispatch(Actions.headerActions.headerStatus("/PlanPage"));
   }, [dispatch]);
-  const { planList }: any = useSelector(
-    (state: RootState) => state.planListReducer
-  );
+  const { planList } = useSelector((state: RootState) => state.planListReducer);
   useEffect(() => {
     dispatch(planGetReq());
   }, [dispatch]);

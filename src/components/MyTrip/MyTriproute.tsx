@@ -1,10 +1,11 @@
+import { mapData } from "../../interfaces";
 import "./MyTriproute.css";
 
-const MyTriproute = ({ myplace }: any) => {
+const MyTriproute = ({ myPlaceList }: any) => {
   return (
     <>
       <div className="route__body">
-        {myplace?.spot?.map((el: any, idx: number) => {
+        {myPlaceList?.spot?.map((el: mapData, idx: number) => {
           return (
             <>
               <div className="route__warp">

@@ -20,10 +20,9 @@ function UserInfo() {
   const { userInfo }: any = useSelector(
     (state: RootState) => state.userInfoReducer
   );
-  const accessToken: any = useSelector(
+  const { AccessToken } = useSelector(
     (state: RootState) => state.accessTokenReducer
   );
-  const setAccessToken = accessToken.AccessToken.accessToken;
 
   const ModalHandler = (name: string) => {
     dispatch(Actions.modalActions.modalStatus(true));
@@ -46,14 +45,12 @@ function UserInfo() {
       setErrPasswordCk("변경하실 비밀번호를 다시한번 입력해 주세요");
       return;
     }
-    dispatch(
-      Actions.userInfoPostReq({ curPassword, password }, setAccessToken)
-    );
+    dispatch(Actions.userInfoPostReq({ curPassword, password }, AccessToken));
   };
 
   useEffect(() => {
-    dispatch(Actions.userInfoGetReq(setAccessToken));
-  }, [dispatch, setAccessToken]);
+    dispatch(Actions.userInfoGetReq(AccessToken));
+  }, [dispatch, AccessToken]);
 
   const modalCloseHandler = () => {
     dispatch(Actions.modalActions.modalStatus(false));

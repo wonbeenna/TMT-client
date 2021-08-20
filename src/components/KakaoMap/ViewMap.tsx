@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import { mapData } from "../../interfaces";
 
 declare global {
   interface Window {
@@ -9,7 +10,7 @@ declare global {
 function ViewMap({ viewList }: any) {
   const [list, setList] = useState<any>([]);
   const [map, setMap] = useState<any>(null);
-  const [, setMarkerArr] = useState<any>([]);
+  const [, setMarkerArr] = useState<string[]>([]);
 
   useEffect(() => {
     kakaoMap();
@@ -42,7 +43,7 @@ function ViewMap({ viewList }: any) {
       let imageSize = new window.kakao.maps.Size(50, 50);
       let markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize);
 
-      list?.forEach((e: any, idx: number) => {
+      list?.forEach((e: mapData, idx: number) => {
         let marker = new window.kakao.maps.Marker({
           map: map, // 마커를 표시할 지도
           position: new window.kakao.maps.LatLng(e.lat, e.long),
