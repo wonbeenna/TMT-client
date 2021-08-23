@@ -14,7 +14,7 @@ export { default as MainList } from "./MainList/MainList";
 export { default as MyTriproute } from "./MyTrip/MyTriproute";
 export { default as Pagination } from "./Pagination/Pagination";
 export { default as PlaceInput } from "./PlaceInput/PlaceInput";
-export { default as PlaceList } from "./PlaceList/PlaceList";
+export { default as PlaceList } from "./PlaceList/Placelist";
 export { default as ThemeInput } from "./ThemeInput/ThemeInput";
 export { default as UserInfoCheck } from "./UserInfoCheck/UserInfoCheck";
 export { default as UserLike } from "./UserLike/UserLike";
