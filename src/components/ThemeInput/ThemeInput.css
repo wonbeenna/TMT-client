@@ -18,7 +18,7 @@
 .themeInput__on {
   margin: 0 0 10px 15px;
   height: 40px;
-  width: 65px;
+  width: 75px;
   background: white;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -28,7 +28,7 @@
 .themeInput__btn {
   margin-left: 15px;
   height: 40px;
-  width: 65px;
+  width: 75px;
   background: white;
   border: 1px solid #2a99f2;
   border-radius: 5px;
